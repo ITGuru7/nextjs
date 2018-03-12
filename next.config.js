@@ -7,5 +7,6 @@ module.exports = {
     }
     return c;
   },
-  cssModules: true
+  cssModules: true,
+
 };
