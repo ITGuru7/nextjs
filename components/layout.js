@@ -1,11 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Head from "next/head";
 import Header from "./header.js";
 import Footer from "./footer.js";
-import { MuiThemeProvider } from "material-ui/styles";
 import Grid from "material-ui/Grid";
 import { css, StyleSheet } from "aphrodite";
-import theme from "../theme/theme.js";
+import withRoot from "../src/withRoot";
 
 const styles = StyleSheet.create({
   marginTop: {
@@ -53,38 +52,42 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ({ children, title = "gougle.nc" }) => (
-  <MuiThemeProvider theme={theme}>
-    <Head>
-      <title>{title}</title>
-      <meta charSet="utf-8" />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-      />
-    </Head>
-    <Grid
-      container
-      direction="row"
-      justify="center"
-      alignItems="stretch"
-      spacing={0}
-      style={{ flexGrow: 1 }}
-    >
-      <Grid item xs={11} sm={11} md={11} lg={8} xl={8}>
-        <Grid item className={css(styles.marginTop)}>
-          <Header />
-        </Grid>
+class Layout extends React.Component {
+  render() {
+
+    return (
+      <Fragment>
+        <Head>
+          <title>{this.props.title}</title>
+          <meta charSet="utf-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          />
+        </Head>
         <Grid
-          item
-          className={css(styles.marginTop, styles.marginBottom)}
+          container
+          direction="row"
+          justify="center"
+          alignItems="stretch"
+          spacing={0}
+          style={{ flexGrow: 1 }}
         >
-          {children}
+          <Grid item xs={11} sm={11} md={11} lg={8} xl={8}>
+            <Grid item className={css(styles.marginTop)}>
+              <Header />
+            </Grid>
+            <Grid item className={css(styles.marginTop, styles.marginBottom)}>
+              {this.props.children}
+            </Grid>
+            <Grid item className={css(styles.marginBottom)}>
+              <Footer />
+            </Grid>
+          </Grid>
         </Grid>
-        <Grid item className={css(styles.marginBottom)}>
-          <Footer />
-        </Grid>
-      </Grid>
-    </Grid>
-  </MuiThemeProvider>
-);
+      </Fragment>
+    );
+  }
+}
+
+export default withRoot(Layout);

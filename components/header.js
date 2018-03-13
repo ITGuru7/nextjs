@@ -100,11 +100,6 @@ class Header extends React.Component {
     this.unsubscribe = () => null;
   }
 
-  static async getInitialProps({ req }) {
-    const userAgent = req ? req.headers["user-agent"] : navigator.userAgent;
-    return { userAgent };
-  }
-
   handleChange = name => event => {
     let str = event.target.value;
     str = str.replace(/\\/g, "/");
@@ -476,7 +471,7 @@ class Header extends React.Component {
 
     var refreshPage = () => {
       if (window.location.pathname === "/") {
-        document.getElementsByClassName("ais-SearchBox__reset")[0].click();
+        // document.getElementsByClassName("ais-SearchBox__reset")[0].click();
       }
     };
 

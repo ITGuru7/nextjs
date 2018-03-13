@@ -4,27 +4,27 @@ import JssProvider from "react-jss/lib/JssProvider";
 import flush from "styled-jsx/server";
 import getPageContext from "../src/getPageContext";
 
-class MyDocument extends Document {
-  static getInitialProps({ renderPage }) {
-    const { html, css } = StyleSheetServer.renderStatic(() => renderPage());
-    const ids = css.renderedClassNames;
-
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx) {
     const pageContext = getPageContext();
-    const page = renderPage(Component => props => (
-      <JssProvider
-        registry={pageContext.sheetsRegistry}
-        generateClassName={pageContext.generateClassName}
-      >
-        <Component pageContext={pageContext} {...props} />
-      </JssProvider>
-    ));
 
+    const { html, css } = StyleSheetServer.renderStatic(() =>
+      ctx.renderPage(Component => props => (
+        <JssProvider
+          registry={pageContext.sheetsRegistry}
+          generateClassName={pageContext.generateClassName}
+        >
+          <Component pageContext={pageContext} {...props} />
+        </JssProvider>
+      ))
+    );
+
+    const ids = css.renderedClassNames;
     return {
       ...html,
       css,
-      ids,
-      page,
       pageContext,
+      ids,
       style: (
         <React.Fragment>
           <style
@@ -91,5 +91,3 @@ class MyDocument extends Document {
     );
   }
 }
-
-export default MyDocument;

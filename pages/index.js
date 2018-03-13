@@ -2,9 +2,9 @@ import Layout from "../components/layout";
 import { initStore } from "../store";
 import { Provider } from "mobx-react";
 
-export default class Welcome extends React.Component {
-  static getInitialProps({ req }) {
-    const isServer = !!req;
+class Welcome extends React.Component {
+  static async getInitialProps(ctx) {
+    const isServer = !!ctx.req;
     const store = initStore(isServer);
     return { lastUpdate: store.lastUpdate, isServer };
   }
@@ -15,11 +15,13 @@ export default class Welcome extends React.Component {
   }
 
   render() {
+
     return (
       <Provider appStore={this.store}>
-      <Layout title={'gougle.nc'}>
-      </Layout>
+        <Layout title={"gougle.nc"} />
       </Provider>
     );
   }
 }
+
+export default Welcome;
