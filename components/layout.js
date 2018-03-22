@@ -1,11 +1,10 @@
-import React, { Fragment } from "react";
-import Head from "next/head";
-import Header from "./header.js";
-import Footer from "./footer.js";
-import Grid from "material-ui/Grid";
-import { css, StyleSheet } from "aphrodite";
+import { Fragment } from "react";
 import withRoot from "../src/withRoot";
-
+import Head from "next/head";
+import Header from "../components/header";
+import Footer from "../components/footer";
+import { css, StyleSheet } from "aphrodite";
+import Grid from "material-ui/Grid";
 const styles = StyleSheet.create({
   marginTop: {
     "@media (max-width: 360px)": {
@@ -51,10 +50,15 @@ const styles = StyleSheet.create({
     }
   }
 });
+if (typeof window !== "undefined") {
+  /* StyleSheet.rehydrate takes an array of rendered classnames,
+  and ensures that the client side render doesn't generate
+  duplicate style definitions in the <style data-aphrodite> tag */
+  StyleSheet.rehydrate(window.__NEXT_DATA__.ids);
+}
 
 class Layout extends React.Component {
   render() {
-
     return (
       <Fragment>
         <Head>

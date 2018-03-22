@@ -15,10 +15,10 @@ class Welcome extends React.Component {
   }
 
   render() {
-
     return (
       <Provider appStore={this.store}>
-        <Layout title={"gougle.nc"} />
+        <Layout title={'gougle.nc'}>
+        </Layout>
       </Provider>
     );
   }

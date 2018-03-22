@@ -1,4 +1,3 @@
-const withCSS = require("@zeit/next-css");
 module.exports = {
   webpack: function(c) {
     if (c.resolve.alias) {

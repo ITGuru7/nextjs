@@ -1,31 +1,28 @@
+import React from "react";
 import Document, { Head, Main, NextScript } from "next/document";
-import { StyleSheetServer } from "aphrodite";
 import JssProvider from "react-jss/lib/JssProvider";
 import flush from "styled-jsx/server";
 import getPageContext from "../src/getPageContext";
+import { StyleSheetServer } from "aphrodite";
 
-export default class MyDocument extends Document {
+class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const pageContext = getPageContext();
-
-    const { html, css } = StyleSheetServer.renderStatic(() =>
-      ctx.renderPage(Component => props => (
+    const { html, css } = StyleSheetServer.renderStatic(() => {
+      return ctx.renderPage(Component => props => (
         <JssProvider
           registry={pageContext.sheetsRegistry}
           generateClassName={pageContext.generateClassName}
         >
           <Component pageContext={pageContext} {...props} />
         </JssProvider>
-      ))
-    );
-
-    const ids = css.renderedClassNames;
+      ));
+    });
     return {
       ...html,
       css,
       pageContext,
-      ids,
-      style: (
+      styles: (
         <React.Fragment>
           <style
             id="jss-server-side"
@@ -39,31 +36,17 @@ export default class MyDocument extends Document {
       )
     };
   }
-
-  constructor(props) {
-    super(props);
-    /* Take the renderedClassNames from aphrodite (as generated
-     in getInitialProps) and assign them to __NEXT_DATA__ so that they
-     are accessible to the client for rehydration. */
-    const { __NEXT_DATA__, ids } = props;
-    if (ids) {
-      __NEXT_DATA__.ids = this.props.ids;
-    }
-  }
-
   render() {
-    /* Make sure to use data-aphrodite attribute in the style tag here
-     so that aphrodite knows which style tag it's in control of when
-     the client goes to render styles. If you don't you'll get a second
-     <style> tag */
     const { pageContext } = this.props;
+
     return (
-      <html>
+      <html lang="en" dir="ltr">
         <Head>
           <style
             data-aphrodite
             dangerouslySetInnerHTML={{ __html: this.props.css.content }}
           />
+          <title>My page</title>
           <meta charSet="utf-8" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
@@ -91,3 +74,5 @@ export default class MyDocument extends Document {
     );
   }
 }
+
+export default MyDocument;

@@ -1,40 +1,24 @@
 import Grid from "material-ui/Grid";
 import Link from "next/link";
 import Button from "material-ui/Button";
-import React from "react";
+import Hidden from "material-ui/Hidden";
+import React, { Fragment } from "react";
 
-import Grow from "material-ui/transitions/Grow";
-import Paper from "material-ui/Paper";
 import Avatar from "material-ui/Avatar";
 import Drawer from "material-ui/Drawer";
 import AccountIcon from "material-ui-icons/AccountCircle";
 import IconButton from "material-ui/IconButton";
 import List, { ListItem, ListItemText } from "material-ui/List";
 import firebaseApp from "../utils/firebaseApp";
-import Fade from "material-ui/transitions/Fade";
 import Tooltip from "material-ui/Tooltip";
-import { MenuItem, MenuList } from "material-ui/Menu";
 import { Manager, Popper, Target } from "react-popper";
-import classNames from "classnames";
-import ClickAwayListener from "material-ui/utils/ClickAwayListener";
-import { withRouter } from "next/router";
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle
-} from "material-ui/Dialog";
-import { FormControl, FormControlLabel } from "material-ui/Form";
-import Checkbox from "material-ui/Checkbox";
-import Input, { InputLabel } from "material-ui/Input";
-import Select from "material-ui/Select";
-import crypto from "crypto";
-import lodash from "lodash";
-import rebase from "re-base";
-import Recaptcha from "react-recaptcha";
-import { inject, observer } from "mobx-react";
 import { css, StyleSheet } from "aphrodite";
-
+if (typeof window !== "undefined") {
+  /* StyleSheet.rehydrate takes an array of rendered classnames,
+  and ensures that the client side render doesn't generate
+  duplicate style definitions in the <style data-aphrodite> tag */
+  StyleSheet.rehydrate(window.__NEXT_DATA__.ids);
+}
 const styles = StyleSheet.create({
   button: {
     color: "white",
@@ -68,20 +52,41 @@ const styles = StyleSheet.create({
       width: "60%",
       height: "60%"
     },
-    "@media (min-width: 601px) and (max-width: 750px)": {
+    "@media (min-width: 601px) and (max-width: 950px)": {
       width: "70%",
       height: "70%"
     }
+  },
+
+  headerHeight: {
+    "@media (max-width: 599px)": {
+      height: "40px",
+    },
+    "@media (min-width: 600px) and (max-width: 960px)": {
+      height: "47px",
+    },
+    "@media (min-width: 961px) and (max-width: 1919px)": {
+      height: "57.45px",
+    },
+    "@media (min-width: 1920px)": {
+      height: "67px",
+    }
+  },
+  logoHeight: {
+    "@media (min-width: 1px)": {
+      height: "120%",
+    },
+    "@media (max-width: 0px)": {
+      height: "100%",
+    },
+
   }
 });
 
-@inject("appStore")
-@observer
 class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      width: "0",
       svgHeight: "0px",
       open: false,
       openMenu: false,
@@ -95,9 +100,6 @@ class Header extends React.Component {
       verified: false,
       loadingUserInfos: true
     };
-    this.updateDimensions = this.updateDimensions.bind(this);
-    this.registerUser = this.registerUser.bind(this);
-    this.unsubscribe = () => null;
   }
 
   handleChange = name => event => {
@@ -107,71 +109,6 @@ class Header extends React.Component {
       [name]: str
     });
   };
-
-  componentDidMount() {
-    window.addEventListener("resize", this.updateDimensions);
-    this.updateDimensions();
-    this.fetchFirebase();
-  }
-
-  componentWillUnmount() {}
-
-  fetchFirebase() {
-    if (this.props.appStore.user) {
-      this.props.appStore.base.bindToState(
-        `users/${this.props.appStore.user.uid}`,
-        {
-          context: this,
-          state: "firebase_user",
-          then: () => {
-            this.setState({ loadingUserInfos: false });
-          },
-          onFailure: () => {
-            console.error(`can't get user informations`);
-          }
-        }
-      );
-    }
-  }
-
-  componentWillMount() {
-    this.registerUser();
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateDimensions);
-    this.unsubscribe();
-  }
-
-  updateDimensions() {
-    this.setState({
-      width: window.innerWidth
-    });
-  }
-
-  registerUser() {
-    this.unsubscribe = firebaseApp.auth().onAuthStateChanged(
-      user => {
-        if (user) {
-          this.props.appStore.user = {
-            displayName: user.displayName,
-            email: user.email,
-            uid: user.uid,
-            photoURL: user.photoURL
-          };
-        } else {
-          this.props.appStore.user = user;
-          this.setState({ logingOutAnimation: !!this.props.appStore.user });
-        }
-      },
-      error => {
-        console.log(error);
-      },
-      completed => {
-        console.log(completed);
-      }
-    );
-  }
 
   toggleDrawer = open => this.setState({ open: open });
 
@@ -231,92 +168,6 @@ class Header extends React.Component {
   }
 
   render() {
-    const pathname = this.props.router.pathname;
-    if (pathname !== "/enregistrer") {
-      this.props.appStore.redirect_to = pathname;
-    }
-
-    let AccountManagementIcon = props => {
-      if (!props.deconnect) {
-        const openMenu = this.state.openMenu;
-        const styles = {
-          root: {
-            display: "flex"
-          },
-          popperClose: {
-            pointerEvents: "none"
-          }
-        };
-        if (this.state.width <= 750) {
-          return null;
-        } else {
-          return (
-            <div>
-              <Manager>
-                <Target>
-                  <Button
-                    aria-owns={openMenu ? "menu-list" : null}
-                    aria-haspopup="true"
-                    onClick={this.handleClickMenu}
-                  >
-                    <Avatar
-                      alt={props.app_store.user.displayName}
-                      src={props.app_store.user.photoURL}
-                      className={css(styles.avatar)}
-                    >
-                      {!props.app_store.user.photoURL && (
-                        <AccountIcon
-                          style={{ width: "100%", height: "100%" }}
-                        />
-                      )}
-                    </Avatar>
-                  </Button>
-                </Target>
-                {openMenu ? (
-                  <Popper
-                    placement="bottom-start"
-                    eventsEnabled={openMenu}
-                    className={classNames({ [styles.popperClose]: !openMenu })}
-                    style={{ zIndex: 999 }}
-                  >
-                    <ClickAwayListener
-                      onClickAway={this.handleCloseMenuClickAway}
-                    >
-                      <Grow
-                        in={openMenu}
-                        id="menu-list"
-                        style={{ transformOrigin: "0 0 0" }}
-                      >
-                        <Paper>
-                          <MenuList role="menu">
-                            <MenuItem onClick={this.handleLogout}>
-                              Se déconnecter
-                            </MenuItem>
-                          </MenuList>
-                        </Paper>
-                      </Grow>
-                    </ClickAwayListener>
-                  </Popper>
-                ) : null}
-              </Manager>
-            </div>
-          );
-        }
-      } else {
-        return (
-          <div>
-            <Avatar
-              alt={props.app_store.user.displayName}
-              src={props.app_store.user.photoURL}
-              className={css(styles.avatar)}
-            >
-              <AccountIcon style={{ width: "100%", height: "100%" }} />
-            </Avatar>
-          </div>
-        );
-      }
-    };
-
     let handleLogout = () => {
       firebaseApp.auth().signOut();
       this.props.appStore.adminMode = false;
@@ -326,93 +177,28 @@ class Header extends React.Component {
       this.setState({ openDialog: true });
     };
 
-    let signUp;
-    if (!this.props.appStore.user) {
-      signUp = (
-        <div>
-          <List disablePadding>
-            <Link href={"/enregistrer"}>
-              <ListItem button>
-                <ListItemText primary="se connecter" />
-              </ListItem>
-            </Link>
-          </List>
-        </div>
-      );
-      if (this.state.logingOutAnimation) {
-        signUp = (
-          <Fade timeout={{ enter: 1000, exit: 1000 }} in={true}>
-            {signUp}
-          </Fade>
-        );
-      }
-    } else {
-      signUp = (
-        <div>
-          <List>
-            <ListItem button onClick={handleOpenDialog}>
-              <ListItemText primary="Créer une page" />
+    let signUp = (
+      <div>
+        <List disablePadding>
+          <Link href={"/enregistrer"}>
+            <ListItem button>
+              <ListItemText primary="se connecter" />
             </ListItem>
-
-            <ListItem button onClick={handleLogout}>
-              <ListItemText primary="Se déconnecter" />
-            </ListItem>
-          </List>
-        </div>
-      );
-    }
+          </Link>
+        </List>
+      </div>
+    );
 
     let RenderInterface = props => {
       let handleOpenDialog = () => {
         this.setState({ openDialog: true });
       };
+      const displayName = "";
+      const photoURL = "";
 
-      if (props.width > 750) {
-        if (props.app_store.user) {
-          return (
-            <Grid
-              container
-              direction="row"
-              justify="flex-end"
-              alignItems="center"
-              spacing={0}
-            >
-              <Grid item>
-                <Tooltip
-                  title="C'est gratuit !       Pour tout le monde !"
-                  placement="bottom"
-                >
-                  <Button
-                    onClick={handleOpenDialog}
-                    className={css(styles.button)}
-                  >
-                    créer une page
-                  </Button>
-                </Tooltip>
-              </Grid>
-              <Grid item>
-                <AccountManagementIcon app_store={this.props.appStore} />
-              </Grid>
-            </Grid>
-          );
-        } else {
-          return this.state.logingOutAnimation ? (
-            <Fade timeout={{ enter: 1000, exit: 1000 }} in={true}>
-              <Grid
-                container
-                direction="row"
-                justify="flex-end"
-                alignItems="flex-start"
-                spacing={16}
-              >
-                <Grid item>
-                  <Link href="/enregistrer">
-                    <Button className={css(styles.button)}>se connecter</Button>
-                  </Link>
-                </Grid>
-              </Grid>
-            </Fade>
-          ) : (
+      return (
+        <Fragment>
+          <Hidden smDown implementation="css">
             <Grid
               container
               direction="row"
@@ -426,335 +212,42 @@ class Header extends React.Component {
                 </Link>
               </Grid>
             </Grid>
-          );
-        }
-      } else {
-        const displayName = props.app_store.user
-          ? props.app_store.user.displayName
-          : "";
-        const photoURL = props.app_store.user
-          ? props.app_store.user.photoURL
-          : "";
-        return (
-          <Grid
-            container
-            direction="row"
-            justify="flex-end"
-            alignItems="flex-start"
-            spacing={16}
-          >
-            <Grid item>
-              <IconButton onClick={this.handleRightOpen}>
-                <Avatar
-                  alt={displayName}
-                  src={photoURL}
-                  className={css(styles.avatar)}
+          </Hidden>
+          <Hidden mdUp implementation="css">
+            <Grid
+              container
+              direction="row"
+              justify="flex-end"
+              alignItems="flex-start"
+              spacing={16}
+            >
+              <Grid item>
+                <IconButton onClick={this.handleRightOpen}>
+                  <Avatar
+                    alt={displayName}
+                    src={photoURL}
+                    className={css(styles.avatar)}
+                  >
+                    {!photoURL && (
+                      <AccountIcon style={{ width: "100%", height: "100%" }} />
+                    )}
+                  </Avatar>
+                </IconButton>
+                <Drawer
+                  anchor="right"
+                  open={props.open}
+                  onClose={this.handleRightClose}
+                  onClick={this.handleRightClose}
                 >
-                  {!photoURL && (
-                    <AccountIcon style={{ width: "100%", height: "100%" }} />
-                  )}
-                </Avatar>
-              </IconButton>
-              <Drawer
-                anchor="right"
-                open={props.open}
-                onClose={this.handleRightClose}
-                onClick={this.handleRightClose}
-              >
-                {signUp}
-              </Drawer>
-            </Grid>
-          </Grid>
-        );
-      }
-    };
-
-    var refreshPage = () => {
-      if (window.location.pathname === "/") {
-        // document.getElementsByClassName("ais-SearchBox__reset")[0].click();
-      }
-    };
-
-    let dialogue = () => {
-      const openDialog = this.state.openDialog;
-      let quitState = { openDialog: false };
-      const { pageTitle, status, model, checked, verified, width } = this.state;
-      const base = rebase.createClass(firebaseApp.database());
-      const user = this.props.appStore.user;
-      let pages = this.state.firebase_user
-        ? Object.assign({}, this.state.firebase_user.pages)
-        : {};
-
-      let handleCloseDialog = () => {
-        this.setState({ openDialog: false });
-      };
-      let handleQuit = () => {
-        this.setState(quitState);
-      };
-
-      let handleContinue = () => {
-        let hash = crypto.randomBytes(2).toString("hex");
-        let sanitizedPageTitle = pageTitle.replace(
-          /(\s+)|(\.)|(#)|(%)|(\$)|(\/)|(\[)|(\])/g,
-          "-"
-        );
-        sanitizedPageTitle = lodash.deburr(sanitizedPageTitle);
-        let sanitizedPageTitleWithHash = `${sanitizedPageTitle}-${hash}`;
-        let objectID = `${model}/${sanitizedPageTitleWithHash}`;
-
-        let that = this;
-        if (!pages[model]) {
-          pages[model] = {};
-        }
-        pages[model][sanitizedPageTitleWithHash] = true;
-        let type = null;
-        if (model === "web") {
-          type = "website";
-        }
-
-        base
-          .update(`users/${user.uid}`, {
-            data: { pages }
-          })
-          .then(() => {
-            base
-              .post(`directory/${objectID}`, {
-                data: {
-                  objectID: objectID,
-                  name: pageTitle,
-                  opening: {
-                    Dimanche: {
-                      afternoon: {
-                        closing: "",
-                        opening: ""
-                      },
-                      morning: {
-                        closing: "",
-                        opening: ""
-                      }
-                    },
-                    Jeudi: {
-                      afternoon: {
-                        closing: "",
-                        opening: ""
-                      },
-                      morning: {
-                        closing: "",
-                        opening: ""
-                      }
-                    },
-                    Lundi: {
-                      afternoon: {
-                        closing: "",
-                        opening: ""
-                      },
-                      morning: {
-                        closing: "",
-                        opening: ""
-                      }
-                    },
-                    Mardi: {
-                      afternoon: {
-                        closing: "",
-                        opening: ""
-                      },
-                      morning: {
-                        closing: "",
-                        opening: ""
-                      }
-                    },
-                    Mercredi: {
-                      afternoon: {
-                        closing: "",
-                        opening: ""
-                      },
-                      morning: {
-                        closing: "",
-                        opening: ""
-                      }
-                    },
-                    Samedi: {
-                      afternoon: {
-                        closing: "",
-                        opening: ""
-                      },
-                      morning: {
-                        closing: "",
-                        opening: ""
-                      }
-                    },
-                    Vendredi: {
-                      afternoon: {
-                        closing: "",
-                        opening: ""
-                      },
-                      morning: {
-                        closing: "",
-                        opening: ""
-                      }
-                    }
-                  },
-                  user,
-                  type,
-                  ranking: 1
-                }
-              })
-              .then(() => {
-                that.setState({ redirectTo: `/${objectID}` });
-              })
-              .catch(err => {
-                if (err) {
-                  console.error(err);
-                }
-              });
-          })
-          .catch(err => {
-            if (err) {
-              console.error(err);
-            }
-          });
-      };
-
-      let handleChangeChecked = () => {
-        this.setState({ checked: !this.state.checked });
-      };
-
-      let handleVerified = () => {
-        this.setState({ verified: true });
-      };
-
-      let continueDisabled = !checked || pageTitle.length < 3 || !verified;
-
-      return (
-        <div>
-          <Dialog
-            open={openDialog}
-            onClose={handleCloseDialog}
-            aria-labelledby="form-dialog-title"
-          >
-            <DialogTitle id="form-dialog-title">{`Créer une page`}</DialogTitle>
-            <DialogContent>
-              <Grid container direction={"column"} spacing={24}>
-                <Grid item>
-                  <DialogContentText>
-                    {`Avant de créer une page, avez-vous vérifié que votre page n'existe pas déjà\u00a0 ?
-                                     Si la page existe déjà, cliquez dans le menu de la page sur le lien\u00a0 :
-                                    "Prendre le contrôle de cette page". Sinon, indiquez le titre de votre page ci-dessous\u00a0 :`}
-                  </DialogContentText>
-                </Grid>
-                <Grid item>
-                  <Input
-                    value={pageTitle}
-                    placeholder={"Titre de la page à créer"}
-                    onChange={this.handleChange("pageTitle")}
-                    inputProps={{
-                      "aria-label": "Description"
-                    }}
-                    fullWidth
-                  />
-                </Grid>
-                <Grid item>
-                  <Grid
-                    container
-                    direction="row"
-                    spacing={16}
-                    alignItems="center"
-                  >
-                    <Grid item>
-                      <InputLabel htmlFor="status-simple">
-                        Statut de la page :{" "}
-                      </InputLabel>
-                    </Grid>
-                    <Grid item xs>
-                      <Select
-                        value={status}
-                        onChange={this.handleChange("status")}
-                        input={<Input name="statut" id="status-simple" />}
-                        fullWidth
-                      >
-                        <MenuItem value={"admin"}>Classique</MenuItem>
-                        <MenuItem disabled value={"collaborative"}>
-                          Page collaborative (wiki)
-                        </MenuItem>
-                      </Select>
-                    </Grid>
-                  </Grid>
-                </Grid>
-                <Grid item>
-                  <Grid
-                    container
-                    direction="row"
-                    spacing={16}
-                    alignItems="center"
-                  >
-                    <Grid item>
-                      <InputLabel htmlFor="model-simple">
-                        Modèle de page :{" "}
-                      </InputLabel>
-                    </Grid>
-                    <Grid item xs>
-                      <FormControl fullWidth>
-                        <Select
-                          value={model}
-                          onChange={this.handleChange("model")}
-                          input={<Input name="model" id="model-simple" />}
-                          fullWidth
-                        >
-                          <MenuItem value={"biz"}>Entreprise</MenuItem>
-                          <MenuItem value={"aso"}>Association</MenuItem>
-                          <MenuItem value={"int"}>Institution</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Grid>
-                  </Grid>
-                </Grid>
-                <Grid item style={{ paddingTop: "40px" }}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={this.state.checked}
-                        onChange={handleChangeChecked}
-                        value="checkedA"
-                        style={{ color: "#008CD2" }}
-                      />
-                    }
-                    label="Je certifie être le propriétaire de l'entité concernée ou être habilité à gérer la page de cette entité
-                                et je demande à devenir l'administrateur de cette page."
-                  />
-                </Grid>
-                <Grid item>
-                  <Recaptcha
-                    sitekey="6LfM2z8UAAAAAAFGS0eF9KQeNQKLMgnKv66ypgbg"
-                    render="explicit"
-                    hl="fr"
-                    size={width < 600 ? "compact" : null}
-                    verifyCallback={handleVerified}
-                  />
-                </Grid>
-                <Grid item>
-                  <DialogActions>
-                    <Button onClick={handleQuit} style={{ color: "#008CD2" }}>
-                      {`abandonner`}
-                    </Button>
-                    <Button
-                      onClick={handleContinue}
-                      disabled={continueDisabled}
-                      style={{ color: continueDisabled ? "grey" : "#008CD2" }}
-                    >
-                      {`continuer`}
-                    </Button>
-                  </DialogActions>
-                </Grid>
+                  {signUp}
+                </Drawer>
               </Grid>
-            </DialogContent>
-          </Dialog>
-        </div>
+            </Grid>
+          </Hidden>
+        </Fragment>
       );
     };
 
-    if (this.state.redirectTo) {
-      this.props.router(this.state.redirectTo);
-    }
     return (
       <Grid container direction="row" justify="space-between" spacing={0}>
         <Grid
@@ -764,6 +257,7 @@ class Header extends React.Component {
           md={3}
           lg={3}
           xl={3}
+          className={css(styles.headerHeight)}
           style={{ height: this.responsiveHeaderHeight(this.state.width) }}
         >
           <Grid
@@ -772,13 +266,13 @@ class Header extends React.Component {
             justify="flex-start"
             alignItems="center"
             spacing={0}
+            className={css(styles.logoHeight)}
             style={{ height: this.responsiveLogoHeight(this.state.width) }}
           >
             <Link href="/">
               <Tooltip title="Page d‘accueil" placement="bottom">
                 <Grid item>
                   <svg
-                    onClick={refreshPage.bind(this)}
                     style={{
                       width: "90%"
                     }}
@@ -839,9 +333,7 @@ class Header extends React.Component {
             style={{ height: "100%" }}
           >
             <Grid item>
-              {dialogue()}
               <RenderInterface
-                width={this.state.width}
                 open={this.state.open}
                 logoutAnimation={this.state.logoutAnimation}
                 app_store={this.props.appStore}
@@ -854,4 +346,4 @@ class Header extends React.Component {
   }
 }
 
-export default withRouter(Header);
+export default Header;
