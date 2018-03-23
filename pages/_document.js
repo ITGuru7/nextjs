@@ -46,6 +46,11 @@ class MyDocument extends Document {
             data-aphrodite
             dangerouslySetInnerHTML={{ __html: this.props.css.content }}
           />
+          <script
+            src="https://cdn.polyfill.io/v2/polyfill.min.js"
+            async
+            defer
+          />
           <title>My page</title>
           <meta charSet="utf-8" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}

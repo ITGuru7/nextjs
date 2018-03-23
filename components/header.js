@@ -13,12 +13,6 @@ import firebaseApp from "../utils/firebaseApp";
 import Tooltip from "material-ui/Tooltip";
 import { Manager, Popper, Target } from "react-popper";
 import { css, StyleSheet } from "aphrodite";
-if (typeof window !== "undefined") {
-  /* StyleSheet.rehydrate takes an array of rendered classnames,
-  and ensures that the client side render doesn't generate
-  duplicate style definitions in the <style data-aphrodite> tag */
-  StyleSheet.rehydrate(window.__NEXT_DATA__.ids);
-}
 const styles = StyleSheet.create({
   button: {
     color: "white",
