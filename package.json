@@ -13,8 +13,6 @@
     "firebase": "^4.12.0",
     "material-ui": "next",
     "material-ui-icons": "^1.0.0-beta.36",
-    "mobx": "^4.1.0",
-    "mobx-react": "^5.0.0",
     "next": "canary",
     "prop-types": "latest",
     "re-base": "^3.2.2",
