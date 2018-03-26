@@ -1,5 +1,5 @@
 import Grid from "material-ui/Grid";
-import React from "react";
+import React, { Fragment } from "react";
 import Link from "next/link";
 import { css, StyleSheet } from "aphrodite";
 import AddressIcon from "material-ui-icons/Room";
@@ -123,12 +123,12 @@ function BusinessLineAddress(props) {
     <Grid
       container
       direction="row"
-      justify="flex-start"
+      justify="center"
       alignItems="center"
       spacing={0}
     >
       <Grid item>
-        <AddressIcon style={{color: "#7B7E80"}} />
+        <AddressIcon style={{ color: "#7B7E80", width: "20px" }} />
       </Grid>
       <Link
         href={{
@@ -197,7 +197,7 @@ function BusinessLineCity(props) {
       spacing={0}
     >
       <Grid item>
-        <CityIcon style={{color: "#7B7E80"}} />
+        <CityIcon style={{ color: "#7B7E80", width: "20px" }} />
       </Grid>
       <Grid item style={{ marginBottom: "4px", paddingLeft: "0px" }}>
         <Typography type="body2" component="h3" color="primary">
@@ -210,7 +210,7 @@ function BusinessLineCity(props) {
   );
 }
 
-function BusinessLineTel(props) {
+function BusinessLinePhone(props) {
   const styles = StyleSheet.create({
     svg: {
       color: "#7B7E80",
@@ -258,7 +258,7 @@ function BusinessLineTel(props) {
       spacing={0}
     >
       <Grid item>
-        <TelIcon style={{color: "#7B7E80"}} />
+        <TelIcon style={{ color: "#7B7E80", width: "20px" }} />
       </Grid>
       <Grid item style={{ marginBottom: "4px", paddingLeft: "0px" }}>
         <Typography type="body2" component="h3" color="primary">
@@ -275,21 +275,29 @@ function BusinessInfo(props) {
   function RenderBusinessInfo(props) {
     if (props.hit.type === "address") {
       return (
-        <div>
+        <Grid container direction={"row"}>
           <BusinessLineName hit={props.hit} />
           <BusinessLineActivity hit={props.hit} />
           <BusinessLineAddress hit={props.hit} />
-        </div>
+        </Grid>
       );
     } else {
       return (
-        <div>
+        <Fragment>
           <BusinessLineName hit={props.hit} />
           <BusinessLineActivity hit={props.hit} />
-          <BusinessLineAddress hit={props.hit} />
-          <BusinessLineCity hit={props.hit} />
-          <BusinessLineTel hit={props.hit} />
-        </div>
+          <Grid container direction={"row"} spacing={8}>
+            {props.hit.address ? <Grid item>
+              <BusinessLineAddress hit={props.hit} />
+            </Grid> : null}
+            {props.hit.city ? <Grid item>
+              <BusinessLineCity hit={props.hit} />
+            </Grid> : null}
+            {props.hit.phone ? <Grid item>
+              <BusinessLinePhone hit={props.hit} />
+            </Grid> : null}
+          </Grid>
+        </Fragment>
       );
     }
   }

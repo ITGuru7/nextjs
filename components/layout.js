@@ -83,7 +83,7 @@ class Layout extends React.Component {
               <Grid item className={css(styles.marginTop)}>
                 <Header />
               </Grid>
-              <Grid item className={css(styles.marginTop, styles.marginBottom)}>
+              <Grid item className={css(styles.marginTop, styles.marginBottom)} >
                 {this.props.children}
               </Grid>
               <Grid item className={css(styles.marginBottom)}>

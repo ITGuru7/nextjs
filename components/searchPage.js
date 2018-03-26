@@ -8,6 +8,7 @@ import LoadingComponent from "./loadingComponent";
 import Fade from "material-ui/transitions/Fade";
 import searchResult from "./searchResult";
 import Divider from 'material-ui/Divider';
+import Typography from 'material-ui/Typography'
 
 class SearchPage extends React.PureComponent {
   constructor(props) {
@@ -128,7 +129,9 @@ class SearchPage extends React.PureComponent {
               });
             }}
           />
-          TOUTE LA NC
+          <Typography type="title" color="primary">
+            TOUTE LA NC
+          </Typography>
           <Divider style={{marginBottom: '28px'}}/>
         </Grid>
         {this.state.loadingFinished ? null : <Connect />}
