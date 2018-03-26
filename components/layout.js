@@ -5,6 +5,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import { css, StyleSheet } from "aphrodite";
 import Grid from "material-ui/Grid";
+import Hidden from 'material-ui/Hidden';
 const styles = StyleSheet.create({
   marginTop: {
     "@media (max-width: 360px)": {
@@ -69,26 +70,52 @@ class Layout extends React.Component {
             content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
           />
         </Head>
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="stretch"
-          spacing={0}
-          style={{ flexGrow: 1 }}
-        >
-          <Grid item xs={11} sm={11} md={11} lg={8} xl={8}>
-            <Grid item className={css(styles.marginTop)}>
-              <Header />
-            </Grid>
-            <Grid item className={css(styles.marginTop, styles.marginBottom)}>
-              {this.props.children}
-            </Grid>
-            <Grid item className={css(styles.marginBottom)}>
-              <Footer />
+        <Hidden mdUp implementation="css">
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="stretch"
+            spacing={0}
+            style={{ flexGrow: 1 }}
+          >
+            <Grid item xs={11}>
+              <Grid item className={css(styles.marginTop)}>
+                <Header />
+              </Grid>
+              <Grid item className={css(styles.marginTop, styles.marginBottom)}>
+                {this.props.children}
+              </Grid>
+              <Grid item className={css(styles.marginBottom)}>
+                <Footer />
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        </Hidden>
+        <Hidden smDown implementation="css">
+          <Grid
+            container
+            direction="row"
+            justify="flex-start"
+            alignItems="stretch"
+            spacing={0}
+            style={{ flexGrow: 1 }}
+          >
+            <Grid item md={1}>
+            </Grid>
+            <Grid item md={10}>
+              <Grid item className={css(styles.marginTop)}>
+                <Header />
+              </Grid>
+              <Grid item className={css(styles.marginTop, styles.marginBottom)}>
+                {this.props.children}
+              </Grid>
+              <Grid item className={css(styles.marginBottom)}>
+                <Footer />
+              </Grid>
+            </Grid>
+          </Grid>
+        </Hidden>
       </Fragment>
     );
   }

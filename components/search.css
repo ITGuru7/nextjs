@@ -1,0 +1,240 @@
+
+.text-align-left {
+    text-align: left!important;
+}
+
+.text-align-center {
+    text-align: center!important;
+}
+
+.ais-SearchBox__input {
+    border: 0px!important;
+    box-shadow: none!important;
+    color: #43464A!important;
+    font-weight: 400!important;
+}
+
+.ais-SearchBox__wrapper {
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)!important;
+    border-radius: 2px!important;
+
+}
+
+.ais-Pagination__itemSelected {
+    background: #008CD2;
+    color: #E8E9E9;
+}
+
+.ais-Pagination__itemLink {
+    color: #008CD2;
+}
+
+.ais-SearchBox__reset svg,
+.ais-SearchBox__button svg {
+    fill: #008CD2!important;
+}
+
+.ais-SearchBox__reset svg,
+.ais-SearchBox__submit svg {
+    fill: #008CD2!important;
+}
+
+.Pagination {
+    text-align: center!important;
+}
+
+.ais-Pagination__item {
+    padding: 0px!important;
+    width: 25px!important;
+}
+
+.ais-Stats__root {
+    color: black!important;
+    font-weight: 400!important;
+
+}
+
+/*-----------------------------xs----------------------------------------------*/
+
+/* xs */
+@media (max-width: 360px) {
+
+    .ais-Stats__root {
+        font-size: 0.8rem!important;
+    }
+
+    .ais-SearchBox__root {
+        max-width: 100%!important;
+        margin-top: 1rem!important;
+        height: 40px!important;
+    }
+
+    .progress svg {
+        border-radius: 2px!important;
+        width: 40px!important;
+        height: 40px!important;
+    }
+
+    .ais-Pagination__root {
+        background-color: #FDFEFF!important;
+        box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)!important;
+
+    }
+
+    .paper {
+        padding: 8px!important;
+    }
+
+    .ais-Pagination__item {
+        font-size: 0.8rem!important;
+    }
+
+    .ais-SearchBox__input {
+        font-size: 1.1rem!important;
+    }
+
+}
+
+/*-----------------------------sm----------------------------------------------*/
+
+/* sm */
+@media (min-width: 361px) and (max-width: 600px) {
+
+    .ais-Stats__root {
+        font-size: 0.8rem!important;
+    }
+
+    .ais-SearchBox__root {
+        max-width: 100%!important;
+        margin-top: 12px!important;
+    }
+
+    .progress svg {
+        border-radius: 2px!important;
+        width: 40px!important;
+        height: 40px!important;
+    }
+
+    .ais-Pagination__root {
+        background-color: #FDFEFF!important;
+        box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)!important;
+    }
+
+    .paper {
+        padding: 16px!important;
+    }
+
+    .ais-Pagination__item {
+        font-size: 0.8rem!important;
+    }
+
+    .ais-SearchBox__input {
+        font-size: 1.1rem!important;
+    }
+
+}
+
+/*-----------------------------md----------------------------------------------*/
+
+/* md */
+@media (min-width: 601px) and (max-width: 960px) {
+
+    .ais-Stats__root {
+        font-size: 0.7rem!important;
+    }
+
+    .ais-SearchBox__root {
+        max-width: 100%!important;
+        margin-top: 24px!important;
+    }
+
+    .progress svg {
+        border-radius: 2px!important;
+        width: 60px!important;
+        height: 60px!important;
+    }
+
+    .ais-Pagination__root {
+        background-color: #FDFEFF!important;
+        box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)!important;
+    }
+
+    .ais-Pagination__item {
+        font-size: 0.8rem!important;
+    }
+
+    .ais-SearchBox__input {
+        font-size: 1rem!important;
+    }
+}
+
+/*-----------------------------lg----------------------------------------------*/
+
+/* lg */
+@media (min-width: 961px) and (max-width: 1919px) {
+
+    .ais-Stats__root {
+        font-size: 0.7rem!important;
+    }
+
+    .ais-SearchBox__root {
+        max-width: 100%!important;
+        margin-top: 24px;
+    }
+
+    .progress svg {
+        border-radius: 2px!important;
+        width: 60px!important;
+        height: 60px!important;
+    }
+
+    .ais-Pagination__root {
+        background-color: #FDFEFF!important;
+        box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)!important;
+
+    }
+
+    .ais-Pagination__item {
+        font-size: 0.8rem!important;
+    }
+
+    .ais-SearchBox__input {
+        font-size: 0.9rem!important;
+    }
+
+}
+
+/*-----------------------------xl----------------------------------------------*/
+
+/* xl */
+@media (min-width: 1920px) {
+
+    .ais-Stats__root {
+        font-size: 0.7rem!important;
+    }
+
+    .ais-SearchBox__root {
+        max-width: 100%!important;
+        margin-top: 24px!important;
+    }
+
+    .progress svg {
+        border-radius: 2px!important;
+        width: 60px!important;
+        height: 60px!important;
+    }
+
+    .ais-Pagination__root {
+        background-color: #FDFEFF!important;
+        box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)!important;
+    }
+
+    .ais-Pagination__item {
+        font-size: 0.8rem!important;
+    }
+
+    .ais-SearchBox__input {
+        font-size: 0.8rem!important;
+    }
+
+}
