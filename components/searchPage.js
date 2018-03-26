@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Hits, Pagination, SearchBox, Stats } from "react-instantsearch/dom";
 import { InstantSearch } from "./instantsearch";
 import Grid from "material-ui/Grid";
@@ -7,8 +7,9 @@ import { connectStateResults } from "react-instantsearch/connectors";
 import LoadingComponent from "./loadingComponent";
 import Fade from "material-ui/transitions/Fade";
 import searchResult from "./searchResult";
+import Divider from 'material-ui/Divider';
 
-class Search extends React.PureComponent {
+class SearchPage extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +17,6 @@ class Search extends React.PureComponent {
       loadingFinished: false
     };
   }
-
 
   styles = StyleSheet.create({
     stats: {
@@ -98,49 +98,14 @@ class Search extends React.PureComponent {
 
     const SearchResults = () => {
       return (
-        <div>
-          <Grid item className={css(this.styles.stats)}>
-            <h1>
-              <Stats
-                translate={(ctxt, n, ms) => {
-                  let res;
-                  let mili;
-                  if (!n) {
-                    res = `aucun résultats trouvés`;
-                  } else if (n === 1) {
-                    res = `1 résultat trouvé`;
-                  } else {
-                    res = `${n.toLocaleString()} résultats trouvés`;
-                  }
-                  if (!n) {
-                    mili = ``;
-                  } else if (ms === 1) {
-                    mili = ` en 1 milliseconde`;
-                  } else {
-                    mili = ` en ${ms.toLocaleString()} millisecondes`;
-                  }
-                  return `${res}${mili}`;
-                }}
-              />
-            </h1>
-          </Grid>
-          <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-            <div className="SearchResults">
-              <Hits hitComponent={searchResult} />
-            </div>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={12}
-            md={12}
-            lg={12}
-            xl={12}
-            className="Pagination"
-          >
+        <Fragment>
+          <div className="SearchResults">
+            <Hits hitComponent={searchResult} />
+          </div>
+          <div className="Pagination">
             <Pagination />
-          </Grid>
-        </div>
+          </div>
+        </Fragment>
       );
     };
 
@@ -162,8 +127,9 @@ class Search extends React.PureComponent {
                 loadingFinished: true
               });
             }}
-
           />
+          TOUTE LA NC
+          <Divider style={{marginBottom: '28px'}}/>
         </Grid>
         {this.state.loadingFinished ? null : <Connect />}
         {this.state.loadingFinished ? (
@@ -178,4 +144,4 @@ class Search extends React.PureComponent {
   }
 }
 
-export default Search;
+export default SearchPage;

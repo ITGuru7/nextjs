@@ -1,8 +1,8 @@
 import Layout from "../components/layout";
 import Fonts from "../utils/fonts";
-import Search from "../components/search";
 import Head from 'next/head';
 import {Fragment} from "react";
+import SearchPage from "../components/searchPage";
 
 class Welcome extends React.Component {
   componentDidMount() {
@@ -22,12 +22,12 @@ class Welcome extends React.Component {
     return (
       <Fragment>
         <Head>
-          <link rel='stylesheet' href='../static/search.css' />
           <link rel='stylesheet' href='../static/loadingComponent.css' />
+          <link rel='stylesheet' href='../static/hits.css' />
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"/>
         </Head>
         <Layout title={"gougle.nc"}>
-          <Search />
+          <SearchPage />
         </Layout>
       </Fragment>
     );

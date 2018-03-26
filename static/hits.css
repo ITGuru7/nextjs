@@ -1,0 +1,20 @@
+
+.ais-Hits {
+    background: white;
+}
+
+.ais-Hits-item {
+    width: 100%!important;
+    border: none!important;
+    box-shadow: none!important;
+    margin-top: 0!important;
+    margin-left: 0!important;
+}
+
+.ais-SearchBox {
+    margin-bottom: 12px;
+}
+
+.ais-Hits-list {
+    margin-left: 0!important;
+}

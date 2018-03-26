@@ -258,17 +258,16 @@ class Header extends React.Component {
             container
             direction="row"
             justify="flex-start"
-            alignItems="center"
             spacing={0}
             className={css(styles.logoHeight)}
-            style={{ height: this.responsiveLogoHeight(this.state.width) }}
+            // style={{ height: this.responsiveLogoHeight(this.state.width) }}
           >
             <Link href="/">
               <Tooltip title="Page d‘accueil" placement="bottom">
                 <Grid item>
                   <svg
                     style={{
-                      width: "90%"
+                      width: "60%"
                     }}
                     viewBox="0 0 1115 235"
                     id="svg"
@@ -322,7 +321,6 @@ class Header extends React.Component {
             container
             direction="row"
             justify="flex-end"
-            alignItems="center"
             spacing={0}
             style={{ height: "100%" }}
           >
