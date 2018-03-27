@@ -15,14 +15,14 @@ function BusinessLogo(props) {
   let size = 0;
 
   if (width >= 1920) {
-    responsive_logo += "f_auto,q_auto,c_lpad,b_auto,w_110,h_110/";
-    size = 110;
+    responsive_logo += "f_auto,q_auto,c_lpad,b_auto,w_70,h_70/";
+    size = 70;
   } else if (width >= 961) {
-    responsive_logo += "f_auto,q_auto,c_lpad,b_auto,w_110,h_110/";
-    size = 110;
+    responsive_logo += "f_auto,q_auto,c_lpad,b_auto,w_70,h_70/";
+    size = 70;
   } else if (width >= 601) {
-    responsive_logo += "f_auto,q_auto,c_lpad,b_auto,w_110,h_110/";
-    size = 110;
+    responsive_logo += "f_auto,q_auto,c_lpad,b_auto,w_70,h_70/";
+    size = 70;
   } else {
     responsive_logo += "f_auto,q_auto,c_lpad,b_auto,w_70,h_70/";
     size = 70;
@@ -115,9 +115,12 @@ function BusinessLineActivity(props) {
 }
 
 function BusinessLineAddress(props) {
+  let address;
   if (!props.hit.address) {
     return null;
   }
+  const city = props.hit.city ? `, ${props.hit.city}` : '';
+  address = `${props.hit.address}${city}`
 
   return (
     <Grid
@@ -142,7 +145,7 @@ function BusinessLineAddress(props) {
               component="h3"
               style={{ color: "#008CD2" }}
             >
-              {props.hit.address}
+              {address}
             </Typography>
           </Grid>
         </a>
@@ -325,13 +328,16 @@ function BusinessInfo(props) {
   );
 }
 
-export default function searchResult({ hit }) {
-  return (
-    <div>
-      <Grid container>
-        <BusinessLogo hit={hit} />
-        <BusinessInfo hit={hit} />
-      </Grid>
-    </div>
-  );
+export default class SearchResult extends React.PureComponent {
+  render() {
+    const hit = this.props.hit;
+    return (
+      <div>
+        <Grid container>
+          <BusinessLogo hit={hit}/>
+          <BusinessInfo hit={hit}/>
+        </Grid>
+      </div>
+    );
+  }
 }

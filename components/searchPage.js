@@ -7,8 +7,11 @@ import { connectStateResults } from "react-instantsearch/connectors";
 import LoadingComponent from "./loadingComponent";
 import Fade from "material-ui/transitions/Fade";
 import searchResult from "./searchResult";
-import Divider from 'material-ui/Divider';
-import Typography from 'material-ui/Typography'
+import Divider from "material-ui/Divider";
+import Typography from "material-ui/Typography";
+import Hidden from "material-ui/Hidden";
+import Header from "./header";
+import Footer from "./footer";
 
 class SearchPage extends React.PureComponent {
   constructor(props) {
@@ -110,13 +113,9 @@ class SearchPage extends React.PureComponent {
       );
     };
 
-    return (
-      <InstantSearch
-        appId="5NXUF7YDRN"
-        apiKey="458ab22e25a2ddf3a174bf03678c9281"
-        indexName="directory_nc"
-      >
-        <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+    const desktop = () => {
+      return (
+        <Fragment>
           <SearchBox
             autoFocus={this.state.width > 600}
             translations={{
@@ -129,19 +128,143 @@ class SearchPage extends React.PureComponent {
               });
             }}
           />
-          <Typography type="title" color="primary">
-            TOUTE LA NC
+          <Typography
+            type="title"
+            color="primary"
+            component={"span"}
+            style={{ fontWeight: 500 }}
+          >
+            TOUT
           </Typography>
-          <Divider style={{marginBottom: '28px'}}/>
-        </Grid>
-        {this.state.loadingFinished ? null : <Connect />}
-        {this.state.loadingFinished ? (
-          <SearchResults />
-        ) : (
-          <Fade timeout={{ enter: 500, exit: 500 }} in={true}>
+          <Divider style={{ marginBottom: "28px" }} />
+          {this.state.loadingFinished ? null : <Connect />}
+          {this.state.loadingFinished ? (
             <SearchResults />
-          </Fade>
-        )}
+          ) : (
+            <Fade timeout={{ enter: 500, exit: 500 }} in={true}>
+              <SearchResults />
+            </Fade>
+          )}
+        </Fragment>
+      );
+    };
+
+    const mobile = () => {
+      const styles = StyleSheet.create({
+        marginTop: {
+          "@media (max-width: 360px)": {
+            marginTop: "4px"
+          },
+          "@media (min-width: 361px) and (max-width: 600px)": {
+            marginTop: "4px"
+          },
+          "@media (min-width: 601px) and (max-width: 960px)": {
+            marginTop: "8px"
+          },
+          "@media (min-width: 961px) and (max-width: 1919px)": {
+            marginTop: "12px"
+          },
+          "@media (min-width: 1920px)": {
+            marginTop: "12px"
+          }
+        },
+        marginBottom: {
+          "@media (max-width: 360px)": {
+            marginBottom: "8px"
+          },
+          "@media (min-width: 361px) and (max-width: 600px)": {
+            marginBottom: "8px"
+          },
+
+          "@media (min-width: 601px) and (max-width: 960px)": {
+            marginBottom: "16px"
+          },
+          "@media (min-width: 961px) and (max-width: 1919px)": {
+            marginBottom: "24px"
+          },
+          "@media (min-width: 1920px)": {
+            marginBottom: "24px"
+          }
+        },
+        columnContainer: {
+          "@media (max-width: 360px)": {
+            height: "100%"
+          },
+          "@media (min-width: 361px) and (max-width: 600px)": {
+            marginBottom: "8px"
+          }
+        }
+      });
+      return (
+        <Fragment>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="stretch"
+            spacing={0}
+            style={{ flexGrow: 1 }}
+          >
+            <Grid item xs={11} className={css(styles.marginTop)}>
+              <Header />
+            </Grid>
+            <Grid item xs={11}>
+              <SearchBox
+                autoFocus={this.state.width > 600}
+                translations={{
+                  placeholder: this.placeholder(this.state.width)
+                }}
+                ref="searchbox"
+                onInput={() => {
+                  this.setState({
+                    loadingFinished: true
+                  });
+                }}
+              />
+            </Grid>
+            <Grid item xs={11}>
+              <Typography
+                type="title"
+                color="primary"
+                component={"span"}
+                style={{ fontWeight: 500 }}
+              >
+                TOUT
+              </Typography>
+            </Grid>
+            <Grid item xs={11}>
+              <Divider style={{ marginBottom: "28px" }} />
+            </Grid>
+            <Grid item xs={11}>
+              {this.state.loadingFinished ? null : <Connect />}
+              {this.state.loadingFinished ? (
+                <SearchResults />
+              ) : (
+                <Fade timeout={{ enter: 500, exit: 500 }} in={true}>
+                  <SearchResults />
+                </Fade>
+              )}
+            </Grid>
+            <Grid item xs={11}>
+              <Footer/>
+            </Grid>
+          </Grid>
+        </Fragment>
+      );
+    };
+
+    return (
+      <InstantSearch
+        appId="5NXUF7YDRN"
+        apiKey="458ab22e25a2ddf3a174bf03678c9281"
+        indexName="directory_nc"
+      >
+        <Hidden only={['md','lg', 'xl']} implementation="css">
+          {mobile()}
+        </Hidden>
+        <Hidden only={['xs', 'sm']} implementation="css">
+          {desktop()}
+        </Hidden>
       </InstantSearch>
     );
   }

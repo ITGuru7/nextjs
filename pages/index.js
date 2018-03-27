@@ -4,7 +4,7 @@ import Head from 'next/head';
 import {Fragment} from "react";
 import SearchPage from "../components/searchPage";
 
-class Welcome extends React.Component {
+class Welcome extends React.PureComponent {
   componentDidMount() {
     Fonts();
     if ("serviceWorker" in navigator) {
@@ -25,6 +25,7 @@ class Welcome extends React.Component {
           <link rel='stylesheet' href='../static/loadingComponent.css' />
           <link rel='stylesheet' href='../static/hits.css' />
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"/>
+
         </Head>
         <Layout title={"gougle.nc"}>
           <SearchPage />

@@ -13,6 +13,7 @@ import firebaseApp from "../utils/firebaseApp";
 import Tooltip from "material-ui/Tooltip";
 import { Manager, Popper, Target } from "react-popper";
 import { css, StyleSheet } from "aphrodite";
+
 const styles = StyleSheet.create({
   button: {
     color: "white",
@@ -34,8 +35,6 @@ const styles = StyleSheet.create({
   avatar: {
     backgroundColor: "#e8e9e9"
   },
-
-  accountIcon: {},
 
   svg: {
     "@media (max-width: 360px)": {
@@ -77,7 +76,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class Header extends React.Component {
+class Header extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -133,34 +132,6 @@ class Header extends React.Component {
     this.setState({ redirectTo: "/gerer_compte" });
   };
 
-  responsiveHeaderHeight(width) {
-    if (width >= 1920) {
-      return "67px";
-    } else if (width >= 961) {
-      return "57.45px";
-    } else if (width >= 601) {
-      return "47px";
-    } else if (width >= 361) {
-      return `40px`;
-    } else if (width) {
-      return `40px`;
-    } else return "";
-  }
-
-  responsiveLogoHeight(width) {
-    if (width >= 1920) {
-      return "120%";
-    } else if (width >= 961) {
-      return "120%";
-    } else if (width >= 601) {
-      return "120%";
-    } else if (width >= 361) {
-      return `120%`;
-    } else if (width) {
-      return `120%`;
-    } else return "100%";
-  }
-
   render() {
     let handleLogout = () => {
       firebaseApp.auth().signOut();
@@ -192,7 +163,7 @@ class Header extends React.Component {
 
       return (
         <Fragment>
-          <Hidden smDown implementation="css">
+          <Hidden only={['xs', 'sm']} implementation="css">
             <Grid
               container
               direction="row"
@@ -207,7 +178,7 @@ class Header extends React.Component {
               </Grid>
             </Grid>
           </Hidden>
-          <Hidden mdUp implementation="css">
+          <Hidden only={['md','lg', 'xl']} implementation="css">
             <Grid
               container
               direction="row"
@@ -252,7 +223,6 @@ class Header extends React.Component {
           lg={3}
           xl={3}
           className={css(styles.headerHeight)}
-          style={{ height: this.responsiveHeaderHeight(this.state.width) }}
         >
           <Grid
             container
@@ -260,7 +230,6 @@ class Header extends React.Component {
             justify="flex-start"
             spacing={0}
             className={css(styles.logoHeight)}
-            // style={{ height: this.responsiveLogoHeight(this.state.width) }}
           >
             <Link href="/">
               <Tooltip title="Page d‘accueil" placement="bottom">
@@ -315,7 +284,6 @@ class Header extends React.Component {
           md={3}
           lg={3}
           xl={3}
-          style={{ height: this.responsiveHeaderHeight(this.state.width) }}
         >
           <Grid
             container
