@@ -6,6 +6,7 @@ import AddressIcon from "material-ui-icons/Room";
 import CityIcon from "material-ui-icons/LocationCity";
 import TelIcon from "material-ui-icons/Call";
 import Typography from "material-ui/Typography";
+import aphrodite from "../utils/aphrodite";
 
 function BusinessLogo(props) {
   const logo = props.hit.logo;
@@ -331,8 +332,9 @@ function BusinessInfo(props) {
 export default class SearchResult extends React.PureComponent {
   render() {
     const hit = this.props.hit;
+
     return (
-      <div>
+      <div className={css(aphrodite.contentLeft, aphrodite.contentRight)}>
         <Grid container>
           <BusinessLogo hit={hit}/>
           <BusinessInfo hit={hit}/>
