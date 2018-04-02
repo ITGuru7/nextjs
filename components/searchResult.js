@@ -61,7 +61,7 @@ function BusinessLineName(props) {
       url = `https://${url}`;
     }
     return (
-      <Typography type="title" color="primary">
+      <Typography variant="body2" color="primary">
         <a
           href={url}
           target="_blank"
@@ -77,7 +77,7 @@ function BusinessLineName(props) {
       name = "Adresse";
     }
     return (
-      <Typography type="title" color="primary">
+      <Typography variant="body2" color="primary">
         <Link
           href={{
             pathname: `/${props.hit.objectID}`
@@ -106,7 +106,7 @@ function BusinessLineActivity(props) {
   return (
     <Typography
       component={"h3"}
-      type="subheading"
+      variant="body1"
       color="primary"
       style={{ marginBottom: "8px", paddingLeft: "0px" }}
     >
@@ -142,7 +142,7 @@ function BusinessLineAddress(props) {
         <a rel="nofollow">
           <Grid item xs style={{ marginBottom: "4px", paddingLeft: "0px" }}>
             <Typography
-              type="body2"
+              variant="body2"
               component="h3"
               style={{ color: "#008CD2" }}
             >
@@ -204,7 +204,7 @@ function BusinessLineCity(props) {
         <CityIcon style={{ color: "#7B7E80", width: "20px" }} />
       </Grid>
       <Grid item style={{ marginBottom: "4px", paddingLeft: "0px" }}>
-        <Typography type="body2" component="h3" color="primary">
+        <Typography variant="body2" component="h3" color="primary">
           <a rel="nofollow" href={""}>
             {props.hit.city}
           </a>
@@ -265,7 +265,7 @@ function BusinessLinePhone(props) {
         <TelIcon style={{ color: "#7B7E80", width: "20px" }} />
       </Grid>
       <Grid item style={{ marginBottom: "4px", paddingLeft: "0px" }}>
-        <Typography type="body2" component="h3" color="primary">
+        <Typography variant="body2" component="h3" color="primary">
           <a rel="nofollow" href={`tel:${phone}`}>
             {phone}
           </a>

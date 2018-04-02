@@ -57,8 +57,7 @@ class MyDocument extends Document {
           <meta
             name="viewport"
             content={
-              "user-scalable=0, initial-scale=1, " +
-              "minimum-scale=1, width=device-width, height=device-height"
+              "user-scalable=no, initial-scale=1, maximum-scale=1, width=device-width"
             }
           />
           {/* PWA primary color */}
@@ -67,10 +66,6 @@ class MyDocument extends Document {
             content={pageContext.theme.palette.primary[500]}
           />
           <meta charSet="utf-8" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-          />
         </Head>
         <body>
           <Main />

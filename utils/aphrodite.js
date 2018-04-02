@@ -5,35 +5,69 @@ import { StyleSheet } from "aphrodite";
 // >= md : desktop
 
 export default StyleSheet.create({
-  contentLeft: {
+  contentTop: {
     // < sm
     "@media (max-width: 600px)": {
-      marginLeft: "12px"
+      paddingTop: "18px"
     },
     //sm-md
     "@media (min-width: 601px) and (max-width: 960px)": {
-      marginLeft: "30px"
+      paddingTop: "18px"
     },
     //md+
     "@media (min-width: 961px)": {
-      marginLeft: "120px"
+      paddingTop: "18px"
     }
+  },
+  contentBottom: {
+    // < sm
+    "@media (max-width: 600px)": {
+      paddingBottom: "18px"
+    },
+    //sm-md
+    "@media (min-width: 601px) and (max-width: 960px)": {
+      paddingBottom: "18px"
+    },
+    //md+
+    "@media (min-width: 961px)": {
+      paddingBottom: "18px"
+    }
+  },
+  contentLeft: {
+    // < sm
+    "@media (max-width: 600px)": {
+      paddingLeft: "12px"
+    },
+    //sm-md
+    "@media (min-width: 601px) and (max-width: 960px)": {
+      paddingLeft: "30px"
+    },
+    //md+
+    "@media (min-width: 961px)": {
+      paddingLeft: "120px"
+    }
+  },
+  tabs: {
+    fontSize: "6px"
   },
   contentRight: {
     // < sm
     "@media (max-width: 600px)": {
-      marginRight: "12px"
+      paddingRight: "12px"
     },
     //sm-md
     "@media (min-width: 601px) and (max-width: 960px)": {
-      marginRight: "30px"
+      paddingRight: "30px"
     },
     //md+
     "@media (min-width: 961px)": {
-      marginRight: "120px"
+      paddingRight: "120px"
     }
   },
   gougleLogo: {
-    width: "120px"
+    width: "130px"
+  },
+  mobileGreyBackground: {
+    backgroundColor: "#f8f8f8"
   }
 });

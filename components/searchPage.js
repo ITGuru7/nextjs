@@ -6,9 +6,16 @@ import searchResult from "./searchResult";
 import Divider from "material-ui/Divider";
 import Hidden from "material-ui/Hidden";
 import Footer from "./footer";
-import Tabs, { Tab } from "material-ui/Tabs";
+import Tabs from "./styled/tabs"
+import Tab from "./styled/tab"
 import aphrodite from "../utils/aphrodite";
 import Grid from "material-ui/Grid";
+import MenuIcon from "material-ui-icons/Menu";
+import Drawer from "material-ui/Drawer";
+import List, { ListItem, ListItemText } from "material-ui/List";
+import Link from "next/link";
+import GougleLogo from "./gougleLogo";
+import Typography from "material-ui/Typography";
 
 class SearchPage extends React.PureComponent {
   constructor(props) {
@@ -48,21 +55,27 @@ class SearchPage extends React.PureComponent {
     };
 
     const tabs = () => {
+
       return (
         <Tabs
           value={0}
           indicatorColor="secondary"
-          textColor="primary"
-          onChange={this.handleChange}
+          textColor="secondary"
+          // onChange={this.handleChange}
           className={css(aphrodite.contentLeft)}
         >
-          <Tab label="tout" />
-          <Tab label="images" disabled />
+          <Tab
+            label={<Typography color="primary">tout</Typography>}
+          />
+          <Tab
+            label={<Typography color="primary">images</Typography>}
+            disabled
+          />
         </Tabs>
       );
     };
 
-    const searchBox = () => {
+    const searchBox = props => {
       return (
         <SearchBox
           autoFocus={this.state.width > 600}
@@ -94,76 +107,58 @@ class SearchPage extends React.PureComponent {
     };
 
     const mobile = () => {
-      const styles = StyleSheet.create({
-        marginTop: {
-          "@media (max-width: 360px)": {
-            marginTop: "4px"
-          },
-          "@media (min-width: 361px) and (max-width: 600px)": {
-            marginTop: "4px"
-          },
-          "@media (min-width: 601px) and (max-width: 960px)": {
-            marginTop: "8px"
-          },
-          "@media (min-width: 961px) and (max-width: 1919px)": {
-            marginTop: "12px"
-          },
-          "@media (min-width: 1920px)": {
-            marginTop: "12px"
-          }
-        },
-        marginBottom: {
-          "@media (max-width: 360px)": {
-            marginBottom: "8px"
-          },
-          "@media (min-width: 361px) and (max-width: 600px)": {
-            marginBottom: "8px"
-          },
+      const { open } = this.props;
 
-          "@media (min-width: 601px) and (max-width: 960px)": {
-            marginBottom: "16px"
-          },
-          "@media (min-width: 961px) and (max-width: 1919px)": {
-            marginBottom: "24px"
-          },
-          "@media (min-width: 1920px)": {
-            marginBottom: "24px"
-          }
-        },
-        columnContainer: {
-          "@media (max-width: 360px)": {
-            height: "100%"
-          },
-          "@media (min-width: 361px) and (max-width: 600px)": {
-            marginBottom: "8px"
-          }
-        }
-      });
+      const handleOpenDialog = () => {
+        this.setState({ openDialog: true });
+      };
+      const displayName = "";
+      const photoURL = "";
+
       return (
         <Fragment>
           <div
             className={css(
-              styles.marginTop,
+              aphrodite.contentTop,
               aphrodite.contentLeft,
-              aphrodite.contentRight
+              aphrodite.contentRight,
+              aphrodite.mobileGreyBackground
             )}
           >
-            <Grid container direction="row" justify="space-between">
-              <Grid item>1</Grid>
-              <Grid item>2</Grid>
-              <Grid item>3</Grid>
+            <Grid
+              container
+              direction="row"
+              justify="space-between"
+              spacing={0}
+              className={css(aphrodite.contentBottom)}
+            >
+              <Grid item>
+                <MenuIcon onClick={this.handleRightOpen} />
+                <Drawer
+                  anchor="right"
+                  open={open}
+                  onClose={this.handleRightClose}
+                  onClick={this.handleRightClose}
+                >
+                  <List disablePadding>
+                    <Link href={"/enregistrer"}>
+                      <ListItem button>
+                        <ListItemText primary="se connecter" />
+                      </ListItem>
+                    </Link>
+                  </List>
+                </Drawer>
+              </Grid>
+              <Grid item>
+                <GougleLogo cn={css(aphrodite.gougleLogo)} />
+              </Grid>
+              <Grid item />
             </Grid>
           </div>
-          {searchBox()}
-          {tabs()}
-          <Divider
-            style={{ marginBottom: "28px" }}
-            className={css(
-              styles.marginTop,
-              aphrodite.contentLeft,
-              aphrodite.contentRight
-            )}
-          />
+          <div className={css(aphrodite.mobileGreyBackground)}>
+            {searchBox()}
+            {tabs()}
+          </div>
           <SearchResults />
           <Footer />
         </Fragment>
