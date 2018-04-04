@@ -8,11 +8,14 @@ export default class Display extends React.PureComponent {
       case "mobile":
         only = ["md", "lg", "xl"];
         break;
+      case "mobile-tablet":
+        only = ["lg", "xl"];
+        break;
       case "tablet":
         only = ["xs", "sm", "lg", "xl"];
         break;
-      case "tablet-mobile":
-        only = ["lg", "xl"];
+      case "tablet-desktop":
+        only = ["xs", "sm"];
         break;
       case "desktop":
         only = ["xs", "sm", "md"];

@@ -18,9 +18,6 @@ const styles = {
     paddingBottom: 3,
     paddingLeft: 6,
     paddingRight: 6
-    // [theme.breakpoints.up('md')]: {
-    //   paddingLeft: theme.spacing.unit * 3,
-    //   paddingRight: theme.spacing.unit * 3,
   }
 };
 

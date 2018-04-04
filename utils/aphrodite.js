@@ -8,29 +8,29 @@ export default StyleSheet.create({
   contentTop: {
     // < sm
     "@media (max-width: 600px)": {
-      paddingTop: "18px"
+      paddingTop: "8px"
     },
     //sm-md
     "@media (min-width: 601px) and (max-width: 960px)": {
-      paddingTop: "18px"
+      paddingTop: "8px"
     },
     //md+
     "@media (min-width: 961px)": {
-      paddingTop: "18px"
+      paddingTop: "8px"
     }
   },
   contentBottom: {
     // < sm
     "@media (max-width: 600px)": {
-      paddingBottom: "18px"
+      paddingBottom: "8px"
     },
     //sm-md
     "@media (min-width: 601px) and (max-width: 960px)": {
-      paddingBottom: "18px"
+      paddingBottom: "8px"
     },
     //md+
     "@media (min-width: 961px)": {
-      paddingBottom: "18px"
+      paddingBottom: "8px"
     }
   },
   contentLeft: {
@@ -47,6 +47,11 @@ export default StyleSheet.create({
       paddingLeft: "120px"
     }
   },
+  gougleLogoMarginDesktop: {
+    marginLeft: "10px",
+    marginRight: "10px"
+  },
+
   tabs: {
     fontSize: "6px"
   },
@@ -67,6 +72,10 @@ export default StyleSheet.create({
   gougleLogo: {
     width: "130px"
   },
+  topScreenPadding: {
+    marginTop: "3px",
+    marginBottom: "3px"
+  },
   mobileGreyBackground: {
     backgroundColor: "#f8f8f8"
   },
@@ -75,5 +84,9 @@ export default StyleSheet.create({
   },
   debug: {
     border: "1px black solid"
+  },
+  searchIcon: {
+    width: "24px",
+    height: "24px"
   }
 });
