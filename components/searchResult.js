@@ -120,8 +120,8 @@ function BusinessLineAddress(props) {
   if (!props.hit.address) {
     return null;
   }
-  const city = props.hit.city ? `, ${props.hit.city}` : '';
-  address = `${props.hit.address}${city}`
+  const city = props.hit.city ? `, ${props.hit.city}` : "";
+  address = `${props.hit.address}${city}`;
 
   return (
     <Grid
@@ -130,6 +130,7 @@ function BusinessLineAddress(props) {
       justify="center"
       alignItems="center"
       spacing={0}
+      className={css(aphrodite.debug)}
     >
       <Grid item>
         <AddressIcon style={{ color: "#7B7E80", width: "20px" }} />
@@ -279,7 +280,7 @@ function BusinessInfo(props) {
   function RenderBusinessInfo(props) {
     if (props.hit.type === "address") {
       return (
-        <Grid container direction={"row"}>
+        <Grid container direction={"row"} spacing={0}>
           <BusinessLineName hit={props.hit} />
           <BusinessLineActivity hit={props.hit} />
           <BusinessLineAddress hit={props.hit} />
@@ -290,16 +291,22 @@ function BusinessInfo(props) {
         <Fragment>
           <BusinessLineName hit={props.hit} />
           <BusinessLineActivity hit={props.hit} />
-          <Grid container direction={"row"} spacing={8}>
-            {props.hit.address ? <Grid item>
-              <BusinessLineAddress hit={props.hit} />
-            </Grid> : null}
-            {props.hit.city ? <Grid item>
-              <BusinessLineCity hit={props.hit} />
-            </Grid> : null}
-            {props.hit.phone ? <Grid item>
-              <BusinessLinePhone hit={props.hit} />
-            </Grid> : null}
+          <Grid container direction={"row"} spacing={0}>
+            {props.hit.address ? (
+              <Grid item>
+                <BusinessLineAddress hit={props.hit} />
+              </Grid>
+            ) : null}
+            {props.hit.city ? (
+              <Grid item>
+                <BusinessLineCity hit={props.hit} />
+              </Grid>
+            ) : null}
+            {props.hit.phone ? (
+              <Grid item>
+                <BusinessLinePhone hit={props.hit} />
+              </Grid>
+            ) : null}
           </Grid>
         </Fragment>
       );
@@ -334,10 +341,18 @@ export default class SearchResult extends React.PureComponent {
     const hit = this.props.hit;
 
     return (
-      <div className={css(aphrodite.contentLeft, aphrodite.contentRight)}>
-        <Grid container>
-          <BusinessLogo hit={hit}/>
-          <BusinessInfo hit={hit}/>
+      <div
+        className={css(
+          aphrodite.contentTop,
+          aphrodite.contentBottom,
+          aphrodite.contentLeft,
+          aphrodite.contentRight,
+          // aphrodite.debug
+        )}
+      >
+        <Grid container spacing={0} className={css(aphrodite.debug)}>
+          <BusinessLogo hit={hit} />
+          <BusinessInfo hit={hit} />
         </Grid>
       </div>
     );

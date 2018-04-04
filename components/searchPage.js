@@ -6,8 +6,8 @@ import searchResult from "./searchResult";
 import Divider from "material-ui/Divider";
 import Hidden from "material-ui/Hidden";
 import Footer from "./footer";
-import Tabs from "./styled/tabs"
-import Tab from "./styled/tab"
+import Tabs from "./styled/tabs";
+import Tab from "./styled/tab";
 import aphrodite from "../utils/aphrodite";
 import Grid from "material-ui/Grid";
 import MenuIcon from "material-ui-icons/Menu";
@@ -15,7 +15,6 @@ import Drawer from "material-ui/Drawer";
 import List, { ListItem, ListItemText } from "material-ui/List";
 import Link from "next/link";
 import GougleLogo from "./gougleLogo";
-import Typography from "material-ui/Typography";
 
 class SearchPage extends React.PureComponent {
   constructor(props) {
@@ -44,18 +43,13 @@ class SearchPage extends React.PureComponent {
     const SearchResults = () => {
       return (
         <Fragment>
-          <div className="SearchResults">
-            <Hits hitComponent={searchResult} />
-          </div>
-          <div className="Pagination">
-            <Pagination />
-          </div>
+          <Hits hitComponent={searchResult} />
+          <Pagination />
         </Fragment>
       );
     };
 
     const tabs = () => {
-
       return (
         <Tabs
           value={0}
@@ -64,11 +58,9 @@ class SearchPage extends React.PureComponent {
           // onChange={this.handleChange}
           className={css(aphrodite.contentLeft)}
         >
+          <Tab label="tout" />
           <Tab
-            label={<Typography color="primary">tout</Typography>}
-          />
-          <Tab
-            label={<Typography color="primary">images</Typography>}
+            label="images"
             disabled
           />
         </Tabs>
@@ -83,7 +75,11 @@ class SearchPage extends React.PureComponent {
             placeholder: this.placeholder(this.state.width)
           }}
           ref="searchbox"
-          className={css(aphrodite.contentLeft, aphrodite.contentRight)}
+          className={css(
+            aphrodite.contentLeft,
+            aphrodite.contentRight,
+            aphrodite.mobileGreyBackground
+          )}
           onInput={() => {
             this.setState({
               loadingFinished: true
@@ -99,7 +95,7 @@ class SearchPage extends React.PureComponent {
         <Fragment>
           {searchBox()}
           {tabs()}
-          <Divider style={{ marginBottom: "28px" }} />
+          <Divider style={{ marginBottom: "16px" }} />
           <SearchResults />
           <Footer />
         </Fragment>
@@ -155,10 +151,9 @@ class SearchPage extends React.PureComponent {
               <Grid item />
             </Grid>
           </div>
-          <div className={css(aphrodite.mobileGreyBackground)}>
-            {searchBox()}
-            {tabs()}
-          </div>
+          {searchBox()}
+          {tabs()}
+          <Divider style={{ marginBottom: "16px" }} />
           <SearchResults />
           <Footer />
         </Fragment>

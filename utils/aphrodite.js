@@ -69,5 +69,11 @@ export default StyleSheet.create({
   },
   mobileGreyBackground: {
     backgroundColor: "#f8f8f8"
+  },
+  tabsBorderBottom: {
+    borderBottom: "1px solid #e6e6e6"
+  },
+  debug: {
+    border: "1px black solid"
   }
 });

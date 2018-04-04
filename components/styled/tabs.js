@@ -4,7 +4,9 @@ import Tabs from "material-ui/Tabs";
 
 const styles = {
   root: {
-    backgroundColor: "#f8f8f8"
+    backgroundColor: "#f8f8f8",
+    // height: "65px",
+    // border: "1px solid #e6e6e6"
   }
 };
 
