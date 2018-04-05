@@ -36,7 +36,7 @@ class SearchPage extends React.PureComponent {
       );
     };
 
-    const tabs = () => {
+    const tabs = style => {
       return (
         <Tabs
           value={0}
@@ -44,6 +44,7 @@ class SearchPage extends React.PureComponent {
           textColor="secondary"
           // onChange={this.handleChange}
           className={css(aphrodite.contentLeft)}
+          style={style}
         >
           <Tab label="tout" />
           <Tab label="images" disabled />
@@ -75,7 +76,7 @@ class SearchPage extends React.PureComponent {
         <SearchBox
           autoFocus
           translations={{
-            placeholder: ''
+            placeholder: ""
           }}
           ref="searchbox"
           className={cn}
@@ -108,7 +109,9 @@ class SearchPage extends React.PureComponent {
                 )}
               />
             </Grid>
-            <Grid item xs>{searchBox()}</Grid>
+            <Grid item xs>
+              {searchBox()}
+            </Grid>
             <Grid item xs>
               <Grid container direction="row" justify="flex-end">
                 <Grid item>
@@ -119,8 +122,8 @@ class SearchPage extends React.PureComponent {
               </Grid>
             </Grid>
           </Grid>
+          <Divider />
           {tabs()}
-          <Divider style={{ marginBottom: "16px" }} />
           <SearchResults />
           <Footer />
         </Fragment>

@@ -130,7 +130,7 @@ function BusinessLineAddress(props) {
       justify="center"
       alignItems="center"
       spacing={0}
-      className={css(aphrodite.debug)}
+      // className={css(aphrodite.debug)}
     >
       <Grid item>
         <AddressIcon style={{ color: "#7B7E80", width: "20px" }} />
@@ -346,11 +346,11 @@ export default class SearchResult extends React.PureComponent {
           aphrodite.contentTop,
           aphrodite.contentBottom,
           aphrodite.contentLeft,
-          aphrodite.contentRight,
+          aphrodite.contentRight
           // aphrodite.debug
         )}
       >
-        <Grid container spacing={0} className={css(aphrodite.debug)}>
+        <Grid container spacing={0}>
           <BusinessLogo hit={hit} />
           <BusinessInfo hit={hit} />
         </Grid>

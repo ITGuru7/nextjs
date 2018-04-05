@@ -5,18 +5,18 @@ import { StyleSheet } from "aphrodite";
 // >= md : desktop
 
 export default StyleSheet.create({
-  contentTop: {
+  marginTop: {
     // < sm
     "@media (max-width: 600px)": {
-      paddingTop: "8px"
+      marginTop: "7px"
     },
     //sm-md
     "@media (min-width: 601px) and (max-width: 960px)": {
-      paddingTop: "8px"
+      marginTop: "7px"
     },
     //md+
     "@media (min-width: 961px)": {
-      paddingTop: "8px"
+      marginTop: "7px"
     }
   },
   contentBottom: {

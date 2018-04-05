@@ -22,7 +22,7 @@ class Welcome extends React.PureComponent {
     return (
       <Fragment>
         <Head>
-          <link rel='stylesheet' href='../static/hits.css' />
+          <link rel='stylesheet' href='../static/react-instantsearch-override.css' />
           <link rel='stylesheet' href='../static/main.css' />
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"/>
 

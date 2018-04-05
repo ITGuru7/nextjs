@@ -1,5 +1,6 @@
 .ais-Hits {
-  background: white;
+  background: white !important;
+  margin-top: 7px !important;
 }
 
 .ais-Hits-item {
@@ -30,13 +31,12 @@
 
 @media (min-width: 601px) {
   .ais-SearchBox-input {
-    border-radius: 2px !important;
+    border-radius: 0 !important;
     border: 1px solid #d2d2d2 !important;
     height: 34px !important;
     padding: 0.3rem 2rem !important;
   }
 }
-
 
 .ais-Hits-list {
   margin-left: 0 !important;
