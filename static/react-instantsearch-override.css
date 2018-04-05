@@ -27,9 +27,13 @@
     height: 40px !important;
     padding: 0.3rem 2rem !important;
   }
-    .ais-SearchBox-submit {
-        display: block;
-    }
+  .ais-SearchBox-submit {
+    display: block;
+  }
+  .ais-Pagination ul {
+    margin-left: 12px;
+    justify-content: flex-start;
+  }
 }
 
 @media (min-width: 960px) {
@@ -42,8 +46,17 @@
   .ais-SearchBox-submit {
     display: none;
   }
+  .ais-Pagination ul {
+    margin-left: 140px;
+    justify-content: flex-start;
+  }
 }
 
 .ais-Hits-list {
   margin-left: 0 !important;
+}
+
+.ais-Pagination {
+  margin-top: 20px;
+  margin-bottom: 40px;
 }

@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Hits, Pagination, SearchBox } from "react-instantsearch/dom";
+import { Hits, Pagination, SearchBox, Configure } from "react-instantsearch/dom";
 import { InstantSearch } from "./instantsearch";
 import { css } from "aphrodite";
 import searchResult from "./searchResult";
@@ -30,6 +30,7 @@ class SearchPage extends React.PureComponent {
     const SearchResults = () => {
       return (
         <Fragment>
+          <Configure hitsPerPage={10} />
           <Hits hitComponent={searchResult} />
           <Pagination />
         </Fragment>
