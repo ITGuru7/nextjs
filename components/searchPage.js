@@ -106,6 +106,7 @@ class SearchPage extends React.PureComponent {
             direction="row"
             spacing={0}
             style={{ marginTop: "10px" }}
+            alignItems={'center'}
           >
             <Grid item>
               <GougleLogo
@@ -196,6 +197,7 @@ class SearchPage extends React.PureComponent {
               container
               direction="row"
               justify="space-between"
+              alignItems='center'
               spacing={0}
               className={css(aphrodite.contentBottom)}
             >
