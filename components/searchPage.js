@@ -38,7 +38,20 @@ class SearchPage extends React.PureComponent {
         <Fragment>
           <Configure hitsPerPage={10} />
           <Hits hitComponent={searchResult} />
-          <Pagination showPrevious={false} showFirst={false} />
+          <Fragment>
+            <Display format="desktop">
+              <Pagination showPrevious={false} showFirst={false} />
+            </Display>
+            <Display format="mobile">
+              <Pagination
+                showFirst={false}
+                translations={{
+                  previous: "precedent",
+                  next: "suivant"
+                }}
+              />
+            </Display>
+          </Fragment>
         </Fragment>
       );
     };
@@ -106,7 +119,7 @@ class SearchPage extends React.PureComponent {
             direction="row"
             spacing={0}
             style={{ marginTop: "10px" }}
-            alignItems={'center'}
+            alignItems={"center"}
           >
             <Grid item>
               <GougleLogo
@@ -124,10 +137,7 @@ class SearchPage extends React.PureComponent {
               <Grid container direction="row" justify="flex-end">
                 <Grid item>
                   <Link href="/enregistrer">
-                    <Button
-                      color="secondary"
-                      size="small"
-                    >
+                    <Button color="secondary" size="small">
                       créer une page
                     </Button>
                   </Link>
@@ -207,7 +217,7 @@ class SearchPage extends React.PureComponent {
               container
               direction="row"
               justify="space-between"
-              alignItems='center'
+              alignItems="center"
               spacing={0}
               className={css(aphrodite.contentBottom)}
             >
