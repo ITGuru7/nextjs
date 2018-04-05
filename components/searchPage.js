@@ -43,7 +43,7 @@ class SearchPage extends React.PureComponent {
           indicatorColor="secondary"
           textColor="secondary"
           // onChange={this.handleChange}
-          className={css(aphrodite.contentLeft)}
+          className={css(aphrodite.searchResultsLeft)}
           style={style}
         >
           <Tab label="tout" />
@@ -122,7 +122,7 @@ class SearchPage extends React.PureComponent {
               </Grid>
             </Grid>
           </Grid>
-          <Divider />
+          <Divider style={{marginTop: '5px'}}/>
           {tabs()}
           <SearchResults />
           <Footer />

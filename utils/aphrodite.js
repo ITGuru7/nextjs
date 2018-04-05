@@ -47,9 +47,23 @@ export default StyleSheet.create({
       paddingLeft: "120px"
     }
   },
+  searchResultsLeft: {
+    // < sm
+    "@media (max-width: 600px)": {
+      paddingLeft: "12px"
+    },
+    //sm-md
+    "@media (min-width: 601px) and (max-width: 960px)": {
+      paddingLeft: "30px"
+    },
+    //md+
+    "@media (min-width: 961px)": {
+      paddingLeft: "140px"
+    }
+  },
   gougleLogoMarginDesktop: {
-    marginLeft: "10px",
-    marginRight: "10px"
+    marginLeft: "5px",
+    marginRight: "5px"
   },
 
   tabs: {

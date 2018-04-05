@@ -19,7 +19,7 @@
 .ais-SearchBox-form {
 }
 
-@media (max-width: 600px) {
+@media (max-width: 959px) {
   .ais-SearchBox-input {
     border-radius: 2px !important;
     border: 1px solid #d2d2d2 !important;
@@ -27,9 +27,12 @@
     height: 40px !important;
     padding: 0.3rem 2rem !important;
   }
+    .ais-SearchBox-submit {
+        display: block;
+    }
 }
 
-@media (min-width: 601px) {
+@media (min-width: 960px) {
   .ais-SearchBox-input {
     border-radius: 0 !important;
     border: 1px solid #d2d2d2 !important;

@@ -345,7 +345,7 @@ export default class SearchResult extends React.PureComponent {
         className={css(
           aphrodite.contentTop,
           aphrodite.contentBottom,
-          aphrodite.contentLeft,
+          aphrodite.searchResultsLeft,
           aphrodite.contentRight
           // aphrodite.debug
         )}
