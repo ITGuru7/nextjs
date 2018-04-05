@@ -105,7 +105,7 @@ export default StyleSheet.create({
   },
   searchResultsWidth: {
     "@media (max-width: 959px)": {
-      width: "100%"
+      width: "95%"
     },
     "@media (min-width: 960px) and (max-width: 1279px)": {
       width: "600px"
@@ -123,6 +123,11 @@ export default StyleSheet.create({
     }
   },
   rightBorder: {
-    borderRight: "1px grey solid"
+    "@media (max-width: 959px)": {
+      borderRight: "none"
+    },
+    "@media (min-width: 960px)": {
+      borderRight: "1px grey solid"
+    }
   }
 });
