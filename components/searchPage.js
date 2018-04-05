@@ -125,10 +125,19 @@ class SearchPage extends React.PureComponent {
                 <Grid item>
                   <Link href="/enregistrer">
                     <Button
-                      // variant="raised"
                       color="secondary"
                       size="small"
-                      style={{ marginRight: "10px" }}
+                    >
+                      créer une page
+                    </Button>
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link href="/enregistrer">
+                    <Button
+                      color="secondary"
+                      size="small"
+                      style={{ marginRight: "4px" }}
                     >
                       se connecter
                     </Button>
