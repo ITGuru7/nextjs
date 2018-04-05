@@ -23,6 +23,10 @@ a:hover {
   text-decoration: underline;
 }
 
+a:visited {
+    color: #008cd2;
+}
+
 html {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;

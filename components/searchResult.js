@@ -121,124 +121,32 @@ function BusinessLineAddress(props) {
   address = `${props.hit.address}${city}`;
 
   return (
-    <Grid
-      container
-      direction="row"
-      justify="center"
-      alignItems="center"
-      spacing={0}
-      // className={css(aphrodite.debug)}
+    <Link
+      href={{
+        pathname: `/${props.hit.objectID}`
+      }}
     >
-      <Link
-        href={{
-          pathname: `/${props.hit.objectID}`
-        }}
-      >
-        <a rel="nofollow">
-          <Grid item xs style={{ marginBottom: "4px", paddingLeft: "0px" }}>
-            <Typography
-              variant="body2"
-              component="h3"
-              style={{ color: "#008CD2" }}
-            >
-              {address}
-            </Typography>
-          </Grid>
-        </a>
-      </Link>
-    </Grid>
+      <a rel="nofollow">
+        <Typography variant="body1" component="h3" color="primary">
+          {address}
+        </Typography>
+      </a>
+    </Link>
   );
 }
 
 function BusinessLineCity(props) {
-  if (props.hit.address || !props.hit.city) {
-    return null;
-  }
-
-  const styles = StyleSheet.create({
-    svg: {
-      color: "#7B7E80",
-      marginBottom: "4px",
-      "@media (max-width: 360px)": {
-        width: "16px",
-        height: "16px",
-        paddingRight: "10px"
-      },
-      "@media (min-width: 361px) and (max-width: 600px)": {
-        width: "18px",
-        height: "18px",
-        paddingRight: "12px"
-      },
-      "@media (min-width: 601px) and (max-width: 960px)": {
-        width: "20px",
-        height: "20px",
-        paddingRight: "16px"
-      },
-      "@media (min-width: 961px) and (max-width: 1919px)": {
-        width: "20px",
-        height: "20px",
-        paddingRight: "16px"
-      },
-      "@media (min-width: 1920px)": {
-        width: "20px",
-        height: "20px",
-        paddingRight: "16px"
-      }
-    }
-  });
 
   return (
-    <Grid
-      container
-      direction="row"
-      justify="flex-start"
-      alignItems="center"
-      spacing={0}
-    >
-      <Grid item style={{ marginBottom: "4px", paddingLeft: "0px" }}>
-        <Typography variant="body2" component="h3" color="secondary">
-          <a rel="nofollow" href={""}>
-            {props.hit.city}
-          </a>
-        </Typography>
-      </Grid>
-    </Grid>
+    <a rel="nofollow" href={""}>
+      <Typography variant="body1" component="h3" color="primary">
+        {props.hit.city}
+      </Typography>
+    </a>
   );
 }
 
 function BusinessLinePhone(props) {
-  const styles = StyleSheet.create({
-    svg: {
-      color: "#7B7E80",
-      marginBottom: "4px",
-      "@media (max-width: 360px)": {
-        width: "16px",
-        height: "16px",
-        paddingRight: "10px"
-      },
-      "@media (min-width: 361px) and (max-width: 600px)": {
-        width: "18px",
-        height: "18px",
-        paddingRight: "12px"
-      },
-      "@media (min-width: 601px) and (max-width: 960px)": {
-        width: "20px",
-        height: "20px",
-        paddingRight: "16px"
-      },
-      "@media (min-width: 961px) and (max-width: 1919px)": {
-        width: "20px",
-        height: "20px",
-        paddingRight: "16px"
-      },
-      "@media (min-width: 1920px)": {
-        width: "20px",
-        height: "20px",
-        paddingRight: "16px"
-      }
-    }
-  });
-
   if (!props.hit.phone) {
     return null;
   }
@@ -246,21 +154,11 @@ function BusinessLinePhone(props) {
   let phone = props.hit.phone;
 
   return (
-    <Grid
-      container
-      direction="row"
-      justify="flex-start"
-      alignItems="center"
-      spacing={0}
-    >
-      <Grid item style={{ marginBottom: "4px", paddingLeft: "0px" }}>
-        <Typography variant="body2" component="h3" color="secondary">
-          <a rel="nofollow" href={`tel:${phone}`}>
-            {phone}
-          </a>
-        </Typography>
-      </Grid>
-    </Grid>
+    <a rel="nofollow" href={`tel:${phone}`}>
+      <Typography variant="body1" component="h3" color="primary">
+        {phone}
+      </Typography>
+    </a>
   );
 }
 
@@ -276,23 +174,56 @@ function BusinessInfo(props) {
       );
     } else {
       return (
-        <div style={{marginLeft: '8px'}}>
+        <div style={{ marginLeft: "8px" }}>
           <BusinessLineActivity hit={props.hit} />
-          <Grid container direction={"row"} spacing={0}>
+          <Grid container direction={"row"} spacing={0} alignItems="center">
             {props.hit.address ? (
-              <Grid item>
-                <BusinessLineAddress hit={props.hit} />
-              </Grid>
+              <Fragment>
+                <Grid item>
+                  <Typography
+                    variant="body2"
+                    component="h3"
+                    style={{ paddingRight: "4px" }}
+                  >
+                    {`Adresse:`}
+                  </Typography>
+                </Grid>
+                <Grid item style={{ paddingRight: "8px" }}>
+                  <BusinessLineAddress hit={props.hit} />
+                </Grid>
+              </Fragment>
             ) : null}
-            {props.hit.city ? (
-              <Grid item>
-                <BusinessLineCity hit={props.hit} />
-              </Grid>
+            {!props.hit.address && props.hit.city ? (
+              <Fragment>
+                <Grid item>
+                  <Typography
+                    variant="body2"
+                    component="h3"
+                    style={{ paddingRight: "4px" }}
+                  >
+                    {`Ville:`}
+                  </Typography>
+                </Grid>
+                <Grid item style={{ paddingRight: "8px" }}>
+                  <BusinessLineCity hit={props.hit} />
+                </Grid>
+              </Fragment>
             ) : null}
             {props.hit.phone ? (
-              <Grid item>
-                <BusinessLinePhone hit={props.hit} />
-              </Grid>
+              <Fragment>
+                <Grid item>
+                  <Typography
+                    variant="body2"
+                    component="h3"
+                    style={{ paddingRight: "4px" }}
+                  >
+                    {`Tél:`}
+                  </Typography>
+                </Grid>
+                <Grid item style={{ paddingRight: "8px" }}>
+                  <BusinessLinePhone hit={props.hit} />
+                </Grid>
+              </Fragment>
             ) : null}
           </Grid>
         </div>

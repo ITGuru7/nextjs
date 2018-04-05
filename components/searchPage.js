@@ -123,7 +123,14 @@ class SearchPage extends React.PureComponent {
               <Grid container direction="row" justify="flex-end">
                 <Grid item>
                   <Link href="/enregistrer">
-                    <Button>se connecter</Button>
+                    <Button
+                      // variant="raised"
+                      color="secondary"
+                      size="small"
+                      style={{ marginRight: "10px" }}
+                    >
+                      se connecter
+                    </Button>
                   </Link>
                 </Grid>
               </Grid>
@@ -155,12 +162,11 @@ class SearchPage extends React.PureComponent {
               return `${res}${mili}`;
             }}
           />
-          <Grid container direction='row' gi spacing={0}>
-            <Grid item xs style={{marginTop: '9px'}}>
+          <Grid container direction="row" spacing={0}>
+            <Grid item xs style={{ marginTop: "9px" }}>
               <SearchResults />
             </Grid>
-            <Grid item xs>
-            </Grid>
+            <Grid item xs />
           </Grid>
           <Footer />
         </Fragment>

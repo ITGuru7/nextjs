@@ -32,7 +32,7 @@
     display: block;
   }
   .ais-Pagination ul {
-    margin-left: 12px;
+    margin-left: 30px;
     justify-content: flex-start;
   }
 }
@@ -71,4 +71,16 @@
 .ais-Stats-text {
     color: grey!important;
     font-weight: 400!important;
+}
+
+.ais-Pagination-link {
+    color: #008cd2!important;
+    border-radius: 0!important;
+}
+
+.ais-Pagination-link--selected {
+    background-color: #008cd2!important;
+    border-color: #008cd2!important;
+    color: white!important;
+    border-radius: 0!important;
 }

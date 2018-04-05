@@ -14,7 +14,7 @@ export default class Footer extends React.PureComponent {
       >
         <Divider />
         <Typography
-          type="caption"
+          variant="caption"
           className={css(aphrodite.searchResultsLeft)}
           style={{ marginTop: "20px" }}
         >

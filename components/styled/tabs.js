@@ -10,7 +10,7 @@ const styles = {
       height: "40px",
     },
     '@media (min-width: 601px)': {
-      height: "50px",
+      height: "40px",
     },
   },
   indicator: {
