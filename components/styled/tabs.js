@@ -6,7 +6,12 @@ const styles = {
   root: {
     backgroundColor: "#f8f8f8",
     minHeight: 0,
-    height: "50px"
+    '@media (max-width: 600px)': {
+      height: "40px",
+    },
+    '@media (min-width: 601px)': {
+      height: "50px",
+    },
   },
   indicator: {
     bottom: "8px",

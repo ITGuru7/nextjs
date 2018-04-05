@@ -98,7 +98,7 @@ class SearchPage extends React.PureComponent {
             container
             direction="row"
             spacing={0}
-            className={css(aphrodite.contentBottom, aphrodite.contentTop)}
+            style={{ marginTop: "10px" }}
           >
             <Grid item>
               <GougleLogo
