@@ -11,28 +11,29 @@ export default class Footer extends React.PureComponent {
       <div
         style={{ height: "60px" }}
         className={css(aphrodite.mobileGreyBackground)}
-
       >
         <Divider />
         <Typography
           type="caption"
           className={css(aphrodite.searchResultsLeft)}
-          style={{marginTop: '20px'}}
+          style={{ marginTop: "20px" }}
         >
-          <Link href="/mentions-legales" >
-            <a style={{marginRight: '25px'}}>{`Mentions légales`}</a>
+          <Link href="/mentions-legales">
+            <a style={{ marginRight: "25px" }}>{`Mentions légales`}</a>
           </Link>
 
-          <Link href="/conditions-generales" >
-            <a style={{marginRight: '25px'}}>{`Conditions générales d'utilisation`}</a>
+          <Link href="/conditions-generales">
+            <a
+              style={{ marginRight: "25px" }}
+            >{`Conditions générales d'utilisation`}</a>
           </Link>
 
           <Link href="/contact">
-            <a  style={{marginRight: '25px'}}>{`Contact`}</a>
+            <a style={{ marginRight: "25px" }}>{`Contact`}</a>
           </Link>
 
-          <Link >
-            <a href="/blog" style={{marginRight: '25px'}}>{`Blog`}</a>
+          <Link href="/blog">
+            <a style={{ marginRight: "25px" }}>{`Blog`}</a>
           </Link>
 
           <a

@@ -1,5 +1,11 @@
 import React, { Fragment } from "react";
-import { Hits, Pagination, SearchBox, Configure } from "react-instantsearch/dom";
+import {
+  Hits,
+  Pagination,
+  SearchBox,
+  Configure,
+  Stats
+} from "react-instantsearch/dom";
 import { InstantSearch } from "./instantsearch";
 import { css } from "aphrodite";
 import searchResult from "./searchResult";
@@ -32,7 +38,7 @@ class SearchPage extends React.PureComponent {
         <Fragment>
           <Configure hitsPerPage={10} />
           <Hits hitComponent={searchResult} />
-          <Pagination />
+          <Pagination showPrevious={false} showFirst={false} />
         </Fragment>
       );
     };
@@ -44,8 +50,8 @@ class SearchPage extends React.PureComponent {
           indicatorColor="secondary"
           textColor="secondary"
           // onChange={this.handleChange}
-          className={css(aphrodite.searchResultsLeft)}
-          style={style}
+          className={css(aphrodite.contentLeft)}
+          // style={style}
         >
           <Tab label="tout" />
           <Tab label="images" disabled />
@@ -123,9 +129,39 @@ class SearchPage extends React.PureComponent {
               </Grid>
             </Grid>
           </Grid>
-          <Divider style={{marginTop: '5px'}}/>
+          <Divider style={{ marginTop: "5px" }} />
           {tabs()}
-          <SearchResults />
+          <Stats
+            className={css(aphrodite.searchResultsLeft)}
+            translate={(ctxt, n, ms) => {
+              let res;
+              let mili;
+              if (!n) {
+                res = `aucun résultats`;
+              } else if (n === 1) {
+                res = `1 résultat`;
+              } else {
+                res = `${n.toLocaleString()} résultats`;
+              }
+              if (!n) {
+                mili = ``;
+              } else if (ms === 1) {
+                mili = ` (0.01 secondes)`;
+              } else if (ms < 10) {
+                mili = ` (0.0${ms.toLocaleString()} secondes)`;
+              } else {
+                mili = ` (0.${ms.toLocaleString()} secondes)`;
+              }
+              return `${res}${mili}`;
+            }}
+          />
+          <Grid container direction='row' gi spacing={0}>
+            <Grid item xs style={{marginTop: '9px'}}>
+              <SearchResults />
+            </Grid>
+            <Grid item xs>
+            </Grid>
+          </Grid>
           <Footer />
         </Fragment>
       );

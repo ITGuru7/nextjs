@@ -44,21 +44,21 @@ export default StyleSheet.create({
     },
     //md+
     "@media (min-width: 961px)": {
-      paddingLeft: "120px"
+      paddingLeft: "140px"
     }
   },
   searchResultsLeft: {
     // < sm
     "@media (max-width: 600px)": {
-      paddingLeft: "12px"
+      marginLeft: "12px"
     },
     //sm-md
     "@media (min-width: 601px) and (max-width: 960px)": {
-      paddingLeft: "30px"
+      marginLeft: "30px"
     },
     //md+
     "@media (min-width: 961px)": {
-      paddingLeft: "140px"
+      marginLeft: "140px"
     }
   },
   gougleLogoMarginDesktop: {
@@ -102,5 +102,19 @@ export default StyleSheet.create({
   searchIcon: {
     width: "24px",
     height: "24px"
+  },
+  searchResultsWidth: {
+    "@media (min-width: 1280px)": {
+      width: "700px"
+    },
+    "@media (min-width: 961px and max-width: 1270px)": {
+      width: "500px"
+    },
+    "@media (max-width: 960px)": {
+      width: '100%'
+    }
+  },
+  rightBorder: {
+    borderRight: "1px grey solid"
   }
 });

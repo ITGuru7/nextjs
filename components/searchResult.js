@@ -2,9 +2,6 @@ import Grid from "material-ui/Grid";
 import React, { Fragment } from "react";
 import Link from "next/link";
 import { css, StyleSheet } from "aphrodite";
-import AddressIcon from "material-ui-icons/Room";
-import CityIcon from "material-ui-icons/LocationCity";
-import TelIcon from "material-ui-icons/Call";
 import Typography from "material-ui/Typography";
 import aphrodite from "../utils/aphrodite";
 
@@ -45,7 +42,7 @@ function BusinessLogo(props) {
     >
       <a rel="nofollow">
         <img
-          style={{ width: size, height: size, marginRight: "24px" }}
+          style={{ width: size, height: size }}
           src={responsive_logo}
           alt={name}
         />
@@ -61,7 +58,7 @@ function BusinessLineName(props) {
       url = `https://${url}`;
     }
     return (
-      <Typography variant="body2" color="primary">
+      <Typography variant="body2" color="secondary">
         <a
           href={url}
           target="_blank"
@@ -77,7 +74,7 @@ function BusinessLineName(props) {
       name = "Adresse";
     }
     return (
-      <Typography variant="body2" color="primary">
+      <Typography variant="subheading" color="secondary">
         <Link
           href={{
             pathname: `/${props.hit.objectID}`
@@ -108,9 +105,9 @@ function BusinessLineActivity(props) {
       component={"h3"}
       variant="body1"
       color="primary"
-      style={{ marginBottom: "8px", paddingLeft: "0px" }}
+      style={{ marginBottom: "8px", width: "90%" }}
     >
-      {activity}
+      {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sagittis feugiat viverra. Orci varius natoque penatibus et magnis dis parturient sed.`}
     </Typography>
   );
 }
@@ -132,9 +129,6 @@ function BusinessLineAddress(props) {
       spacing={0}
       // className={css(aphrodite.debug)}
     >
-      <Grid item>
-        <AddressIcon style={{ color: "#7B7E80", width: "20px" }} />
-      </Grid>
       <Link
         href={{
           pathname: `/${props.hit.objectID}`
@@ -201,11 +195,8 @@ function BusinessLineCity(props) {
       alignItems="center"
       spacing={0}
     >
-      <Grid item>
-        <CityIcon style={{ color: "#7B7E80", width: "20px" }} />
-      </Grid>
       <Grid item style={{ marginBottom: "4px", paddingLeft: "0px" }}>
-        <Typography variant="body2" component="h3" color="primary">
+        <Typography variant="body2" component="h3" color="secondary">
           <a rel="nofollow" href={""}>
             {props.hit.city}
           </a>
@@ -262,11 +253,8 @@ function BusinessLinePhone(props) {
       alignItems="center"
       spacing={0}
     >
-      <Grid item>
-        <TelIcon style={{ color: "#7B7E80", width: "20px" }} />
-      </Grid>
       <Grid item style={{ marginBottom: "4px", paddingLeft: "0px" }}>
-        <Typography variant="body2" component="h3" color="primary">
+        <Typography variant="body2" component="h3" color="secondary">
           <a rel="nofollow" href={`tel:${phone}`}>
             {phone}
           </a>
@@ -288,8 +276,7 @@ function BusinessInfo(props) {
       );
     } else {
       return (
-        <Fragment>
-          <BusinessLineName hit={props.hit} />
+        <div style={{marginLeft: '8px'}}>
           <BusinessLineActivity hit={props.hit} />
           <Grid container direction={"row"} spacing={0}>
             {props.hit.address ? (
@@ -308,30 +295,20 @@ function BusinessInfo(props) {
               </Grid>
             ) : null}
           </Grid>
-        </Fragment>
+        </div>
       );
     }
   }
 
   return (
     <Grid
-      item
-      xs={8}
-      sm={8}
-      md={8}
-      lg={9}
-      xl={9}
-      style={{ paddingLeft: "4px" }}
+      container
+      direction="column"
+      alignItems="stretch"
+      justify="flex-start"
+      spacing={0}
     >
-      <Grid
-        container
-        direction="column"
-        alignItems="stretch"
-        justify="flex-start"
-        spacing={0}
-      >
-        <RenderBusinessInfo hit={props.hit} />
-      </Grid>
+      <RenderBusinessInfo hit={props.hit} />
     </Grid>
   );
 }
@@ -346,13 +323,18 @@ export default class SearchResult extends React.PureComponent {
           aphrodite.contentTop,
           aphrodite.contentBottom,
           aphrodite.searchResultsLeft,
-          aphrodite.contentRight
-          // aphrodite.debug
+          aphrodite.searchResultsWidth,
+          aphrodite.rightBorder
         )}
       >
+        <BusinessLineName hit={hit} style={{ marginBottom: "4px" }} />
         <Grid container spacing={0}>
-          <BusinessLogo hit={hit} />
-          <BusinessInfo hit={hit} />
+          <Grid item>
+            <BusinessLogo hit={hit} />
+          </Grid>
+          <Grid item xs>
+            <BusinessInfo hit={hit} />
+          </Grid>
         </Grid>
       </div>
     );

@@ -2,7 +2,9 @@ body {
   margin: 0;
   background-color: white;
 }
-
+html * {
+  font-family: "Roboto", sans-serif;
+}
 *,
 *::before,
 *::after {
@@ -11,6 +13,14 @@ body {
 
 a {
   text-decoration: none;
+}
+
+a:link {
+  color: #008cd2;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 html {
