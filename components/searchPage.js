@@ -42,11 +42,11 @@ class SearchPage extends React.PureComponent {
             <Display format="desktop">
               <Pagination showPrevious={false} showFirst={false} />
             </Display>
-            <Display format="mobile">
+            <Display format="mobile-tablet">
               <Pagination
                 showFirst={false}
                 translations={{
-                  previous: "precedent",
+                  previous: "précédent",
                   next: "suivant"
                 }}
               />
@@ -270,11 +270,8 @@ class SearchPage extends React.PureComponent {
         apiKey="458ab22e25a2ddf3a174bf03678c9281"
         indexName="directory_nc"
       >
-        <Display format="mobile" implementation="css">
+        <Display format="mobile-tablet" implementation="css">
           {mobile()}
-        </Display>
-        <Display format="tablet" implementation="css">
-          {desktop()}
         </Display>
         <Display format="desktop" implementation="css">
           {desktop()}

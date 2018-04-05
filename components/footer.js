@@ -11,7 +11,7 @@ export default class Footer extends React.PureComponent {
   render() {
     return (
       <Fragment>
-        <Display format="desktop">
+        <Display format="tablet-desktop">
           <div
             style={{ height: "60px" }}
             className={css(aphrodite.mobileGreyBackground)}
