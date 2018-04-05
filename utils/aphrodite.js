@@ -104,14 +104,22 @@ export default StyleSheet.create({
     height: "24px"
   },
   searchResultsWidth: {
+    "@media (max-width: 959px)": {
+      width: "100%"
+    },
+    "@media (min-width: 960px) and (max-width: 1279px)": {
+      width: "600px"
+    },
     "@media (min-width: 1280px)": {
       width: "700px"
+    }
+  },
+  searchResultsPercentage: {
+    "@media (min-width: 960px) and (max-width: 1279px)": {
+      width: "98%"
     },
-    "@media (min-width: 961px and max-width: 1270px)": {
-      width: "500px"
-    },
-    "@media (max-width: 960px)": {
-      width: '100%'
+    "@media (min-width: 1280px)": {
+      width: "90%"
     }
   },
   rightBorder: {

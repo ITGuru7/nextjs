@@ -105,7 +105,8 @@ function BusinessLineActivity(props) {
       component={"h3"}
       variant="body1"
       color="primary"
-      style={{ marginBottom: "8px", width: "90%" }}
+      style={{ marginBottom: "8px" }}
+      className={css(aphrodite.searchResultsPercentage)}
     >
       {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sagittis feugiat viverra. Orci varius natoque penatibus et magnis dis parturient sed.`}
     </Typography>
@@ -136,7 +137,6 @@ function BusinessLineAddress(props) {
 }
 
 function BusinessLineCity(props) {
-
   return (
     <a rel="nofollow" href={""}>
       <Typography variant="body1" component="h3" color="primary">
