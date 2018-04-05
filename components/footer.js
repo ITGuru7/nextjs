@@ -27,9 +27,7 @@ export default class Footer extends React.PureComponent {
               </Link>
 
               <Link href="/conditions-generales">
-                <a
-                  style={{ marginRight: "25px" }}
-                >{`Conditions générales`}</a>
+                <a style={{ marginRight: "25px" }}>{`Conditions générales`}</a>
               </Link>
 
               <Link href="/contact">
@@ -78,26 +76,16 @@ export default class Footer extends React.PureComponent {
                     </Link>
                   </Grid>
                   <Grid item xs>
-                    <Link href="/conditions-generales">
-                      <Typography variant="caption" align="center">
-                        <a>{`Conditions générales`}</a>
-                      </Typography>
-                    </Link>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item xs>
-                <Grid
-                  container
-                  spacing={0}
-                  direction="row"
-                  style={{ height: "100%" }}
-                  alignItems={"center"}
-                >
-                  <Grid item xs>
                     <Link href="/contact">
                       <Typography variant="caption" align="center">
                         <a>{`Contact`}</a>
+                      </Typography>
+                    </Link>
+                  </Grid>
+                  <Grid item xs>
+                    <Link href="/conditions-generales">
+                      <Typography variant="caption" align="center">
+                        <a>{`Conditions générales`}</a>
                       </Typography>
                     </Link>
                   </Grid>
