@@ -135,6 +135,7 @@ class SearchPage extends React.PureComponent {
                 <Grid item>
                   <Link href="/enregistrer">
                     <Button
+                      // variant="raised"
                       color="secondary"
                       size="small"
                       style={{ marginRight: "4px" }}
@@ -246,7 +247,7 @@ class SearchPage extends React.PureComponent {
             )
           )}
           {tabs()}
-          <Divider style={{ marginBottom: "16px" }} />
+          <Divider style={{ marginBottom: "30px" }} />
           <SearchResults />
           <Footer />
         </Fragment>
