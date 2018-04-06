@@ -5,7 +5,7 @@ import { css, StyleSheet } from "aphrodite";
 import Typography from "material-ui/Typography";
 import aphrodite from "../utils/aphrodite";
 
-function BusinessLogo(props) {
+function ResultLogo(props) {
   const logo = props.hit.logo;
   const width = 300;
 
@@ -51,7 +51,7 @@ function BusinessLogo(props) {
   );
 }
 
-function BusinessLineName(props) {
+function ResultTitle(props) {
   if (props.hit.type === "website") {
     let url = props.hit.website_url;
     if (url && url.startsWith("www")) {
@@ -87,18 +87,25 @@ function BusinessLineName(props) {
   }
 }
 
-function BusinessLineActivity(props) {
-  let activity;
-  if (props.hit.activity_summary_description) {
-    activity = props.hit.activity_summary_description;
-  } else if (props.hit.slogan) {
-    activity = props.hit.slogan;
-  } else if (props.hit.activity && props.hit.activity.trim().length) {
-    activity = props.hit.activity;
+function ResultSubTitle(props) {
+  let subtitle = ``;
+  if (props.hit.activity_long) {
+    subtitle = props.hit.activity_long;
+  } else {
+    if (props.hit.activity_summary_description) {
+      subtitle += `${props.hit.activity_summary_description}. `;
+    }
+    if (props.hit.slogan) {
+      subtitle += `${props.hit.slogan}. `;
+    }
+    if (props.hit.activity && props.hit.activity.trim().length) {
+      subtitle += props.hit.activity;
+    }
   }
 
-  if (!activity) {
-    return <h3 style={{ fontSize: "0px", margin: "0px" }}>{`Activité`}</h3>;
+
+  if (!subtitle) {
+    subtitle = `Visitez notre vitrine`;
   }
   return (
     <Typography
@@ -108,12 +115,12 @@ function BusinessLineActivity(props) {
       style={{ marginBottom: "8px" }}
       className={css(aphrodite.searchResultsPercentage)}
     >
-      {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sagittis feugiat viverra. Orci varius natoque penatibus et magnis dis parturient sed.`}
+      {subtitle}
     </Typography>
   );
 }
 
-function BusinessLineAddress(props) {
+function ResultAddress(props) {
   let address;
   if (!props.hit.address) {
     return null;
@@ -136,7 +143,7 @@ function BusinessLineAddress(props) {
   );
 }
 
-function BusinessLineCity(props) {
+function ResultCity(props) {
   return (
     <a rel="nofollow" href={""}>
       <Typography variant="body1" component="h3" color="primary">
@@ -146,7 +153,7 @@ function BusinessLineCity(props) {
   );
 }
 
-function BusinessLinePhone(props) {
+function ResultPhone(props) {
   if (!props.hit.phone) {
     return null;
   }
@@ -162,20 +169,20 @@ function BusinessLinePhone(props) {
   );
 }
 
-function BusinessInfo(props) {
+function ResultInfo(props) {
   function RenderBusinessInfo(props) {
     if (props.hit.type === "address") {
       return (
         <Grid container direction={"row"} spacing={0}>
-          <BusinessLineName hit={props.hit} />
-          <BusinessLineActivity hit={props.hit} />
-          <BusinessLineAddress hit={props.hit} />
+          <ResultTitle hit={props.hit} />
+          <ResultSubTitle hit={props.hit} />
+          <ResultAddress hit={props.hit} />
         </Grid>
       );
     } else {
       return (
         <div style={{ marginLeft: "8px" }}>
-          <BusinessLineActivity hit={props.hit} />
+          <ResultSubTitle hit={props.hit} />
           <Grid container direction={"row"} spacing={0} alignItems="center">
             {props.hit.address ? (
               <Fragment>
@@ -189,7 +196,7 @@ function BusinessInfo(props) {
                   </Typography>
                 </Grid>
                 <Grid item style={{ paddingRight: "8px" }}>
-                  <BusinessLineAddress hit={props.hit} />
+                  <ResultAddress hit={props.hit} />
                 </Grid>
               </Fragment>
             ) : null}
@@ -205,7 +212,7 @@ function BusinessInfo(props) {
                   </Typography>
                 </Grid>
                 <Grid item style={{ paddingRight: "8px" }}>
-                  <BusinessLineCity hit={props.hit} />
+                  <ResultCity hit={props.hit} />
                 </Grid>
               </Fragment>
             ) : null}
@@ -221,7 +228,7 @@ function BusinessInfo(props) {
                   </Typography>
                 </Grid>
                 <Grid item style={{ paddingRight: "8px" }}>
-                  <BusinessLinePhone hit={props.hit} />
+                  <ResultPhone hit={props.hit} />
                 </Grid>
               </Fragment>
             ) : null}
@@ -258,13 +265,13 @@ export default class SearchResult extends React.PureComponent {
           aphrodite.rightBorder
         )}
       >
-        <BusinessLineName hit={hit} style={{ marginBottom: "4px" }} />
+        <ResultTitle hit={hit} style={{ marginBottom: "4px" }} />
         <Grid container spacing={0}>
           <Grid item>
-            <BusinessLogo hit={hit} />
+            <ResultLogo hit={hit} />
           </Grid>
           <Grid item xs>
-            <BusinessInfo hit={hit} />
+            <ResultInfo hit={hit} />
           </Grid>
         </Grid>
       </div>
