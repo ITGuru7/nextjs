@@ -105,8 +105,8 @@ class SearchPage extends React.PureComponent {
               loadingFinished: true
             });
           }}
-          showLoadingIndicator={true}
           submit={defaultSubmit}
+          reset={null}
         />
       );
     };
@@ -270,10 +270,10 @@ class SearchPage extends React.PureComponent {
         apiKey="458ab22e25a2ddf3a174bf03678c9281"
         indexName="directory_nc"
       >
-        <Display format="mobile-tablet" implementation="css">
+        <Display format="mobile" implementation="css">
           {mobile()}
         </Display>
-        <Display format="desktop" implementation="css">
+        <Display format="tablet-desktop" implementation="css">
           {desktop()}
         </Display>
       </InstantSearch>
