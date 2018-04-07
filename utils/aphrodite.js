@@ -19,10 +19,24 @@ export default StyleSheet.create({
       marginTop: "7px"
     }
   },
+  contentTop: {
+    // < sm
+    "@media (max-width: 600px)": {
+      paddingTop: "4px"
+    },
+    //sm-md
+    "@media (min-width: 601px) and (max-width: 960px)": {
+      paddingTop: "8px"
+    },
+    //md+
+    "@media (min-width: 961px)": {
+      paddingTop: "8px"
+    }
+  },
   contentBottom: {
     // < sm
     "@media (max-width: 600px)": {
-      paddingBottom: "8px"
+      paddingBottom: "4px"
     },
     //sm-md
     "@media (min-width: 601px) and (max-width: 960px)": {
@@ -47,14 +61,20 @@ export default StyleSheet.create({
       paddingLeft: "140px"
     }
   },
+  searchResultsRight: {
+    // < sm
+    "@media (max-width: 600px)": {
+      paddingRight: "12px"
+    }
+  },
   searchResultsLeft: {
     // < sm
     "@media (max-width: 600px)": {
-      marginLeft: "12px"
+      paddingLeft: "12px"
     },
     //sm-md
     "@media (min-width: 601px) and (max-width: 960px)": {
-      marginLeft: "30px"
+      paddingLeft: "30px"
     },
     //md+
     "@media (min-width: 961px)": {
@@ -105,7 +125,7 @@ export default StyleSheet.create({
   },
   searchResultsWidth: {
     "@media (max-width: 959px)": {
-      width: "95%"
+      width: "100%"
     },
     "@media (min-width: 960px) and (max-width: 1279px)": {
       width: "600px"

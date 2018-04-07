@@ -260,9 +260,11 @@ export default class SearchResult extends React.PureComponent {
           aphrodite.contentTop,
           aphrodite.contentBottom,
           aphrodite.searchResultsLeft,
+          aphrodite.searchResultsRight,
           aphrodite.searchResultsWidth,
           aphrodite.rightBorder
         )}
+        style={{backgroundColor: 'white'}}
       >
         <ResultTitle hit={hit} style={{ marginBottom: "4px" }} />
         <Grid container spacing={0}>

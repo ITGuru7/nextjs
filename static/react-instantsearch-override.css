@@ -1,6 +1,6 @@
 .ais-Hits {
   background: white !important;
-  margin-top: 7px !important;
+  margin-top: 0 !important;
 }
 
 .ais-Hits-item {
@@ -12,7 +12,56 @@
   padding: 0 !important;
 }
 
-@media (max-width: 959px) {
+@media (max-width: 600px) {
+    .ais-Pagination ul {
+        margin-left: 12px;
+        justify-content: flex-start;
+    }
+    .ais-SearchBox-input {
+        border-radius: 2px !important;
+        border: 1px solid #d2d2d2 !important;
+        box-shadow: 0 2px 0 0 #f1f1f1 !important;
+        height: 40px !important;
+        padding-left: 0.3rem !important;
+        padding-right: 0.3rem !important;
+        width: 100% !important;
+    }
+
+    .ais-Pagination-link {
+        color: #008cd2 !important;
+        border-radius: 0 !important;
+    }
+
+    .ais-Pagination-item--page {
+        display: none;
+    }
+
+    .ais-Pagination-item--nextPage {
+        width: 49%;
+        text-align: center;
+    }
+
+    .ais-Pagination-item--previousPage {
+        width: 48%;
+        text-align: center;
+    }
+
+    .ais-Pagination-link--selected {
+        background-color: #008cd2 !important;
+        border-color: #008cd2 !important;
+        color: white !important;
+        border-radius: 0 !important;
+    }
+    .ais-Hits-list {
+        margin: 0 !important;
+        background-color: #f8f8f8 !important;
+    }
+    .ais-Hits-item {
+        margin-bottom: 4px;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 959px) {
   .ais-SearchBox-input {
     border-radius: 2px !important;
     border: 1px solid #d2d2d2 !important;
@@ -52,6 +101,13 @@
     color: white !important;
     border-radius: 0 !important;
   }
+  .ais-Hits-list {
+    margin: 0 !important;
+    background-color: #f8f8f8 !important;
+  }
+  .ais-Hits-item {
+    margin-bottom: 4px;
+  }
 }
 
 .ais-SearchBox-input:focus {
@@ -59,6 +115,9 @@
 }
 
 @media (min-width: 960px) {
+  .ais-Hits-list {
+    margin: 0 !important;
+  }
   .ais-SearchBox-input {
     border-radius: 0 !important;
     border: 1px solid #d2d2d2 !important;
@@ -84,10 +143,6 @@
     color: white !important;
     border-radius: 0 !important;
   }
-}
-
-.ais-Hits-list {
-  margin-left: 0 !important;
 }
 
 .ais-Pagination {

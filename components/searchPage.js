@@ -254,7 +254,7 @@ class SearchPage extends React.PureComponent {
             )
           )}
           {tabs()}
-          <Divider style={{ marginBottom: "30px" }} />
+          <Divider />
           <SearchResults />
           <Footer />
         </Fragment>
