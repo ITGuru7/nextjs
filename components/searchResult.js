@@ -112,7 +112,6 @@ function ResultSubTitle(props) {
       variant="body1"
       color="primary"
       style={{ marginBottom: "8px" }}
-      className={css(aphrodite.searchResultsPercentage)}
     >
       {subtitle}
     </Typography>
