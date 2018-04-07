@@ -1,18 +1,13 @@
 import React, { Fragment } from "react";
-import {
-  Hits,
-  Pagination,
-  SearchBox,
-  Configure,
-  Stats
-} from "react-instantsearch/dom";
+import { Hits, Pagination, Configure, Stats } from "react-instantsearch/dom";
+import SearchBox from "./algolia/searchBox";
 import { InstantSearch } from "./instantsearch";
 import { css } from "aphrodite";
 import searchResult from "./searchResult";
 import Divider from "material-ui/Divider";
 import Footer from "./footer";
-import Tabs from "./styled/tabs";
-import Tab from "./styled/tab";
+import Tabs from "./mui/tabs";
+import Tab from "./mui/tab";
 import aphrodite from "../utils/aphrodite";
 import Grid from "material-ui/Grid";
 import MenuIcon from "material-ui-icons/Menu";
@@ -28,7 +23,8 @@ class SearchPage extends React.PureComponent {
     super(props);
     this.state = {
       width: 1600,
-      loadingFinished: false
+      loadingFinished: false,
+      images: []
     };
   }
 
@@ -145,7 +141,6 @@ class SearchPage extends React.PureComponent {
                 <Grid item>
                   <Link href="/enregistrer">
                     <Button
-                      // variant="raised"
                       color="secondary"
                       size="small"
                       style={{ marginRight: "4px" }}
@@ -187,7 +182,9 @@ class SearchPage extends React.PureComponent {
             <Grid item xs style={{ marginTop: "9px" }}>
               <SearchResults />
             </Grid>
-            <Grid item xs />
+            <Grid item xs style={{ paddingLeft: "16px" }}>
+              STUFF
+            </Grid>
           </Grid>
           <Footer />
         </Fragment>

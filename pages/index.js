@@ -1,10 +1,23 @@
 import Layout from "../components/layout";
 import Fonts from "../utils/fonts";
-import Head from 'next/head';
-import {Fragment} from "react";
+import Head from "next/head";
+import { Fragment } from "react";
 import SearchPage from "../components/searchPage";
+import { initStore } from "../store/store";
+import { Provider } from "mobx-react";
 
 class Welcome extends React.PureComponent {
+  static getInitialProps({ req }) {
+    const isServer = !!req;
+    const store = initStore(isServer);
+    return { lastUpdate: store.lastUpdate, isServer };
+  }
+
+  constructor(props) {
+    super(props);
+    this.store = initStore(props.isServer, props.lastUpdate);
+  }
+
   componentDidMount() {
     Fonts();
     if ("serviceWorker" in navigator) {
@@ -20,17 +33,24 @@ class Welcome extends React.PureComponent {
   }
   render() {
     return (
-      <Fragment>
-        <Head>
-          <link rel='stylesheet' href='../static/react-instantsearch-override.css' />
-          <link rel='stylesheet' href='../static/main.css' />
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"/>
-
-        </Head>
-        <Layout title={"gougle.nc"}>
-          <SearchPage />
-        </Layout>
-      </Fragment>
+      <Provider store={this.store}>
+        <Fragment>
+          <Head>
+            <link
+              rel="stylesheet"
+              href="../static/react-instantsearch-override.css"
+            />
+            <link rel="stylesheet" href="../static/main.css" />
+            <link
+              rel="stylesheet"
+              href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"
+            />
+          </Head>
+          <Layout title={"gougle.nc"}>
+            <SearchPage />
+          </Layout>
+        </Fragment>
+      </Provider>
     );
   }
 }

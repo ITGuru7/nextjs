@@ -1,7 +1,7 @@
 import Grid from "material-ui/Grid";
 import React, { Fragment } from "react";
 import Link from "next/link";
-import { css, StyleSheet } from "aphrodite";
+import { css } from "aphrodite";
 import Typography from "material-ui/Typography";
 import aphrodite from "../utils/aphrodite";
 
@@ -102,7 +102,6 @@ function ResultSubTitle(props) {
       subtitle += props.hit.activity;
     }
   }
-
 
   if (!subtitle) {
     subtitle = `Visitez notre vitrine`;
@@ -253,7 +252,7 @@ function ResultInfo(props) {
 
 export default class SearchResult extends React.PureComponent {
   render() {
-    const hit = this.props.hit;
+    const { hit } = this.props;
 
     return (
       <div
