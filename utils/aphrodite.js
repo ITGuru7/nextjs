@@ -136,7 +136,7 @@ export default StyleSheet.create({
       width: "100%"
     },
     "@media (min-width: 960px) and (max-width: 1279px)": {
-      width: "600px"
+      width: "500px"
     },
     "@media (min-width: 1280px)": {
       width: "700px"
@@ -147,7 +147,7 @@ export default StyleSheet.create({
       borderRight: "none"
     },
     "@media (min-width: 960px)": {
-      borderRight: "1px grey solid"
+      borderRight: "1px #e1e1e1 solid"
     }
   },
   wrapperMinHeight: {

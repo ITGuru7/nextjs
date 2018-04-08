@@ -4,6 +4,7 @@ import Link from "next/link";
 import { css } from "aphrodite";
 import Typography from "material-ui/Typography";
 import aphrodite from "../utils/aphrodite";
+import { Highlight } from "react-instantsearch/dom";
 
 function ResultLogo(props) {
   const logo = props.hit.logo;
@@ -64,7 +65,7 @@ function ResultTitle(props) {
           target="_blank"
           rel="external noopener noreferrer nofollow"
         >
-          {props.hit.name}
+          <Highlight attributeName={"name"} hit={props.hit} />
         </a>
       </Typography>
     );
@@ -80,7 +81,9 @@ function ResultTitle(props) {
             pathname: `/${props.hit.objectID}`
           }}
         >
-          <a rel="nofollow">{name}</a>
+          <a rel="nofollow">
+            <Highlight attribute={"name"} hit={props.hit} />
+          </a>
         </Link>
       </Typography>
     );
@@ -193,7 +196,7 @@ function ResultInfo(props) {
                     {`Adresse:`}
                   </Typography>
                 </Grid>
-                <Grid item style={{ paddingRight: "8px", maxWidth: '100%' }}>
+                <Grid item style={{ paddingRight: "8px", maxWidth: "100%" }}>
                   <ResultAddress hit={props.hit} />
                 </Grid>
               </Fragment>
@@ -263,7 +266,7 @@ export default class SearchResult extends React.PureComponent {
           aphrodite.searchResultsWidth,
           aphrodite.rightBorder
         )}
-        style={{backgroundColor: 'white'}}
+        style={{ backgroundColor: "white" }}
       >
         <ResultTitle hit={hit} style={{ marginBottom: "4px" }} />
         <Grid container spacing={0}>

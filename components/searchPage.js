@@ -1,5 +1,9 @@
 import React, { Fragment } from "react";
-import { Pagination, Configure, Stats } from "react-instantsearch/dom";
+import {
+  Pagination,
+  Configure,
+  Stats,
+} from "react-instantsearch/dom";
 import SearchBox from "./algolia/searchBox";
 import Hits from "./algolia/hits";
 import { InstantSearch } from "./instantsearch";
@@ -63,7 +67,8 @@ class SearchPage extends React.PureComponent {
           // style={style}
         >
           <Tab label="tout" />
-          <Tab label="images" disabled />
+          <Tab label="images" />
+          <Tab label="carte" />
         </Tabs>
       );
     };
@@ -143,7 +148,11 @@ class SearchPage extends React.PureComponent {
                     <Button
                       color="secondary"
                       size="small"
-                      style={{ marginRight: "4px" }}
+                      style={{
+                        marginRight: "10px",
+                        color: "white",
+                        backgroundColor: "#008cd2"
+                      }}
                     >
                       se connecter
                     </Button>
