@@ -34,7 +34,7 @@ export default connectHits(({ hits }) => {
         <Grid item xs style={{ marginLeft: "16px", marginRight: "130px" }}>
           <Grid container direction="row" spacing={0}>
             {images.map((image, idx) => {
-              const uri = `https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_limit,dpr_auto,w_75,h_75/${image}`;
+              const uri = `https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_lpad,b_auto,w_75,h_75/${image}`;
               return (
                 <Grid item style={style} key={idx}>
                   <img src={uri} height={75} width={75}/>
