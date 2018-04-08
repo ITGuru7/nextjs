@@ -6,7 +6,9 @@ import { css } from "aphrodite";
 import aphrodite from "../../utils/aphrodite";
 
 export default connectSearchBox(({ refine }) => {
-  const debouncedSearch = debounce(e => refine(e.target.value), 500);
+  const debouncedSearch = debounce(e => {
+    refine(e.target.value);
+  }, 500);
 
   const onChange = e => {
     e.persist();

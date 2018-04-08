@@ -193,7 +193,7 @@ function ResultInfo(props) {
                     {`Adresse:`}
                   </Typography>
                 </Grid>
-                <Grid item style={{ paddingRight: "8px" }}>
+                <Grid item style={{ paddingRight: "8px", maxWidth: '100%' }}>
                   <ResultAddress hit={props.hit} />
                 </Grid>
               </Fragment>

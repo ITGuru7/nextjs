@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
-import { Hits, Pagination, Configure, Stats } from "react-instantsearch/dom";
+import { Pagination, Configure, Stats } from "react-instantsearch/dom";
 import SearchBox from "./algolia/searchBox";
+import Hits from "./algolia/hits";
 import { InstantSearch } from "./instantsearch";
 import { css } from "aphrodite";
-import searchResult from "./searchResult";
 import Divider from "material-ui/Divider";
 import Footer from "./footer";
 import Tabs from "./mui/tabs";
@@ -33,7 +33,7 @@ class SearchPage extends React.PureComponent {
       return (
         <Fragment>
           <Configure hitsPerPage={10} />
-          <Hits hitComponent={searchResult} />
+          <Hits />
           <Fragment>
             <Display format="desktop">
               <Pagination showPrevious={false} showFirst={false} />
@@ -178,14 +178,7 @@ class SearchPage extends React.PureComponent {
               return `${res}${mili}`;
             }}
           />
-          <Grid container direction="row" spacing={0}>
-            <Grid item xs style={{ marginTop: "9px" }}>
-              <SearchResults />
-            </Grid>
-            <Grid item xs style={{ paddingLeft: "16px" }}>
-              STUFF
-            </Grid>
-          </Grid>
+          <SearchResults />
           <Footer />
         </Fragment>
       );

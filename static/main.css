@@ -24,7 +24,7 @@ a:hover {
 }
 
 a:visited {
-    color: #008cd2;
+  color: #008cd2;
 }
 
 html {
@@ -36,6 +36,6 @@ html {
 input,
 textarea,
 select {
-    outline: 0;
-    border: 1px solid dodgerblue;
+  outline: 0;
+  border: 1px solid dodgerblue;
 }
