@@ -15,7 +15,11 @@ export default connectHits(({ hits }) => {
   };
 
   const mobile = hits => {
-    return hits.map((hit, idx) => <SearchResult key={idx} hit={hit} />);
+    return (
+      <div id={"search_results"}>
+        {hits.map((hit, idx) => <SearchResult key={idx} hit={hit} />)}
+      </div>
+    );
   };
 
   const desktop = hits => {
@@ -37,7 +41,7 @@ export default connectHits(({ hits }) => {
     });
 
     return (
-      <Grid container direction="row" spacing={0}>
+      <Grid container direction="row" spacing={0} id={"search_results"}>
         <Grid item xs>
           {hits.map((hit, idx) => <SearchResult key={idx} hit={hit} />)}
         </Grid>
@@ -53,10 +57,12 @@ export default connectHits(({ hits }) => {
                     }}
                   >
                     <a rel="nofollow">
-                      <img src={uri} height={75} width={75} />
-                      <Typography variant="caption" color="secondary">
-                        {`${imagesObj[image].name.substring(0, 10)}..`}
-                      </Typography>
+                      <Fragment>
+                        <img src={uri} height={75} width={75} />
+                        <Typography variant="caption" color="secondary">
+                          {`${imagesObj[image].name.substring(0, 10)}..`}
+                        </Typography>
+                      </Fragment>
                     </a>
                   </Link>
                 </Grid>
