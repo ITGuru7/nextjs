@@ -31,7 +31,7 @@ class SearchPage extends React.PureComponent {
   render() {
     const SearchResults = () => {
       return (
-        <Fragment>
+        <div className={css(aphrodite.wrapperMinHeight)}>
           <Configure hitsPerPage={10} />
           <Hits />
           <Fragment>
@@ -48,7 +48,7 @@ class SearchPage extends React.PureComponent {
               />
             </Display>
           </Fragment>
-        </Fragment>
+        </div>
       );
     };
 

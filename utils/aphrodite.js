@@ -149,5 +149,16 @@ export default StyleSheet.create({
     "@media (min-width: 960px)": {
       borderRight: "1px grey solid"
     }
+  },
+  wrapperMinHeight: {
+    "@media (max-width: 959px)": {
+      minHeight: "600px"
+    },
+    "@media (min-width: 960px) and (max-width: 1279px)": {
+      minHeight: "900px"
+    },
+    "@media (min-width: 1280px)": {
+      minHeight: "1024px"
+    }
   }
 });
