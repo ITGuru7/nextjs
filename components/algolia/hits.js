@@ -8,7 +8,6 @@ export default connectHits(({ hits }) => {
   const style = {
     width: "75px",
     height: "75px",
-    border: "1px black solid",
     marginBottom: "16px",
     marginRight: "16px"
   };
@@ -18,68 +17,30 @@ export default connectHits(({ hits }) => {
   };
 
   const desktop = hits => {
-    let images = {};
-    hits.map(hit => images[hit.name] = hit.images);
-
-
-    let gallery = (images) => {
-
-    }
+    let imagesObj = {};
+    let images = [];
+    hits.map(hit => {
+      if (hit.images) {
+        images = images.concat(Object.values(hit.images));
+        imagesObj[hit.name] = hit.images;
+      }
+    });
 
     return (
       <Grid container direction="row" spacing={0}>
         <Grid item xs>
           {hits.map((hit, idx) => <SearchResult key={idx} hit={hit} />)}
         </Grid>
-        <Grid item xs style={{ marginLeft: "16px" }}>
-          <Grid
-            container
-            direction="column"
-            spacing={0}
-            style={{ height: "100%" }}
-          >
-            <Grid container direction="row" spacing={0}>
-              <Grid item style={style}>
-                X
-              </Grid>
-              <Grid item style={style}>
-                X
-              </Grid>
-              <Grid item style={style}>
-                X
-              </Grid>
-              <Grid item style={style}>
-                X
-              </Grid>
-            </Grid>
-            <Grid container direction="row" spacing={0}>
-              <Grid item style={style}>
-                X
-              </Grid>
-              <Grid item style={style}>
-                X
-              </Grid>
-              <Grid item style={style}>
-                X
-              </Grid>
-              <Grid item style={style}>
-                X
-              </Grid>
-            </Grid>
-            <Grid container direction="row" spacing={0}>
-              <Grid item style={style}>
-                X
-              </Grid>
-              <Grid item style={style}>
-                X
-              </Grid>
-              <Grid item style={style}>
-                X
-              </Grid>
-              <Grid item style={style}>
-                X
-              </Grid>
-            </Grid>
+        <Grid item xs style={{ marginLeft: "16px", marginRight: "130px" }}>
+          <Grid container direction="row" spacing={0}>
+            {images.map((image, idx) => {
+              const uri = `https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_limit,dpr_auto,w_75,h_75/${image}`;
+              return (
+                <Grid item style={style} key={idx}>
+                  <img src={uri} height={75} width={75}/>
+                </Grid>
+              );
+            })}
           </Grid>
         </Grid>
       </Grid>
