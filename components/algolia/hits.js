@@ -3,12 +3,14 @@ import SearchResult from "../searchResult";
 import { connectHits } from "react-instantsearch/connectors";
 import Grid from "material-ui/Grid";
 import Display from "../../utils/display";
+import Link from "next/link";
+import Typography from "material-ui/Typography";
 
 export default connectHits(({ hits }) => {
   const style = {
     width: "75px",
     height: "75px",
-    marginBottom: "16px",
+    marginBottom: "32px",
     marginRight: "16px"
   };
 
@@ -21,8 +23,16 @@ export default connectHits(({ hits }) => {
     let images = [];
     hits.map(hit => {
       if (hit.images) {
-        images = images.concat(Object.values(hit.images));
-        imagesObj[hit.name] = hit.images;
+        const hitImages = Object.values(hit.images);
+        hitImages.map(
+          hitImage =>
+            (imagesObj[hitImage] = {
+              name: hit.name,
+              objectID: hit.objectID,
+              images: hitImages
+            })
+        );
+        images = images.concat(hitImages);
       }
     });
 
@@ -34,10 +44,21 @@ export default connectHits(({ hits }) => {
         <Grid item xs style={{ marginLeft: "16px", marginRight: "130px" }}>
           <Grid container direction="row" spacing={0}>
             {images.map((image, idx) => {
-              const uri = `https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_lpad,b_auto,w_75,h_75/${image}`;
+              const uri = `https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,g_auto,c_fill,w_75,h_75/${image}`;
               return (
                 <Grid item style={style} key={idx}>
-                  <img src={uri} height={75} width={75}/>
+                  <Link
+                    href={{
+                      pathname: `/${imagesObj[image].objectID}`
+                    }}
+                  >
+                    <a rel="nofollow">
+                      <img src={uri} height={75} width={75} />
+                      <Typography variant="caption" color="secondary">
+                        {`${imagesObj[image].name.substring(0, 10)}..`}
+                      </Typography>
+                    </a>
+                  </Link>
                 </Grid>
               );
             })}
