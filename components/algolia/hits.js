@@ -5,6 +5,8 @@ import Grid from "material-ui/Grid";
 import Display from "../../utils/display";
 import Link from "next/link";
 import Typography from "material-ui/Typography";
+import aphrodite from "../../utils/aphrodite";
+import { css } from "aphrodite";
 
 export default connectHits(({ hits }) => {
   const style = {
@@ -16,7 +18,10 @@ export default connectHits(({ hits }) => {
 
   const mobile = hits => {
     return (
-      <div id={"search_results"}>
+      <div
+        id={"search_results"}
+        className={css(aphrodite.mobileGreyBackground)}
+      >
         {hits.map((hit, idx) => <SearchResult key={idx} hit={hit} />)}
       </div>
     );

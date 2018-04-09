@@ -1,9 +1,5 @@
 import React, { Fragment } from "react";
-import {
-  Pagination,
-  Configure,
-  Stats,
-} from "react-instantsearch/dom";
+import { Pagination, Configure, Stats } from "react-instantsearch/dom";
 import SearchBox from "./algolia/searchBox";
 import Hits from "./algolia/hits";
 import { InstantSearch } from "./instantsearch";
@@ -136,20 +132,29 @@ class SearchPage extends React.PureComponent {
             </Grid>
             <Grid item xs>
               <Grid container direction="row" justify="flex-end">
-                <Grid item>
+                <Grid
+                  item
+                  style={{
+                    marginRight: "10px"
+                  }}
+                >
                   <Link href="/enregistrer">
                     <Button color="secondary" size="small">
                       créer une page
                     </Button>
                   </Link>
                 </Grid>
-                <Grid item>
+                <Grid
+                  item
+                  style={{
+                    marginRight: "10px"
+                  }}
+                >
                   <Link href="/enregistrer">
                     <Button
                       color="secondary"
                       size="small"
                       style={{
-                        marginRight: "10px",
                         color: "white",
                         backgroundColor: "#008cd2"
                       }}
@@ -248,13 +253,7 @@ class SearchPage extends React.PureComponent {
               <Grid item />
             </Grid>
           </div>
-          {searchBox(
-            css(
-              aphrodite.contentLeft,
-              aphrodite.contentRight,
-              aphrodite.mobileGreyBackground
-            )
-          )}
+          {searchBox()}
           {tabs()}
           <Divider />
           <SearchResults />
