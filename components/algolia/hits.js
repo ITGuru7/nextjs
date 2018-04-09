@@ -19,7 +19,7 @@ export default connectHits(({ hits }) => {
   const mobile = hits => {
     return (
       <div id={"search_results"} className={css(aphrodite.mobileGreyBackground)}>
-        {hits.map((hit, idx) => <SearchResult key={idx} hit={hit} />)}
+        {hits.map((hit, idx) => <SearchResult key={idx} order={idx} hit={hit} />)}
       </div>
     );
   };

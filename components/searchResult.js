@@ -255,8 +255,12 @@ function ResultInfo(props) {
 
 export default class SearchResult extends React.PureComponent {
   render() {
-    const { hit } = this.props;
+    const { hit, order } = this.props;
+    let images = [];
 
+    if (hit.images) {
+      images = images.concat(Object.values(hit.images));
+    }
     return (
       <Fragment>
         <Display format="tablet-desktop">
@@ -301,6 +305,26 @@ export default class SearchResult extends React.PureComponent {
               <Grid item xs>
                 <ResultInfo hit={hit} />
               </Grid>
+            </Grid>
+            <Grid container spacing={0}>
+              {!order
+                ? images.map((image, idx) => {
+                    const uri = `https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,g_auto,c_fill,w_75,h_75/${image}`;
+                    return (
+                      <Grid
+                        item
+                        style={{
+                          width: "75px",
+                          height: "75px",
+                          marginRight: "16px"
+                        }}
+                        key={idx}
+                      >
+                        <img src={uri} height={75} width={75} />
+                      </Grid>
+                    );
+                  })
+                : null}
             </Grid>
           </div>
         </Display>
