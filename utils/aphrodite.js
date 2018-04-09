@@ -86,7 +86,7 @@ export default StyleSheet.create({
     },
     //md+
     "@media (min-width: 961px)": {
-      marginLeft: "140px"
+      marginLeft: "140px",
     }
   },
   gougleLogoMarginDesktop: {
@@ -120,6 +120,16 @@ export default StyleSheet.create({
   },
   mobileGreyBackground: {
     backgroundColor: "#f8f8f8"
+  },
+  mobileMarginBottom: {
+    // < sm
+    "@media (max-width: 600px)": {
+      marginBottom: "4px"
+    },
+    //sm-md
+    "@media (min-width: 601px) and (max-width: 960px)": {
+      marginBottom: "4px"
+    }
   },
   tabsBorderBottom: {
     borderBottom: "1px solid #e6e6e6"

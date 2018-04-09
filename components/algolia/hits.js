@@ -47,11 +47,19 @@ export default connectHits(({ hits }) => {
 
     return (
       <Grid container direction="row" spacing={0} id={"search_results"}>
-        <Grid item xs>
+        <Grid
+          item
+          xs
+          className={css(
+            aphrodite.searchResultsLeft,
+            aphrodite.searchResultsRight,
+            aphrodite.rightBorder
+          )}
+        >
           {hits.map((hit, idx) => <SearchResult key={idx} hit={hit} />)}
         </Grid>
-        <Grid item xs style={{ marginLeft: "16px", marginRight: "130px" }}>
-          <Grid container direction="row" spacing={0}>
+        <Grid item xs style={{marginLeft: `12px`}}>
+          <Grid container direction="row" spacing={0} style={{maxWidth: `500px`}}>
             {images.map((image, idx) => {
               const uri = `https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,g_auto,c_fill,w_75,h_75/${image}`;
               return (
