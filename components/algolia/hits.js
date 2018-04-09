@@ -18,10 +18,7 @@ export default connectHits(({ hits }) => {
 
   const mobile = hits => {
     return (
-      <div
-        id={"search_results"}
-        className={css(aphrodite.mobileGreyBackground)}
-      >
+      <div id={"search_results"} className={css(aphrodite.mobileGreyBackground)}>
         {hits.map((hit, idx) => <SearchResult key={idx} hit={hit} />)}
       </div>
     );
@@ -51,15 +48,20 @@ export default connectHits(({ hits }) => {
           item
           xs
           className={css(
-            aphrodite.searchResultsLeft,
-            aphrodite.searchResultsRight,
+            aphrodite.searchResultsPaddingLeft,
+            aphrodite.searchResultsPaddingRight,
             aphrodite.rightBorder
           )}
         >
           {hits.map((hit, idx) => <SearchResult key={idx} hit={hit} />)}
         </Grid>
-        <Grid item xs style={{marginLeft: `12px`}}>
-          <Grid container direction="row" spacing={0} style={{maxWidth: `500px`}}>
+        <Grid item xs style={{ marginLeft: `12px` }}>
+          <Grid
+            container
+            direction="row"
+            spacing={0}
+            style={{ maxWidth: `500px` }}
+          >
             {images.map((image, idx) => {
               const uri = `https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,g_auto,c_fill,w_75,h_75/${image}`;
               return (

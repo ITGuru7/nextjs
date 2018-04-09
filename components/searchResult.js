@@ -5,6 +5,7 @@ import { css } from "aphrodite";
 import Typography from "material-ui/Typography";
 import aphrodite from "../utils/aphrodite";
 import { Highlight } from "react-instantsearch/dom";
+import Display from "../utils/display";
 
 function ResultLogo(props) {
   const logo = props.hit.logo;
@@ -257,25 +258,53 @@ export default class SearchResult extends React.PureComponent {
     const { hit } = this.props;
 
     return (
-      <div
-        className={css(
-          aphrodite.contentTop,
-          aphrodite.contentBottom,
-          aphrodite.mobileMarginBottom,
-          aphrodite.searchResultsWidth
-        )}
-        style={{ backgroundColor: "white" }}
-      >
-        <ResultTitle hit={hit} style={{ marginBottom: "4px" }} />
-        <Grid container spacing={0}>
-          <Grid item>
-            <ResultLogo hit={hit} />
-          </Grid>
-          <Grid item xs>
-            <ResultInfo hit={hit} />
-          </Grid>
-        </Grid>
-      </div>
+      <Fragment>
+        <Display format="tablet-desktop">
+          <div
+            className={css(
+              aphrodite.contentTop,
+              aphrodite.contentBottom,
+              aphrodite.mobileMarginBottom,
+              aphrodite.searchResultsWidth
+            )}
+            style={{ backgroundColor: "white" }}
+          >
+            <ResultTitle hit={hit} style={{ marginBottom: "4px" }} />
+            <Grid container spacing={0}>
+              <Grid item>
+                <ResultLogo hit={hit} />
+              </Grid>
+              <Grid item xs>
+                <ResultInfo hit={hit} />
+              </Grid>
+            </Grid>
+          </div>
+        </Display>
+        <Display format="mobile">
+          <div
+            className={css(
+              aphrodite.contentTop,
+              aphrodite.contentBottom,
+              aphrodite.mobileMarginBottom,
+              aphrodite.searchResultsWidth,
+              aphrodite.searchResultsPaddingLeft,
+              aphrodite.searchResultsPaddingRight,
+              aphrodite.rightBorder
+            )}
+            style={{ backgroundColor: "white" }}
+          >
+            <ResultTitle hit={hit} style={{ marginBottom: "4px" }} />
+            <Grid container spacing={0}>
+              <Grid item>
+                <ResultLogo hit={hit} />
+              </Grid>
+              <Grid item xs>
+                <ResultInfo hit={hit} />
+              </Grid>
+            </Grid>
+          </div>
+        </Display>
+      </Fragment>
     );
   }
 }

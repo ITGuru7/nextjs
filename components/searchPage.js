@@ -151,7 +151,7 @@ class SearchPage extends React.PureComponent {
           <Divider style={{ marginTop: "5px" }} />
           {tabs()}
           <Stats
-            className={css(aphrodite.searchResultsLeft)}
+            className={css(aphrodite.searchResultsPaddingLeft)}
             translate={(ctxt, n, ms) => {
               let res;
               let mili;
