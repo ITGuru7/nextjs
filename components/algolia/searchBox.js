@@ -37,7 +37,8 @@ export default connectSearchBox(({ refine }) => {
             item
             style={{
               width: "50px",
-              backgroundColor: "dodgerblue"
+              backgroundColor: "#008cd2",
+              shadow: "0 2px 0 0 #f1f1f1"
             }}
           >
             <Grid
@@ -50,7 +51,7 @@ export default connectSearchBox(({ refine }) => {
             >
               <Grid item>
                 <svg
-                  style={{ width: "30px", height: "30px", paddingTop: "3px" }}
+                  style={{ width: "22px", height: "22px", paddingTop: "3px" }}
                   viewBox="0 0 258 235"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -73,11 +74,6 @@ export default connectSearchBox(({ refine }) => {
             aphrodite.contentRight,
             aphrodite.mobileGreyBackground
           )}
-          style={{
-            boxShadow: "0 2px 0 0 #f1f1f1",
-            border: "1px solid #d2d2d2 !important",
-            borderRadius: '0'
-          }}
         >
           <Grid item xs>
             <input
@@ -91,7 +87,8 @@ export default connectSearchBox(({ refine }) => {
             item
             style={{
               width: "50px",
-              backgroundColor: "dodgerblue"
+              backgroundColor: "#008cd2",
+              shadow: "0 2px 0 0 #f1f1f1"
             }}
           >
             <Grid
@@ -104,7 +101,7 @@ export default connectSearchBox(({ refine }) => {
             >
               <Grid item>
                 <svg
-                  style={{ width: "30px", height: "30px", paddingTop: "3px" }}
+                  style={{ width: "22px", height: "22px", paddingTop: "3px" }}
                   viewBox="0 0 258 235"
                   xmlns="http://www.w3.org/2000/svg"
                 >

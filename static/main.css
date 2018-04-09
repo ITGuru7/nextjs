@@ -38,7 +38,7 @@ input,
 textarea,
 select {
   outline: 0;
-  border: 1px solid dodgerblue;
+  border: 1px solid #008cd2;
 }
 
 .loading {
