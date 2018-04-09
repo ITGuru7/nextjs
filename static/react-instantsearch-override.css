@@ -124,8 +124,8 @@
     height: 34px !important;
     padding-left: 0.3rem !important;
     padding-right: 0.3rem !important;
-
     width: 500px !important;
+    border-right: #008cd2;
   }
   .ais-Pagination ul {
     margin-left: 140px;
@@ -161,7 +161,7 @@
 }
 
 .ais-Highlight-highlighted {
-  background-color: inherit!important;
+  background-color: inherit !important;
   color: lightcoral;
   font-style: inherit;
 }

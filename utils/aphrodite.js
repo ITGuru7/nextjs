@@ -86,7 +86,7 @@ export default StyleSheet.create({
     },
     //md+
     "@media (min-width: 961px)": {
-      marginLeft: "140px",
+      marginLeft: "140px"
     }
   },
   gougleLogoMarginDesktop: {
@@ -136,10 +136,6 @@ export default StyleSheet.create({
   },
   debug: {
     border: "1px black solid"
-  },
-  searchIcon: {
-    width: "24px",
-    height: "24px"
   },
   searchResultsWidth: {
     "@media (max-width: 959px)": {
