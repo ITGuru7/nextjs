@@ -306,7 +306,7 @@ export default class SearchResult extends React.PureComponent {
                 <ResultInfo hit={hit} />
               </Grid>
             </Grid>
-            <Grid container spacing={0}>
+            <Grid container spacing={0} style={{ marginLeft: "78px" }}>
               {!order
                 ? images.map((image, idx) => {
                     const uri = `https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,g_auto,c_fill,w_75,h_75/${image}`;
@@ -314,13 +314,15 @@ export default class SearchResult extends React.PureComponent {
                       <Grid
                         item
                         style={{
-                          width: "75px",
-                          height: "75px",
-                          marginRight: "16px"
+                          marginTop: "4px",
+                          marginBottom: "4px",
+                          width: "70px",
+                          height: "70px",
+                          marginRight: "4px"
                         }}
                         key={idx}
                       >
-                        <img src={uri} height={75} width={75} />
+                        <img src={uri} height={70} width={70} />
                       </Grid>
                     );
                   })
