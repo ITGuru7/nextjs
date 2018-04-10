@@ -54,7 +54,13 @@ export default connectHits(({ hits }) => {
     });
 
     return (
-      <Grid container direction="row" spacing={0} id={"search_results"} style={{flexWrap: 'nowrap'}}>
+      <Grid
+        container
+        direction="row"
+        spacing={0}
+        id={"search_results"}
+        style={{ flexWrap: "nowrap" }}
+      >
         <Grid
           item
           className={css(
@@ -65,57 +71,59 @@ export default connectHits(({ hits }) => {
         >
           {hits.map((hit, idx) => <SearchResult key={idx} hit={hit} />)}
         </Grid>
-        <Grid item style={{ marginLeft: `12px` }}>
-          <Grid
-            container
-            direction="column"
-            spacing={0}
-            style={{ width: `439px` }}
-          >
-            <Grid item>
-              <StaticMap />
-            </Grid>
-            <Grid item style={{ marginTop: "8px", marginBottom: "8px" }}>
-              <Divider />
-            </Grid>
+        {Object.keys(hits).length ? (
+          <Grid item style={{ marginLeft: `12px` }}>
+            <Grid
+              container
+              direction="column"
+              spacing={0}
+              style={{ width: `439px` }}
+            >
+              <Grid item>
+                <StaticMap />
+              </Grid>
+              <Grid item style={{ marginTop: "8px", marginBottom: "8px" }}>
+                <Divider />
+              </Grid>
 
-            <Grid item>
-              <Grid container direction="row" spacing={0}>
-                {images.map((image, idx) => {
-                  const uri = `https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,g_auto,c_fill,w_75,h_75/${image}`;
-                  const cpt = idx + 1;
-                  return (
-                    <Grid
-                      item
-                      style={{
-                        width: "75px",
-                        height: "75px",
-                        marginBottom: "32px",
-                        marginRight: cpt % 5 ? "16px" : null
-                      }}
-                      key={idx}
-                    >
-                      <Link
-                        href={{
-                          pathname: `/${imagesObj[image].objectID}`
+              <Grid item>
+                <Grid container direction="row" spacing={0}>
+                  {images.map((image, idx) => {
+                    const uri = `https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,g_auto,c_fill,w_75,h_75/${image}`;
+                    const cpt = idx + 1;
+                    return (
+                      <Grid
+                        item
+                        style={{
+                          width: "75px",
+                          height: "75px",
+                          marginBottom: "32px",
+                          marginRight: cpt % 5 ? "16px" : null
                         }}
+                        key={idx}
                       >
-                        <a rel="nofollow">
-                          <Fragment>
-                            <img src={uri} height={75} width={75} />
-                            <Typography variant="caption" color="secondary">
-                              {`${imagesObj[image].name.substring(0, 10)}..`}
-                            </Typography>
-                          </Fragment>
-                        </a>
-                      </Link>
-                    </Grid>
-                  );
-                })}
+                        <Link
+                          href={{
+                            pathname: `/${imagesObj[image].objectID}`
+                          }}
+                        >
+                          <a rel="nofollow">
+                            <Fragment>
+                              <img src={uri} height={75} width={75} />
+                              <Typography variant="caption" color="secondary">
+                                {`${imagesObj[image].name.substring(0, 10)}..`}
+                              </Typography>
+                            </Fragment>
+                          </a>
+                        </Link>
+                      </Grid>
+                    );
+                  })}
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        ) : null}
       </Grid>
     );
   };
