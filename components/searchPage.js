@@ -69,8 +69,6 @@ class SearchPage extends React.PureComponent {
       );
     };
 
-
-
     const searchBox = cn => {
       return (
         <SearchBox
@@ -150,30 +148,32 @@ class SearchPage extends React.PureComponent {
           </Grid>
           <Divider style={{ marginTop: "5px" }} />
           {tabs()}
-          <Stats
-            className={css(aphrodite.searchResultsPaddingLeft)}
-            translate={(ctxt, n, ms) => {
-              let res;
-              let mili;
-              if (!n) {
-                res = `aucun résultats`;
-              } else if (n === 1) {
-                res = `1 résultat`;
-              } else {
-                res = `${n.toLocaleString()} résultats`;
-              }
-              if (!n) {
-                mili = ``;
-              } else if (ms === 1) {
-                mili = ` (0.01 secondes)`;
-              } else if (ms < 10) {
-                mili = ` (0.0${ms.toLocaleString()} secondes)`;
-              } else {
-                mili = ` (0.${ms.toLocaleString()} secondes)`;
-              }
-              return `${res}${mili}`;
-            }}
-          />
+          <div style={{ minHeight: "40px" }}>
+            <Stats
+              className={css(aphrodite.searchResultsPaddingLeft)}
+              translate={(ctxt, n, ms) => {
+                let res;
+                let mili;
+                if (!n) {
+                  res = `aucun résultats`;
+                } else if (n === 1) {
+                  res = `1 résultat`;
+                } else {
+                  res = `${n.toLocaleString()} résultats`;
+                }
+                if (!n) {
+                  mili = ``;
+                } else if (ms === 1) {
+                  mili = ` (0.01 secondes)`;
+                } else if (ms < 10) {
+                  mili = ` (0.0${ms.toLocaleString()} secondes)`;
+                } else {
+                  mili = ` (0.${ms.toLocaleString()} secondes)`;
+                }
+                return `${res}${mili}`;
+              }}
+            />
+          </div>
           <SearchResults />
           <Footer />
         </Fragment>

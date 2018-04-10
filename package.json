@@ -4,10 +4,12 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "analyze": "cross-env ANALYZE=1 next build"
   },
   "dependencies": {
     "aphrodite": "^2.1.0",
+    "cross-env": "^5.1.4",
     "css-loader": "^0.28.11",
     "express": "^4.16.3",
     "firebase": "^4.12.0",
@@ -23,10 +25,12 @@
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-instantsearch": "^5.0.1",
+    "react-map-gl": "^3.2.5",
     "react-recaptcha": "^2.3.7",
     "recompose": "^0.26.0",
     "style-loader": "^0.20.3",
-    "sw-precache-webpack-plugin": "^0.11.5"
+    "sw-precache-webpack-plugin": "^0.11.5",
+    "webpack-bundle-analyzer": "^2.11.1"
   },
   "license": "ISC",
   "devDependencies": {

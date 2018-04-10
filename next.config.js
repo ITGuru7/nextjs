@@ -1,4 +1,6 @@
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const { ANALYZE } = process.env;
 
 module.exports = {
   webpack: config => {
@@ -24,6 +26,15 @@ module.exports = {
     if (config.resolve.alias) {
       delete config.resolve.alias.react;
       delete config.resolve.alias["react-dom"];
+    }
+    if (ANALYZE) {
+      config.plugins.push(
+        new BundleAnalyzerPlugin({
+          analyzerMode: "server",
+          analyzerPort: 8888,
+          openAnalyzer: true
+        })
+      );
     }
 
     return config;
