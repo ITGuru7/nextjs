@@ -68,11 +68,14 @@ export default StyleSheet.create({
     },
     //sm-md
     "@media (min-width: 601px) and (max-width: 960px)": {
-      paddingRight: "30px"
+      paddingRight: "12px"
     },
     //md+
-    "@media (min-width: 961px)": {
+    "@media (min-width: 961px) and (max-width: 1279px)": {
       paddingRight: "12px"
+    },
+    "@media (min-width: 1280px)": {
+      paddingRight: "60px"
     }
   },
   searchResultsPaddingLeft: {
@@ -169,11 +172,11 @@ export default StyleSheet.create({
     "@media (max-width: 959px)": {
       width: "100%"
     },
-    "@media (min-width: 960px) and (max-width: 1279px)": {
+    "@media (min-width: 960px) and (max-width: 1399px)": {
       width: "500px"
     },
-    "@media (min-width: 1280px)": {
-      width: "700px"
+    "@media (min-width: 1400px)": {
+      width: "650px"
     }
   },
   rightBorder: {

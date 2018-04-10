@@ -54,10 +54,9 @@ export default connectHits(({ hits }) => {
     });
 
     return (
-      <Grid container direction="row" spacing={0} id={"search_results"}>
+      <Grid container direction="row" spacing={0} id={"search_results"} style={{flexWrap: 'nowrap'}}>
         <Grid
           item
-          xs
           className={css(
             aphrodite.searchResultsPaddingLeft,
             aphrodite.searchResultsPaddingRight,
@@ -66,7 +65,7 @@ export default connectHits(({ hits }) => {
         >
           {hits.map((hit, idx) => <SearchResult key={idx} hit={hit} />)}
         </Grid>
-        <Grid item xs style={{ marginLeft: `12px` }}>
+        <Grid item style={{ marginLeft: `12px` }}>
           <Grid
             container
             direction="column"
@@ -84,7 +83,6 @@ export default connectHits(({ hits }) => {
               <Grid container direction="row" spacing={0}>
                 {images.map((image, idx) => {
                   const uri = `https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,g_auto,c_fill,w_75,h_75/${image}`;
-                  console.log(`idx: ${idx} margin:${idx && idx % 4}`);
                   const cpt = idx + 1;
                   return (
                     <Grid
