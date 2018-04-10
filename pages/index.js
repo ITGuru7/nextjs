@@ -2,9 +2,10 @@ import Layout from "../components/layout";
 import Fonts from "../utils/fonts";
 import Head from "next/head";
 import { Fragment } from "react";
-import SearchPage from "../components/searchPage";
 import { initStore } from "../store/store";
 import { Provider } from "mobx-react";
+import dynamic from "next/dynamic";
+const SearchPage = dynamic(import("../components/searchPage"));
 
 class Welcome extends React.PureComponent {
   static getInitialProps({ req }) {

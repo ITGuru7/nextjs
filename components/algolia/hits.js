@@ -15,7 +15,7 @@ const StaticMap = dynamic(import("../staticMap"), {
       style={{
         width: "455px",
         height: "400px",
-        backgroundColor: "rgb(82,141,173)"
+        backgroundColor: "white"
       }}
     />
   )
