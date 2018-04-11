@@ -40,21 +40,8 @@ class SearchPage extends React.PureComponent {
     this.store = initStore(props.isServer, props.lastUpdate);
   }
 
-  componentDidMount() {
-    Fonts();
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker
-        .register("/service-worker.js")
-        .then(registration => {
-          console.log("service worker registration successful");
-        })
-        .catch(err => {
-          console.warn("service worker registration failed", err.message);
-        });
-    }
-  }
-
   render() {
+    const {firstLetter} = this.props;
     const SearchResults = () => {
       return (
         <div className={css(aphrodite.wrapperMinHeight)}>
@@ -95,23 +82,8 @@ class SearchPage extends React.PureComponent {
       );
     };
 
-    const searchBox = cn => {
-      return (
-        <SearchBox
-          autoFocus
-          translations={{
-            placeholder: ""
-          }}
-          ref="searchbox"
-          className={cn}
-          onInput={() => {
-            this.setState({
-              loadingFinished: true
-            });
-          }}
-          reset={null}
-        />
-      );
+    const searchBox = () => {
+      return <SearchBox firstLetter={firstLetter}/>;
     };
 
     const desktop = () => {

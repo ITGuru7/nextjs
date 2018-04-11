@@ -2,6 +2,7 @@ import Grid from "material-ui/Grid";
 import { Fragment } from "react";
 import Display from "../utils/display";
 import dynamic from "next/dynamic";
+import Fonts from "../utils/fonts";
 const SearchPage = dynamic(import("../components/searchPage"), {
   loading: () => <div />
 });
@@ -10,13 +11,28 @@ class LandingPage extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      input: false
+      input: null
     };
   }
+
+  componentDidMount() {
+    Fonts();
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/service-worker.js")
+        .then(registration => {
+          console.log("service worker registration successful");
+        })
+        .catch(err => {
+          console.warn("service worker registration failed", err.message);
+        });
+    }
+  }
+
   render() {
     const mobile = () => {
       if (this.state.input) {
-        return <SearchPage />;
+        return <SearchPage firstLetter={this.state.input} />;
       } else {
         return (
           <Grid container direction="row" alignItems="center" justify="center">
@@ -24,7 +40,7 @@ class LandingPage extends React.PureComponent {
               <input
                 onChange={e => {
                   this.setState({
-                    input: true
+                    input: e.target["value"]
                   });
                 }}
               />
@@ -36,7 +52,7 @@ class LandingPage extends React.PureComponent {
 
     const desktop = () => {
       if (this.state.input) {
-        return <SearchPage />;
+        return <SearchPage firstLetter={this.state.input} />;
       } else {
         return (
           <Grid container direction="row" alignItems="center" justify="center">
@@ -44,7 +60,7 @@ class LandingPage extends React.PureComponent {
               <input
                 onChange={e => {
                   this.setState({
-                    input: true
+                    input: e.target["value"]
                   });
                 }}
               />
