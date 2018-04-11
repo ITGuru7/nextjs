@@ -18,7 +18,6 @@ export default connectSearchBox(({ refine }) => {
   const onChange = e => {
     e.persist();
     if (e.target.value.length !== 1) {
-      console.log(e.target.value);
       document.getElementById("search_results").classList.add("loading");
       debouncedSearch(e, e.eventTarget);
     }

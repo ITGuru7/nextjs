@@ -17,8 +17,19 @@ import Link from "next/link";
 import GougleLogo from "./gougleLogo";
 import Display from "../utils/display";
 import Button from "material-ui/Button";
+import { initStore } from "../store/store";
+import Head from "next/head";
+import { Provider } from "mobx-react";
+import Layout from "../components/layout";
+import Fonts from "../utils/fonts";
 
 class SearchPage extends React.PureComponent {
+  static getInitialProps({ req }) {
+    const isServer = !!req;
+    const store = initStore(isServer);
+    return { lastUpdate: store.lastUpdate, isServer };
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -26,6 +37,21 @@ class SearchPage extends React.PureComponent {
       loadingFinished: false,
       images: []
     };
+    this.store = initStore(props.isServer, props.lastUpdate);
+  }
+
+  componentDidMount() {
+    Fonts();
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/service-worker.js")
+        .then(registration => {
+          console.log("service worker registration successful");
+        })
+        .catch(err => {
+          console.warn("service worker registration failed", err.message);
+        });
+    }
   }
 
   render() {
@@ -245,18 +271,35 @@ class SearchPage extends React.PureComponent {
     };
 
     return (
-      <InstantSearch
-        appId="5NXUF7YDRN"
-        apiKey="458ab22e25a2ddf3a174bf03678c9281"
-        indexName="directory_nc"
-      >
-        <Display format="mobile" implementation="css">
-          {mobile()}
-        </Display>
-        <Display format="tablet-desktop" implementation="css">
-          {desktop()}
-        </Display>
-      </InstantSearch>
+      <Provider store={this.store}>
+        <Fragment>
+          <Head>
+            <link
+              rel="stylesheet"
+              href="../static/react-instantsearch-override.css"
+            />
+            <link rel="stylesheet" href="../static/main.css" />
+            <link
+              rel="stylesheet"
+              href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"
+            />
+          </Head>
+          <Layout title={"gougle.nc"}>
+            <InstantSearch
+              appId="5NXUF7YDRN"
+              apiKey="458ab22e25a2ddf3a174bf03678c9281"
+              indexName="directory_nc"
+            >
+              <Display format="mobile" implementation="css">
+                {mobile()}
+              </Display>
+              <Display format="tablet-desktop" implementation="css">
+                {desktop()}
+              </Display>
+            </InstantSearch>
+          </Layout>
+        </Fragment>
+      </Provider>
     );
   }
 }

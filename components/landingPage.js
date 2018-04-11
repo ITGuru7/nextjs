@@ -1,6 +1,10 @@
 import Grid from "material-ui/Grid";
 import { Fragment } from "react";
 import Display from "../utils/display";
+import dynamic from "next/dynamic";
+const SearchPage = dynamic(import("../components/searchPage"), {
+  loading: () => <div />
+});
 
 class LandingPage extends React.PureComponent {
   constructor(props) {
@@ -11,23 +15,43 @@ class LandingPage extends React.PureComponent {
   }
   render() {
     const mobile = () => {
-      return (
-        <Grid container direction="row" alignItems="center" justify="center">
-          <Grid item>
-            <input onInput={() => (this.state.input = true)} />
+      if (this.state.input) {
+        return <SearchPage />;
+      } else {
+        return (
+          <Grid container direction="row" alignItems="center" justify="center">
+            <Grid item>
+              <input
+                onChange={e => {
+                  this.setState({
+                    input: true
+                  });
+                }}
+              />
+            </Grid>
           </Grid>
-        </Grid>
-      );
+        );
+      }
     };
 
     const desktop = () => {
-      return (
-        <Grid container direction="row" alignItems="center" justify="center">
-          <Grid item>
-            <input onInput={() => (this.state.input = true)} />
+      if (this.state.input) {
+        return <SearchPage />;
+      } else {
+        return (
+          <Grid container direction="row" alignItems="center" justify="center">
+            <Grid item>
+              <input
+                onChange={e => {
+                  this.setState({
+                    input: true
+                  });
+                }}
+              />
+            </Grid>
           </Grid>
-        </Grid>
-      );
+        );
+      }
     };
 
     return (
