@@ -1,6 +1,7 @@
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const { ANALYZE } = process.env;
+const resolve = require("path").resolve;
 
 module.exports = {
   webpack: config => {
@@ -36,6 +37,13 @@ module.exports = {
         })
       );
     }
+    config.module.noParse = [
+      resolve("./node_modules/mapbox-gl/dist/mapbox-gl.js")
+    ];
+
+    config.resolve.alias = {
+      "mapbox-gl$": resolve("./node_modules/mapbox-gl/dist/mapbox-gl.js")
+    };
 
     return config;
   }

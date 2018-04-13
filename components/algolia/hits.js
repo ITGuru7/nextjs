@@ -6,9 +6,11 @@ import Display from "../../utils/display";
 import Link from "next/link";
 import Typography from "material-ui/Typography";
 import aphrodite from "../../utils/aphrodite";
+import object from "../../utils/object";
 import { css } from "aphrodite";
 import Divider from "material-ui/Divider";
 import dynamic from "next/dynamic";
+
 const StaticMap = dynamic(import("../staticMap"), {
   loading: () => (
     <div
@@ -18,7 +20,8 @@ const StaticMap = dynamic(import("../staticMap"), {
         backgroundColor: "white"
       }}
     />
-  )
+  ),
+  ssr: false
 });
 
 export default connectHits(({ hits }) => {
@@ -40,7 +43,7 @@ export default connectHits(({ hits }) => {
     let images = [];
     hits.map(hit => {
       if (hit.images) {
-        const hitImages = Object.values(hit.images);
+        const hitImages = object.values(hit.images);
         hitImages.map(
           hitImage =>
             (imagesObj[hitImage] = {

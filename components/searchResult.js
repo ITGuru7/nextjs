@@ -6,6 +6,7 @@ import Typography from "material-ui/Typography";
 import aphrodite from "../utils/aphrodite";
 import { Highlight } from "react-instantsearch/dom";
 import Display from "../utils/display";
+import object from "../utils/object";
 
 function ResultLogo(props) {
   const logo = props.hit.logo;
@@ -259,7 +260,7 @@ export default class SearchResult extends React.PureComponent {
     let images = [];
 
     if (hit.images) {
-      images = images.concat(Object.values(hit.images));
+      images = images.concat(object.values(hit.images));
     }
     return (
       <Fragment>
