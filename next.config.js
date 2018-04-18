@@ -1,22 +1,23 @@
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const { ANALYZE } = process.env;
-const webpack = require("webpack");
 
 module.exports = {
   webpack: config => {
-    config.plugins.push(
-      new SWPrecacheWebpackPlugin({
-        verbose: true,
-        staticFileGlobsIgnorePatterns: [/\.next\//],
-        runtimeCaching: [
-          {
-            handler: "networkFirst",
-            urlPattern: /^https?.*/
-          }
-        ]
-      })
-    );
+    if (process.env.NODE_ENV === "production") {
+      config.plugins.push(
+        new SWPrecacheWebpackPlugin({
+          verbose: true,
+          staticFileGlobsIgnorePatterns: [/\.next\//],
+          runtimeCaching: [
+            {
+              handler: "networkFirst",
+              urlPattern: /^https?.*/
+            }
+          ]
+        })
+      );
+    }
     config.node = {
       fs: "empty"
     };

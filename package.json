@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "node server.js",
-    "build": "next build",
+    "build": "next build ",
     "start": "NODE_ENV=production node server.js",
     "analyze": "cross-env ANALYZE=1 next build"
   },
