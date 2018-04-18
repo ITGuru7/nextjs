@@ -24,24 +24,22 @@ import Layout from "../components/layout";
 import Fonts from "../utils/fonts";
 
 class SearchPage extends React.PureComponent {
-  static getInitialProps({ req }) {
-    const isServer = !!req;
-    const store = initStore(isServer);
-    return { lastUpdate: store.lastUpdate, isServer };
-  }
-
   constructor(props) {
     super(props);
     this.state = {
       width: 1600,
       loadingFinished: false,
-      images: []
+      images: [],
+      error: this.props.error,
+      userAgent: this.props.userAgent,
+      isCrawler: this.props.isCrawler
+
     };
     this.store = initStore(props.isServer, props.lastUpdate);
   }
 
   render() {
-    const {firstLetter} = this.props;
+    const { firstLetter } = this.props;
     const SearchResults = () => {
       return (
         <div className={css(aphrodite.wrapperMinHeight)}>
@@ -83,7 +81,7 @@ class SearchPage extends React.PureComponent {
     };
 
     const searchBox = () => {
-      return <SearchBox firstLetter={firstLetter}/>;
+      return <SearchBox firstLetter={firstLetter} />;
     };
 
     const desktop = () => {
@@ -136,6 +134,7 @@ class SearchPage extends React.PureComponent {
                         color: "white",
                         backgroundColor: "#008cd2"
                       }}
+                      onClick={() => {}}
                     >
                       se connecter
                     </Button>
@@ -242,37 +241,43 @@ class SearchPage extends React.PureComponent {
       );
     };
 
-    return (
-      <Provider store={this.store}>
-        <Fragment>
-          <Head>
-            <link
-              rel="stylesheet"
-              href="../static/react-instantsearch-override.css"
-            />
-            <link rel="stylesheet" href="../static/main.css" />
-            <link
-              rel="stylesheet"
-              href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"
-            />
-          </Head>
-          <Layout title={"gougle.nc"}>
-            <InstantSearch
-              appId="5NXUF7YDRN"
-              apiKey="458ab22e25a2ddf3a174bf03678c9281"
-              indexName="directory_nc"
-            >
-              <Display format="mobile" implementation="css">
-                {mobile()}
-              </Display>
-              <Display format="tablet-desktop" implementation="css">
-                {desktop()}
-              </Display>
-            </InstantSearch>
-          </Layout>
-        </Fragment>
-      </Provider>
-    );
+    if (!this.state.error) {
+      console.log(this.state.userAgent);
+      console.log(this.state.isCrawler);
+      return (
+        <Provider store={this.store}>
+          <Fragment>
+            <Head>
+              <link
+                rel="stylesheet"
+                href="../static/react-instantsearch-override.css"
+              />
+              <link rel="stylesheet" href="../static/main.css" />
+              <link
+                rel="stylesheet"
+                href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"
+              />
+            </Head>
+            <Layout title={"gougle.nc"}>
+              <InstantSearch
+                appId="5NXUF7YDRN"
+                apiKey="458ab22e25a2ddf3a174bf03678c9281"
+                indexName="directory_nc"
+              >
+                <Display format="mobile" implementation="css">
+                  {mobile()}
+                </Display>
+                <Display format="tablet-desktop" implementation="css">
+                  {desktop()}
+                </Display>
+              </InstantSearch>
+            </Layout>
+          </Fragment>
+        </Provider>
+      );
+    } else {
+      return <div>SEARCH PAGE ERROR</div>;
+    }
   }
 }
 

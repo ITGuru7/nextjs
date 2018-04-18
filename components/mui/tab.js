@@ -7,10 +7,10 @@ const styles = {
     minWidth: 0,
     marginRight: "8px"
   },
-  textColorSecondarySelected: {
+  selected: {
     color: "#38f"
   },
-  textColorSecondaryDisabled: {
+  disabled: {
     color: "#666"
   },
   labelContainer: {
@@ -26,8 +26,8 @@ function styledTab(props) {
     <Tab
       {...props}
       classes={{
-        textColorSecondarySelected: props.classes.textColorSecondarySelected,
-        textColorSecondaryDisabled: props.classes.textColorSecondaryDisabled,
+        selected: props.classes.selected,
+        disabled: props.classes.disabled,
         labelContainer: props.classes.labelContainer,
         root: props.classes.root
       }}

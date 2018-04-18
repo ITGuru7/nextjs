@@ -7,6 +7,7 @@ import aphrodite from "../utils/aphrodite";
 import { Highlight } from "react-instantsearch/dom";
 import Display from "../utils/display";
 import object from "../utils/object";
+import withSentry from "../components/withSentry";
 
 function ResultLogo(props) {
   const logo = props.hit.logo;
@@ -254,7 +255,7 @@ function ResultInfo(props) {
   );
 }
 
-export default class SearchResult extends React.PureComponent {
+class SearchResult extends React.PureComponent {
   render() {
     const { hit, order } = this.props;
     let images = [];
@@ -335,3 +336,4 @@ export default class SearchResult extends React.PureComponent {
     );
   }
 }
+export default withSentry(SearchResult);
