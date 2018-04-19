@@ -36,6 +36,7 @@ class MyDocument extends Document {
       )
     };
   }
+
   render() {
     const { pageContext } = this.props;
 
@@ -54,6 +55,11 @@ class MyDocument extends Document {
             content={
               "user-scalable=no, initial-scale=1, maximum-scale=1, width=device-width"
             }
+          />
+          <script
+            src="https://cdn.polyfill.io/v2/polyfill.min.js"
+            async
+            defer
           />
           {/* PWA primary color */}
           <meta

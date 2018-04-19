@@ -9,7 +9,7 @@ if (typeof window !== "undefined") {
   StyleSheet.rehydrate(window.__NEXT_DATA__.ids);
 }
 
-class Layout extends React.PureComponent {
+class Wrapper extends React.PureComponent {
   render() {
     return (
       <Fragment>
@@ -22,4 +22,4 @@ class Layout extends React.PureComponent {
   }
 }
 
-export default withRoot(Layout);
+export default withRoot(Wrapper);

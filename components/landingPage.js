@@ -14,10 +14,9 @@ class LandingPage extends React.PureComponent {
       input: null
     };
   }
-
   componentDidMount() {
     Fonts();
-    if ("serviceWorker" in navigator) {
+    if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
       navigator.serviceWorker
         .register("/service-worker.js")
         .then(registration => {
@@ -32,7 +31,7 @@ class LandingPage extends React.PureComponent {
   render() {
     const mobile = () => {
       if (this.state.input) {
-        return <SearchPage firstLetter={this.state.input} />;
+        return <SearchPage isCrawler={this.props.isCrawler} firstLetter={this.state.input} />;
       } else {
         return (
           <Grid container direction="row" alignItems="center" justify="center">
@@ -52,7 +51,7 @@ class LandingPage extends React.PureComponent {
 
     const desktop = () => {
       if (this.state.input) {
-        return <SearchPage firstLetter={this.state.input} />;
+        return <SearchPage isCrawler={this.props.isCrawler} firstLetter={this.state.input} />;
       } else {
         return (
           <Grid container direction="row" alignItems="center" justify="center">
