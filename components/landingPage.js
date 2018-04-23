@@ -14,7 +14,9 @@ import GougleLogo from "./gougleLogo";
 import Drawer from "material-ui/Drawer";
 import MenuIcon from "material-ui-icons/Menu";
 import List, { ListItem, ListItemText } from "material-ui/List";
-import Footer from "./footer";
+import Divider from "material-ui/Divider";
+import Typography from "material-ui/Typography";
+import { Fragment } from "react";
 
 class LandingPage extends React.PureComponent {
   constructor(props) {
@@ -38,6 +40,120 @@ class LandingPage extends React.PureComponent {
 
   render() {
     const { open } = this.props;
+    const footer = () => {
+      return (
+        <div>
+          <Divider />
+          <div
+            style={{ height: "100px" }}
+            className={css(aphrodite.mobileGreyBackground)}
+          >
+            <Grid
+              container
+              spacing={0}
+              direction="column"
+              style={{ height: "100%" }}
+            >
+              <Grid item xs>
+                <Grid
+                  container
+                  spacing={0}
+                  direction="row"
+                  style={{ height: "100%" }}
+                  alignItems={"center"}
+                  justify={"center"}
+                >
+                  <Grid item xs md={1}>
+                    <Link href="/mentions-legales">
+                      <Typography variant="caption" align="center">
+                        <a>{`Mentions légales`}</a>
+                      </Typography>
+                    </Link>
+                  </Grid>
+                  <Grid item xs md={1}>
+                    <Link href="/contact">
+                      <Typography variant="caption" align="center">
+                        <a>{`Contact`}</a>
+                      </Typography>
+                    </Link>
+                  </Grid>
+                  <Grid item xs md={1}>
+                    <Link href="/conditions-generales">
+                      <Typography variant="caption" align="center">
+                        <a>{`Conditions générales`}</a>
+                      </Typography>
+                    </Link>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs>
+                <Grid
+                  container
+                  spacing={0}
+                  direction="row"
+                  style={{ height: "100%" }}
+                  alignItems={"center"}
+                  justify={"center"}
+                >
+                  <Grid item xs={2} md={1}>
+                    <Link href="/blog">
+                      <Typography variant="caption" align="center">
+                        <a>{`Blog`}</a>
+                      </Typography>
+                    </Link>
+                  </Grid>
+                  <Grid item xs={2} md={1}>
+                    <Typography variant="caption" align="center">
+                      <a
+                        href={"https://www.facebook.com/gougle.nc"}
+                        target="_blank"
+                        rel="external noopener noreferrer"
+                      >
+                        {` Facebook`}
+                      </a>
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+          </div>
+        </div>
+      );
+    };
+
+    const background = () => {
+      return (
+        <Fragment>
+          <Display format={"mobile"}>
+            <div
+              style={{
+                backgroundImage: `url('/static/images/lp_background_600.png')`,
+                backgroundPosition: "center",
+                height: "158px"
+              }}
+            />
+          </Display>
+          <Display format={"tablet"}>
+            <div
+              style={{
+                backgroundImage: `url('/static/images/lp_background_960.png')`,
+                backgroundPosition: "center",
+                height: "253px"
+              }}
+            />
+          </Display>
+          <Display format={"desktop"}>
+            <div
+              style={{
+                backgroundImage: `url('/static/images/lp_background_1280.png')`,
+                backgroundPosition: "center",
+                height: "337px"
+              }}
+            />
+          </Display>
+        </Fragment>
+      );
+    };
 
     const mobile = () => {
       if (this.state.input) {
@@ -54,15 +170,14 @@ class LandingPage extends React.PureComponent {
             direction="column"
             spacing={0}
             style={{ marginTop: "10px" }}
-            justify="space-between"
           >
-            <Grid item style={{ minHeight: "calc(100vh - 100px)" }}>
+            <Grid item style={{ minHeight: "calc(100vh - 258px)" }}>
               <Grid container direction="column" spacing={0}>
                 <Grid item>
                   <MenuIcon
                     className={css(aphrodite.topScreenPadding)}
                     onClick={this.handleRightOpen}
-                    style={{ marginLeft: "16px", color: '#757575' }}
+                    style={{ marginLeft: "16px", color: "#757575" }}
                   />
                   <Drawer
                     anchor="right"
@@ -137,9 +252,8 @@ class LandingPage extends React.PureComponent {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item>
-              <Footer />
-            </Grid>
+            <Grid item>{background()}</Grid>
+            <Grid item>{footer()}</Grid>
           </Grid>
         );
       }
@@ -160,9 +274,8 @@ class LandingPage extends React.PureComponent {
             direction="column"
             spacing={0}
             style={{ marginTop: "10px" }}
-            justify="space-between"
           >
-            <Grid item style={{ minHeight: "calc(100vh - 60px)"}}>
+            <Grid item style={{ minHeight: "calc(100vh - 397px)" }}>
               <Grid container direction="column" spacing={0}>
                 <Grid item>
                   <Grid container direction="row" justify="flex-end">
@@ -265,9 +378,8 @@ class LandingPage extends React.PureComponent {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item>
-              <Footer/>
-            </Grid>
+            <Grid item>{background()}</Grid>
+            <Grid item>{footer()}</Grid>
           </Grid>
         );
       }
