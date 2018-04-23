@@ -18,6 +18,7 @@ import GougleLogo from "./gougleLogo";
 import Display from "../utils/display";
 import Button from "material-ui/Button";
 import Head from "next/head";
+import Wrapper from "../components/wrapper";
 
 class SearchPage extends React.PureComponent {
   constructor(props) {
@@ -238,16 +239,20 @@ class SearchPage extends React.PureComponent {
       console.log(this.state.userAgent);
       console.log(this.state.isCrawler);
       return (
-        <Fragment>
+        <Wrapper title={"gougle.nc"}>
           <Head>
             <link
               rel="stylesheet"
               href="../static/react-instantsearch-override.css"
             />
-            <link rel="stylesheet" href="../static/main.css" />
+
             <link
               rel="stylesheet"
               href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"
+            />
+            <link
+              rel="stylesheet"
+              href="../static/main.css"
             />
           </Head>
           <InstantSearch
@@ -262,7 +267,7 @@ class SearchPage extends React.PureComponent {
               {desktop()}
             </Display>
           </InstantSearch>
-        </Fragment>
+        </Wrapper>
       );
     } else {
       return <div>SEARCH PAGE ERROR</div>;

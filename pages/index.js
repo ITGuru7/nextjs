@@ -1,5 +1,4 @@
 import LandingPage from "../components/landingPage";
-import Wrapper from "../components/wrapper";
 
 class Index extends React.PureComponent {
   static async getInitialProps({ req }) {
@@ -16,9 +15,7 @@ class Index extends React.PureComponent {
 
   render() {
     return (
-      <Wrapper title={"gougle.nc"}>
         <LandingPage isCrawler={this.props.isCrawler} />
-      </Wrapper>
     );
   }
 }

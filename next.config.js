@@ -19,13 +19,27 @@ module.exports = {
         })
       );
     }
+
     config.node = {
       fs: "empty"
     };
-    config.module.rules.push({
-      test: /\.css$/,
-      loader: ["style-loader", "css-loader"]
-    });
+
+    config.module.rules.push(
+      {
+        test: /\.css$/,
+        loader: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            limit: 100000
+          }
+        }
+      }
+    );
+
     if (config.resolve.alias) {
       delete config.resolve.alias.react;
       delete config.resolve.alias["react-dom"];
