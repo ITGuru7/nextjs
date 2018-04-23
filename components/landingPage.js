@@ -56,13 +56,13 @@ class LandingPage extends React.PureComponent {
             style={{ marginTop: "10px" }}
             justify="space-between"
           >
-            <Grid item style={{ minHeight: "92vh" }}>
+            <Grid item style={{ minHeight: "calc(100vh - 100px)" }}>
               <Grid container direction="column" spacing={0}>
                 <Grid item>
                   <MenuIcon
                     className={css(aphrodite.topScreenPadding)}
                     onClick={this.handleRightOpen}
-                    style={{ marginLeft: "16px" }}
+                    style={{ marginLeft: "16px", color: '#757575' }}
                   />
                   <Drawer
                     anchor="right"
@@ -79,7 +79,7 @@ class LandingPage extends React.PureComponent {
                     </List>
                   </Drawer>
                 </Grid>
-                <Grid item style={{ marginTop: "100px", marginBottom: "20px" }}>
+                <Grid item style={{ marginTop: "50px", marginBottom: "20px" }}>
                   <Grid container justify={"center"} spacing={0}>
                     <Grid item>
                       <GougleLogo cn={css(aphrodite.gougleLogoLandingPage)} />
@@ -162,7 +162,7 @@ class LandingPage extends React.PureComponent {
             style={{ marginTop: "10px" }}
             justify="space-between"
           >
-            <Grid item style={{ minHeight: "92vh"}}>
+            <Grid item style={{ minHeight: "calc(100vh - 60px)"}}>
               <Grid container direction="column" spacing={0}>
                 <Grid item>
                   <Grid container direction="row" justify="flex-end">

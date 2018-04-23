@@ -146,7 +146,12 @@ export default StyleSheet.create({
     width: "130px"
   },
   gougleLogoLandingPage: {
-    width: "250px"
+    "@media (max-width: 600px)": {
+      width: "200px"
+    },
+    "@media (min-width: 601px)": {
+      width: "250px"
+    },
   },
   topScreenPadding: {
     marginTop: "3px",
