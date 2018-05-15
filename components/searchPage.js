@@ -14,7 +14,7 @@ import MenuIcon from "material-ui-icons/Menu";
 import Drawer from "material-ui/Drawer";
 import List, { ListItem, ListItemText } from "material-ui/List";
 import Link from "next/link";
-import GougleLogo from "./gougleLogo";
+import QwarxLogo from "./qwarxLogo";
 import Display from "../utils/display";
 import Button from "material-ui/Button";
 import Head from "next/head";
@@ -89,7 +89,7 @@ class SearchPage extends React.PureComponent {
             alignItems={"center"}
           >
             <Grid item>
-              <GougleLogo
+              <QwarxLogo
                 cn={css(
                   aphrodite.gougleLogo,
                   aphrodite.topScreenPadding,
@@ -114,7 +114,7 @@ class SearchPage extends React.PureComponent {
                       size="small"
                       style={{
                         color: "white",
-                        backgroundColor: "#008cd2"
+                        backgroundColor: "#0E8AB0"
                       }}
                       onClick={() => {}}
                     >
@@ -207,7 +207,7 @@ class SearchPage extends React.PureComponent {
                 </Drawer>
               </Grid>
               <Grid item>
-                <GougleLogo
+                <QwarxLogo
                   cn={css(aphrodite.gougleLogo, aphrodite.topScreenPadding)}
                 />
               </Grid>

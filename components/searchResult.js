@@ -92,7 +92,7 @@ function ResultUrl(props) {
       component={"span"}
       variant="caption"
       color="secondary"
-      style={{ marginBottom: "8px" }}
+      style={{ marginBottom: "8px", color: '#13CCBE' }}
     >
       {url}
     </Typography>
@@ -105,7 +105,6 @@ function ResultInfo(props) {
       <div style={{ marginLeft: "8px" }}>
         <ResultDescription hit={props.hit} />
         <ResultSubTitle hit={props.hit} />
-        <ResultUrl hit={props.hit} />
       </div>
     );
   }
@@ -144,6 +143,7 @@ class SearchResult extends React.PureComponent {
             style={{ backgroundColor: "white" }}
           >
             <ResultTitle hit={hit} style={{ marginBottom: "4px" }} />
+            <ResultUrl hit={hit}/>
             <Grid container spacing={0}>
               <Grid item>
                 <ResultLogo hit={hit} />

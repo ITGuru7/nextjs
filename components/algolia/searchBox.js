@@ -49,7 +49,7 @@ export default class SearchBox extends React.PureComponent {
               item
               style={{
                 width: "50px",
-                backgroundColor: "#008cd2",
+                backgroundColor: "#0E8AB0",
                 shadow: "0 2px 0 0 #f1f1f1"
               }}
             >
@@ -98,7 +98,7 @@ export default class SearchBox extends React.PureComponent {
               item
               style={{
                 width: "50px",
-                backgroundColor: "#008cd2",
+                backgroundColor: "#0E8AB0",
                 shadow: "0 2px 0 0 #f1f1f1"
               }}
             >

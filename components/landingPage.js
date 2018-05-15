@@ -10,12 +10,13 @@ import Button from "material-ui/Button";
 import Link from "next/link";
 import aphrodite from "../utils/aphrodite";
 import { css } from "aphrodite";
-import GougleLogo from "./gougleLogo";
+import QwarxLogo from "./qwarxLogo";
 import Drawer from "material-ui/Drawer";
 import MenuIcon from "material-ui-icons/Menu";
 import List, { ListItem, ListItemText } from "material-ui/List";
 import { Fragment } from "react";
 import Footer from "./footer";
+import Typography from "material-ui/Typography";
 
 class LandingPage extends React.PureComponent {
   constructor(props) {
@@ -46,9 +47,10 @@ class LandingPage extends React.PureComponent {
           <Display format={"mobile"}>
             <div
               style={{
-                backgroundImage: `url('/static/images/lp_background_600.png')`,
+                backgroundImage: `url('/static/images/lp_background_400.png')`,
                 backgroundPosition: "center",
-                height: "86.31px"
+                backgroundRepeat: "no-repeat",
+                height: "61.38px"
               }}
             />
           </Display>
@@ -57,6 +59,7 @@ class LandingPage extends React.PureComponent {
               style={{
                 backgroundImage: `url('/static/images/lp_background_960.png')`,
                 backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
                 height: "138.1px"
               }}
             />
@@ -64,9 +67,10 @@ class LandingPage extends React.PureComponent {
           <Display format={"desktop"}>
             <div
               style={{
-                backgroundImage: `url('/static/images/lp_background_1280.png')`,
+                backgroundImage: `url('/static/images/lp_background_960.png')`,
                 backgroundPosition: "center",
-                height: "184.13px"
+                backgroundRepeat: "no-repeat",
+                height: "138.1px"
               }}
             />
           </Display>
@@ -116,7 +120,7 @@ class LandingPage extends React.PureComponent {
                 <Grid item style={{ marginTop: "50px", marginBottom: "20px" }}>
                   <Grid container justify={"center"} spacing={0}>
                     <Grid item>
-                      <GougleLogo cn={css(aphrodite.gougleLogoLandingPage)} />
+                      <QwarxLogo cn={css(aphrodite.gougleLogoLandingPage)} />
                     </Grid>
                   </Grid>
                 </Grid>
@@ -137,7 +141,7 @@ class LandingPage extends React.PureComponent {
                       item
                       style={{
                         width: "50px",
-                        backgroundColor: "#008cd2",
+                        backgroundColor: "#0E8AB0",
                         shadow: "0 2px 0 0 #f1f1f1"
                       }}
                     >
@@ -169,10 +173,17 @@ class LandingPage extends React.PureComponent {
                     </Grid>
                   </Grid>
                 </Grid>
+                <Grid item style={{marginTop: '100px'}}>
+                  <Typography component="h1" variant="headline" align="center" >
+                    {`Tout le web Caledonien`}
+                  </Typography>
+                </Grid>
               </Grid>
             </Grid>
             <Grid item>{background()}</Grid>
-            <Grid item><Footer/></Grid>
+            <Grid item>
+              <Footer landingPage />
+            </Grid>
           </Grid>
         );
       }
@@ -194,7 +205,7 @@ class LandingPage extends React.PureComponent {
             spacing={0}
             style={{ marginTop: "10px" }}
           >
-            <Grid item style={{ minHeight: "calc(100vh - 255px)" }}>
+            <Grid item style={{ minHeight: "calc(100vh - 224px)" }}>
               <Grid container direction="column" spacing={0}>
                 <Grid item>
                   <Grid container direction="row" justify="flex-end">
@@ -210,7 +221,7 @@ class LandingPage extends React.PureComponent {
                           size="small"
                           style={{
                             color: "white",
-                            backgroundColor: "#008cd2"
+                            backgroundColor: "#0E8AB0"
                           }}
                           onClick={() => {}}
                         >
@@ -227,10 +238,10 @@ class LandingPage extends React.PureComponent {
                     alignItems="center"
                     justify={"center"}
                     spacing={0}
-                    style={{ marginTop: "100px" }}
+                    style={{ marginTop: "150px" }}
                   >
                     <Grid item style={{ marginBottom: "20px" }}>
-                      <GougleLogo cn={css(aphrodite.gougleLogoLandingPage)} />
+                      <QwarxLogo cn={css(aphrodite.gougleLogoLandingPage)} />
                     </Grid>
                     <Grid item>
                       <Grid container>
@@ -249,7 +260,7 @@ class LandingPage extends React.PureComponent {
                           item
                           style={{
                             width: "50px",
-                            backgroundColor: "#008cd2",
+                            backgroundColor: "#0E8AB0",
                             shadow: "0 2px 0 0 #f1f1f1"
                           }}
                         >
@@ -281,12 +292,19 @@ class LandingPage extends React.PureComponent {
                         </Grid>
                       </Grid>
                     </Grid>
+                    <Grid item style={{ marginTop: "150px" }}>
+                      <Typography component="h1" variant="display1" align="center">
+                        {`Tout le web Caledonien`}
+                      </Typography>
+                    </Grid>
                   </Grid>
                 </Grid>
               </Grid>
             </Grid>
             <Grid item>{background()}</Grid>
-            <Grid item><Footer/></Grid>
+            <Grid item>
+              <Footer landingPage />
+            </Grid>
           </Grid>
         );
       }
