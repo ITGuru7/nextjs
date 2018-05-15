@@ -109,18 +109,6 @@ class SearchPage extends React.PureComponent {
                   }}
                 >
                   <Link href="/enregistrer">
-                    <Button color="secondary" size="small">
-                      créer une page
-                    </Button>
-                  </Link>
-                </Grid>
-                <Grid
-                  item
-                  style={{
-                    marginRight: "10px"
-                  }}
-                >
-                  <Link href="/enregistrer">
                     <Button
                       color="secondary"
                       size="small"
@@ -239,7 +227,7 @@ class SearchPage extends React.PureComponent {
       console.log(this.state.userAgent);
       console.log(this.state.isCrawler);
       return (
-        <Wrapper title={"gougle.nc"}>
+        <Wrapper title={"qwarx.nc"}>
           <Head>
             <link
               rel="stylesheet"
@@ -258,7 +246,7 @@ class SearchPage extends React.PureComponent {
           <InstantSearch
             appId="5NXUF7YDRN"
             apiKey="458ab22e25a2ddf3a174bf03678c9281"
-            indexName="directory_nc"
+            indexName="qwarx.nc"
           >
             <Display format="mobile" implementation="css">
               {mobile()}

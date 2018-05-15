@@ -51,7 +51,7 @@ export default class Footer extends React.PureComponent {
         <Display format="mobile">
           <Divider />
           <div
-            style={{ height: "100px" }}
+            style={{ height: "80px" }}
             className={css(aphrodite.mobileGreyBackground)}
           >
             <Grid

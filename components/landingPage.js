@@ -14,9 +14,8 @@ import GougleLogo from "./gougleLogo";
 import Drawer from "material-ui/Drawer";
 import MenuIcon from "material-ui-icons/Menu";
 import List, { ListItem, ListItemText } from "material-ui/List";
-import Divider from "material-ui/Divider";
-import Typography from "material-ui/Typography";
 import { Fragment } from "react";
+import Footer from "./footer";
 
 class LandingPage extends React.PureComponent {
   constructor(props) {
@@ -40,86 +39,6 @@ class LandingPage extends React.PureComponent {
 
   render() {
     const { open } = this.props;
-    const footer = () => {
-      return (
-        <div>
-          <Divider />
-          <div
-            style={{ height: "100px" }}
-            className={css(aphrodite.mobileGreyBackground)}
-          >
-            <Grid
-              container
-              spacing={0}
-              direction="column"
-              style={{ height: "100%" }}
-            >
-              <Grid item xs>
-                <Grid
-                  container
-                  spacing={0}
-                  direction="row"
-                  style={{ height: "100%" }}
-                  alignItems={"center"}
-                  justify={"center"}
-                >
-                  <Grid item xs md={1}>
-                    <Link href="/mentions-legales">
-                      <Typography variant="caption" align="center">
-                        <a>{`Mentions légales`}</a>
-                      </Typography>
-                    </Link>
-                  </Grid>
-                  <Grid item xs md={1}>
-                    <Link href="/contact">
-                      <Typography variant="caption" align="center">
-                        <a>{`Contact`}</a>
-                      </Typography>
-                    </Link>
-                  </Grid>
-                  <Grid item xs md={1}>
-                    <Link href="/conditions-generales">
-                      <Typography variant="caption" align="center">
-                        <a>{`Conditions générales`}</a>
-                      </Typography>
-                    </Link>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item xs>
-                <Grid
-                  container
-                  spacing={0}
-                  direction="row"
-                  style={{ height: "100%" }}
-                  alignItems={"center"}
-                  justify={"center"}
-                >
-                  <Grid item xs={2} md={1}>
-                    <Link href="/blog">
-                      <Typography variant="caption" align="center">
-                        <a>{`Blog`}</a>
-                      </Typography>
-                    </Link>
-                  </Grid>
-                  <Grid item xs={2} md={1}>
-                    <Typography variant="caption" align="center">
-                      <a
-                        href={"https://www.facebook.com/gougle.nc"}
-                        target="_blank"
-                        rel="external noopener noreferrer"
-                      >
-                        {` Facebook`}
-                      </a>
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
-          </div>
-        </div>
-      );
-    };
 
     const background = () => {
       return (
@@ -129,7 +48,7 @@ class LandingPage extends React.PureComponent {
               style={{
                 backgroundImage: `url('/static/images/lp_background_600.png')`,
                 backgroundPosition: "center",
-                height: "158px"
+                height: "86.31px"
               }}
             />
           </Display>
@@ -138,7 +57,7 @@ class LandingPage extends React.PureComponent {
               style={{
                 backgroundImage: `url('/static/images/lp_background_960.png')`,
                 backgroundPosition: "center",
-                height: "253px"
+                height: "138.1px"
               }}
             />
           </Display>
@@ -147,7 +66,7 @@ class LandingPage extends React.PureComponent {
               style={{
                 backgroundImage: `url('/static/images/lp_background_1280.png')`,
                 backgroundPosition: "center",
-                height: "337px"
+                height: "184.13px"
               }}
             />
           </Display>
@@ -171,7 +90,7 @@ class LandingPage extends React.PureComponent {
             spacing={0}
             style={{ marginTop: "10px" }}
           >
-            <Grid item style={{ minHeight: "calc(100vh - 258px)" }}>
+            <Grid item style={{ minHeight: "calc(100vh - 160px)" }}>
               <Grid container direction="column" spacing={0}>
                 <Grid item>
                   <MenuIcon
@@ -253,7 +172,7 @@ class LandingPage extends React.PureComponent {
               </Grid>
             </Grid>
             <Grid item>{background()}</Grid>
-            <Grid item>{footer()}</Grid>
+            <Grid item><Footer/></Grid>
           </Grid>
         );
       }
@@ -275,22 +194,10 @@ class LandingPage extends React.PureComponent {
             spacing={0}
             style={{ marginTop: "10px" }}
           >
-            <Grid item style={{ minHeight: "calc(100vh - 397px)" }}>
+            <Grid item style={{ minHeight: "calc(100vh - 255px)" }}>
               <Grid container direction="column" spacing={0}>
                 <Grid item>
                   <Grid container direction="row" justify="flex-end">
-                    <Grid
-                      item
-                      style={{
-                        marginRight: "10px"
-                      }}
-                    >
-                      <Link href="/enregistrer">
-                        <Button color="secondary" size="small">
-                          créer une page
-                        </Button>
-                      </Link>
-                    </Grid>
                     <Grid
                       item
                       style={{
@@ -379,14 +286,14 @@ class LandingPage extends React.PureComponent {
               </Grid>
             </Grid>
             <Grid item>{background()}</Grid>
-            <Grid item>{footer()}</Grid>
+            <Grid item><Footer/></Grid>
           </Grid>
         );
       }
     };
 
     return (
-      <Wrapper title={"gougle.nc"}>
+      <Wrapper title={"qwarx.nc"}>
         <Head>
           <link rel="stylesheet" href="../static/main.css" />
           <link
