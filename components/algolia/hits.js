@@ -83,11 +83,11 @@ export default connectHits(({ hits }) => {
               style={{ width: `439px` }}
             >
               <Grid item>
-                <StaticMap />
+                {/*<StaticMap />*/}
               </Grid>
-              <Grid item style={{ marginTop: "8px", marginBottom: "8px" }}>
-                <Divider />
-              </Grid>
+              {/*<Grid item style={{ marginTop: "8px", marginBottom: "8px" }}>*/}
+                {/*<Divider />*/}
+              {/*</Grid>*/}
 
               <Grid item>
                 <Grid container direction="row" spacing={0}>
