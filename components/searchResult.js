@@ -9,15 +9,13 @@ import Display from "../utils/display";
 import object from "../utils/object";
 import withSentry from "../components/withSentry";
 
-function ResultLogo(props) {
-  let logo = "https://res.cloudinary.com/clactacom/image/upload/v1513737486/no_logo_qwcv0d.png"
-
+function ResultImg(props) {
+  let img = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,c_lpad,b_auto,w_70,h_70/`;
   if (props.hit.meta.image) {
-    logo = props.hit.meta.image
+    img += props.hit.meta.image
   } else if (props.hit.content.img) {
-    logo = props.hit.content.img
+    img += props.hit.content.img
   }
-
   return (
     <Link
       href={{
@@ -26,8 +24,8 @@ function ResultLogo(props) {
     >
       <a rel="nofollow">
         <img
-          style={{ width: 40, height: 40 }}
-          src={logo}
+          style={{ width: 70, height: 70 }}
+          src={img}
           alt={props.hit.id.title}
         />
       </a>
@@ -146,7 +144,7 @@ class SearchResult extends React.PureComponent {
             <ResultUrl hit={hit}/>
             <Grid container spacing={0}>
               <Grid item>
-                <ResultLogo hit={hit} />
+                <ResultImg hit={hit} />
               </Grid>
               <Grid item xs>
                 <ResultInfo hit={hit} />
@@ -170,7 +168,7 @@ class SearchResult extends React.PureComponent {
             <ResultTitle hit={hit} style={{ marginBottom: "4px" }} />
             <Grid container spacing={0}>
               <Grid item>
-                <ResultLogo hit={hit} />
+                <ResultImg hit={hit} />
               </Grid>
               <Grid item xs>
                 <ResultInfo hit={hit} />
