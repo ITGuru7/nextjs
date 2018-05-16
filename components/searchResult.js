@@ -7,15 +7,17 @@ import aphrodite from "../utils/aphrodite";
 import { Highlight } from "react-instantsearch/dom";
 import Display from "../utils/display";
 import object from "../utils/object";
-import withSentry from "../components/withSentry";
 
 function ResultImg(props) {
   let img = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,c_lpad,b_auto,w_70,h_70/`;
   if (props.hit.meta.image) {
-    img += props.hit.meta.image
+    img += props.hit.meta.image;
   } else if (props.hit.content.img) {
-    img += props.hit.content.img
+    img += props.hit.content.img;
+  } else {
+    return <div />;
   }
+
   return (
     <Link
       href={{
@@ -27,6 +29,8 @@ function ResultImg(props) {
           style={{ width: 70, height: 70 }}
           src={img}
           alt={props.hit.id.title}
+          onError={e => (e.target.style.display = "none")}
+          onLoad={e => (e.target.style.display = "block")}
         />
       </a>
     </Link>
@@ -90,7 +94,7 @@ function ResultUrl(props) {
       component={"span"}
       variant="caption"
       color="secondary"
-      style={{ marginBottom: "8px", color: '#13CCBE' }}
+      style={{ marginBottom: "8px", color: "#13CCBE" }}
     >
       {url}
     </Typography>
@@ -141,7 +145,7 @@ class SearchResult extends React.PureComponent {
             style={{ backgroundColor: "white" }}
           >
             <ResultTitle hit={hit} style={{ marginBottom: "4px" }} />
-            <ResultUrl hit={hit}/>
+            <ResultUrl hit={hit} />
             <Grid container spacing={0}>
               <Grid item>
                 <ResultImg hit={hit} />
@@ -202,4 +206,4 @@ class SearchResult extends React.PureComponent {
     );
   }
 }
-export default withSentry(SearchResult);
+export default SearchResult;

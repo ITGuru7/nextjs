@@ -1,7 +1,6 @@
 import React from "react";
 import StaticMap from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import withSentry from "../components/withSentry";
 
 class Map extends React.Component {
   constructor(props) {
@@ -31,4 +30,4 @@ class Map extends React.Component {
   }
 }
 
-export default withSentry(Map);
+export default Map;
