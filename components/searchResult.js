@@ -68,61 +68,49 @@ function ResultTitle(props) {
 
 function ResultDescription(props) {
   return (
-    <Grid
-      container
-      style={{ marginBottom: "4px", lineHeight: "unset" }}
-      spacing={0}
-    >
-      <Grid item>
-        <TypographyHighlight
-          variant="subheading"
-          color="primary"
-          attribute={"meta.description"}
-          hit={props.hit}
-        />
-      </Grid>
+    <div style={{ marginBottom: "4px" }}>
+      <TypographyHighlight
+        variant="subheading"
+        color="primary"
+        attribute={"meta.description"}
+        hit={props.hit}
+      />
       {props.hit.meta.description &&
       props.hit.content.p &&
       props.hit.content.p[0]
         ? " | "
         : ""}
-      <Grid item>
-        <TypographyHighlight
-          variant="subheading"
-          color="primary"
-          attribute={"content.p[0]"}
-          hit={props.hit}
-        />
-      </Grid>
+      <TypographyHighlight
+        variant="subheading"
+        color="primary"
+        attribute={"content.p[0]"}
+        hit={props.hit}
+      />
       {props.hit.content.p &&
       props.hit.content.p[0] &&
       props.hit.content.p[1] &&
       props.hit.content.p[1]
         ? " | "
         : ""}
-      <Grid item>
-        <TypographyHighlight
-          variant="subheading"
-          color="primary"
-          attribute={"content.p[1]"}
-          hit={props.hit}
-        />
-      </Grid>
+      <TypographyHighlight
+        variant="subheading"
+        color="primary"
+        attribute={"content.p[1]"}
+        hit={props.hit}
+      />
       {props.hit.content.p &&
       props.hit.content.p[1] &&
       props.hit.content.p[2] &&
       props.hit.content.p[2]
         ? " | "
         : ""}
-      <Grid item>
-        <TypographyHighlight
-          variant="subheading"
-          color="primary"
-          attribute={"content.p[2]"}
-          hit={props.hit}
-        />
-      </Grid>
-    </Grid>
+      <TypographyHighlight
+        variant="subheading"
+        color="primary"
+        attribute={"content.p[2]"}
+        hit={props.hit}
+      />
+    </div>
   );
 }
 
@@ -148,7 +136,7 @@ const TypographyHighlight = connectHighlight(
     });
     return (
       <Typography
-        component={component}
+        component={"span"}
         variant={variant}
         color={color}
         style={style}
