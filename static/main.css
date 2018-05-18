@@ -34,6 +34,9 @@ body {
 html * {
   font-family: "Roboto", sans-serif;
 }
+html {
+    font-size: 15px; /* 62.5% of 16px = 10px */
+}
 *,
 *::before,
 *::after {
@@ -45,7 +48,7 @@ a {
 }
 
 a:link {
-  color: #0E8AB0;
+  color: #0e8ab0;
 }
 
 a:hover {
@@ -53,7 +56,7 @@ a:hover {
 }
 
 a:visited {
-  color: #0E8AB0;
+  color: #0e8ab0;
 }
 
 html {
@@ -66,7 +69,7 @@ input,
 textarea,
 select {
   outline: 0;
-  border: 1px solid #0E8AB0;
+  border: 1px solid #0e8ab0;
 }
 
 .loading {

@@ -7,82 +7,157 @@ import aphrodite from "../utils/aphrodite";
 import { Highlight } from "react-instantsearch/dom";
 import Display from "../utils/display";
 import object from "../utils/object";
+import { connectHighlight } from "react-instantsearch/connectors";
 
 function ResultImg(props) {
-  let img = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,c_lpad,b_auto,w_70,h_70/`;
+  let img = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70/`;
   if (props.hit.meta.image) {
     img += props.hit.meta.image;
-  } else if (props.hit.content.img) {
-    img += props.hit.content.img;
   } else {
-    return <div />;
+    img = null;
   }
 
   return (
+    <Fragment>
+      {img ? (
+        <Link
+          href={{
+            pathname: `/${props.hit.objectID}`
+          }}
+        >
+          <a rel="nofollow">
+            <img
+              style={{
+                width: 70,
+                height: 70,
+                borderStyle: "solid",
+                borderWidth: "1px",
+                borderColor: "#EEEEEE",
+                marginRight: "8px"
+              }}
+              src={img}
+              alt={props.hit.id.title}
+              onError={e => (e.target.style.display = "none")}
+              onLoad={e => (e.target.style.display = "block")}
+            />
+          </a>
+        </Link>
+      ) : null}
+    </Fragment>
+  );
+}
+
+function ResultTitle(props) {
+  return (
     <Link
       href={{
-        pathname: `/${props.hit.objectID}`
+        pathname: `${props.hit.objectID}`
       }}
     >
-      <a rel="nofollow">
-        <img
-          style={{ width: 70, height: 70 }}
-          src={img}
-          alt={props.hit.id.title}
-          onError={e => (e.target.style.display = "none")}
-          onLoad={e => (e.target.style.display = "block")}
+      <a rel="nofollow" target="_blank">
+        <TypographyHighlight
+          variant="title"
+          color="secondary"
+          attribute={"id.title"}
+          hit={props.hit}
         />
       </a>
     </Link>
   );
 }
 
-function ResultTitle(props) {
-  return (
-    <Typography variant="subheading" color="secondary">
-      <Link
-        href={{
-          pathname: `${props.hit.objectID}`
-        }}
-      >
-        <a rel="nofollow" target="_blank">
-          <Highlight attribute={"id.title"} hit={props.hit} />
-        </a>
-      </Link>
-    </Typography>
-  );
-}
-
 function ResultDescription(props) {
   return (
-    <Typography
-      component={"span"}
-      variant="body1"
-      color="primary"
-      style={{ marginBottom: "4px" }}
+    <Grid
+      container
+      style={{ marginBottom: "4px", lineHeight: "unset" }}
+      spacing={0}
     >
-      <Highlight attribute={"id.description"} hit={props.hit} />
-    </Typography>
+      <Grid item>
+        <TypographyHighlight
+          variant="subheading"
+          color="primary"
+          attribute={"meta.description"}
+          hit={props.hit}
+        />
+      </Grid>
+      {props.hit.meta.description &&
+      props.hit.content.p &&
+      props.hit.content.p[0]
+        ? " | "
+        : ""}
+      <Grid item>
+        <TypographyHighlight
+          variant="subheading"
+          color="primary"
+          attribute={"content.p[0]"}
+          hit={props.hit}
+        />
+      </Grid>
+      {props.hit.content.p &&
+      props.hit.content.p[0] &&
+      props.hit.content.p[1] &&
+      props.hit.content.p[1]
+        ? " | "
+        : ""}
+      <Grid item>
+        <TypographyHighlight
+          variant="subheading"
+          color="primary"
+          attribute={"content.p[1]"}
+          hit={props.hit}
+        />
+      </Grid>
+      {props.hit.content.p &&
+      props.hit.content.p[1] &&
+      props.hit.content.p[2] &&
+      props.hit.content.p[2]
+        ? " | "
+        : ""}
+      <Grid item>
+        <TypographyHighlight
+          variant="subheading"
+          color="primary"
+          attribute={"content.p[2]"}
+          hit={props.hit}
+        />
+      </Grid>
+    </Grid>
   );
 }
 
-function ResultSubTitle(props) {
-  let subtitle = "";
-
-  if (props.hit.content.p) {
-    subtitle = props.hit.content.p[0];
+const TypographyHighlight = connectHighlight(
+  ({
+    highlight,
+    attribute,
+    hit,
+    highlightProperty,
+    component,
+    variant,
+    color,
+    style
+  }) => {
+    const parsedHit = highlight({
+      attribute,
+      hit,
+      highlightProperty: "_highlightResult"
+    });
+    const highlightedHits = parsedHit.map(part => {
+      if (part.isHighlighted) return <mark>{part.value}</mark>;
+      return part.value;
+    });
+    return (
+      <Typography
+        component={component}
+        variant={variant}
+        color={color}
+        style={style}
+      >
+        {highlightedHits}
+      </Typography>
+    );
   }
-  return (
-    <Typography
-      component={"span"}
-      variant="body1"
-      color="primary"
-      style={{ marginBottom: "4px" }}
-    >
-      {subtitle}
-    </Typography>
-  );
-}
+);
 
 function ResultUrl(props) {
   let url = props.hit.id.url;
@@ -90,36 +165,23 @@ function ResultUrl(props) {
     url = `${url.substring(0, 80)}...`;
   }
   return (
-    <Typography
+    <TypographyHighlight
       component={"span"}
       variant="caption"
       color="secondary"
       style={{ marginBottom: "8px", color: "#13CCBE" }}
-    >
-      {url}
-    </Typography>
+      attribute={"id.url"}
+      hit={props.hit}
+    />
   );
 }
 
 function ResultInfo(props) {
-  function RenderBusinessInfo(props) {
-    return (
-      <div style={{ marginLeft: "8px" }}>
-        <ResultDescription hit={props.hit} />
-        <ResultSubTitle hit={props.hit} />
-      </div>
-    );
-  }
-
   return (
-    <Grid
-      container
-      direction="column"
-      alignItems="stretch"
-      justify="flex-start"
-      spacing={0}
-    >
-      <RenderBusinessInfo hit={props.hit} />
+    <Grid container direction="column" spacing={0}>
+      <Grid item>
+        <ResultDescription hit={props.hit} />
+      </Grid>
     </Grid>
   );
 }
