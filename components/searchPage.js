@@ -19,6 +19,7 @@ import Display from "../utils/display";
 import Button from "material-ui/Button";
 import Head from "next/head";
 import Wrapper from "../components/wrapper";
+import { connectStateResults } from "react-instantsearch/connectors";
 
 class SearchPage extends React.PureComponent {
   constructor(props) {
@@ -34,11 +35,22 @@ class SearchPage extends React.PureComponent {
 
   render() {
     const { firstLetter } = this.props;
+
+    const Content = connectStateResults(({ searchState, searchResults }) => {
+      if (!searchState.query || !searchState.query.length) {
+        return <div></div>;
+      }
+      if (searchResults && !searchResults.nbHits) {
+        return <div></div>;
+      }
+      return <Hits />;
+    });
+
     const SearchResults = () => {
       return (
         <div className={css(aphrodite.wrapperMinHeight)}>
           <Configure hitsPerPage={10} />
-          <Hits />
+          <Content />
           <Fragment>
             <Display format="desktop">
               <Pagination showPrevious={false} showFirst={false} />
@@ -149,6 +161,7 @@ class SearchPage extends React.PureComponent {
                 } else {
                   mili = ` (0.${ms.toLocaleString()} secondes)`;
                 }
+
                 return `${res}${mili}`;
               }}
             />
@@ -238,10 +251,7 @@ class SearchPage extends React.PureComponent {
               rel="stylesheet"
               href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"
             />
-            <link
-              rel="stylesheet"
-              href="../static/main.css"
-            />
+            <link rel="stylesheet" href="../static/main.css" />
           </Head>
           <InstantSearch
             appId="5NXUF7YDRN"

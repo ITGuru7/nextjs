@@ -20,7 +20,6 @@
   .ais-SearchBox-input {
     border-radius: 0 !important;
     border: 1px solid #d2d2d2 !important;
-    box-shadow: 0 2px 0 0 #f1f1f1 !important;
     height: 40px !important;
     padding-left: 0.3rem !important;
     padding-right: 0.3rem !important;
@@ -65,7 +64,6 @@
   .ais-SearchBox-input {
     border-radius: 0 !important;
     border: 1px solid #d2d2d2 !important;
-    box-shadow: 0 2px 0 0 #f1f1f1 !important;
     height: 40px !important;
     padding-left: 0.3rem !important;
     padding-right: 0.3rem !important;

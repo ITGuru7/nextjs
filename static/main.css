@@ -34,9 +34,6 @@ body {
 html * {
   font-family: "Roboto", sans-serif;
 }
-html {
-    font-size: 15px; /* 62.5% of 16px = 10px */
-}
 *,
 *::before,
 *::after {

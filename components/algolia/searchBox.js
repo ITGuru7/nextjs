@@ -13,15 +13,22 @@ export default class SearchBox extends React.PureComponent {
     const DebouncedSearchBox = ({ currentRefinement, refine }) => {
       const debouncedSearch = debounce(e => {
         refine(e.target.value);
-        defer(() =>
-          document.getElementById("search_results").classList.remove("loading")
+        defer(
+          () =>
+            document.getElementById("search_results")
+              ? document
+                  .getElementById("search_results")
+                  .classList.remove("loading")
+              : null
         );
       }, 500);
 
       const onChange = e => {
         e.persist();
-        if (e.target.value.length !== 1) {
-          document.getElementById("search_results").classList.add("loading");
+        if (e.target.value.length > 1) {
+          if (document.getElementById("search_results")) {
+            document.getElementById("search_results").classList.add("loading");
+          }
           debouncedSearch(e, e.eventTarget);
         }
       };

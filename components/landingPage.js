@@ -1,9 +1,6 @@
 import Grid from "material-ui/Grid";
 import Display from "../utils/display";
-import dynamic from "next/dynamic";
-const SearchPage = dynamic(import("../components/searchPage"), {
-  loading: () => <div />
-});
+import SearchPage from "../components/searchPage";
 import Head from "next/head";
 import Wrapper from "../components/wrapper";
 import Button from "material-ui/Button";

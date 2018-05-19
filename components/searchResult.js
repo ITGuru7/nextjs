@@ -56,7 +56,7 @@ function ResultTitle(props) {
     >
       <a rel="nofollow" target="_blank">
         <TypographyHighlight
-          variant="title"
+          variant="subheading"
           color="secondary"
           attribute={"id.title"}
           hit={props.hit}
@@ -68,49 +68,53 @@ function ResultTitle(props) {
 
 function ResultDescription(props) {
   return (
-    <div style={{ marginBottom: "4px" }}>
+    <Fragment>
       <TypographyHighlight
-        variant="subheading"
+        variant="body1"
         color="primary"
         attribute={"meta.description"}
         hit={props.hit}
+        info
       />
       {props.hit.meta.description &&
       props.hit.content.p &&
       props.hit.content.p[0]
-        ? " | "
+        ? " "
         : ""}
       <TypographyHighlight
-        variant="subheading"
+        variant="body1"
         color="primary"
         attribute={"content.p[0]"}
         hit={props.hit}
+        info
       />
       {props.hit.content.p &&
       props.hit.content.p[0] &&
       props.hit.content.p[1] &&
       props.hit.content.p[1]
-        ? " | "
+        ? " "
         : ""}
       <TypographyHighlight
-        variant="subheading"
+        variant="body1"
         color="primary"
         attribute={"content.p[1]"}
         hit={props.hit}
+        info
       />
       {props.hit.content.p &&
       props.hit.content.p[1] &&
       props.hit.content.p[2] &&
       props.hit.content.p[2]
-        ? " | "
+        ? " "
         : ""}
       <TypographyHighlight
-        variant="subheading"
+        variant="body1"
         color="primary"
         attribute={"content.p[2]"}
         hit={props.hit}
+        info
       />
-    </div>
+    </Fragment>
   );
 }
 
@@ -123,15 +127,15 @@ const TypographyHighlight = connectHighlight(
     component,
     variant,
     color,
-    style
+    info
   }) => {
     const parsedHit = highlight({
       attribute,
       hit,
       highlightProperty: "_highlightResult"
     });
-    const highlightedHits = parsedHit.map(part => {
-      if (part.isHighlighted) return <mark>{part.value}</mark>;
+    const highlightedHits = parsedHit.map((part, key) => {
+      if (part.isHighlighted) return <mark key={key} style={{color: '#BF2885', backgroundColor: 'white'}}>{part.value}</mark>;
       return part.value;
     });
     return (
@@ -139,7 +143,7 @@ const TypographyHighlight = connectHighlight(
         component={"span"}
         variant={variant}
         color={color}
-        style={style}
+        style={{display: info ? 'unset' : 'inherit', fontWeight: variant === 'subheading' ? '500' : 'inherit'}}
       >
         {highlightedHits}
       </Typography>
@@ -157,7 +161,6 @@ function ResultUrl(props) {
       component={"span"}
       variant="caption"
       color="secondary"
-      style={{ marginBottom: "8px", color: "#13CCBE" }}
       attribute={"id.url"}
       hit={props.hit}
     />
@@ -195,8 +198,8 @@ class SearchResult extends React.PureComponent {
             style={{ backgroundColor: "white" }}
           >
             <ResultTitle hit={hit} style={{ marginBottom: "4px" }} />
-            <ResultUrl hit={hit} />
-            <Grid container spacing={0}>
+            <ResultUrl hit={hit}/>
+            <Grid container spacing={0} style={{marginTop: '4px'}}>
               <Grid item>
                 <ResultImg hit={hit} />
               </Grid>
