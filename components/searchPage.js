@@ -22,26 +22,16 @@ import Wrapper from "../components/wrapper";
 import { connectStateResults } from "react-instantsearch/connectors";
 
 class SearchPage extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      width: 1600,
-      loadingFinished: false,
-      images: [],
-      error: this.props.error,
-      isCrawler: this.props.isCrawler
-    };
-  }
 
   render() {
     const { firstLetter } = this.props;
 
     const Content = connectStateResults(({ searchState, searchResults }) => {
       if (!searchState.query || !searchState.query.length) {
-        return <div></div>;
+        return null;
       }
       if (searchResults && !searchResults.nbHits) {
-        return <div></div>;
+        return null;
       }
       return <Hits />;
     });
@@ -75,9 +65,7 @@ class SearchPage extends React.PureComponent {
           value={0}
           indicatorColor="secondary"
           textColor="secondary"
-          // onChange={this.handleChange}
           className={css(aphrodite.contentLeft)}
-          // style={style}
         >
           <Tab label="tout" />
           <Tab label="images" />
@@ -236,40 +224,34 @@ class SearchPage extends React.PureComponent {
       );
     };
 
-    if (!this.state.error) {
-      console.log(this.state.userAgent);
-      console.log(this.state.isCrawler);
-      return (
-        <Wrapper title={"qwarx.nc"}>
-          <Head>
-            <link
-              rel="stylesheet"
-              href="../static/react-instantsearch-override.css"
-            />
+    return (
+      <Wrapper title={"qwarx.nc"}>
+        <Head>
+          <link
+            rel="stylesheet"
+            href="../static/react-instantsearch-override.css"
+          />
 
-            <link
-              rel="stylesheet"
-              href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"
-            />
-            <link rel="stylesheet" href="../static/main.css" />
-          </Head>
-          <InstantSearch
-            appId="5NXUF7YDRN"
-            apiKey="458ab22e25a2ddf3a174bf03678c9281"
-            indexName="qwarx.nc"
-          >
-            <Display format="mobile" implementation="css">
-              {mobile()}
-            </Display>
-            <Display format="tablet-desktop" implementation="css">
-              {desktop()}
-            </Display>
-          </InstantSearch>
-        </Wrapper>
-      );
-    } else {
-      return <div>SEARCH PAGE ERROR</div>;
-    }
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"
+          />
+          <link rel="stylesheet" href="../static/main.css" />
+        </Head>
+        <InstantSearch
+          appId="5NXUF7YDRN"
+          apiKey="458ab22e25a2ddf3a174bf03678c9281"
+          indexName="qwarx.nc"
+        >
+          <Display format="mobile" implementation="css">
+            {mobile()}
+          </Display>
+          <Display format="tablet-desktop" implementation="css">
+            {desktop()}
+          </Display>
+        </InstantSearch>
+      </Wrapper>
+    );
   }
 }
 

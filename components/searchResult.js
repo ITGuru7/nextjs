@@ -127,7 +127,8 @@ const TypographyHighlight = connectHighlight(
     component,
     variant,
     color,
-    info
+    info,
+    url
   }) => {
     const parsedHit = highlight({
       attribute,
@@ -135,7 +136,15 @@ const TypographyHighlight = connectHighlight(
       highlightProperty: "_highlightResult"
     });
     const highlightedHits = parsedHit.map((part, key) => {
-      if (part.isHighlighted) return <mark key={key} style={{color: '#BF2885', backgroundColor: 'white'}}>{part.value}</mark>;
+      if (part.isHighlighted)
+        return (
+          <mark
+            key={key}
+            style={{ color: "#BF2885", backgroundColor: "white" }}
+          >
+            {part.value}
+          </mark>
+        );
       return part.value;
     });
     return (
@@ -143,7 +152,11 @@ const TypographyHighlight = connectHighlight(
         component={"span"}
         variant={variant}
         color={color}
-        style={{display: info ? 'unset' : 'inherit', fontWeight: variant === 'subheading' ? '500' : 'inherit'}}
+        style={{
+          display: info ? "unset" : "inherit",
+          fontWeight: variant === "subheading" ? "500" : "inherit",
+          color: url ? '#13CCBE' : 'inherit'
+        }}
       >
         {highlightedHits}
       </Typography>
@@ -163,6 +176,7 @@ function ResultUrl(props) {
       color="secondary"
       attribute={"id.url"}
       hit={props.hit}
+      url
     />
   );
 }
@@ -198,8 +212,8 @@ class SearchResult extends React.PureComponent {
             style={{ backgroundColor: "white" }}
           >
             <ResultTitle hit={hit} style={{ marginBottom: "4px" }} />
-            <ResultUrl hit={hit}/>
-            <Grid container spacing={0} style={{marginTop: '4px'}}>
+            <ResultUrl hit={hit} />
+            <Grid container spacing={0} style={{ marginTop: "4px" }}>
               <Grid item>
                 <ResultImg hit={hit} />
               </Grid>

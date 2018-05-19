@@ -25,12 +25,10 @@ export default class SearchBox extends React.PureComponent {
 
       const onChange = e => {
         e.persist();
-        if (e.target.value.length > 1) {
-          if (document.getElementById("search_results")) {
-            document.getElementById("search_results").classList.add("loading");
-          }
-          debouncedSearch(e, e.eventTarget);
+        if (document.getElementById("search_results")) {
+          document.getElementById("search_results").classList.add("loading");
         }
+        debouncedSearch(e, e.eventTarget);
       };
 
       return (

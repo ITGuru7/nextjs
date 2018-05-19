@@ -44,20 +44,20 @@ class LandingPage extends React.PureComponent {
           <Display format={"mobile"}>
             <div
               style={{
-                backgroundImage: `url('/static/images/lp_background_400.png')`,
+                backgroundImage: `url('/static/images/lp_background_300.png')`,
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-                height: "61.38px"
+                height: "46.03px"
               }}
             />
           </Display>
           <Display format={"tablet"}>
             <div
               style={{
-                backgroundImage: `url('/static/images/lp_background_960.png')`,
+                backgroundImage: `url('/static/images/lp_background_800.png')`,
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-                height: "138.1px"
+                height: "122.47px"
               }}
             />
           </Display>
@@ -77,12 +77,7 @@ class LandingPage extends React.PureComponent {
 
     const mobile = () => {
       if (this.state.input) {
-        return (
-          <SearchPage
-            isCrawler={this.props.isCrawler}
-            firstLetter={this.state.input}
-          />
-        );
+        return <SearchPage firstLetter={this.state.input} />;
       } else {
         return (
           <Grid
@@ -170,8 +165,8 @@ class LandingPage extends React.PureComponent {
                     </Grid>
                   </Grid>
                 </Grid>
-                <Grid item style={{marginTop: '100px'}}>
-                  <Typography component="h1" variant="headline" align="center" >
+                <Grid item style={{ marginTop: "100px" }}>
+                  <Typography component="h1" variant="headline" align="center">
                     {`Tout le web Caledonien`}
                   </Typography>
                 </Grid>
@@ -290,7 +285,11 @@ class LandingPage extends React.PureComponent {
                       </Grid>
                     </Grid>
                     <Grid item style={{ marginTop: "150px" }}>
-                      <Typography component="h1" variant="display1" align="center">
+                      <Typography
+                        component="h1"
+                        variant="display1"
+                        align="center"
+                      >
                         {`Tout le web Caledonien`}
                       </Typography>
                     </Grid>
