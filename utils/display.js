@@ -1,4 +1,4 @@
-import Hidden from "material-ui/Hidden";
+import Hidden from '@material-ui/core/Hidden';
 
 export default class Display extends React.PureComponent {
   render() {
@@ -23,6 +23,6 @@ export default class Display extends React.PureComponent {
       default:
         only = [];
     }
-    return <Hidden only={only}>{children}</Hidden>;
+    return <Hidden implementation={'css'} only={only}>{children}</Hidden>;
   }
 }

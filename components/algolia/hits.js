@@ -1,14 +1,14 @@
 import React, { Fragment } from "react";
 import SearchResult from "../searchResult";
 import { connectHits } from "react-instantsearch/connectors";
-import Grid from "material-ui/Grid";
+import Grid from "@material-ui/core/Grid";
 import Display from "../../utils/display";
 import Link from "next/link";
-import Typography from "material-ui/Typography";
+import Typography from "@material-ui/core/Typography";
 import aphrodite from "../../utils/aphrodite";
 import object from "../../utils/object";
 import { css } from "aphrodite";
-import Divider from "material-ui/Divider";
+import Divider from "@material-ui/core/Divider";
 import dynamic from "next/dynamic";
 
 const StaticMap = dynamic(import("../staticMap"), {
@@ -28,7 +28,7 @@ export default connectHits(({ hits }) => {
   const mobile = hits => {
     return (
       <div
-        id={"search_results"}
+        className={"search_results"}
         style={{ backgroundColor: "#f1f1f1", height: "110%" }}
       >
         {hits.map((hit, idx) => (
@@ -61,7 +61,7 @@ export default connectHits(({ hits }) => {
         container
         direction="row"
         spacing={0}
-        id={"search_results"}
+        className={"search_results"}
         style={{ flexWrap: "nowrap" }}
       >
         <Grid

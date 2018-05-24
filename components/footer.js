@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
 import Link from "next/link";
-import Typography from "material-ui/Typography";
+import Typography from '@material-ui/core/Typography';
 import aphrodite from "../utils/aphrodite";
 import { css } from "aphrodite";
-import Divider from "material-ui/Divider";
+import Divider from '@material-ui/core/Divider';
 import Display from "../utils/display";
-import Grid from "material-ui/Grid";
+import Grid from '@material-ui/core/Grid';
 
 export default class Footer extends React.PureComponent {
   render() {

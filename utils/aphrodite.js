@@ -197,13 +197,13 @@ export default StyleSheet.create({
   },
   wrapperMinHeight: {
     "@media (max-width: 959px)": {
-      minHeight: "calc(100vh - 295px)"
+      minHeight: "calc(100vh - 340px)"
     },
     "@media (min-width: 960px) and (max-width: 1279px)": {
-      minHeight: "calc(100vh - 288px)"
+      minHeight: "calc(100vh - 332px)"
     },
     "@media (min-width: 1280px)": {
-      minHeight: "calc(100vh - 288px)"
+      minHeight: "calc(100vh)"
     }
   }
 });

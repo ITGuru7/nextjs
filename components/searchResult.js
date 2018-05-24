@@ -1,13 +1,13 @@
-import Grid from "material-ui/Grid";
+import Grid from "@material-ui/core/Grid";
 import React, { Fragment } from "react";
 import Link from "next/link";
 import { css } from "aphrodite";
-import Typography from "material-ui/Typography";
+import Typography from "@material-ui/core/Typography";
 import aphrodite from "../utils/aphrodite";
-import { Highlight } from "react-instantsearch/dom";
 import Display from "../utils/display";
 import object from "../utils/object";
 import { connectHighlight } from "react-instantsearch/connectors";
+import withRoot from "../src/withRoot";
 
 function ResultImg(props) {
   let img = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70/`;
@@ -155,7 +155,7 @@ const TypographyHighlight = connectHighlight(
         style={{
           display: info ? "unset" : "inherit",
           fontWeight: variant === "subheading" ? "500" : "inherit",
-          color: url ? '#13CCBE' : 'inherit'
+          color: url ? "#13CCBE" : "inherit"
         }}
       >
         {highlightedHits}
@@ -196,7 +196,7 @@ class SearchResult extends React.PureComponent {
     const { hit, order } = this.props;
     let images = [];
 
-    if (hit.images) {
+    if (hit && hit.images) {
       images = images.concat(object.values(hit.images));
     }
     return (
@@ -273,4 +273,4 @@ class SearchResult extends React.PureComponent {
     );
   }
 }
-export default SearchResult;
+export default withRoot(SearchResult);

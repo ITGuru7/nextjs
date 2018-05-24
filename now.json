@@ -1,4 +1,10 @@
 {
-  "alias":"qwarx.io",
-  "name": "qwarx.nc"
+  "alias": "qwarx.io",
+  "name": "qwarx.nc",
+  "scale": {
+    "sfo1": {
+      "min": 2,
+      "max": 25
+    }
+  }
 }

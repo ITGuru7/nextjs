@@ -4,24 +4,39 @@ import SearchBox from "./algolia/searchBox";
 import Hits from "./algolia/hits";
 import { InstantSearch } from "./instantsearch";
 import { css } from "aphrodite";
-import Divider from "material-ui/Divider";
+import Divider from "@material-ui/core/Divider";
 import Footer from "./footer";
-import Tabs from "./mui/tabs";
-import Tab from "./mui/tab";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 import aphrodite from "../utils/aphrodite";
-import Grid from "material-ui/Grid";
-import MenuIcon from "material-ui-icons/Menu";
-import Drawer from "material-ui/Drawer";
-import List, { ListItem, ListItemText } from "material-ui/List";
+import Grid from "@material-ui/core/Grid";
+import MenuIcon from "@material-ui/icons/Menu";
+import Drawer from "@material-ui/core/Drawer";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 import Link from "next/link";
 import QwarxLogo from "./qwarxLogo";
 import Display from "../utils/display";
-import Button from "material-ui/Button";
-import Head from "next/head";
-import Wrapper from "../components/wrapper";
+import Button from "@material-ui/core/Button";
 import { connectStateResults } from "react-instantsearch/connectors";
 
-class SearchPage extends React.PureComponent {
+class SearchPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchState: this.props.searchState
+    };
+  }
+
+  onSearchStateChange = searchState => {
+    this.setState({ searchState });
+  };
+
+  shouldComponentUpdate(nextProps, nextState) {
+    // console.log('toto');
+    return true;
+  }
 
   render() {
     const { firstLetter } = this.props;
@@ -59,7 +74,7 @@ class SearchPage extends React.PureComponent {
       );
     };
 
-    const tabs = style => {
+    const tabs = () => {
       return (
         <Tabs
           value={0}
@@ -75,12 +90,17 @@ class SearchPage extends React.PureComponent {
     };
 
     const searchBox = () => {
-      return <SearchBox firstLetter={firstLetter} />;
+      return (
+        <SearchBox
+          searchState={this.state.searchState}
+          firstLetter={firstLetter}
+        />
+      );
     };
 
     const desktop = () => {
       return (
-        <Fragment>
+        <div>
           <Grid
             container
             direction="row"
@@ -126,7 +146,7 @@ class SearchPage extends React.PureComponent {
             </Grid>
           </Grid>
           <Divider style={{ marginTop: "5px" }} />
-          {tabs()}
+          {/*{tabs()}*/}
           <div style={{ minHeight: "40px" }}>
             <Stats
               className={css(aphrodite.searchResultsPaddingLeft)}
@@ -156,7 +176,7 @@ class SearchPage extends React.PureComponent {
           </div>
           <SearchResults />
           <Footer />
-        </Fragment>
+        </div>
       );
     };
 
@@ -216,8 +236,35 @@ class SearchPage extends React.PureComponent {
             </Grid>
           </div>
           {searchBox()}
-          {tabs()}
+          {/*{tabs()}*/}
           <Divider />
+          <div style={{ minHeight: "40px" }}>
+            <Stats
+              className={css(aphrodite.searchResultsPaddingLeft)}
+              translate={(ctxt, n, ms) => {
+                let res;
+                let mili;
+                if (!n) {
+                  res = `aucun résultats`;
+                } else if (n === 1) {
+                  res = `1 résultat`;
+                } else {
+                  res = `${n.toLocaleString()} résultats`;
+                }
+                if (!n) {
+                  mili = ``;
+                } else if (ms === 1) {
+                  mili = ` (0.01 secondes)`;
+                } else if (ms < 10) {
+                  mili = ` (0.0${ms.toLocaleString()} secondes)`;
+                } else {
+                  mili = ` (0.${ms.toLocaleString()} secondes)`;
+                }
+
+                return `${res}${mili}`;
+              }}
+            />
+          </div>
           <SearchResults />
           <Footer />
         </Fragment>
@@ -225,23 +272,13 @@ class SearchPage extends React.PureComponent {
     };
 
     return (
-      <Wrapper title={"qwarx.nc"}>
-        <Head>
-          <link
-            rel="stylesheet"
-            href="../static/react-instantsearch-override.css"
-          />
-
-          <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"
-          />
-          <link rel="stylesheet" href="../static/main.css" />
-        </Head>
+      <div>
         <InstantSearch
           appId="5NXUF7YDRN"
           apiKey="458ab22e25a2ddf3a174bf03678c9281"
           indexName="qwarx.nc"
+          // searchState={this.state.searchState}
+          // onSearchStateChange={this.onSearchStateChange}
         >
           <Display format="mobile" implementation="css">
             {mobile()}
@@ -250,7 +287,7 @@ class SearchPage extends React.PureComponent {
             {desktop()}
           </Display>
         </InstantSearch>
-      </Wrapper>
+      </div>
     );
   }
 }

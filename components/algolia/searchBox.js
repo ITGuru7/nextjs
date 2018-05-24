@@ -5,29 +5,47 @@ import { connectSearchBox } from "react-instantsearch/connectors";
 import Display from "../../utils/display";
 import { css } from "aphrodite";
 import aphrodite from "../../utils/aphrodite";
-import Grid from "material-ui/Grid";
+import Grid from "@material-ui/core/Grid";
+import qs from "qs";
+import Router from "next/router";
+
+const debounceDelay = 500;
+// const searchStateToUrl = searchState =>
+//   searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : "";
 
 export default class SearchBox extends React.PureComponent {
   render() {
-    const { firstLetter } = this.props;
+    const { firstLetter, searchState } = this.props;
+    // console.log(`searchBox state : ${JSON.stringify(searchState)}`);
     const DebouncedSearchBox = ({ currentRefinement, refine }) => {
       const debouncedSearch = debounce(e => {
         refine(e.target.value);
-        defer(
-          () =>
-            document.getElementById("search_results")
-              ? document
-                  .getElementById("search_results")
-                  .classList.remove("loading")
-              : null
-        );
+        defer(() => {
+          document.getElementsByClassName("search_results")
+            ? Array.from(
+                document.getElementsByClassName("search_results")
+              ).forEach(function(element) {
+              element.classList.remove("loading");
+              console.log(element.classList);
+              })
+            : null;
+        });
+        // const href = searchStateToUrl(searchState);
+        // Router.push(href, href, {
+        //   shallow: true
+        // });
       }, 500);
 
       const onChange = e => {
         e.persist();
-        if (document.getElementById("search_results")) {
-          document.getElementById("search_results").classList.add("loading");
-        }
+        document.getElementsByClassName("search_results")
+          ? Array.from(
+              document.getElementsByClassName("search_results")
+            ).forEach(function(element) {
+              element.classList.add("loading");
+            console.log(element.classList);
+            })
+          : null;
         debouncedSearch(e, e.eventTarget);
       };
 

@@ -1,19 +1,21 @@
-import Grid from "material-ui/Grid";
+import Grid from "@material-ui/core/Grid";
 import Display from "../utils/display";
 import SearchPage from "../components/searchPage";
-import Head from "next/head";
 import Wrapper from "../components/wrapper";
-import Button from "material-ui/Button";
+import Button from "@material-ui/core/Button";
 import Link from "next/link";
 import aphrodite from "../utils/aphrodite";
 import { css } from "aphrodite";
 import QwarxLogo from "./qwarxLogo";
-import Drawer from "material-ui/Drawer";
-import MenuIcon from "material-ui-icons/Menu";
-import List, { ListItem, ListItemText } from "material-ui/List";
+import Drawer from "@material-ui/core/Drawer";
+import MenuIcon from "@material-ui/icons/Menu";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 import { Fragment } from "react";
 import Footer from "./footer";
-import Typography from "material-ui/Typography";
+import Typography from "@material-ui/core/Typography";
+import qs from "qs";
 
 class LandingPage extends React.PureComponent {
   constructor(props) {
@@ -23,6 +25,7 @@ class LandingPage extends React.PureComponent {
     };
   }
   componentDidMount() {
+    this.setState({ searchState: qs.parse(window.location.search.slice(1)) });
     if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
       navigator.serviceWorker
         .register("/service-worker.js")
@@ -76,8 +79,19 @@ class LandingPage extends React.PureComponent {
     };
 
     const mobile = () => {
-      if (this.state.input) {
-        return <SearchPage firstLetter={this.state.input} />;
+      if (
+        this.state.input ||
+        (this.state.searchState && Object.keys(this.state.searchState).length)
+      ) {
+        console.log(
+          `landingpage state : ${JSON.stringify(this.state.searchState)}`
+        );
+        return (
+          <SearchPage
+            firstLetter={this.state.input}
+            searchState={this.state.searchState}
+          />
+        );
       } else {
         return (
           <Grid
@@ -167,7 +181,7 @@ class LandingPage extends React.PureComponent {
                 </Grid>
                 <Grid item style={{ marginTop: "100px" }}>
                   <Typography component="h1" variant="headline" align="center">
-                    {`Tout le web Caledonien`}
+                    {`Tout le web calédonien`}
                   </Typography>
                 </Grid>
               </Grid>
@@ -182,11 +196,17 @@ class LandingPage extends React.PureComponent {
     };
 
     const desktop = () => {
-      if (this.state.input) {
+      // console.log(
+      //   `landingpage state : ${JSON.stringify(this.state.searchState)}`
+      // );
+      if (
+        this.state.input ||
+        (this.state.searchState && Object.keys(this.state.searchState).length)
+      ) {
         return (
           <SearchPage
-            isCrawler={this.props.isCrawler}
             firstLetter={this.state.input}
+            searchState={this.state.searchState}
           />
         );
       } else {
@@ -290,7 +310,7 @@ class LandingPage extends React.PureComponent {
                         variant="display1"
                         align="center"
                       >
-                        {`Tout le web Caledonien`}
+                        {`Tout le web calédonien`}
                       </Typography>
                     </Grid>
                   </Grid>
@@ -308,13 +328,6 @@ class LandingPage extends React.PureComponent {
 
     return (
       <Wrapper title={"qwarx.nc"}>
-        <Head>
-          <link rel="stylesheet" href="../static/main.css" />
-          <link
-            rel="stylesheet"
-            href="../static/react-instantsearch-override.css"
-          />
-        </Head>
         <Display format="mobile" implementation="css">
           {mobile()}
         </Display>
