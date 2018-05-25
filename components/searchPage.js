@@ -22,22 +22,6 @@ import Button from "@material-ui/core/Button";
 import { connectStateResults } from "react-instantsearch/connectors";
 
 class SearchPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchState: this.props.searchState
-    };
-  }
-
-  onSearchStateChange = searchState => {
-    this.setState({ searchState });
-  };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    // console.log('toto');
-    return true;
-  }
-
   render() {
     const { firstLetter } = this.props;
 
@@ -92,7 +76,7 @@ class SearchPage extends React.Component {
     const searchBox = () => {
       return (
         <SearchBox
-          searchState={this.state.searchState}
+          searchState={this.props.searchState}
           firstLetter={firstLetter}
         />
       );
@@ -272,22 +256,21 @@ class SearchPage extends React.Component {
     };
 
     return (
-      <div>
-        <InstantSearch
-          appId="5NXUF7YDRN"
-          apiKey="458ab22e25a2ddf3a174bf03678c9281"
-          indexName="qwarx.nc"
-          // searchState={this.state.searchState}
-          // onSearchStateChange={this.onSearchStateChange}
-        >
-          <Display format="mobile" implementation="css">
-            {mobile()}
-          </Display>
-          <Display format="tablet-desktop" implementation="css">
-            {desktop()}
-          </Display>
-        </InstantSearch>
-      </div>
+      <InstantSearch
+        appId="5NXUF7YDRN"
+        apiKey="458ab22e25a2ddf3a174bf03678c9281"
+        indexName="qwarx.nc"
+        resultsState={this.props.resultsState}
+        onSearchStateChange={this.props.onSearchStateChange}
+        searchState={this.props.searchState}
+      >
+        <Display format="mobile" implementation="css">
+          {mobile()}
+        </Display>
+        <Display format="tablet-desktop" implementation="css">
+          {desktop()}
+        </Display>
+      </InstantSearch>
     );
   }
 }

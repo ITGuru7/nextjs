@@ -24,6 +24,7 @@ class LandingPage extends React.PureComponent {
       input: null
     };
   }
+
   componentDidMount() {
     this.setState({ searchState: qs.parse(window.location.search.slice(1)) });
     if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
@@ -81,15 +82,17 @@ class LandingPage extends React.PureComponent {
     const mobile = () => {
       if (
         this.state.input ||
-        (this.state.searchState && Object.keys(this.state.searchState).length)
+        (this.props.searchState && Object.keys(this.props.searchState).length)
       ) {
         console.log(
-          `landingpage state : ${JSON.stringify(this.state.searchState)}`
+          `landingpage mobile state : ${JSON.stringify(this.props.searchState)}`
         );
         return (
           <SearchPage
             firstLetter={this.state.input}
-            searchState={this.state.searchState}
+            resultsState={this.props.resultsState}
+            onSearchStateChange={this.props.onSearchStateChange}
+            searchState={this.props.searchState}
           />
         );
       } else {
@@ -196,17 +199,19 @@ class LandingPage extends React.PureComponent {
     };
 
     const desktop = () => {
-      // console.log(
-      //   `landingpage state : ${JSON.stringify(this.state.searchState)}`
-      // );
+      console.log(
+        `landingpage desktop state : ${JSON.stringify(this.state.searchState)}`
+      );
       if (
         this.state.input ||
-        (this.state.searchState && Object.keys(this.state.searchState).length)
+        (this.props.searchState && Object.keys(this.props.searchState).length)
       ) {
         return (
           <SearchPage
             firstLetter={this.state.input}
-            searchState={this.state.searchState}
+            resultsState={this.props.resultsState}
+            onSearchStateChange={this.props.onSearchStateChange}
+            searchState={this.props.searchState}
           />
         );
       } else {
@@ -328,12 +333,8 @@ class LandingPage extends React.PureComponent {
 
     return (
       <Wrapper title={"qwarx.nc"}>
-        <Display format="mobile" implementation="css">
-          {mobile()}
-        </Display>
-        <Display format="tablet-desktop" implementation="css">
-          {desktop()}
-        </Display>
+        <Display format="mobile">{mobile()}</Display>
+        <Display format="tablet-desktop">{desktop()}</Display>
       </Wrapper>
     );
   }

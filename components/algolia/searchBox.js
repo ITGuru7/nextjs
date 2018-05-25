@@ -10,8 +10,8 @@ import qs from "qs";
 import Router from "next/router";
 
 const debounceDelay = 500;
-// const searchStateToUrl = searchState =>
-//   searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : "";
+const searchStateToUrl = searchState =>
+  searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : "";
 
 export default class SearchBox extends React.PureComponent {
   render() {
@@ -26,14 +26,13 @@ export default class SearchBox extends React.PureComponent {
                 document.getElementsByClassName("search_results")
               ).forEach(function(element) {
               element.classList.remove("loading");
-              console.log(element.classList);
               })
             : null;
         });
-        // const href = searchStateToUrl(searchState);
-        // Router.push(href, href, {
-        //   shallow: true
-        // });
+        const href = searchStateToUrl(searchState);
+        Router.push(href, href, {
+          shallow: true
+        });
       }, 500);
 
       const onChange = e => {
@@ -43,7 +42,6 @@ export default class SearchBox extends React.PureComponent {
               document.getElementsByClassName("search_results")
             ).forEach(function(element) {
               element.classList.add("loading");
-            console.log(element.classList);
             })
           : null;
         debouncedSearch(e, e.eventTarget);
@@ -51,7 +49,7 @@ export default class SearchBox extends React.PureComponent {
 
       return (
         <input
-          defaultValue={firstLetter}
+          // defaultValue={firstLetter}
           onChange={onChange}
           className="ais-SearchBox-input"
           autoFocus

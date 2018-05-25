@@ -8,7 +8,6 @@ import Typography from "@material-ui/core/Typography";
 import aphrodite from "../../utils/aphrodite";
 import object from "../../utils/object";
 import { css } from "aphrodite";
-import Divider from "@material-ui/core/Divider";
 import dynamic from "next/dynamic";
 
 const StaticMap = dynamic(import("../staticMap"), {
@@ -82,11 +81,9 @@ export default connectHits(({ hits }) => {
               spacing={0}
               style={{ width: `439px` }}
             >
-              <Grid item>
-                {/*<StaticMap />*/}
-              </Grid>
+              <Grid item>{/*<StaticMap />*/}</Grid>
               {/*<Grid item style={{ marginTop: "8px", marginBottom: "8px" }}>*/}
-                {/*<Divider />*/}
+              {/*<Divider />*/}
               {/*</Grid>*/}
 
               <Grid item>
