@@ -7,16 +7,11 @@ import { css } from "aphrodite";
 import aphrodite from "../../utils/aphrodite";
 import Grid from "@material-ui/core/Grid";
 import qs from "qs";
-import Router from "next/router";
 
-const debounceDelay = 500;
-const searchStateToUrl = searchState =>
-  searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : "";
 
 export default class SearchBox extends React.PureComponent {
   render() {
-    const { firstLetter, searchState } = this.props;
-    // console.log(`searchBox state : ${JSON.stringify(searchState)}`);
+    const { firstLetter } = this.props;
     const DebouncedSearchBox = ({ currentRefinement, refine }) => {
       const debouncedSearch = debounce(e => {
         refine(e.target.value);
@@ -25,14 +20,11 @@ export default class SearchBox extends React.PureComponent {
             ? Array.from(
                 document.getElementsByClassName("search_results")
               ).forEach(function(element) {
-              element.classList.remove("loading");
+                element.classList.remove("loading");
               })
             : null;
         });
-        const href = searchStateToUrl(searchState);
-        Router.push(href, href, {
-          shallow: true
-        });
+
       }, 500);
 
       const onChange = e => {

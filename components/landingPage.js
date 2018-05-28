@@ -81,18 +81,11 @@ class LandingPage extends React.PureComponent {
 
     const mobile = () => {
       if (
-        this.state.input ||
-        (this.props.searchState && Object.keys(this.props.searchState).length)
+        this.state.input
       ) {
-        console.log(
-          `landingpage mobile state : ${JSON.stringify(this.props.searchState)}`
-        );
         return (
           <SearchPage
             firstLetter={this.state.input}
-            resultsState={this.props.resultsState}
-            onSearchStateChange={this.props.onSearchStateChange}
-            searchState={this.props.searchState}
           />
         );
       } else {
@@ -199,19 +192,10 @@ class LandingPage extends React.PureComponent {
     };
 
     const desktop = () => {
-      console.log(
-        `landingpage desktop state : ${JSON.stringify(this.state.searchState)}`
-      );
-      if (
-        this.state.input ||
-        (this.props.searchState && Object.keys(this.props.searchState).length)
-      ) {
+      if (this.state.input) {
         return (
           <SearchPage
             firstLetter={this.state.input}
-            resultsState={this.props.resultsState}
-            onSearchStateChange={this.props.onSearchStateChange}
-            searchState={this.props.searchState}
           />
         );
       } else {
@@ -332,7 +316,7 @@ class LandingPage extends React.PureComponent {
     };
 
     return (
-      <Wrapper title={"qwarx.nc"}>
+      <Wrapper>
         <Display format="mobile">{mobile()}</Display>
         <Display format="tablet-desktop">{desktop()}</Display>
       </Wrapper>

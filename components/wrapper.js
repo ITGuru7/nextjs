@@ -9,12 +9,12 @@ if (typeof window !== "undefined") {
   StyleSheet.rehydrate(window.__NEXT_DATA__.ids);
 }
 
-class Wrapper extends React.PureComponent {
+class Wrapper extends React.Component {
   render() {
     return (
       <Fragment>
         <Head>
-          <title>{this.props.title}</title>
+          <title>Qwarx.nc</title>
         </Head>
         {this.props.children}
       </Fragment>

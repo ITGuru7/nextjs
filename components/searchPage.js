@@ -20,25 +20,63 @@ import QwarxLogo from "./qwarxLogo";
 import Display from "../utils/display";
 import Button from "@material-ui/core/Button";
 import { connectStateResults } from "react-instantsearch/connectors";
+import Router from "next/router";
+import qs from "qs";
+import Wrapper from "../components/wrapper";
+const searchStateToUrl = searchState =>
+  searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : "";
 
 class SearchPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchState: this.props.searchState,
+      resultsState: this.props.resultsState
+    };
+  }
+
+  componentDidMount() {
+    if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
+      navigator.serviceWorker
+        .register("/service-worker.js")
+        .then(registration => {
+          console.log("service worker registration successful");
+        })
+        .catch(err => {
+          console.warn("service worker registration failed", err.message);
+        });
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(`state : ${JSON.stringify(this.state)} nextState: ${JSON.stringify(nextState)}`);
+  }
+
   render() {
     const { firstLetter } = this.props;
 
     const Content = connectStateResults(({ searchState, searchResults }) => {
+      let hits = <Hits />;
       if (!searchState.query || !searchState.query.length) {
-        return null;
+        hits = null;
       }
       if (searchResults && !searchResults.nbHits) {
-        return null;
+        hits = null;
       }
-      return <Hits />;
+      // if SSR, no need to sync the state to the URL
+      if (process.browser) {
+        const href = searchStateToUrl(searchState);
+        Router.push(href, href, {
+          shallow: true
+        });
+      }
+
+      return hits;
     });
 
     const SearchResults = () => {
       return (
         <div className={css(aphrodite.wrapperMinHeight)}>
-          <Configure hitsPerPage={10} />
           <Content />
           <Fragment>
             <Display format="desktop">
@@ -74,12 +112,7 @@ class SearchPage extends React.Component {
     };
 
     const searchBox = () => {
-      return (
-        <SearchBox
-          searchState={this.props.searchState}
-          firstLetter={firstLetter}
-        />
-      );
+      return <SearchBox firstLetter={firstLetter} />;
     };
 
     const desktop = () => {
@@ -256,21 +289,27 @@ class SearchPage extends React.Component {
     };
 
     return (
-      <InstantSearch
-        appId="5NXUF7YDRN"
-        apiKey="458ab22e25a2ddf3a174bf03678c9281"
-        indexName="qwarx.nc"
-        resultsState={this.props.resultsState}
-        onSearchStateChange={this.props.onSearchStateChange}
-        searchState={this.props.searchState}
-      >
-        <Display format="mobile" implementation="css">
-          {mobile()}
-        </Display>
-        <Display format="tablet-desktop" implementation="css">
-          {desktop()}
-        </Display>
-      </InstantSearch>
+      <Wrapper>
+        <InstantSearch
+          appId="5NXUF7YDRN"
+          apiKey="458ab22e25a2ddf3a174bf03678c9281"
+          indexName="qwarx.nc"
+          // resultsState is generated from index.js, will be used only once on SSR, not needed
+          // afterwards, so no need to sync it on the state
+          resultsState={this.props.resultsState}
+          // search state need to be maintained localy, since we are in a controlled mode
+          // the searchState can come from index.js, or locally
+          searchState={this.state.searchState}
+        >
+          <Configure hitsPerPage={10} />
+          <Display format="mobile" implementation="css">
+            {mobile()}
+          </Display>
+          <Display format="tablet-desktop" implementation="css">
+            {desktop()}
+          </Display>
+        </InstantSearch>
+      </Wrapper>
     );
   }
 }

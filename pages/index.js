@@ -1,61 +1,58 @@
 import { App, findResultsState } from "../components";
-import LandingPage from '../components/landingPage';
-import Wrapper from "../components/wrapper";
+import LandingPage from "../components/landingPage";
+import { Fragment } from "react";
 import PropTypes from "prop-types";
-import Router from "next/router";
 import qs from "qs";
-const updateAfter = 500;
+import SearchPage from "../components/searchPage";
 
 class Index extends React.Component {
   static propTypes = {
     resultsState: PropTypes.object,
     searchState: PropTypes.object
   };
-  constructor(props) {
-    super(props);
-    this.onSearchStateChange = this.onSearchStateChange.bind(this);
+
+  // Service worker actived from the very start
+  componentDidMount() {
+    if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
+      navigator.serviceWorker
+        .register("/service-worker.js")
+        .then(registration => {
+          console.log("service worker registration successful");
+        })
+        .catch(err => {
+          console.warn("service worker registration failed", err.message);
+        });
+    }
   }
 
+  // Responsible for getting the first result when accessing the website with a search in the url
   static async getInitialProps(params) {
-    const searchState = qs.parse(
+    let searchState = qs.parse(
       params.asPath.substring(params.asPath.indexOf("?") + 1)
     );
-    const resultsState = await findResultsState(App, { searchState });
+    let resultsState = null;
+    if (searchState["/"] === "") {
+      searchState = null;
+    } else {
+      resultsState = await findResultsState(App, { searchState });
+    }
     return { resultsState, searchState };
   }
 
-  onSearchStateChange = searchState => {
-    clearTimeout(this.debouncedSetState);
-    this.debouncedSetState = setTimeout(() => {
-      const href = searchStateToUrl(searchState);
-      Router.push(href, href, {
-        shallow: true
-      });
-    }, updateAfter);
-    this.setState({ searchState });
-  };
-
-  componentDidMount() {
-    this.setState({ searchState: qs.parse(window.location.search.slice(1)) });
-  }
-
-  componentWillReceiveProps() {
-    this.setState({ searchState: qs.parse(window.location.search.slice(1)) });
-  }
-
+  // Let's skip the LandingPage when loading a search
+  // index doesn't keep any state, it just passes on the props when SSR is done
   render() {
     return (
-      <Wrapper title={"qwarx.nc"}>
-        <LandingPage
-          resultsState={this.props.resultsState}
-          onSearchStateChange={this.onSearchStateChange}
-          searchState={
-            this.state && this.state.searchState
-              ? this.state.searchState
-              : this.props.searchState
-          }
-        />
-      </Wrapper>
+      <Fragment>
+        {this.props.searchState ? (
+          <SearchPage
+            resultsState={this.props.resultsState}
+            searchState={this.props.searchState}
+          />
+        ) : (
+          <LandingPage />
+        )}
+      </Fragment>
     );
   }
 }

@@ -59,11 +59,6 @@ class MyDocument extends Document {
               "user-scalable=no, initial-scale=1, maximum-scale=1, width=device-width"
             }
           />
-          <script
-            src="https://cdn.polyfill.io/v2/polyfill.min.js"
-            async
-            defer
-          />
           {/* PWA primary color */}
           <meta
             name="theme-color"
