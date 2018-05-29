@@ -20,11 +20,11 @@ import QwarxLogo from "./qwarxLogo";
 import Display from "../utils/display";
 import Button from "@material-ui/core/Button";
 import { connectStateResults } from "react-instantsearch/connectors";
-import Router from "next/router";
 import qs from "qs";
 import Wrapper from "../components/wrapper";
 const searchStateToUrl = searchState =>
   searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : "";
+import { withRouter } from "next/router";
 
 class SearchPage extends React.Component {
   constructor(props) {
@@ -56,7 +56,7 @@ class SearchPage extends React.Component {
   }
 
   render() {
-    const { firstLetter } = this.props;
+    const { firstLetter, router } = this.props;
 
     const Content = connectStateResults(({ searchState, searchResults }) => {
       let hits = <Hits />;
@@ -69,9 +69,10 @@ class SearchPage extends React.Component {
       // if SSR, no need to sync the state to the URL
       if (process.browser) {
         const href = searchStateToUrl(searchState);
-        Router.push(href, href, {
-          shallow: true
-        });
+        const as = href;
+        if (as !== "/?") {
+          router.push(href, as, { shallow: true });
+        }
       }
 
       return hits;
@@ -317,4 +318,4 @@ class SearchPage extends React.Component {
   }
 }
 
-export default SearchPage;
+export default withRouter(SearchPage);

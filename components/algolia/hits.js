@@ -96,7 +96,7 @@ export default connectHits(({ hits }) => {
                               <Typography variant="caption" color="secondary">
                                 {`${imagesObj[image].name.substring(0, 10)}..`}
                               </Typography>
-                            </Fragment>i
+                            </Fragment>
                           </a>
                         </Link>
                       </Grid>
