@@ -2,6 +2,7 @@
   "name": "gougle.nc",
   "version": "1.0.0",
   "scripts": {
+    "dev-serverless": "next",
     "dev": "node server.js",
     "build": "next build ",
     "start": "NODE_ENV=production node server.js",

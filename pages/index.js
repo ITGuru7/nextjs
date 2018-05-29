@@ -1,15 +1,10 @@
 import { App, findResultsState } from "../components";
 import LandingPage from "../components/landingPage";
 import { Fragment } from "react";
-import PropTypes from "prop-types";
 import qs from "qs";
 import SearchPage from "../components/searchPage";
 
 class Index extends React.Component {
-  static propTypes = {
-    resultsState: PropTypes.object,
-    searchState: PropTypes.object
-  };
 
   // Service worker actived from the very start
   componentDidMount() {
@@ -23,6 +18,13 @@ class Index extends React.Component {
           console.warn("service worker registration failed", err.message);
         });
     }
+  }
+  componentDidUpdate() {
+    console.log(`index updated`)
+  }
+
+  shouldComponentUpdate() {
+    return false;
   }
 
   // Responsible for getting the first result when accessing the website with a search in the url
@@ -44,7 +46,7 @@ class Index extends React.Component {
   render() {
     return (
       <Fragment>
-        {this.props.searchState ? (
+        {this.props.searchState && this.props.resultsState ? (
           <SearchPage
             resultsState={this.props.resultsState}
             searchState={this.props.searchState}

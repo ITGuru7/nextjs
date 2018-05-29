@@ -8,20 +8,6 @@ import Typography from "@material-ui/core/Typography";
 import aphrodite from "../../utils/aphrodite";
 import object from "../../utils/object";
 import { css } from "aphrodite";
-import dynamic from "next/dynamic";
-
-const StaticMap = dynamic(import("../staticMap"), {
-  loading: () => (
-    <div
-      style={{
-        width: "455px",
-        height: "400px",
-        backgroundColor: "white"
-      }}
-    />
-  ),
-  ssr: false
-});
 
 export default connectHits(({ hits }) => {
   const mobile = hits => {
@@ -81,10 +67,7 @@ export default connectHits(({ hits }) => {
               spacing={0}
               style={{ width: `439px` }}
             >
-              <Grid item>{/*<StaticMap />*/}</Grid>
-              {/*<Grid item style={{ marginTop: "8px", marginBottom: "8px" }}>*/}
-              {/*<Divider />*/}
-              {/*</Grid>*/}
+
 
               <Grid item>
                 <Grid container direction="row" spacing={0}>
@@ -113,7 +96,7 @@ export default connectHits(({ hits }) => {
                               <Typography variant="caption" color="secondary">
                                 {`${imagesObj[image].name.substring(0, 10)}..`}
                               </Typography>
-                            </Fragment>
+                            </Fragment>i
                           </a>
                         </Link>
                       </Grid>

@@ -36,6 +36,9 @@ class SearchPage extends React.Component {
   }
 
   componentDidMount() {
+    if (!this.state.searchState) {
+      this.setState({ searchState: qs.parse(window.location.search.slice(1)) });
+    }
     if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
       navigator.serviceWorker
         .register("/service-worker.js")
@@ -49,7 +52,7 @@ class SearchPage extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log(`state : ${JSON.stringify(this.state)} nextState: ${JSON.stringify(nextState)}`);
+    return false;
   }
 
   render() {
@@ -299,7 +302,7 @@ class SearchPage extends React.Component {
           resultsState={this.props.resultsState}
           // search state need to be maintained localy, since we are in a controlled mode
           // the searchState can come from index.js, or locally
-          searchState={this.state.searchState}
+          searchState={this.props.searchState}
         >
           <Configure hitsPerPage={10} />
           <Display format="mobile" implementation="css">

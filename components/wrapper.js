@@ -10,6 +10,7 @@ if (typeof window !== "undefined") {
 }
 
 class Wrapper extends React.Component {
+
   render() {
     return (
       <Fragment>

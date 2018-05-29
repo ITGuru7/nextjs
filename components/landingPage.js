@@ -15,7 +15,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { Fragment } from "react";
 import Footer from "./footer";
 import Typography from "@material-ui/core/Typography";
-import qs from "qs";
 
 class LandingPage extends React.PureComponent {
   constructor(props) {
@@ -26,7 +25,6 @@ class LandingPage extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.setState({ searchState: qs.parse(window.location.search.slice(1)) });
     if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
       navigator.serviceWorker
         .register("/service-worker.js")
@@ -37,6 +35,11 @@ class LandingPage extends React.PureComponent {
           console.warn("service worker registration failed", err.message);
         });
     }
+  }
+
+
+  componentDidUpdate() {
+    console.log(`landing page updated`)
   }
 
   render() {
@@ -80,9 +83,7 @@ class LandingPage extends React.PureComponent {
     };
 
     const mobile = () => {
-      if (
-        this.state.input
-      ) {
+      if (this.state.input) {
         return (
           <SearchPage
             firstLetter={this.state.input}

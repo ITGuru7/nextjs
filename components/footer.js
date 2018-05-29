@@ -7,7 +7,12 @@ import Divider from '@material-ui/core/Divider';
 import Display from "../utils/display";
 import Grid from '@material-ui/core/Grid';
 
-export default class Footer extends React.PureComponent {
+export default class Footer extends React.Component {
+
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     const landingPage = this.props.landingPage;
     return (

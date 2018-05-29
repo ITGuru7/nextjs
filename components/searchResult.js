@@ -7,7 +7,6 @@ import aphrodite from "../utils/aphrodite";
 import Display from "../utils/display";
 import object from "../utils/object";
 import { connectHighlight } from "react-instantsearch/connectors";
-import withRoot from "../src/withRoot";
 
 function ResultImg(props) {
   let img = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70/`;
@@ -191,7 +190,11 @@ function ResultInfo(props) {
   );
 }
 
-class SearchResult extends React.PureComponent {
+class SearchResult extends React.Component {
+  shouldComponentUpdate(nextState, nextProps) {
+    return nextState.hit.id.url !== this.props.hit.url;
+  }
+
   render() {
     const { hit, order } = this.props;
     let images = [];
@@ -273,4 +276,4 @@ class SearchResult extends React.PureComponent {
     );
   }
 }
-export default withRoot(SearchResult);
+export default SearchResult;
