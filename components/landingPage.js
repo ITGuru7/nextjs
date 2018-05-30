@@ -37,9 +37,8 @@ class LandingPage extends React.PureComponent {
     }
   }
 
-
   componentDidUpdate() {
-    console.log(`landing page updated`)
+    console.log(`landing page updated`);
   }
 
   render() {
@@ -86,7 +85,11 @@ class LandingPage extends React.PureComponent {
       if (this.state.input) {
         return (
           <SearchPage
-            firstLetter={this.state.input}
+            searchState={{
+              query: this.state.input,
+              page: 1,
+              hitsPerPage: 10
+            }}
           />
         );
       } else {
@@ -196,7 +199,11 @@ class LandingPage extends React.PureComponent {
       if (this.state.input) {
         return (
           <SearchPage
-            firstLetter={this.state.input}
+            searchState={{
+              query: this.state.input,
+              page: 1,
+              hitsPerPage: 10
+            }}
           />
         );
       } else {

@@ -16,6 +16,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Link from "next/link";
+import Router from "next/router";
 import QwarxLogo from "./qwarxLogo";
 import Display from "../utils/display";
 import Button from "@material-ui/core/Button";
@@ -24,8 +25,6 @@ import qs from "qs";
 import Wrapper from "../components/wrapper";
 const searchStateToUrl = searchState =>
   searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : "";
-import { withRouter } from "next/router";
-import ButtonBase from "@material-ui/core/ButtonBase";
 import LandingPage from "./landingPage";
 
 class SearchPage extends React.Component {
@@ -37,11 +36,17 @@ class SearchPage extends React.Component {
       homePage: false
     };
     this.goBackToHomePage = this.goBackToHomePage.bind(this);
+    this.onSearchStateChange = this.onSearchStateChange.bind(this);
   }
 
   goBackToHomePage() {
+    Router.push("/", "/", { shallow: true });
     this.setState({ homePage: true });
   }
+
+  onSearchStateChange = searchState => {
+    this.setState({ searchState });
+  };
 
   componentDidMount() {
     if (!this.state.searchState) {
@@ -60,7 +65,10 @@ class SearchPage extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.homePage) {
+    if (
+      nextState.homePage ||
+      this.state.searchState.query !== nextState.searchState.query
+    ) {
       return true;
     } else {
       return false;
@@ -68,8 +76,6 @@ class SearchPage extends React.Component {
   }
 
   render() {
-    const { firstLetter, router } = this.props;
-
     const Content = connectStateResults(({ searchState, searchResults }) => {
       let hits = <Hits />;
       if (!searchState.query || !searchState.query.length) {
@@ -83,7 +89,7 @@ class SearchPage extends React.Component {
         const href = searchStateToUrl(searchState);
         const as = href;
         if (as !== "/?") {
-          router.push(href, as, { shallow: true });
+          Router.push(href, as, { shallow: true });
         }
       }
 
@@ -128,10 +134,8 @@ class SearchPage extends React.Component {
     };
 
     const searchBox = () => {
-      return <SearchBox firstLetter={firstLetter} />;
+      return <SearchBox />;
     };
-
-    const HomeLink = props => <Link {...props} />;
 
     const desktop = () => {
       return (
@@ -324,7 +328,12 @@ class SearchPage extends React.Component {
             resultsState={this.props.resultsState}
             // search state need to be maintained localy, since we are in a controlled mode
             // the searchState can come from index.js, or locally
-            searchState={this.props.searchState}
+            searchState={
+              this.state && this.state.searchState
+                ? this.state.searchState
+                : this.props.searchState
+            }
+            onSearchStateChange={this.onSearchStateChange}
           >
             <Configure hitsPerPage={10} />
             <Display format="mobile" implementation="css">
@@ -340,4 +349,4 @@ class SearchPage extends React.Component {
   }
 }
 
-export default withRouter(SearchPage);
+export default SearchPage;
