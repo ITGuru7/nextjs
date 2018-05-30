@@ -25,14 +25,22 @@ import Wrapper from "../components/wrapper";
 const searchStateToUrl = searchState =>
   searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : "";
 import { withRouter } from "next/router";
+import ButtonBase from "@material-ui/core/ButtonBase";
+import LandingPage from "./landingPage";
 
 class SearchPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       searchState: this.props.searchState,
-      resultsState: this.props.resultsState
+      resultsState: this.props.resultsState,
+      homePage: false
     };
+    this.goBackToHomePage = this.goBackToHomePage.bind(this);
+  }
+
+  goBackToHomePage() {
+    this.setState({ homePage: true });
   }
 
   componentDidMount() {
@@ -52,7 +60,11 @@ class SearchPage extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return false;
+    if (nextState.homePage) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   render() {
@@ -119,6 +131,8 @@ class SearchPage extends React.Component {
       return <SearchBox firstLetter={firstLetter} />;
     };
 
+    const HomeLink = props => <Link {...props} />;
+
     const desktop = () => {
       return (
         <div>
@@ -136,6 +150,7 @@ class SearchPage extends React.Component {
                   aphrodite.topScreenPadding,
                   aphrodite.gougleLogoMarginDesktop
                 )}
+                goBackToHomePage={this.goBackToHomePage}
               />
             </Grid>
             <Grid item xs>
@@ -249,9 +264,12 @@ class SearchPage extends React.Component {
                 </Drawer>
               </Grid>
               <Grid item>
-                <QwarxLogo
-                  cn={css(aphrodite.gougleLogo, aphrodite.topScreenPadding)}
-                />
+                <Link href={"/"}>
+                  <QwarxLogo
+                    cn={css(aphrodite.gougleLogo, aphrodite.topScreenPadding)}
+                    goBackToHomePage={this.goBackToHomePage}
+                  />
+                </Link>
               </Grid>
               <Grid item />
             </Grid>
@@ -294,25 +312,29 @@ class SearchPage extends React.Component {
 
     return (
       <Wrapper>
-        <InstantSearch
-          appId="5NXUF7YDRN"
-          apiKey="458ab22e25a2ddf3a174bf03678c9281"
-          indexName="qwarx.nc"
-          // resultsState is generated from index.js, will be used only once on SSR, not needed
-          // afterwards, so no need to sync it on the state
-          resultsState={this.props.resultsState}
-          // search state need to be maintained localy, since we are in a controlled mode
-          // the searchState can come from index.js, or locally
-          searchState={this.props.searchState}
-        >
-          <Configure hitsPerPage={10} />
-          <Display format="mobile" implementation="css">
-            {mobile()}
-          </Display>
-          <Display format="tablet-desktop" implementation="css">
-            {desktop()}
-          </Display>
-        </InstantSearch>
+        {this.state.homePage ? (
+          <LandingPage />
+        ) : (
+          <InstantSearch
+            appId="5NXUF7YDRN"
+            apiKey="458ab22e25a2ddf3a174bf03678c9281"
+            indexName="qwarx.nc"
+            // resultsState is generated from index.js, will be used only once on SSR, not needed
+            // afterwards, so no need to sync it on the state
+            resultsState={this.props.resultsState}
+            // search state need to be maintained localy, since we are in a controlled mode
+            // the searchState can come from index.js, or locally
+            searchState={this.props.searchState}
+          >
+            <Configure hitsPerPage={10} />
+            <Display format="mobile" implementation="css">
+              {mobile()}
+            </Display>
+            <Display format="tablet-desktop" implementation="css">
+              {desktop()}
+            </Display>
+          </InstantSearch>
+        )}
       </Wrapper>
     );
   }

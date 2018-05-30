@@ -1,11 +1,16 @@
 import React from "react";
 export default class QwarxLogo extends React.PureComponent {
+
   render() {
     return (
       <svg
         viewBox="0 0 1716 618"
         xmlns="http://www.w3.org/2000/svg"
         className={this.props.cn}
+        onClick={e => {
+          e.preventDefault();
+          this.props.goBackToHomePage ? this.props.goBackToHomePage() : null;
+        }}
       >
         <g fill="none" fillRule="evenodd">
           <path
