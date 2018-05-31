@@ -1,67 +1,42 @@
 import Grid from "@material-ui/core/Grid";
 import React, { Fragment } from "react";
-import Link from "next/link";
 import { css } from "aphrodite";
 import Typography from "@material-ui/core/Typography";
 import aphrodite from "../utils/aphrodite";
 import Display from "../utils/display";
 import object from "../utils/object";
 import { connectHighlight } from "react-instantsearch/connectors";
+import MyImg from "./MyImg";
 
 function ResultImg(props) {
-  let img = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70/`;
-  if (props.hit.meta.image) {
-    img += props.hit.meta.image;
-  } else {
-    img = null;
-  }
-
   return (
-    <Fragment>
-      {img ? (
-        <Link
-          href={{
-            pathname: `/${props.hit.objectID}`
-          }}
-        >
-          <a rel="nofollow">
-            <img
-              style={{
-                width: 70,
-                height: 70,
-                borderStyle: "solid",
-                borderWidth: "1px",
-                borderColor: "#EEEEEE",
-                marginRight: "8px"
-              }}
-              src={img}
-              alt={props.hit.id.title}
-              onError={e => (e.target.style.display = "none")}
-              onLoad={e => (e.target.style.display = "block")}
-            />
-          </a>
-        </Link>
-      ) : null}
-    </Fragment>
+    <MyImg
+      imgStyle={{
+        width: 70,
+        height: 70,
+        borderStyle: "solid",
+        borderWidth: "1px",
+        borderColor: "#EEEEEE",
+        marginRight: "8px"
+      }}
+      cloudinaryPrefix={`https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70`}
+      imgUrl={props.hit.meta.image}
+      title={props.hit.id.title}
+      href={props.hit.objectID}
+    />
   );
 }
 
 function ResultTitle(props) {
   return (
-    <Link
-      href={{
-        pathname: `${props.hit.objectID}`
-      }}
-    >
-      <a rel="nofollow" target="_blank">
-        <TypographyHighlight
-          variant="subheading"
-          color="secondary"
-          attribute={"id.title"}
-          hit={props.hit}
-        />
-      </a>
-    </Link>
+    <a href={props.hit.objectID} rel="nofollow" target="_blank">
+      <TypographyHighlight
+        variant="subheading"
+        color="secondary"
+        attribute={"id.title"}
+        hit={props.hit}
+      />
+    </a>
   );
 }
 

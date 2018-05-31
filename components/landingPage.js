@@ -16,7 +16,7 @@ import { Fragment } from "react";
 import Footer from "./footer";
 import Typography from "@material-ui/core/Typography";
 
-class LandingPage extends React.PureComponent {
+class LandingPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,13 +37,10 @@ class LandingPage extends React.PureComponent {
     }
   }
 
-  componentDidUpdate() {
-    console.log(`landing page updated`);
-  }
+
 
   render() {
     const { open } = this.props;
-
     const background = () => {
       return (
         <Fragment>

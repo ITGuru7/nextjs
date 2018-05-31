@@ -4,6 +4,7 @@ import JssProvider from "react-jss/lib/JssProvider";
 import flush from "styled-jsx/server";
 import getPageContext from "../src/getPageContext";
 import { StyleSheetServer } from "aphrodite";
+import criticalCssLandingPage from "../utils/criticalCssLandingPage";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -43,20 +44,16 @@ class MyDocument extends Document {
     return (
       <html lang="en" dir="ltr">
         <Head>
-          <link rel="stylesheet" href="../static/main.css" />
-          <link
-            rel="stylesheet"
-            href="../static/react-instantsearch-override.css"
-          />
-          <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"
+          <script
+            src="https://cdn.polyfill.io/v2/polyfill.min.js"
+            async
+            defer
           />
           <style
             data-aphrodite
             dangerouslySetInnerHTML={{ __html: this.props.css.content }}
           />
-          <title>My page</title>
+          <title>Qwarx.nc</title>
           <meta charSet="utf-8" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
@@ -75,6 +72,15 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <link rel="stylesheet" href="../static/main.css" />
+          <link
+            rel="stylesheet"
+            href="../static/react-instantsearch-override.css"
+          />
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"
+          />
         </body>
       </html>
     );

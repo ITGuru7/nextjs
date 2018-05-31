@@ -12,7 +12,6 @@ const { join } = require("path");
 app.prepare().then(() => {
   const server = express();
 
-
   server.use("/", express.static("static"));
   server.use(
     "/service-worker.js",
