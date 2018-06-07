@@ -81,13 +81,9 @@ class SearchPage extends React.Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return true;
-  }
-
   render() {
     const Content = connectStateResults(({tablet_desktop, mobile, searchState, searchResults }) => {
-      let hits = <Hits tablet_desktop mobile/>;
+      let hits = <Hits tablet_desktop={tablet_desktop} mobile={mobile}/>;
       if (!searchState.query || !searchState.query.length) {
         hits = null;
       }

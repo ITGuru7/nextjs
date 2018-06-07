@@ -165,7 +165,7 @@ function ResultInfo(props) {
 
 class SearchResult extends React.Component {
   render() {
-    const { hit, tablet_desktop, mobile } = this.props;
+    const { hit, tablet_desktop } = this.props;
     return (
       <Fragment>
         {tablet_desktop ? (

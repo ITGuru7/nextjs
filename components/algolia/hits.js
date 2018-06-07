@@ -9,13 +9,8 @@ import object from "../../utils/object";
 import { css } from "aphrodite";
 
 class Hits extends React.Component {
-  componentDidUpdate() {
-    // console.log('new hits')
-  }
-
   render() {
-    const { hits, tablet_desktop, mobile } = this.props;
-
+    const { hits, tablet_desktop } = this.props;
     const render_mobile = hits => {
       return (
         <div
@@ -116,7 +111,11 @@ class Hits extends React.Component {
         </Grid>
       );
     };
-    return <Fragment>{render_tablet_desktop ? render_tablet_desktop(hits) : render_mobile(hits)}</Fragment>;
+    return (
+      <Fragment>
+        {tablet_desktop ? render_tablet_desktop(hits) : render_mobile(hits)}
+      </Fragment>
+    );
   }
 }
 
