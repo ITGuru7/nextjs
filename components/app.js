@@ -7,7 +7,7 @@ import {
 import { InstantSearch } from "./instantsearch";
 
 // Minimal search app used for SSR only
-class App extends React.PureComponent {
+class App extends React.Component {
   render() {
     return (
       <InstantSearch

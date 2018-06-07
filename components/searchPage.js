@@ -134,10 +134,6 @@ class SearchPage extends React.Component {
       );
     };
 
-    const searchBox = () => {
-      return <SearchBox />;
-    };
-
     const desktop = () => {
       return (
         <div>
@@ -159,7 +155,7 @@ class SearchPage extends React.Component {
               />
             </Grid>
             <Grid item xs>
-              {searchBox()}
+              <SearchBox />
             </Grid>
             <Grid item>
               <Grid container direction="row" justify="flex-end">
@@ -212,7 +208,10 @@ class SearchPage extends React.Component {
               }}
             />
           </div>
-          <SearchResults />
+          <div className={css(aphrodite.wrapperMinHeight)}>
+            <Content />
+            <Pagination showPrevious={false} showFirst={false} />
+          </div>
           <Footer />
         </div>
       );
@@ -276,7 +275,7 @@ class SearchPage extends React.Component {
               <Grid item />
             </Grid>
           </div>
-          {searchBox()}
+          <SearchBox />
           {/*{tabs()}*/}
           <Divider style={{ marginTop: "8px" }} />
           <div>
@@ -306,7 +305,16 @@ class SearchPage extends React.Component {
               }}
             />
           </div>
-          <SearchResults />
+          <div className={css(aphrodite.wrapperMinHeight)}>
+            <Content />
+            <Pagination
+              showFirst={false}
+              translations={{
+                previous: "précédent",
+                next: "suivant"
+              }}
+            />
+          </div>
           <Footer />
         </Fragment>
       );

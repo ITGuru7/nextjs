@@ -215,7 +215,7 @@ class LandingPage extends React.Component {
                       <Link href="/enregistrer">
                         <Button
                           color="primary"
-                          size="medium"
+                          size="small"
                           variant="outlined"
                           onClick={() => {}}
                         >
