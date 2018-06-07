@@ -13,20 +13,11 @@ class Index extends React.Component {
     if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
       navigator.serviceWorker
         .register("/service-worker.js")
-        .then(registration => {
-          console.log("service worker registration successful");
-        })
+        .then(registration => {})
         .catch(err => {
           console.warn("service worker registration failed", err.message);
         });
     }
-  }
-  componentDidUpdate() {
-    console.log(`index updated`);
-  }
-
-  shouldComponentUpdate() {
-    return false;
   }
 
   // Responsible for getting the first result when accessing the website with a search in the url

@@ -1,6 +1,5 @@
 import React from "react";
 export default class QwarxLogo extends React.PureComponent {
-
   render() {
     return (
       <svg
@@ -10,6 +9,9 @@ export default class QwarxLogo extends React.PureComponent {
         onClick={e => {
           e.preventDefault();
           this.props.goBackToHomePage ? this.props.goBackToHomePage() : null;
+        }}
+        style={{
+          cursor: this.props.goBackToHomePage ? "pointer" : "unset"
         }}
       >
         <g fill="none" fillRule="evenodd">

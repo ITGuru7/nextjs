@@ -15,6 +15,11 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { Fragment } from "react";
 import Footer from "./footer";
 import Typography from "@material-ui/core/Typography";
+if (process.browser) {
+  require("../static/react-instantsearch-override.css");
+  require("../static/main.css");
+  require("../static/algolia-min.css");
+}
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -23,21 +28,6 @@ class LandingPage extends React.Component {
       input: null
     };
   }
-
-  componentDidMount() {
-    if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
-      navigator.serviceWorker
-        .register("/service-worker.js")
-        .then(registration => {
-          console.log("service worker registration successful");
-        })
-        .catch(err => {
-          console.warn("service worker registration failed", err.message);
-        });
-    }
-  }
-
-
 
   render() {
     const { open } = this.props;
@@ -131,6 +121,7 @@ class LandingPage extends React.Component {
                   <Grid container>
                     <Grid item xs>
                       <input
+                        aria-label={"recherche"}
                         onChange={e => {
                           this.setState({
                             input: e.target["value"]
@@ -223,12 +214,9 @@ class LandingPage extends React.Component {
                     >
                       <Link href="/enregistrer">
                         <Button
-                          color="secondary"
-                          size="small"
-                          style={{
-                            color: "white",
-                            backgroundColor: "#0E8AB0"
-                          }}
+                          color="primary"
+                          size="medium"
+                          variant="outlined"
                           onClick={() => {}}
                         >
                           se connecter
@@ -253,6 +241,7 @@ class LandingPage extends React.Component {
                       <Grid container>
                         <Grid item>
                           <input
+                            aria-label={"recherche"}
                             onChange={e => {
                               this.setState({
                                 input: e.target["value"]

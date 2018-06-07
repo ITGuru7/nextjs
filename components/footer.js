@@ -1,14 +1,13 @@
 import React, { Fragment } from "react";
 import Link from "next/link";
-import Typography from '@material-ui/core/Typography';
+import Typography from "@material-ui/core/Typography";
 import aphrodite from "../utils/aphrodite";
 import { css } from "aphrodite";
-import Divider from '@material-ui/core/Divider';
+import Divider from "@material-ui/core/Divider";
 import Display from "../utils/display";
-import Grid from '@material-ui/core/Grid';
+import Grid from "@material-ui/core/Grid";
 
 export default class Footer extends React.Component {
-
   shouldComponentUpdate() {
     return false;
   }
@@ -21,8 +20,9 @@ export default class Footer extends React.Component {
           {landingPage ? (
             <Fragment>
               <Divider />
-              <div className={css(aphrodite.mobileGreyBackground)}
-                style={{height: '75px'}}
+              <div
+                className={css(aphrodite.mobileGreyBackground)}
+                style={{ height: "75px" }}
               >
                 <Grid
                   container
@@ -31,7 +31,7 @@ export default class Footer extends React.Component {
                   justify={"center"}
                   alignItems={"center"}
                 >
-                  <Grid item xs style={{maxWidth: '1000px'}}>
+                  <Grid item xs style={{ maxWidth: "1000px" }}>
                     <Grid
                       container
                       spacing={0}
@@ -43,28 +43,36 @@ export default class Footer extends React.Component {
                       <Grid item xs>
                         <Link href="/mentions-legales">
                           <Typography variant="caption" align="center">
-                            <a>{`Mentions légales`}</a>
+                            <a
+                              style={{ color: "black", opacity: 0.6 }}
+                            >{`Mentions légales`}</a>
                           </Typography>
                         </Link>
                       </Grid>
                       <Grid item xs>
                         <Link href="/contact">
                           <Typography variant="caption" align="center">
-                            <a>{`Contact`}</a>
+                            <a
+                              style={{ color: "black", opacity: 0.6 }}
+                            >{`Contact`}</a>
                           </Typography>
                         </Link>
                       </Grid>
                       <Grid item xs>
                         <Link href="/conditions-generales">
                           <Typography variant="caption" align="center">
-                            <a>{`Conditions générales`}</a>
+                            <a
+                              style={{ color: "black", opacity: 0.6 }}
+                            >{`Conditions générales`}</a>
                           </Typography>
                         </Link>
                       </Grid>
                       <Grid item xs>
                         <Link href="/blog">
                           <Typography variant="caption" align="center">
-                            <a>{`Blog`}</a>
+                            <a
+                              style={{ color: "black", opacity: 0.6 }}
+                            >{`Blog`}</a>
                           </Typography>
                         </Link>
                       </Grid>
@@ -74,7 +82,7 @@ export default class Footer extends React.Component {
                             href={"https://www.facebook.com/gougle.nc"}
                             target="_blank"
                             rel="external noopener noreferrer"
-                            style={{ color: "inherit" }}
+                            style={{ color: "black", opacity: 0.6 }}
                           >
                             {` Facebook`}
                           </a>
@@ -148,21 +156,27 @@ export default class Footer extends React.Component {
                   <Grid item xs>
                     <Link href="/mentions-legales">
                       <Typography variant="caption" align="center">
-                        <a>{`Mentions légales`}</a>
+                        <a
+                          style={{ color: "black", opacity: 0.6 }}
+                        >{`Mentions légales`}</a>
                       </Typography>
                     </Link>
                   </Grid>
                   <Grid item xs>
                     <Link href="/contact">
                       <Typography variant="caption" align="center">
-                        <a>{`Contact`}</a>
+                        <a
+                          style={{ color: "black", opacity: 0.6 }}
+                        >{`Contact`}</a>
                       </Typography>
                     </Link>
                   </Grid>
                   <Grid item xs>
                     <Link href="/conditions-generales">
                       <Typography variant="caption" align="center">
-                        <a>{`Conditions générales`}</a>
+                        <a
+                          style={{ color: "black", opacity: 0.6 }}
+                        >{`Conditions générales`}</a>
                       </Typography>
                     </Link>
                   </Grid>
@@ -179,7 +193,7 @@ export default class Footer extends React.Component {
                   <Grid item xs>
                     <Link href="/blog">
                       <Typography variant="caption" align="center">
-                        <a>{`Blog`}</a>
+                        <a style={{ color: "black", opacity: 0.6 }}>{`Blog`}</a>
                       </Typography>
                     </Link>
                   </Grid>
@@ -189,6 +203,7 @@ export default class Footer extends React.Component {
                         href={"https://www.facebook.com/gougle.nc"}
                         target="_blank"
                         rel="external noopener noreferrer"
+                        style={{ color: "black", opacity: 0.6, opacity: 0.5 }}
                       >
                         {` Facebook`}
                       </a>

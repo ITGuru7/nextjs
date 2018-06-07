@@ -26,6 +26,11 @@ import Wrapper from "../components/wrapper";
 const searchStateToUrl = searchState =>
   searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : "";
 import LandingPage from "./landingPage";
+if (process.browser) {
+  require("../static/react-instantsearch-override.css");
+  require("../static/main.css");
+  require("../static/algolia-min.css");
+}
 
 class SearchPage extends React.Component {
   constructor(props) {
@@ -45,6 +50,28 @@ class SearchPage extends React.Component {
   }
 
   onSearchStateChange = searchState => {
+    if (!searchState.page) {
+      return;
+    }
+
+    const statePage = this.state.searchState.page
+      ? this.state.searchState.page
+      : 1;
+
+    if (
+      searchState.query === this.state.searchState.query &&
+      searchState.page === statePage
+    ) {
+      return;
+    }
+
+    // if SSR, no need to sync the state to the URL
+    if (process.browser) {
+      const href = searchStateToUrl(searchState);
+      if (href !== "/?") {
+        Router.push(href, href, { shallow: true });
+      }
+    }
     this.setState({ searchState });
   };
 
@@ -52,27 +79,10 @@ class SearchPage extends React.Component {
     if (!this.state.searchState) {
       this.setState({ searchState: qs.parse(window.location.search.slice(1)) });
     }
-    if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
-      navigator.serviceWorker
-        .register("/service-worker.js")
-        .then(registration => {
-          console.log("service worker registration successful");
-        })
-        .catch(err => {
-          console.warn("service worker registration failed", err.message);
-        });
-    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (
-      nextState.homePage ||
-      this.state.searchState.query !== nextState.searchState.query
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+    return true;
   }
 
   render() {
@@ -84,15 +94,6 @@ class SearchPage extends React.Component {
       if (searchResults && !searchResults.nbHits) {
         hits = null;
       }
-      // if SSR, no need to sync the state to the URL
-      if (process.browser) {
-        const href = searchStateToUrl(searchState);
-        const as = href;
-        if (as !== "/?") {
-          Router.push(href, as, { shallow: true });
-        }
-      }
-
       return hits;
     });
 
@@ -170,12 +171,9 @@ class SearchPage extends React.Component {
                 >
                   <Link href="/enregistrer">
                     <Button
-                      color="secondary"
-                      size="small"
-                      style={{
-                        color: "white",
-                        backgroundColor: "#0E8AB0"
-                      }}
+                      color="primary"
+                      size="medium"
+                      variant="outlined"
                       onClick={() => {}}
                     >
                       se connecter
@@ -280,8 +278,8 @@ class SearchPage extends React.Component {
           </div>
           {searchBox()}
           {/*{tabs()}*/}
-          <Divider />
-          <div style={{ minHeight: "40px" }}>
+          <Divider style={{ marginTop: "8px" }} />
+          <div>
             <Stats
               className={css(aphrodite.searchResultsPaddingLeft)}
               translate={(ctxt, n, ms) => {
@@ -328,11 +326,11 @@ class SearchPage extends React.Component {
             resultsState={this.props.resultsState}
             // search state need to be maintained localy, since we are in a controlled mode
             // the searchState can come from index.js, or locally
-            searchState={
-              this.state && this.state.searchState
+            searchState={(() => {
+              return this.state && this.state.searchState
                 ? this.state.searchState
-                : this.props.searchState
-            }
+                : this.props.searchState;
+            })()}
             onSearchStateChange={this.onSearchStateChange}
           >
             <Configure hitsPerPage={10} />

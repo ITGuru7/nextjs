@@ -166,17 +166,11 @@ function ResultInfo(props) {
 }
 
 class SearchResult extends React.Component {
-  shouldComponentUpdate(nextState, nextProps) {
-    return nextState.hit.id.url !== this.props.hit.url;
-  }
+
+
 
   render() {
-    const { hit, order } = this.props;
-    let images = [];
-
-    if (hit && hit.images) {
-      images = images.concat(object.values(hit.images));
-    }
+    const { hit } = this.props;
     return (
       <Fragment>
         <Display format="tablet-desktop">
@@ -215,6 +209,7 @@ class SearchResult extends React.Component {
             style={{ backgroundColor: "white" }}
           >
             <ResultTitle hit={hit} style={{ marginBottom: "4px" }} />
+            <ResultUrl hit={hit} />
             <Grid container spacing={0}>
               <Grid item>
                 <ResultImg hit={hit} />
@@ -222,28 +217,6 @@ class SearchResult extends React.Component {
               <Grid item xs>
                 <ResultInfo hit={hit} />
               </Grid>
-            </Grid>
-            <Grid container spacing={0} style={{ marginLeft: "78px" }}>
-              {!order
-                ? images.map((image, idx) => {
-                    const uri = `https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,g_auto,c_fill,w_75,h_75/${image}`;
-                    return (
-                      <Grid
-                        item
-                        style={{
-                          marginTop: "4px",
-                          marginBottom: "4px",
-                          width: "70px",
-                          height: "70px",
-                          marginRight: "4px"
-                        }}
-                        key={idx}
-                      >
-                        <img src={uri} height={70} width={70} />
-                      </Grid>
-                    );
-                  })
-                : null}
             </Grid>
           </div>
         </Display>

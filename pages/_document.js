@@ -4,7 +4,6 @@ import JssProvider from "react-jss/lib/JssProvider";
 import flush from "styled-jsx/server";
 import getPageContext from "../src/getPageContext";
 import { StyleSheetServer } from "aphrodite";
-import criticalCssLandingPage from "../utils/criticalCssLandingPage";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -59,28 +58,64 @@ class MyDocument extends Document {
           <meta
             name="viewport"
             content={
-              "user-scalable=no, initial-scale=1, maximum-scale=1, width=device-width"
+              "user-scalable=yes, initial-scale=1, maximum-scale=2, width=device-width"
             }
           />
-          {/* PWA primary color */}
-          <meta
-            name="theme-color"
-            content={pageContext.theme.palette.primary[500]}
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/static/images/icons/apple-touch-icon.png"
           />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/static/images/icons/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/static/images/icons/favicon-16x16.png"
+          />
+          <link rel="manifest" href="/static/images/icons/site.webmanifest" />
+          <link
+            rel="mask-icon"
+            href="/static/images/icons/safari-pinned-tab.svg"
+            color="#5bbad5"
+          />
+          <link rel="shortcut icon" href="/static/images/icons/favicon.ico" />
+          <meta name="apple-mobile-web-app-title" content="Qwarx.nc" />
+          <meta name="application-name" content="Qwarx.nc" />
+          <meta name="msapplication-TileColor" content="#da532c" />
+          <meta
+            name="msapplication-config"
+            content="/static/browserconfig.xml"
+          />
+          <meta name="theme-color" content="#ffffff" />
           <meta charSet="utf-8" />
+          <link rel="manifest" href="/static/manifest.json" />
+          <meta property="og:image:height" content="161" />
+          <meta property="og:image:width" content="307" />
+          <meta property="og:title" content="Qwarx.nc" />
+          <meta
+            property="og:description"
+            content="Tout le web calédonien, rien que le web calédonien."
+          />
+          <meta property="og:url" content="https://qwarx.io" />
+          <meta
+            property="og:image"
+            content="https://res.cloudinary.com/clactacom/image/upload/v1528092749/og-image-qwarx.png"
+          />
+
+          <meta
+            name="Description"
+            content="Tout le web calédonien, rien que le web calédonien."
+          />
         </Head>
         <body>
           <Main />
           <NextScript />
-          <link rel="stylesheet" href="../static/main.css" />
-          <link
-            rel="stylesheet"
-            href="../static/react-instantsearch-override.css"
-          />
-          <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"
-          />
         </body>
       </html>
     );
