@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import SearchResult from "../searchResult";
 import { connectHits } from "react-instantsearch/connectors";
 import Grid from "@material-ui/core/Grid";
-import Display from "../../utils/display";
 import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 import aphrodite from "../../utils/aphrodite";
@@ -10,25 +9,24 @@ import object from "../../utils/object";
 import { css } from "aphrodite";
 
 class Hits extends React.Component {
-
   componentDidUpdate() {
     // console.log('new hits')
   }
 
   render() {
-    const { hits } = this.props;
+    const { hits, tablet_desktop, mobile } = this.props;
 
-    const mobile = hits => {
+    const render_mobile = hits => {
       return (
         <div
           className={"search_results"}
           style={{ backgroundColor: "#f1f1f1", height: "110%" }}
         >
-          {hits.map(hit => <SearchResult key={hit.id.url} hit={hit} />)}
+          {hits.map(hit => <SearchResult mobile key={hit.id.url} hit={hit} />)}
         </div>
       );
     };
-    const desktop = hits => {
+    const render_tablet_desktop = hits => {
       let imagesObj = {};
       let images = [];
       hits.map(hit => {
@@ -63,7 +61,7 @@ class Hits extends React.Component {
             )}
           >
             {hits.map((hit, idx) => (
-              <SearchResult key={hit.id.url} hit={hit} />
+              <SearchResult tablet_desktop key={hit.id.url} hit={hit} />
             ))}
           </Grid>
           {Object.keys(hits).length ? (
@@ -118,13 +116,7 @@ class Hits extends React.Component {
         </Grid>
       );
     };
-
-    return (
-      <Fragment>
-        <Display format="tablet-desktop">{desktop(hits)}</Display>
-        <Display format="mobile">{mobile(hits)}</Display>
-      </Fragment>
-    );
+    return <Fragment>{render_tablet_desktop ? render_tablet_desktop(hits) : render_mobile(hits)}</Fragment>;
   }
 }
 

@@ -3,8 +3,6 @@ import React, { Fragment } from "react";
 import { css } from "aphrodite";
 import Typography from "@material-ui/core/Typography";
 import aphrodite from "../utils/aphrodite";
-import Display from "../utils/display";
-import object from "../utils/object";
 import { connectHighlight } from "react-instantsearch/connectors";
 import MyImg from "./MyImg";
 
@@ -166,14 +164,11 @@ function ResultInfo(props) {
 }
 
 class SearchResult extends React.Component {
-
-
-
   render() {
-    const { hit } = this.props;
+    const { hit, tablet_desktop, mobile } = this.props;
     return (
       <Fragment>
-        <Display format="tablet-desktop">
+        {tablet_desktop ? (
           <div
             className={css(
               aphrodite.contentTop,
@@ -194,8 +189,7 @@ class SearchResult extends React.Component {
               </Grid>
             </Grid>
           </div>
-        </Display>
-        <Display format="mobile">
+        ) : (
           <div
             className={css(
               aphrodite.contentTop,
@@ -219,7 +213,7 @@ class SearchResult extends React.Component {
               </Grid>
             </Grid>
           </div>
-        </Display>
+        )}
       </Fragment>
     );
   }

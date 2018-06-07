@@ -86,8 +86,8 @@ class SearchPage extends React.Component {
   }
 
   render() {
-    const Content = connectStateResults(({ searchState, searchResults }) => {
-      let hits = <Hits />;
+    const Content = connectStateResults(({tablet_desktop, mobile, searchState, searchResults }) => {
+      let hits = <Hits tablet_desktop mobile/>;
       if (!searchState.query || !searchState.query.length) {
         hits = null;
       }
@@ -96,28 +96,6 @@ class SearchPage extends React.Component {
       }
       return hits;
     });
-
-    const SearchResults = () => {
-      return (
-        <div className={css(aphrodite.wrapperMinHeight)}>
-          <Content />
-          <Fragment>
-            <Display format="desktop">
-              <Pagination showPrevious={false} showFirst={false} />
-            </Display>
-            <Display format="mobile-tablet">
-              <Pagination
-                showFirst={false}
-                translations={{
-                  previous: "précédent",
-                  next: "suivant"
-                }}
-              />
-            </Display>
-          </Fragment>
-        </div>
-      );
-    };
 
     const tabs = () => {
       return (
@@ -134,7 +112,7 @@ class SearchPage extends React.Component {
       );
     };
 
-    const desktop = () => {
+    const tablet_desktop = () => {
       return (
         <div>
           <Grid
@@ -155,7 +133,7 @@ class SearchPage extends React.Component {
               />
             </Grid>
             <Grid item xs>
-              <SearchBox />
+              <SearchBox tablet_desktop />
             </Grid>
             <Grid item>
               <Grid container direction="row" justify="flex-end">
@@ -209,7 +187,7 @@ class SearchPage extends React.Component {
             />
           </div>
           <div className={css(aphrodite.wrapperMinHeight)}>
-            <Content />
+            <Content tablet_desktop/>
             <Pagination showPrevious={false} showFirst={false} />
           </div>
           <Footer />
@@ -275,7 +253,7 @@ class SearchPage extends React.Component {
               <Grid item />
             </Grid>
           </div>
-          <SearchBox />
+          <SearchBox mobile />
           {/*{tabs()}*/}
           <Divider style={{ marginTop: "8px" }} />
           <div>
@@ -306,7 +284,7 @@ class SearchPage extends React.Component {
             />
           </div>
           <div className={css(aphrodite.wrapperMinHeight)}>
-            <Content />
+            <Content mobile/>
             <Pagination
               showFirst={false}
               translations={{
@@ -334,11 +312,11 @@ class SearchPage extends React.Component {
             resultsState={this.props.resultsState}
             // search state need to be maintained localy, since we are in a controlled mode
             // the searchState can come from index.js, or locally
-            searchState={(() => {
-              return this.state && this.state.searchState
+            searchState={
+              this.state && this.state.searchState
                 ? this.state.searchState
-                : this.props.searchState;
-            })()}
+                : this.props.searchState
+            }
             onSearchStateChange={this.onSearchStateChange}
           >
             <Configure hitsPerPage={10} />
@@ -346,7 +324,7 @@ class SearchPage extends React.Component {
               {mobile()}
             </Display>
             <Display format="tablet-desktop" implementation="css">
-              {desktop()}
+              {tablet_desktop()}
             </Display>
           </InstantSearch>
         )}
