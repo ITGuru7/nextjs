@@ -42,6 +42,15 @@ class SearchPage extends React.Component {
     };
     this.goBackToHomePage = this.goBackToHomePage.bind(this);
     this.onSearchStateChange = this.onSearchStateChange.bind(this);
+    this.updateWidth = this.updateWidth.bind(this);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateWidth);
+  }
+
+  updateWidth() {
+    this.setState({ width: window.innerWidth });
   }
 
   goBackToHomePage() {
@@ -50,7 +59,7 @@ class SearchPage extends React.Component {
   }
 
   onSearchStateChange = searchState => {
-    if (!searchState.page) {
+    if (!searchState.page || !searchState.query) {
       return;
     }
 
@@ -76,22 +85,26 @@ class SearchPage extends React.Component {
   };
 
   componentDidMount() {
+    this.updateWidth();
+    window.addEventListener("resize", this.updateWidth);
     if (!this.state.searchState) {
       this.setState({ searchState: qs.parse(window.location.search.slice(1)) });
     }
   }
 
   render() {
-    const Content = connectStateResults(({tablet_desktop, mobile, searchState, searchResults }) => {
-      let hits = <Hits tablet_desktop={tablet_desktop} mobile={mobile}/>;
-      if (!searchState.query || !searchState.query.length) {
-        hits = null;
+    const Content = connectStateResults(
+      ({ tablet_desktop, mobile, searchState, searchResults }) => {
+        let hits = <Hits tablet_desktop={tablet_desktop} mobile={mobile} />;
+        if (!searchState.query || !searchState.query.length) {
+          hits = null;
+        }
+        if (searchResults && !searchResults.nbHits) {
+          hits = null;
+        }
+        return hits;
       }
-      if (searchResults && !searchResults.nbHits) {
-        hits = null;
-      }
-      return hits;
-    });
+    );
 
     const tabs = () => {
       return (
@@ -183,7 +196,7 @@ class SearchPage extends React.Component {
             />
           </div>
           <div className={css(aphrodite.wrapperMinHeight)}>
-            <Content tablet_desktop/>
+            <Content tablet_desktop />
             <Pagination showPrevious={false} showFirst={false} />
           </div>
           <Footer />
@@ -193,7 +206,6 @@ class SearchPage extends React.Component {
 
     const mobile = () => {
       const { open } = this.props;
-
       const handleOpenDialog = () => {
         this.setState({ openDialog: true });
       };
@@ -280,7 +292,7 @@ class SearchPage extends React.Component {
             />
           </div>
           <div className={css(aphrodite.wrapperMinHeight)}>
-            <Content mobile/>
+            <Content mobile />
             <Pagination
               showFirst={false}
               translations={{
@@ -293,7 +305,6 @@ class SearchPage extends React.Component {
         </Fragment>
       );
     };
-
     return (
       <Wrapper>
         {this.state.homePage ? (
@@ -316,12 +327,25 @@ class SearchPage extends React.Component {
             onSearchStateChange={this.onSearchStateChange}
           >
             <Configure hitsPerPage={10} />
-            <Display format="mobile" implementation="css">
-              {mobile()}
-            </Display>
-            <Display format="tablet-desktop" implementation="css">
-              {tablet_desktop()}
-            </Display>
+            {process.browser ? (
+              <Fragment>
+                <Display format="mobile" css>
+                  {this.state.width < 960 ? mobile() : null}
+                </Display>
+                <Display format="tablet-desktop" css>
+                  {this.state.width >= 960 ? tablet_desktop() : null}
+                </Display>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <Display format="mobile" css>
+                  {mobile()}
+                </Display>
+                <Display format="tablet-desktop" css>
+                  {tablet_desktop()}
+                </Display>
+              </Fragment>
+            )}
           </InstantSearch>
         )}
       </Wrapper>

@@ -25,45 +25,50 @@ class LandingPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      width: "0",
       input: null
     };
+    this.updateWidth = this.updateWidth.bind(this);
+
+  }
+
+  updateWidth() {
+    this.setState({ width: window.innerWidth });
+  }
+
+  componentDidMount() {
+    this.updateWidth();
+    window.addEventListener("resize", this.updateWidth);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateWidth);
   }
 
   render() {
     const { open } = this.props;
-    const background = () => {
+    const background = tablet_desktop => {
       return (
         <Fragment>
-          <Display format={"mobile"}>
-            <div
-              style={{
-                backgroundImage: `url('/static/images/lp_background_300.png')`,
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                height: "46.03px"
-              }}
-            />
-          </Display>
-          <Display format={"tablet"}>
-            <div
-              style={{
-                backgroundImage: `url('/static/images/lp_background_800.png')`,
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                height: "122.47px"
-              }}
-            />
-          </Display>
-          <Display format={"desktop"}>
-            <div
-              style={{
-                backgroundImage: `url('/static/images/lp_background_960.png')`,
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                height: "138.1px"
-              }}
-            />
-          </Display>
+          {tablet_desktop ? (
+              <div
+                style={{
+                  backgroundImage: `url('/static/images/lp_background_800.png')`,
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  height: "122.47px"
+                }}
+              />
+          ) : (
+              <div
+                style={{
+                  backgroundImage: `url('/static/images/lp_background_300.png')`,
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  height: "46.03px"
+                }}
+              />
+          )}
         </Fragment>
       );
     };
@@ -215,7 +220,7 @@ class LandingPage extends React.Component {
                       <Link href="/enregistrer">
                         <Button
                           color="primary"
-                          size="small"
+                          size="medium"
                           variant="outlined"
                           onClick={() => {}}
                         >
@@ -300,7 +305,7 @@ class LandingPage extends React.Component {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item>{background()}</Grid>
+            <Grid item>{background(true)}</Grid>
             <Grid item>
               <Footer landingPage />
             </Grid>
@@ -311,8 +316,8 @@ class LandingPage extends React.Component {
 
     return (
       <Wrapper>
-        <Display format="mobile">{mobile()}</Display>
-        <Display format="tablet-desktop">{desktop()}</Display>
+        <Display format="mobile" css>{mobile()}</Display>
+        <Display format="tablet-desktop" css>{desktop()}</Display>
       </Wrapper>
     );
   }

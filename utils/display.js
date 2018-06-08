@@ -1,8 +1,8 @@
-import Hidden from '@material-ui/core/Hidden';
+import Hidden from "@material-ui/core/Hidden";
 
 export default class Display extends React.PureComponent {
   render() {
-    const { children, format } = this.props;
+    const { children, format, css } = this.props;
     let only;
     switch (format) {
       case "mobile":
@@ -23,6 +23,10 @@ export default class Display extends React.PureComponent {
       default:
         only = [];
     }
-    return <Hidden implementation={'css'} only={only}>{children}</Hidden>;
+    return (
+      <Hidden implementation={css ? "css" : "js"} only={only}>
+        {children}
+      </Hidden>
+    );
   }
 }
