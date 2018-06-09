@@ -26,6 +26,7 @@ import Wrapper from "../components/wrapper";
 const searchStateToUrl = searchState =>
   searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : "";
 import LandingPage from "./landingPage";
+import debounce from "lodash/debounce";
 if (process.browser) {
   require("../static/react-instantsearch-override.css");
   require("../static/main.css");
@@ -50,6 +51,7 @@ class SearchPage extends React.Component {
   }
 
   updateWidth() {
+    console.log('update width');
     this.setState({ width: window.innerWidth });
   }
 
@@ -86,7 +88,7 @@ class SearchPage extends React.Component {
 
   componentDidMount() {
     this.updateWidth();
-    window.addEventListener("resize", this.updateWidth);
+    window.addEventListener("resize", debounce(this.updateWidth, 150));
     if (!this.state.searchState) {
       this.setState({ searchState: qs.parse(window.location.search.slice(1)) });
     }
@@ -175,7 +177,7 @@ class SearchPage extends React.Component {
                 let res;
                 let mili;
                 if (!n) {
-                  res = `aucun résultats`;
+                  res = `aucun résultat`;
                 } else if (n === 1) {
                   res = `1 résultat`;
                 } else {
