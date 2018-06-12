@@ -22,29 +22,29 @@ export default StyleSheet.create({
   contentTop: {
     // < sm
     "@media (max-width: 600px)": {
-      paddingTop: "4px"
+      paddingTop: "6px"
     },
     //sm-md
     "@media (min-width: 601px) and (max-width: 960px)": {
-      paddingTop: "8px"
+      paddingTop: "12px"
     },
     //md+
     "@media (min-width: 961px)": {
-      paddingTop: "8px"
+      paddingTop: "12px"
     }
   },
   contentBottom: {
     // < sm
     "@media (max-width: 600px)": {
-      paddingBottom: "4px"
+      paddingBottom: "6px"
     },
     //sm-md
     "@media (min-width: 601px) and (max-width: 960px)": {
-      paddingBottom: "8px"
+      paddingBottom: "12px"
     },
     //md+
     "@media (min-width: 961px)": {
-      paddingBottom: "8px"
+      paddingBottom: "12px"
     }
   },
   contentLeft: {

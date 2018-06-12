@@ -3,7 +3,7 @@
   "short_name": "Qwarx",
   "theme_color": "#0e8ab0",
   "background_color": "#ffffff",
-  "display": "standalone",
+  "display": "fullscreen",
   "orientation": "portrait",
   "Scope": "/",
   "start_url": "/",

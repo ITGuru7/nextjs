@@ -18,7 +18,6 @@ app.prepare().then(() => {
     express.static(join(__dirname, ".next", "/service-worker.js"))
   );
   server.get("*", (req, res) => handle(req, res));
-
   server.listen(port, err => {
     if (err) throw err;
     console.log(`> Ready`);

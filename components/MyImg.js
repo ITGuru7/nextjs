@@ -34,15 +34,11 @@ export default class ResultImg extends React.Component {
   }
 
   render() {
-    const { error, loaded } = this.state;
+    const { error } = this.state;
     const { imgStyle, cloudinaryPrefix, imgUrl, title, href } = this.props;
     const display = imgUrl && !error;
     return (
-      <div
-        style={{
-          transition: "filter 0.4s",
-          filter: `blur(${loaded ? "0" : "10"}px)`
-        }}
+      <React.Fragment
       >
         {display ? (
           <a rel="nofollow" href={href}>
@@ -59,7 +55,7 @@ export default class ResultImg extends React.Component {
             />
           </a>
         ) : null}
-      </div>
+      </React.Fragment>
     );
   }
 }

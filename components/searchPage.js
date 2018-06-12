@@ -27,6 +27,7 @@ const searchStateToUrl = searchState =>
   searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : "";
 import LandingPage from "./landingPage";
 import debounce from "lodash/debounce";
+
 if (process.browser) {
   require("../static/react-instantsearch-override.css");
   require("../static/main.css");
@@ -51,7 +52,6 @@ class SearchPage extends React.Component {
   }
 
   updateWidth() {
-    console.log('update width');
     this.setState({ width: window.innerWidth });
   }
 
@@ -170,7 +170,7 @@ class SearchPage extends React.Component {
           </Grid>
           <Divider style={{ marginTop: "5px" }} />
           {/*{tabs()}*/}
-          <div style={{ minHeight: "40px" }}>
+          <div>
             <Stats
               className={css(aphrodite.searchResultsPaddingLeft)}
               translate={(ctxt, n, ms) => {
@@ -329,25 +329,19 @@ class SearchPage extends React.Component {
             onSearchStateChange={this.onSearchStateChange}
           >
             <Configure hitsPerPage={10} />
-            {process.browser ? (
-              <Fragment>
-                <Display format="mobile" css>
-                  {this.state.width < 960 ? mobile() : null}
-                </Display>
-                <Display format="tablet-desktop" css>
-                  {this.state.width >= 960 ? tablet_desktop() : null}
-                </Display>
-              </Fragment>
-            ) : (
-              <Fragment>
-                <Display format="mobile" css>
-                  {mobile()}
-                </Display>
-                <Display format="tablet-desktop" css>
-                  {tablet_desktop()}
-                </Display>
-              </Fragment>
-            )}
+
+            <Fragment>
+              <Display format="mobile" css>
+                {process.browser
+                  ? this.state.width < 960 ? mobile() : null
+                  : mobile()}
+              </Display>
+              <Display format="tablet-desktop" css>
+                {process.browser
+                  ? this.state.width >= 960 ? tablet_desktop() : null
+                  : tablet_desktop()}
+              </Display>
+            </Fragment>
           </InstantSearch>
         )}
       </Wrapper>

@@ -5,29 +5,28 @@ import Typography from "@material-ui/core/Typography";
 import aphrodite from "../utils/aphrodite";
 import { connectHighlight } from "react-instantsearch/connectors";
 import MyImg from "./MyImg";
-
 function ResultImg(props) {
   return (
-    <MyImg
-      imgStyle={{
-        width: 70,
-        height: 70,
-        borderStyle: "solid",
-        borderWidth: "1px",
-        borderColor: "#EEEEEE",
-        marginRight: "8px"
-      }}
-      cloudinaryPrefix={`https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70`}
-      imgUrl={props.hit.meta.image}
-      title={props.hit.id.title}
-      href={props.hit.objectID}
-    />
+      <MyImg
+        imgStyle={{
+          width: 70,
+          height: 70,
+          borderStyle: "solid",
+          borderWidth: "1px",
+          borderColor: "#EEEEEE",
+          marginRight: "8px"
+        }}
+        cloudinaryPrefix={`https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70/d_placeholder_1.png`}
+        imgUrl={props.hit.meta.image}
+        title={props.hit.id.title}
+        href={props.hit.objectID}
+      />
   );
 }
 
 function ResultTitle(props) {
   return (
-    <a href={props.hit.objectID} rel="nofollow" target="_blank">
+    <a href={props.hit.objectID} rel="nofollow">
       <TypographyHighlight
         variant="subheading"
         color="secondary"
