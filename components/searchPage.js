@@ -10,16 +10,10 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import aphrodite from "../utils/aphrodite";
 import Grid from "@material-ui/core/Grid";
-import MenuIcon from "@material-ui/icons/Menu";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
 import Link from "next/link";
 import Router from "next/router";
 import QwarxLogo from "./qwarxLogo";
 import Display from "../utils/display";
-import Button from "@material-ui/core/Button";
 import { connectStateResults } from "react-instantsearch/connectors";
 import qs from "qs";
 import Wrapper from "../components/wrapper";
@@ -146,27 +140,6 @@ class SearchPage extends React.Component {
             <Grid item xs>
               <SearchBox tablet_desktop />
             </Grid>
-            <Grid item>
-              <Grid container direction="row" justify="flex-end">
-                <Grid
-                  item
-                  style={{
-                    marginRight: "10px"
-                  }}
-                >
-                  <Link href="/enregistrer">
-                    <Button
-                      color="primary"
-                      size="medium"
-                      variant="outlined"
-                      onClick={() => {}}
-                    >
-                      se connecter
-                    </Button>
-                  </Link>
-                </Grid>
-              </Grid>
-            </Grid>
           </Grid>
           <Divider style={{ marginTop: "5px" }} />
           {/*{tabs()}*/}
@@ -232,26 +205,6 @@ class SearchPage extends React.Component {
               spacing={0}
               className={css(aphrodite.contentBottom)}
             >
-              <Grid item>
-                <MenuIcon
-                  className={css(aphrodite.topScreenPadding)}
-                  onClick={this.handleRightOpen}
-                />
-                <Drawer
-                  anchor="right"
-                  open={open}
-                  onClose={this.handleRightClose}
-                  onClick={this.handleRightClose}
-                >
-                  <List disablePadding>
-                    <Link href={"/enregistrer"}>
-                      <ListItem button>
-                        <ListItemText primary="se connecter" />
-                      </ListItem>
-                    </Link>
-                  </List>
-                </Drawer>
-              </Grid>
               <Grid item>
                 <Link href={"/"}>
                   <QwarxLogo

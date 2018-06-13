@@ -43,6 +43,15 @@ class MyDocument extends Document {
     return (
       <html lang="en" dir="ltr">
         <Head>
+          {/*<link rel="stylesheet" href="../static/main.css" />*/}
+          {/*<link*/}
+          {/*rel="stylesheet"*/}
+          {/*href="../static/react-instantsearch-override.css"*/}
+          {/*/>*/}
+          {/*<link*/}
+          {/*rel="stylesheet"*/}
+          {/*href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"*/}
+          {/*/>*/}
           <script
             src="https://cdn.polyfill.io/v2/polyfill.min.js"
             async
@@ -78,7 +87,6 @@ class MyDocument extends Document {
             sizes="16x16"
             href="/static/images/icons/favicon-16x16.png"
           />
-          {/*<link rel="manifest" href="/static/images/icons/site.webmanifest" />*/}
           <link
             rel="mask-icon"
             href="/static/images/icons/safari-pinned-tab.svg"
@@ -95,11 +103,9 @@ class MyDocument extends Document {
           <meta name="theme-color" content="#ffffff" />
           <meta charSet="utf-8" />
           <link rel="manifest" href="/static/manifest.json" />
-          <meta property="og:image:height" content="161" />
-          <meta property="og:image:width" content="307" />
           <meta property="og:title" content="Qwarx.nc" />
           <meta
-            property="og:description"
+            property="Qwarx est un moteur de recherche exclusivement dedié à la Nouvelle Calédonie"
             content="Tout le web calédonien, rien que le web calédonien."
           />
           <meta property="og:url" content="https://qwarx.io" />
@@ -110,7 +116,7 @@ class MyDocument extends Document {
 
           <meta
             name="Description"
-            content="Tout le web calédonien, rien que le web calédonien."
+            content="Qwarx est un moteur de recherche exclusivement dedié à la Nouvelle Calédonie"
           />
         </Head>
         <body>

@@ -2,19 +2,15 @@ import Grid from "@material-ui/core/Grid";
 import Display from "../utils/display";
 import SearchPage from "../components/searchPage";
 import Wrapper from "../components/wrapper";
-import Button from "@material-ui/core/Button";
 import Link from "next/link";
 import aphrodite from "../utils/aphrodite";
 import { css } from "aphrodite";
 import QwarxLogo from "./qwarxLogo";
-import Drawer from "@material-ui/core/Drawer";
-import MenuIcon from "@material-ui/icons/Menu";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import { Fragment } from "react";
 import Footer from "./footer";
 import Typography from "@material-ui/core/Typography";
+import { App, findResultsState } from "./index";
+import qs from "qs";
+
 if (process.browser) {
   require("../static/react-instantsearch-override.css");
   require("../static/main.css");
@@ -29,7 +25,6 @@ class LandingPage extends React.Component {
       input: null
     };
     this.updateWidth = this.updateWidth.bind(this);
-
   }
 
   updateWidth() {
@@ -39,6 +34,10 @@ class LandingPage extends React.Component {
   componentDidMount() {
     this.updateWidth();
     window.addEventListener("resize", this.updateWidth);
+    const searchState = { "/": "" };
+    findResultsState(App, { searchState }).then(resultsState => {
+      this.setState({ nbHits: resultsState.content.nbHits });
+    });
   }
 
   componentWillUnmount() {
@@ -46,39 +45,14 @@ class LandingPage extends React.Component {
   }
 
   render() {
-    const { open } = this.props;
-    const background = tablet_desktop => {
-      return (
-        <Fragment>
-          {tablet_desktop ? (
-              <div
-                style={{
-                  backgroundImage: `url('/static/images/lp_background_800.png')`,
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                  height: "122.47px"
-                }}
-              />
-          ) : (
-              <div
-                style={{
-                  backgroundImage: `url('/static/images/lp_background_300.png')`,
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                  height: "46.03px"
-                }}
-              />
-          )}
-        </Fragment>
-      );
-    };
+    const { nbHits, input } = this.state;
 
     const mobile = () => {
-      if (this.state.input) {
+      if (input) {
         return (
           <SearchPage
             searchState={{
-              query: this.state.input,
+              query: input,
               page: 1,
               hitsPerPage: 10
             }}
@@ -92,29 +66,8 @@ class LandingPage extends React.Component {
             spacing={0}
             style={{ marginTop: "10px" }}
           >
-            <Grid item style={{ minHeight: "calc(100vh - 160px)" }}>
+            <Grid item style={{ minHeight: "calc(100vh - 91px)" }}>
               <Grid container direction="column" spacing={0}>
-                <Grid item>
-                  <MenuIcon
-                    className={css(aphrodite.topScreenPadding)}
-                    onClick={this.handleRightOpen}
-                    style={{ marginLeft: "16px", color: "#757575" }}
-                  />
-                  <Drawer
-                    anchor="right"
-                    open={open}
-                    onClose={this.handleRightClose}
-                    onClick={this.handleRightClose}
-                  >
-                    <List disablePadding>
-                      <Link href={"/enregistrer"}>
-                        <ListItem button>
-                          <ListItemText primary="se connecter" />
-                        </ListItem>
-                      </Link>
-                    </List>
-                  </Drawer>
-                </Grid>
                 <Grid item style={{ marginTop: "50px", marginBottom: "20px" }}>
                   <Grid container justify={"center"} spacing={0}>
                     <Grid item>
@@ -172,14 +125,50 @@ class LandingPage extends React.Component {
                     </Grid>
                   </Grid>
                 </Grid>
-                <Grid item style={{ marginTop: "100px" }}>
-                  <Typography component="h1" variant="headline" align="center">
-                    {`Tout le web calédonien`}
+                <Grid item style={{ width: "100%" }}>
+                  <Typography
+                    component="h1"
+                    variant="caption"
+                    color="secondary"
+                    align="right"
+                    style={{
+                      marginTop: "5px",
+                      marginLeft: "16px",
+                      marginRight: "16px",
+                      opacity: nbHits ? "1" : "0"
+                    }}
+                  >
+                    {`Déjà ${nbHits} pages référencées !`}
                   </Typography>
+
+                  <Grid
+                    container
+                    justify="center"
+                    alignItems="center"
+                    spacing={0}
+                    style={{ marginTop: "60px" }}
+                  >
+                    <Grid item>
+                      <img
+                        src={`/static/images/qwarx-man/landing_page_small.png`}
+                        useMap="#image-map"
+                      />
+                      <map name="image-map">
+                        <area
+                          target="_blank"
+                          alt="infos"
+                          title="infos"
+                          href="/infos"
+                          coords="240,93,300,81"
+                          shape="rect"
+                        />
+                      </map>
+                    </Grid>
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item>{background()}</Grid>
+
             <Grid item>
               <Footer landingPage />
             </Grid>
@@ -189,11 +178,11 @@ class LandingPage extends React.Component {
     };
 
     const desktop = () => {
-      if (this.state.input) {
+      if (input) {
         return (
           <SearchPage
             searchState={{
-              query: this.state.input,
+              query: input,
               page: 1,
               hitsPerPage: 10
             }}
@@ -207,29 +196,8 @@ class LandingPage extends React.Component {
             spacing={0}
             style={{ marginTop: "10px" }}
           >
-            <Grid item style={{ minHeight: "calc(100vh - 224px)" }}>
+            <Grid item style={{ minHeight: "calc(100vh - 87px)" }}>
               <Grid container direction="column" spacing={0}>
-                <Grid item>
-                  <Grid container direction="row" justify="flex-end">
-                    <Grid
-                      item
-                      style={{
-                        marginRight: "10px"
-                      }}
-                    >
-                      <Link href="/enregistrer">
-                        <Button
-                          color="primary"
-                          size="medium"
-                          variant="outlined"
-                          onClick={() => {}}
-                        >
-                          se connecter
-                        </Button>
-                      </Link>
-                    </Grid>
-                  </Grid>
-                </Grid>
                 <Grid item>
                   <Grid
                     container
@@ -237,7 +205,7 @@ class LandingPage extends React.Component {
                     alignItems="center"
                     justify={"center"}
                     spacing={0}
-                    style={{ marginTop: "150px" }}
+                    style={{ marginTop: "100px" }}
                   >
                     <Grid item style={{ marginBottom: "20px" }}>
                       <QwarxLogo cn={css(aphrodite.gougleLogoLandingPage)} />
@@ -292,20 +260,50 @@ class LandingPage extends React.Component {
                         </Grid>
                       </Grid>
                     </Grid>
-                    <Grid item style={{ marginTop: "150px" }}>
+                    <Grid item style={{ width: "550px" }}>
                       <Typography
                         component="h1"
-                        variant="display1"
-                        align="center"
+                        variant="body1"
+                        color="secondary"
+                        align="right"
+                        style={{
+                          marginTop: "5px",
+                          opacity: nbHits ? "1" : "0"
+                        }}
                       >
-                        {`Tout le web calédonien`}
+                        {`Déjà ${nbHits} pages référencées !`}
                       </Typography>
+
+                      <Grid
+                        container
+                        justify="center"
+                        alignItems="center"
+                        spacing={0}
+                        style={{ marginTop: "130px" }}
+                      >
+                        <Grid item>
+                          <img
+                            src={`/static/images/qwarx-man/landing_page.png`}
+                            useMap="#image-map"
+                          />
+                          <map name="image-map">
+                            <area
+                              target="_blank"
+                              alt="infos"
+                              title="infos"
+                              href="/infos"
+                              coords="388,149,482,130"
+                              shape="rect"
+                            />
+                          </map>
+                        </Grid>
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item>{background(true)}</Grid>
+
             <Grid item>
               <Footer landingPage />
             </Grid>
@@ -316,8 +314,12 @@ class LandingPage extends React.Component {
 
     return (
       <Wrapper>
-        <Display format="mobile" css>{mobile()}</Display>
-        <Display format="tablet-desktop" css>{desktop()}</Display>
+        <Display format="mobile" css>
+          {mobile()}
+        </Display>
+        <Display format="tablet-desktop" css>
+          {desktop()}
+        </Display>
       </Wrapper>
     );
   }

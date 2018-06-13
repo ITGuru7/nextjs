@@ -126,7 +126,7 @@ const TypographyHighlight = connectHighlight(
         style={{
           display: info ? "unset" : "inherit",
           fontWeight: variant === "subheading" ? "500" : "inherit",
-          color: url ? "#13CCBE" : "inherit"
+          color: url ? "grey" : "inherit"
         }}
       >
         {highlightedHits}
