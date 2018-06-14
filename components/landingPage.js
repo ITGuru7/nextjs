@@ -150,8 +150,10 @@ class LandingPage extends React.Component {
                   >
                     <Grid item>
                       <img
-                        src={`/static/images/qwarx-man/landing_page_small.png`}
+                        src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,dpr_3.0/qwarx_landing_page.png`}
                         useMap="#image-map"
+                        height={94}
+                        width={300}
                       />
                       <map name="image-map">
                         <area
@@ -283,8 +285,10 @@ class LandingPage extends React.Component {
                       >
                         <Grid item>
                           <img
-                            src={`/static/images/qwarx-man/landing_page.png`}
+                            src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,dpr_3.0/qwarx_landing_page.png`}
                             useMap="#image-map"
+                            height={150}
+                            width={483}
                           />
                           <map name="image-map">
                             <area
