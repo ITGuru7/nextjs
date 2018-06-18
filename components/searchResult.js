@@ -15,7 +15,9 @@ function ResultImg(props) {
               borderStyle: "solid",
               borderWidth: "1px",
               borderColor: "#EEEEEE",
-              marginRight: "8px"
+              marginRight: "8px",
+              width: '70px',
+              height: '70px'
             }}
             src={`https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_1.0/d_qwarx-no-image.png/${
               props.hit.meta.image
@@ -27,7 +29,7 @@ function ResultImg(props) {
             https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_2.0/d_qwarx-no-image.png/${
               props.hit.meta.image
             } 2x,
-            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_2.0/d_qwarx-no-image.png/${
+            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_3.0/d_qwarx-no-image.png/${
               props.hit.meta.image
             } 3x,
             `}

@@ -2,14 +2,9 @@ import Grid from "@material-ui/core/Grid";
 import Display from "../utils/display";
 import SearchPage from "../components/searchPage";
 import Wrapper from "../components/wrapper";
-import Link from "next/link";
-import aphrodite from "../utils/aphrodite";
-import { css } from "aphrodite";
-import QwarxLogo from "./qwarxLogo";
 import Footer from "./footer";
 import Typography from "@material-ui/core/Typography";
 import { App, findResultsState } from "./index";
-import qs from "qs";
 import FontFaceObserver from "fontfaceobserver";
 
 const Roboto300 = new FontFaceObserver('Roboto', {

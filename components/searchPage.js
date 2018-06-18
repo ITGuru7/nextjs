@@ -12,7 +12,6 @@ import aphrodite from "../utils/aphrodite";
 import Grid from "@material-ui/core/Grid";
 import Link from "next/link";
 import Router from "next/router";
-import QwarxLogo from "./qwarxLogo";
 import Display from "../utils/display";
 import { connectStateResults } from "react-instantsearch/connectors";
 import qs from "qs";
@@ -22,6 +21,7 @@ const searchStateToUrl = searchState =>
 import LandingPage from "./landingPage";
 import debounce from "lodash/debounce";
 import MobileTextLogo from "./mobileTextLogo";
+import Typography from "@material-ui/core/Typography";
 
 if (process.browser) {
   require("../static/react-instantsearch-override.css");
@@ -139,14 +139,12 @@ class SearchPage extends React.Component {
                 alt={`qwarx logo`}
                 onClick={e => {
                   e.preventDefault();
-                  this.props.goBackToHomePage
-                    ? this.props.goBackToHomePage()
-                    : null;
+                  this.goBackToHomePage ? this.goBackToHomePage() : null;
                 }}
                 style={{
                   marginTop: "3px",
                   marginBottom: "3px",
-                  cursor: this.props.goBackToHomePage ? "pointer" : "unset",
+                  cursor: this.goBackToHomePage ? "pointer" : "unset",
                   marginLeft: "5px",
                   marginRight: "5px"
                 }}
@@ -159,31 +157,33 @@ class SearchPage extends React.Component {
           <Divider style={{ marginTop: "5px" }} />
           {/*{tabs()}*/}
           <div>
-            <Stats
-              className={css(aphrodite.searchResultsPaddingLeft)}
-              translate={(ctxt, n, ms) => {
-                let res;
-                let mili;
-                if (!n) {
-                  res = `aucun résultat`;
-                } else if (n === 1) {
-                  res = `1 résultat`;
-                } else {
-                  res = `${n.toLocaleString()} résultats`;
-                }
-                if (!n) {
-                  mili = ``;
-                } else if (ms === 1) {
-                  mili = ` (0.01 secondes)`;
-                } else if (ms < 10) {
-                  mili = ` (0.0${ms.toLocaleString()} secondes)`;
-                } else {
-                  mili = ` (0.${ms.toLocaleString()} secondes)`;
-                }
+            <Typography component={"span"} variant={"caption"}>
+              <Stats
+                className={css(aphrodite.searchResultsPaddingLeft)}
+                translate={(ctxt, n, ms) => {
+                  let res;
+                  let mili;
+                  if (!n) {
+                    res = `aucun résultat`;
+                  } else if (n === 1) {
+                    res = `1 résultat`;
+                  } else {
+                    res = `${n.toLocaleString()} résultats`;
+                  }
+                  if (!n) {
+                    mili = ``;
+                  } else if (ms === 1) {
+                    mili = ` (0.01 secondes)`;
+                  } else if (ms < 10) {
+                    mili = ` (0.0${ms.toLocaleString()} secondes)`;
+                  } else {
+                    mili = ` (0.${ms.toLocaleString()} secondes)`;
+                  }
 
-                return `${res}${mili}`;
-              }}
-            />
+                  return `${res}${mili}`;
+                }}
+              />
+            </Typography>
           </div>
           <div className={css(aphrodite.wrapperMinHeight)}>
             <Content tablet_desktop />
@@ -232,14 +232,12 @@ class SearchPage extends React.Component {
                     alt={`qwarx logo`}
                     onClick={e => {
                       e.preventDefault();
-                      this.props.goBackToHomePage
-                        ? this.props.goBackToHomePage()
-                        : null;
+                      this.goBackToHomePage ? this.goBackToHomePage() : null;
                     }}
                     style={{
                       marginTop: "3px",
                       marginBottom: "3px",
-                      cursor: this.props.goBackToHomePage ? "pointer" : "unset"
+                      cursor: this.goBackToHomePage ? "pointer" : "unset"
                     }}
                   />
                 </Link>
@@ -253,31 +251,33 @@ class SearchPage extends React.Component {
           {/*{tabs()}*/}
           <Divider style={{ marginTop: "8px" }} />
           <div>
-            <Stats
-              className={css(aphrodite.searchResultsPaddingLeft)}
-              translate={(ctxt, n, ms) => {
-                let res;
-                let mili;
-                if (!n) {
-                  res = `aucun résultats`;
-                } else if (n === 1) {
-                  res = `1 résultat`;
-                } else {
-                  res = `${n.toLocaleString()} résultats`;
-                }
-                if (!n) {
-                  mili = ``;
-                } else if (ms === 1) {
-                  mili = ` (0.01 secondes)`;
-                } else if (ms < 10) {
-                  mili = ` (0.0${ms.toLocaleString()} secondes)`;
-                } else {
-                  mili = ` (0.${ms.toLocaleString()} secondes)`;
-                }
+            <Typography component={"span"} variant={"caption"}>
+              <Stats
+                className={css(aphrodite.searchResultsPaddingLeft)}
+                translate={(ctxt, n, ms) => {
+                  let res;
+                  let mili;
+                  if (!n) {
+                    res = `aucun résultats`;
+                  } else if (n === 1) {
+                    res = `1 résultat`;
+                  } else {
+                    res = `${n.toLocaleString()} résultats`;
+                  }
+                  if (!n) {
+                    mili = ``;
+                  } else if (ms === 1) {
+                    mili = ` (0.01 secondes)`;
+                  } else if (ms < 10) {
+                    mili = ` (0.0${ms.toLocaleString()} secondes)`;
+                  } else {
+                    mili = ` (0.${ms.toLocaleString()} secondes)`;
+                  }
 
-                return `${res}${mili}`;
-              }}
-            />
+                  return `${res}${mili}`;
+                }}
+              />
+            </Typography>
           </div>
           <div className={css(aphrodite.wrapperMinHeight)}>
             <Content mobile />
