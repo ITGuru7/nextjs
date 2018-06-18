@@ -56,7 +56,7 @@ class Index extends React.Component {
             <Head>
               <style>${criticalCssLandingPage}</style>
             </Head>
-            <LandingPage/>
+            <LandingPage />
           </Fragment>
         )}
       </Fragment>

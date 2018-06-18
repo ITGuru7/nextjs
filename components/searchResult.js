@@ -4,23 +4,39 @@ import { css } from "aphrodite";
 import Typography from "@material-ui/core/Typography";
 import aphrodite from "../utils/aphrodite";
 import { connectHighlight } from "react-instantsearch/connectors";
-import MyImg from "./MyImg";
+
 function ResultImg(props) {
   return (
-      <MyImg
-        imgStyle={{
-          width: 70,
-          height: 70,
-          borderStyle: "solid",
-          borderWidth: "1px",
-          borderColor: "#EEEEEE",
-          marginRight: "8px"
-        }}
-        cloudinaryPrefix={`https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70/d_placeholder_1.png`}
-        imgUrl={props.hit.meta.image}
-        title={props.hit.id.title}
-        href={props.hit.objectID}
-      />
+    <Fragment>
+      {props.hit.meta.image ? (
+        <a rel="nofollow" href={props.hit.objectID}>
+          <img
+            style={{
+              borderStyle: "solid",
+              borderWidth: "1px",
+              borderColor: "#EEEEEE",
+              marginRight: "8px"
+            }}
+            src={`https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_1.0/d_qwarx-no-image.png/${
+              props.hit.meta.image
+            }`}
+            srcSet={`
+            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_1.0/d_qwarx-no-image.png/${
+              props.hit.meta.image
+            },
+            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_2.0/d_qwarx-no-image.png/${
+              props.hit.meta.image
+            } 2x,
+            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_2.0/d_qwarx-no-image.png/${
+              props.hit.meta.image
+            } 3x,
+            `}
+            alt={props.hit.id.title}
+            id={props.hit.objectID}
+          />
+        </a>
+      ) : null}
+    </Fragment>
   );
 }
 
@@ -40,51 +56,77 @@ function ResultTitle(props) {
 function ResultDescription(props) {
   return (
     <Fragment>
-      <TypographyHighlight
-        variant="body1"
-        color="primary"
-        attribute={"meta.description"}
-        hit={props.hit}
-        info
-      />
       {props.hit.meta.description &&
-      props.hit.content.p &&
-      props.hit.content.p[0]
-        ? " "
-        : ""}
-      <TypographyHighlight
-        variant="body1"
-        color="primary"
-        attribute={"content.p[0]"}
-        hit={props.hit}
-        info
-      />
-      {props.hit.content.p &&
-      props.hit.content.p[0] &&
-      props.hit.content.p[1] &&
-      props.hit.content.p[1]
-        ? " "
-        : ""}
-      <TypographyHighlight
-        variant="body1"
-        color="primary"
-        attribute={"content.p[1]"}
-        hit={props.hit}
-        info
-      />
-      {props.hit.content.p &&
-      props.hit.content.p[1] &&
-      props.hit.content.p[2] &&
-      props.hit.content.p[2]
-        ? " "
-        : ""}
-      <TypographyHighlight
-        variant="body1"
-        color="primary"
-        attribute={"content.p[2]"}
-        hit={props.hit}
-        info
-      />
+      props.hit.meta.description.length >= 200 ? (
+        <TypographyHighlight
+          variant="body1"
+          color="primary"
+          attribute={"meta.description"}
+          hit={props.hit}
+          info
+        />
+      ) : (
+        <Fragment>
+          <TypographyHighlight
+            variant="body1"
+            color="primary"
+            attribute={"meta.description"}
+            hit={props.hit}
+            info
+          />
+          {props.hit.meta.description &&
+          props.hit.content.p &&
+          props.hit.content.p[0]
+            ? " "
+            : ""}
+          <TypographyHighlight
+            variant="body1"
+            color="primary"
+            attribute={"content.p[0]"}
+            hit={props.hit}
+            info
+          />
+          {props.hit.content.p &&
+          props.hit.content.p[0] &&
+          props.hit.content.p[1] &&
+          props.hit.content.p[1]
+            ? " "
+            : ""}
+          <TypographyHighlight
+            variant="body1"
+            color="primary"
+            attribute={"content.p[1]"}
+            hit={props.hit}
+            info
+          />
+          {props.hit.content.p &&
+          props.hit.content.p[1] &&
+          props.hit.content.p[2] &&
+          props.hit.content.p[2]
+            ? " "
+            : ""}
+          <TypographyHighlight
+            variant="body1"
+            color="primary"
+            attribute={"content.p[2]"}
+            hit={props.hit}
+            info
+          />
+          {props.hit.content.p &&
+          props.hit.content.p[2] &&
+          props.hit.content.p[3] &&
+          props.hit.content.p[3]
+            ? " "
+            : ""}
+          <TypographyHighlight
+            variant="body1"
+            color="primary"
+            attribute={"content.p[3]"}
+            hit={props.hit}
+            info
+          />
+        </Fragment>
+      )}
     </Fragment>
   );
 }

@@ -10,6 +10,17 @@ import Footer from "./footer";
 import Typography from "@material-ui/core/Typography";
 import { App, findResultsState } from "./index";
 import qs from "qs";
+import FontFaceObserver from "fontfaceobserver";
+
+const Roboto300 = new FontFaceObserver('Roboto', {
+  weight: 300
+});
+const Roboto400 = new FontFaceObserver('Roboto', {
+  weight: 400
+});
+const Roboto500 = new FontFaceObserver('Roboto', {
+  weight: 500
+});
 
 if (process.browser) {
   require("../static/react-instantsearch-override.css");
@@ -138,7 +149,7 @@ class LandingPage extends React.Component {
                       opacity: nbHits ? "1" : "0"
                     }}
                   >
-                    {`Déjà ${nbHits} pages référencées !`}
+                    {`Déjà ${nbHits ? nbHits.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") : null} pages référencées !`}
                   </Typography>
 
                   <Grid
@@ -150,12 +161,15 @@ class LandingPage extends React.Component {
                   >
                     <Grid item>
                       <img
-                        src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,dpr_3.0/qwarx_landing_page.png`}
-                        useMap="#image-map"
-                        height={94}
-                        width={300}
+                        src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_300,dpr_1.0/qwarx_landing_page.png`}
+                        srcSet={`
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_300,dpr_1.0/qwarx_landing_page.png,
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_300,dpr_2.0/qwarx_landing_page.png 2x,
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_300,dpr_3.0/qwarx_landing_page.png 3x
+                        `}
+                        useMap="#image-map-mobile"
                       />
-                      <map name="image-map">
+                      <map name="image-map-mobile">
                         <area
                           target="_blank"
                           alt="infos"
@@ -273,7 +287,7 @@ class LandingPage extends React.Component {
                           opacity: nbHits ? "1" : "0"
                         }}
                       >
-                        {`Déjà ${nbHits} pages référencées !`}
+                        {`Déjà ${nbHits ? nbHits.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") : null} pages référencées !`}
                       </Typography>
 
                       <Grid
@@ -284,19 +298,23 @@ class LandingPage extends React.Component {
                         style={{ marginTop: "130px" }}
                       >
                         <Grid item>
+
                           <img
-                            src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,dpr_3.0/qwarx_landing_page.png`}
-                            useMap="#image-map"
-                            height={150}
-                            width={483}
+                            src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_483,dpr_1.0/qwarx_landing_page.png`}
+                            srcSet={`
+                            https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_483,dpr_1.0/qwarx_landing_page.png,
+                            https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_483,dpr_2.0/qwarx_landing_page.png 2x,
+                            https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_483,dpr_3.0/qwarx_landing_page.png 3x
+                            `}
+                            useMap="#image-map-desktop"
                           />
-                          <map name="image-map">
+                          <map name="image-map-desktop">
                             <area
                               target="_blank"
                               alt="infos"
                               title="infos"
                               href="/infos"
-                              coords="388,149,482,130"
+                              coords="384,127,482,149"
                               shape="rect"
                             />
                           </map>

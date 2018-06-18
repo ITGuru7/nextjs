@@ -21,6 +21,7 @@ const searchStateToUrl = searchState =>
   searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : "";
 import LandingPage from "./landingPage";
 import debounce from "lodash/debounce";
+import MobileTextLogo from "./mobileTextLogo";
 
 if (process.browser) {
   require("../static/react-instantsearch-override.css");
@@ -213,7 +214,9 @@ class SearchPage extends React.Component {
                   />
                 </Link>
               </Grid>
-              <Grid item />
+              <Grid item >
+                <MobileTextLogo/>
+              </Grid>
             </Grid>
           </div>
           <SearchBox mobile />
