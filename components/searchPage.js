@@ -129,13 +129,27 @@ class SearchPage extends React.Component {
             alignItems={"center"}
           >
             <Grid item>
-              <QwarxLogo
-                cn={css(
-                  aphrodite.gougleLogo,
-                  aphrodite.topScreenPadding,
-                  aphrodite.gougleLogoMarginDesktop
-                )}
-                goBackToHomePage={this.goBackToHomePage}
+              <img
+                src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo.png`}
+                srcSet={`
+                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo.png,
+                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_2.0/qwarx-logo.png 2x,
+                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_3.0/qwarx-logo.png 3x
+                `}
+                alt={`qwarx logo`}
+                onClick={e => {
+                  e.preventDefault();
+                  this.props.goBackToHomePage
+                    ? this.props.goBackToHomePage()
+                    : null;
+                }}
+                style={{
+                  marginTop: "3px",
+                  marginBottom: "3px",
+                  cursor: this.props.goBackToHomePage ? "pointer" : "unset",
+                  marginLeft: "5px",
+                  marginRight: "5px"
+                }}
               />
             </Grid>
             <Grid item xs>
@@ -208,14 +222,30 @@ class SearchPage extends React.Component {
             >
               <Grid item>
                 <Link href={"/"}>
-                  <QwarxLogo
-                    cn={css(aphrodite.gougleLogo, aphrodite.topScreenPadding)}
-                    goBackToHomePage={this.goBackToHomePage}
+                  <img
+                    src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo.png`}
+                    srcSet={`
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo.png,
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_2.0/qwarx-logo.png 2x,
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_3.0/qwarx-logo.png 3x
+                    `}
+                    alt={`qwarx logo`}
+                    onClick={e => {
+                      e.preventDefault();
+                      this.props.goBackToHomePage
+                        ? this.props.goBackToHomePage()
+                        : null;
+                    }}
+                    style={{
+                      marginTop: "3px",
+                      marginBottom: "3px",
+                      cursor: this.props.goBackToHomePage ? "pointer" : "unset"
+                    }}
                   />
                 </Link>
               </Grid>
-              <Grid item >
-                <MobileTextLogo/>
+              <Grid item>
+                <MobileTextLogo />
               </Grid>
             </Grid>
           </div>

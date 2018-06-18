@@ -82,7 +82,16 @@ class LandingPage extends React.Component {
                 <Grid item style={{ marginTop: "50px", marginBottom: "20px" }}>
                   <Grid container justify={"center"} spacing={0}>
                     <Grid item>
-                      <QwarxLogo cn={css(aphrodite.gougleLogoLandingPage)} />
+                      <img
+                        src={`
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_1.0/qwarx-logo.png`}
+                        srcSet={`
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_1.0/qwarx-logo.png,
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_2.0/qwarx-logo.png 2x,
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_3.0/qwarx-logo.png 3x
+                        `}
+                        alt={`qwarx logo`}
+                      />
                     </Grid>
                   </Grid>
                 </Grid>
@@ -224,7 +233,16 @@ class LandingPage extends React.Component {
                     style={{ marginTop: "100px" }}
                   >
                     <Grid item style={{ marginBottom: "20px" }}>
-                      <QwarxLogo cn={css(aphrodite.gougleLogoLandingPage)} />
+                      <img
+                        src={`
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_1.0/qwarx-logo.png`}
+                        srcSet={`
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_1.0/qwarx-logo.png,
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_2.0/qwarx-logo.png 2x,
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_3.0/qwarx-logo.png 3x
+                        `}
+                        alt={`qwarx logo`}
+                      />
                     </Grid>
                     <Grid item>
                       <Grid container>
