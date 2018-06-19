@@ -44,7 +44,8 @@ class Index extends React.Component {
         {this.props.searchState && this.props.resultsState ? (
           <Fragment>
             <Head>
-              <style>${criticalCssSearchPage}</style>
+
+              <style>${process.browser ? null : criticalCssSearchPage}</style>
             </Head>
             <SearchPage
               resultsState={this.props.resultsState}
@@ -54,7 +55,7 @@ class Index extends React.Component {
         ) : (
           <Fragment>
             <Head>
-              <style>${criticalCssLandingPage}</style>
+              <style>${process.browser ? null : criticalCssLandingPage}</style>
             </Head>
             <LandingPage />
           </Fragment>

@@ -25,20 +25,16 @@ class Hits extends React.Component {
       let imagesObj = {};
       let images = [];
       hits.map(hit => {
-        if (hit.images) {
-          const hitImages = object.values(hit.images);
-          hitImages.map(
-            hitImage =>
-              (imagesObj[hitImage] = {
-                name: hit.name,
-                objectID: hit.objectID,
-                images: hitImages
-              })
-          );
-          images = images.concat(hitImages);
+        const image = hit.meta.image;
+        if (image) {
+          imagesObj = {
+            name: hit.id.title,
+            objectID: hit.objectID,
+            url: image
+          };
+          images.push(imagesObj);
         }
       });
-
       return (
         <Grid
           container
@@ -70,7 +66,10 @@ class Hits extends React.Component {
                 <Grid item>
                   <Grid container direction="row" spacing={0}>
                     {images.map((image, idx) => {
-                      const uri = `https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,g_auto,c_fill,w_75,h_75/${image}`;
+                      const uri = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,b_rgb:EEEEEE,g_auto,c_fill,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${image.url}`;
+                      const uri_dpr1 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,b_rgb:EEEEEE,g_auto,c_fill,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${image.url}`;
+                      const uri_dpr2 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,b_rgb:EEEEEE,g_auto,c_fill,w_75,h_75,dpr_2.0/d_qwarx-no-image.png/${image.url} 2x`;
+                      const uri_dpr3 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,b_rgb:EEEEEE,g_auto,c_fill,w_75,h_75,dpr_3.0/d_qwarx-no-image.png/${image.url} 3x`;
                       const cpt = idx + 1;
                       return (
                         <Grid
@@ -85,14 +84,14 @@ class Hits extends React.Component {
                         >
                           <Link
                             href={{
-                              pathname: `/${imagesObj[image].objectID}`
+                              pathname: `/${image.objectID}`
                             }}
                           >
                             <a rel="nofollow">
                               <Fragment>
-                                <img src={uri} height={75} width={75} />
+                                <img src={uri} srcset={`${uri_dpr1}, ${uri_dpr2}, ${uri_dpr3}`} height={75} width={75} />
                                 <Typography variant="caption" color="secondary">
-                                  {`${imagesObj[image].name.substring(
+                                  {`${image.name.substring(
                                     0,
                                     10
                                   )}..`}

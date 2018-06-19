@@ -67,7 +67,7 @@ class MyDocument extends Document {
           <meta
             name="viewport"
             content={
-              "user-scalable=yes, initial-scale=1, maximum-scale=2, width=device-width"
+              "user-scalable=yes, initial-scale=1, minimum-scale=1, maximum-scale=2, width=device-width"
             }
           />
           <link
