@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import aphrodite from "../../utils/aphrodite";
 import object from "../../utils/object";
 import { css } from "aphrodite";
+import Divider from "@material-ui/core/Divider";
 
 class Hits extends React.Component {
   render() {
@@ -63,6 +64,19 @@ class Hits extends React.Component {
                 spacing={0}
                 style={{ width: `439px` }}
               >
+                <Grid item >
+                  <img
+                    src={`
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_400,dpr_1.0/qwarx-did-you-know.png`}
+                    srcSet={`
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_400,dpr_1.0/qwarx-did-you-know.png,
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_400,dpr_2.0/qwarx-did-you-know.png 2x,
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_400,dpr_3.0/qwarx-did-you-know.png 3x
+                    `}
+                    alt={`Qwarx est un moteur de recherche dédié exclusivement à la Nouvelle Calédonie`}
+                  />
+                </Grid>
+                <Divider style={{marginBottom: '20px', marginTop: '20px'}}/>
                 <Grid item>
                   <Grid container direction="row" spacing={0}>
                     {images.map((image, idx) => {
@@ -89,7 +103,7 @@ class Hits extends React.Component {
                           >
                             <a rel="nofollow">
                               <Fragment>
-                                <img src={uri} srcset={`${uri_dpr1}, ${uri_dpr2}, ${uri_dpr3}`} height={75} width={75} />
+                                <img src={uri} srcSet={`${uri_dpr1}, ${uri_dpr2}, ${uri_dpr3}`} height={75} width={75} />
                                 <Typography variant="caption" color="secondary">
                                   {`${image.name.substring(
                                     0,

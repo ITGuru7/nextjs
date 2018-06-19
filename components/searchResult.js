@@ -170,7 +170,7 @@ const TypographyHighlight = connectHighlight(
         style={{
           display: info ? "unset" : "inherit",
           fontWeight: variant === "subheading" ? "500" : "inherit",
-          color: url ? "grey" : "inherit"
+          color: url ? "darkslategrey" : "inherit"
         }}
       >
         {highlightedHits}
@@ -187,7 +187,7 @@ function ResultUrl(props) {
   return (
     <TypographyHighlight
       component={"span"}
-      variant="caption"
+      variant="body1"
       color="secondary"
       attribute={"id.url"}
       hit={props.hit}
