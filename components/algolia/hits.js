@@ -8,6 +8,7 @@ import aphrodite from "../../utils/aphrodite";
 import object from "../../utils/object";
 import { css } from "aphrodite";
 import Divider from "@material-ui/core/Divider";
+import Weather from "../weather";
 
 class Hits extends React.Component {
   render() {
@@ -64,26 +65,52 @@ class Hits extends React.Component {
                 spacing={0}
                 style={{ width: `439px` }}
               >
-                <Grid item >
+                <Grid item style={{ marginBottom: "20px" }}>
+                  <Typography
+                    variant={"subheading"}
+                    style={{ color: "#0E8AB0" }}
+                  >
+                    {`Le saviez vous ?`}
+                  </Typography>
+                  <Divider />
+                </Grid>
+                <Grid item>
                   <img
                     src={`
-                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_400,dpr_1.0/qwarx-did-you-know.png`}
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_314,dpr_1.0/qwarx-did-you-know.png`}
                     srcSet={`
-                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_400,dpr_1.0/qwarx-did-you-know.png,
-                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_400,dpr_2.0/qwarx-did-you-know.png 2x,
-                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_400,dpr_3.0/qwarx-did-you-know.png 3x
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_314,dpr_1.0/qwarx-did-you-know.png,
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_314,dpr_2.0/qwarx-did-you-know.png 2x,
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_314,dpr_3.0/qwarx-did-you-know.png 3x
                     `}
                     alt={`Qwarx est un moteur de recherche dédié exclusivement à la Nouvelle Calédonie`}
                   />
                 </Grid>
-                <Divider style={{marginBottom: '20px', marginTop: '20px'}}/>
+                <Grid item />
+                <Grid item style={{ marginBottom: "20px", marginTop: "20px" }}>
+                  <Typography
+                    variant={"subheading"}
+                    style={{ color: "#0E8AB0" }}
+                  >
+                    {`Images`}
+                  </Typography>
+                  <Divider />
+                </Grid>
                 <Grid item>
                   <Grid container direction="row" spacing={0}>
                     {images.map((image, idx) => {
-                      const uri = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,b_rgb:EEEEEE,g_auto,c_fill,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${image.url}`;
-                      const uri_dpr1 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,b_rgb:EEEEEE,g_auto,c_fill,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${image.url}`;
-                      const uri_dpr2 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,b_rgb:EEEEEE,g_auto,c_fill,w_75,h_75,dpr_2.0/d_qwarx-no-image.png/${image.url} 2x`;
-                      const uri_dpr3 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,b_rgb:EEEEEE,g_auto,c_fill,w_75,h_75,dpr_3.0/d_qwarx-no-image.png/${image.url} 3x`;
+                      const uri = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,b_rgb:EEEEEE,g_auto,c_fill,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${
+                        image.url
+                      }`;
+                      const uri_dpr1 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,b_rgb:EEEEEE,g_auto,c_fill,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${
+                        image.url
+                      }`;
+                      const uri_dpr2 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,b_rgb:EEEEEE,g_auto,c_fill,w_75,h_75,dpr_2.0/d_qwarx-no-image.png/${
+                        image.url
+                      } 2x`;
+                      const uri_dpr3 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,b_rgb:EEEEEE,g_auto,c_fill,w_75,h_75,dpr_3.0/d_qwarx-no-image.png/${
+                        image.url
+                      } 3x`;
                       const cpt = idx + 1;
                       return (
                         <Grid
@@ -103,12 +130,14 @@ class Hits extends React.Component {
                           >
                             <a rel="nofollow">
                               <Fragment>
-                                <img src={uri} srcSet={`${uri_dpr1}, ${uri_dpr2}, ${uri_dpr3}`} height={75} width={75} />
+                                <img
+                                  src={uri}
+                                  srcSet={`${uri_dpr1}, ${uri_dpr2}, ${uri_dpr3}`}
+                                  height={75}
+                                  width={75}
+                                />
                                 <Typography variant="caption" color="secondary">
-                                  {`${image.name.substring(
-                                    0,
-                                    10
-                                  )}..`}
+                                  {`${image.name.substring(0, 10)}..`}
                                 </Typography>
                               </Fragment>
                             </a>
@@ -117,6 +146,18 @@ class Hits extends React.Component {
                       );
                     })}
                   </Grid>
+                </Grid>
+                <Grid item style={{ marginBottom: "20px", marginTop: "20px" }}>
+                  <Typography
+                    variant={"subheading"}
+                    style={{ color: "#0E8AB0" }}
+                  >
+                    {`Météo`}
+                  </Typography>
+                  <Divider />
+                </Grid>
+                <Grid item>
+                  <Weather />
                 </Grid>
               </Grid>
             </Grid>
