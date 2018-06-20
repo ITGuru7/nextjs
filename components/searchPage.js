@@ -6,8 +6,8 @@ import { InstantSearch } from "./instantsearch";
 import { css } from "aphrodite";
 import Divider from "@material-ui/core/Divider";
 import Footer from "./footer";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import Tabs from "./mui/tabs";
+import Tab from "./mui/tab";
 import aphrodite from "../utils/aphrodite";
 import Grid from "@material-ui/core/Grid";
 import Link from "next/link";
@@ -109,11 +109,11 @@ class SearchPage extends React.Component {
           value={0}
           indicatorColor="secondary"
           textColor="secondary"
-          className={css(aphrodite.contentLeft)}
+          className={css(aphrodite.contentLeft, aphrodite.mobileGreyBackground)}
         >
-          <Tab label="tout" />
-          <Tab label="images" />
-          <Tab label="carte" />
+          <Tab label="tout"/>
+          <Tab label="images" disabled/>
+          <Tab label="adresses" disabled/>
         </Tabs>
       );
     };
@@ -155,7 +155,7 @@ class SearchPage extends React.Component {
             </Grid>
           </Grid>
           <Divider style={{ marginTop: "5px" }} />
-          {/*{tabs()}*/}
+          {tabs()}
           <div>
             <Typography component={"span"} variant={"caption"}>
               <Stats
@@ -248,7 +248,7 @@ class SearchPage extends React.Component {
             </Grid>
           </div>
           <SearchBox mobile />
-          {/*{tabs()}*/}
+          {tabs()}
           <Divider style={{ marginTop: "8px" }} />
           <div>
             <Typography component={"span"} variant={"caption"}>

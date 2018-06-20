@@ -23,7 +23,7 @@
     "lodash": "^4.17.5",
     "next": "^6.0.3",
     "postscribe": "^2.0.8",
-    "prop-types": "latest",
+    "prop-types": "^15.6.2",
     "qs": "^6.5.2",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",

@@ -75,16 +75,41 @@ class Hits extends React.Component {
                   <Divider />
                 </Grid>
                 <Grid item>
-                  <img
-                    src={`
-                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_314,dpr_1.0/qwarx-did-you-know.png`}
-                    srcSet={`
-                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_314,dpr_1.0/qwarx-did-you-know.png,
-                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_314,dpr_2.0/qwarx-did-you-know.png 2x,
-                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_314,dpr_3.0/qwarx-did-you-know.png 3x
+                  <Grid container direction={"row"} spacing={16}>
+                    <Grid item>
+                      <Grid container alignItems="center" justify="center" style={{height: '100%'}}>
+                        <Grid item>
+                          <img
+                            src={`
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_105,dpr_1.0/qwarx-did-you-know.png`}
+                            srcSet={`
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_105,dpr_1.0/qwarx-did-you-know.png,
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_105,dpr_2.0/qwarx-did-you-know.png 2x,
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_105,dpr_3.0/qwarx-did-you-know.png 3x
                     `}
-                    alt={`Qwarx est un moteur de recherche dédié exclusivement à la Nouvelle Calédonie`}
-                  />
+                            alt={`Qwarx est un moteur de recherche dédié exclusivement à la Nouvelle Calédonie`}
+                          />
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                    <Grid item xs>
+                      <Typography
+                        variant={"body1"}
+                        color={"primary"}
+                        gutterBottom
+                      >
+                        {`Qwarx est un moteur de recherche dédié exclusivement à la Nouvelle Calédonie.`}
+                      </Typography>
+                      <Typography
+                        variant={"body1"}
+                        color={"primary"}
+                        gutterBottom
+                      >
+                        {`Il vous permettra de trouver des informations qui seraient difficiles à obtenir en utilisant les autres
+                        moteurs de recherche.`}
+                      </Typography>
+                    </Grid>
+                  </Grid>
                 </Grid>
                 <Grid item />
                 <Grid item style={{ marginBottom: "20px", marginTop: "20px" }}>

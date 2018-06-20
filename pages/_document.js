@@ -45,18 +45,19 @@ class MyDocument extends Document {
         <Head>
           {/*<link rel="stylesheet" href="../static/main.css" />*/}
           {/*<link*/}
-            {/*rel="stylesheet"*/}
-            {/*href="../static/react-instantsearch-override.css"*/}
+          {/*rel="stylesheet"*/}
+          {/*href="../static/react-instantsearch-override.css"*/}
           {/*/>*/}
           {/*<link*/}
-            {/*rel="stylesheet"*/}
-            {/*href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"*/}
+          {/*rel="stylesheet"*/}
+          {/*href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"*/}
           {/*/>*/}
           <script
             src="https://cdn.polyfill.io/v2/polyfill.min.js"
             async
             defer
           />
+          <script src="https://weatherwidget.io/js/widget.min.js" async defer />
           <style
             data-aphrodite
             dangerouslySetInnerHTML={{ __html: this.props.css.content }}

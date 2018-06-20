@@ -1,6 +1,6 @@
 import React from "react";
-import { withStyles } from "material-ui/styles";
-import { Tab } from "material-ui/Tabs";
+import { withStyles } from "@material-ui/core/styles";
+import { Tab } from "@material-ui/core/Tab";
 
 const styles = {
   root: {
@@ -21,18 +21,21 @@ const styles = {
   }
 };
 
-function styledTab(props) {
-  return (
-    <Tab
-      {...props}
-      classes={{
-        selected: props.classes.selected,
-        disabled: props.classes.disabled,
-        labelContainer: props.classes.labelContainer,
-        root: props.classes.root
-      }}
-    />
-  );
+class StyledTab extends React.Component {
+  render() {
+    const props = this.props;
+    return (
+      <Tab
+        {...props}
+        classes={{
+          selected: props.classes.selected,
+          disabled: props.classes.disabled,
+          labelContainer: props.classes.labelContainer,
+          root: props.classes.root
+        }}
+      />
+    );
+  }
 }
 
-export default withStyles(styles)(styledTab);
+export default withStyles(styles)(StyledTab);

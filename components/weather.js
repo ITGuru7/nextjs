@@ -2,6 +2,13 @@ import { Fragment } from "react";
 import Head from "next/head";
 
 export default class Weather extends React.Component {
+  componentDidMount() {
+    __weatherwidget_init();
+  }
+
+  componentDidUpdate() {
+    return false;
+  }
 
   render() {
     return (
@@ -18,6 +25,7 @@ export default class Weather extends React.Component {
           data-label_2="METEO"
           data-font="Roboto"
           data-days="3"
+          data-icons="Climacons Animated"
           data-theme="pure"
         >
           NOUMEA METEO
