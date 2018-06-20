@@ -6,6 +6,7 @@ import Footer from "./footer";
 import Typography from "@material-ui/core/Typography";
 import { App, findResultsState } from "./index";
 import FontFaceObserver from "fontfaceobserver";
+import Link from "next/link";
 
 const Roboto300 = new FontFaceObserver("Roboto", {
   weight: 300
@@ -171,7 +172,7 @@ class LandingPage extends React.Component {
                   style={{
                     marginTop: "60px",
                     marginLeft: "16px",
-                    marginRight: "16px",
+                    marginRight: "16px"
                   }}
                 >
                   <Grid
@@ -207,10 +208,20 @@ class LandingPage extends React.Component {
                           >
                             {`Qwax est un moteur de recherche exclusivement dédié à la Nouvelle Calédonie.`}
                           </Typography>
+                          <Link prefetch href="/infos">
+                            <a>
+                              <Typography
+                                variant={"body2"}
+                                component={"p"}
+                                color={"secondary"}
+                              >
+                                {`Plus d'infos`}
+                              </Typography>
+                            </a>
+                          </Link>
                         </Grid>
                       </Grid>
                     </Grid>
-
                   </Grid>
                 </Grid>
               </Grid>
@@ -377,6 +388,18 @@ class LandingPage extends React.Component {
                               >
                                 {`Qwax est un moteur de recherche exclusivement dédié à la Nouvelle Calédonie.`}
                               </Typography>
+                              <Link prefetch href="/infos">
+                                <a>
+                                  <Typography
+                                    variant={"body2"}
+                                    component={"p"}
+                                    align={"right"}
+                                    color={"secondary"}
+                                  >
+                                    {`Plus d'infos`}
+                                  </Typography>
+                                </a>
+                              </Link>
                             </Grid>
                           </Grid>
                         </Grid>
