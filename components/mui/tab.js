@@ -1,11 +1,11 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import { Tab } from "@material-ui/core/Tab";
+import Tab from "@material-ui/core/Tab";
 
 const styles = {
   root: {
     minWidth: 0,
-    marginRight: "8px"
+    marginRight: "8px",
   },
   selected: {
     color: "#0E8AB0"
@@ -18,6 +18,10 @@ const styles = {
     paddingBottom: 3,
     paddingLeft: 6,
     paddingRight: 6
+  },
+  label: {
+    fontSize: '0.875rem',
+    'text-transform': 'capitalize'
   }
 };
 
@@ -31,6 +35,7 @@ class StyledTab extends React.Component {
           selected: props.classes.selected,
           disabled: props.classes.disabled,
           labelContainer: props.classes.labelContainer,
+          label: props.classes.label,
           root: props.classes.root
         }}
       />
