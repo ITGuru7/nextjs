@@ -7,13 +7,13 @@ import Typography from "@material-ui/core/Typography";
 import { App, findResultsState } from "./index";
 import FontFaceObserver from "fontfaceobserver";
 
-const Roboto300 = new FontFaceObserver('Roboto', {
+const Roboto300 = new FontFaceObserver("Roboto", {
   weight: 300
 });
-const Roboto400 = new FontFaceObserver('Roboto', {
+const Roboto400 = new FontFaceObserver("Roboto", {
   weight: 400
 });
-const Roboto500 = new FontFaceObserver('Roboto', {
+const Roboto500 = new FontFaceObserver("Roboto", {
   weight: 500
 });
 
@@ -140,50 +140,77 @@ class LandingPage extends React.Component {
                     </Grid>
                   </Grid>
                 </Grid>
-                <Grid item style={{ width: "100%" }}>
+                <Grid
+                  item
+                  style={{
+                    marginTop: "5px",
+                    marginLeft: "16px",
+                    marginRight: "16px"
+                  }}
+                >
                   <Typography
                     component="h1"
                     variant="caption"
-                    color="secondary"
+                    color="primary"
                     align="right"
                     style={{
-                      marginTop: "5px",
-                      marginLeft: "16px",
-                      marginRight: "16px",
                       opacity: nbHits ? "1" : "0"
                     }}
                   >
-                    {`Déjà ${nbHits ? nbHits.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") : null} pages référencées !`}
+                    {`Déjà ${
+                      nbHits
+                        ? nbHits
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+                        : null
+                    } pages référencées !`}
                   </Typography>
-
+                </Grid>
+                <Grid
+                  item
+                  style={{
+                    marginTop: "60px",
+                    marginLeft: "16px",
+                    marginRight: "16px",
+                  }}
+                >
                   <Grid
                     container
-                    justify="center"
+                    direction="row"
                     alignItems="center"
-                    spacing={0}
-                    style={{ marginTop: "60px" }}
+                    justify="center"
                   >
                     <Grid item>
-                      <img
-                        src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_300,dpr_1.0/qwarx_landing_page.png`}
-                        srcSet={`
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_300,dpr_1.0/qwarx_landing_page.png,
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_300,dpr_2.0/qwarx_landing_page.png 2x,
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_300,dpr_3.0/qwarx_landing_page.png 3x
-                        `}
-                        useMap="#image-map-mobile"
-                      />
-                      <map name="image-map-mobile">
-                        <area
-                          target="_blank"
-                          alt="infos"
-                          title="infos"
-                          href="/infos"
-                          coords="240,93,300,81"
-                          shape="rect"
-                        />
-                      </map>
+                      <Grid container spacing={16}>
+                        <Grid item>
+                          <img
+                            src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_80,dpr_1.0/qwarx_landing_page.png`}
+                            srcSet={`
+                            https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_80,dpr_1.0/qwarx_landing_page.png,
+                            https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_80,dpr_2.0/qwarx_landing_page.png 2x,
+                            https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_80,dpr_3.0/qwarx_landing_page.png 3x
+                            `}
+                          />
+                        </Grid>
+                        <Grid item xs>
+                          <Typography
+                            variant={"title"}
+                            color={"primary"}
+                            gutterBottom
+                          >
+                            {`Bienvenue sur Qwarx!`}
+                          </Typography>
+                          <Typography
+                            variant={"subheading"}
+                            color={"primary"}
+                            gutterBottom
+                          >
+                            {`Qwax est un moteur de recherche exclusivement dédié à la Nouvelle Calédonie.`}
+                          </Typography>
+                        </Grid>
+                      </Grid>
                     </Grid>
+
                   </Grid>
                 </Grid>
               </Grid>
@@ -300,7 +327,13 @@ class LandingPage extends React.Component {
                           opacity: nbHits ? "1" : "0"
                         }}
                       >
-                        {`Déjà ${nbHits ? nbHits.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") : null} pages référencées !`}
+                        {`Déjà ${
+                          nbHits
+                            ? nbHits
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+                            : null
+                        } pages référencées !`}
                       </Typography>
 
                       <Grid
@@ -311,26 +344,41 @@ class LandingPage extends React.Component {
                         style={{ marginTop: "130px" }}
                       >
                         <Grid item>
-
-                          <img
-                            src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_483,dpr_1.0/qwarx_landing_page.png`}
-                            srcSet={`
-                            https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_483,dpr_1.0/qwarx_landing_page.png,
-                            https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_483,dpr_2.0/qwarx_landing_page.png 2x,
-                            https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_483,dpr_3.0/qwarx_landing_page.png 3x
+                          <Grid
+                            container
+                            justify="center"
+                            style={{ height: "100%" }}
+                            spacing={16}
+                          >
+                            <Grid item>
+                              <img
+                                src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_115,dpr_1.0/qwarx_landing_page.png`}
+                                srcSet={`
+                            https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_115,dpr_1.0/qwarx_landing_page.png,
+                            https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_115,dpr_2.0/qwarx_landing_page.png 2x,
+                            https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_115,dpr_3.0/qwarx_landing_page.png 3x
                             `}
-                            useMap="#image-map-desktop"
-                          />
-                          <map name="image-map-desktop">
-                            <area
-                              target="_blank"
-                              alt="infos"
-                              title="infos"
-                              href="/infos"
-                              coords="384,127,482,149"
-                              shape="rect"
-                            />
-                          </map>
+                              />
+                            </Grid>
+                            <Grid item xs={8}>
+                              <Typography
+                                variant={"headline"}
+                                component={"h1"}
+                                color={"primary"}
+                                gutterBottom
+                              >
+                                {`Bienvenue sur Qwarx!`}
+                              </Typography>
+                              <Typography
+                                variant={"title"}
+                                component={"p"}
+                                color={"primary"}
+                                gutterBottom
+                              >
+                                {`Qwax est un moteur de recherche exclusivement dédié à la Nouvelle Calédonie.`}
+                              </Typography>
+                            </Grid>
+                          </Grid>
                         </Grid>
                       </Grid>
                     </Grid>
