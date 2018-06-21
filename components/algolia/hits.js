@@ -2,13 +2,12 @@ import React, { Fragment } from "react";
 import SearchResult from "../searchResult";
 import { connectHits } from "react-instantsearch/connectors";
 import Grid from "@material-ui/core/Grid";
-import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 import aphrodite from "../../utils/aphrodite";
-import object from "../../utils/object";
 import { css } from "aphrodite";
 import Divider from "@material-ui/core/Divider";
 import Weather from "../weather";
+import RandomDidYouKnowText from '../randomDidYouKnowText';
 
 class Hits extends React.Component {
   render() {
@@ -98,21 +97,7 @@ class Hits extends React.Component {
                       </Grid>
                     </Grid>
                     <Grid item xs>
-                      <Typography
-                        variant={"body1"}
-                        color={"primary"}
-                        gutterBottom
-                      >
-                        {`Qwarx est un moteur de recherche dédié exclusivement à la Nouvelle Calédonie.`}
-                      </Typography>
-                      <Typography
-                        variant={"body1"}
-                        color={"primary"}
-                        gutterBottom
-                      >
-                        {`Il vous permettra de trouver des informations qui seraient difficiles à obtenir en utilisant les autres
-                        moteurs de recherche.`}
-                      </Typography>
+                      <RandomDidYouKnowText/>
                     </Grid>
                   </Grid>
                 </Grid>
