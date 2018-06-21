@@ -4,6 +4,7 @@ import { css } from "aphrodite";
 import Typography from "@material-ui/core/Typography";
 import aphrodite from "../utils/aphrodite";
 import { connectHighlight } from "react-instantsearch/connectors";
+import Wrapper from "../components/wrapper";
 
 function ResultImg(props) {
   return (
@@ -210,7 +211,7 @@ class SearchResult extends React.Component {
   render() {
     const { hit, tablet_desktop } = this.props;
     return (
-      <Fragment>
+      <Wrapper>
         {tablet_desktop ? (
           <div
             className={css(
@@ -257,7 +258,7 @@ class SearchResult extends React.Component {
             </Grid>
           </div>
         )}
-      </Fragment>
+      </Wrapper>
     );
   }
 }
