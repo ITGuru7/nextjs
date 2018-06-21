@@ -10,12 +10,10 @@ import Tabs from "./mui/tabs";
 import Tab from "./mui/tab";
 import aphrodite from "../utils/aphrodite";
 import Grid from "@material-ui/core/Grid";
-import Link from "next/link";
 import Router from "next/router";
 import Display from "../utils/display";
 import { connectStateResults } from "react-instantsearch/connectors";
 import qs from "qs";
-import Wrapper from "../components/wrapper";
 const searchStateToUrl = searchState =>
   searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : "";
 import LandingPage from "./landingPage";
@@ -111,9 +109,9 @@ class SearchPage extends React.Component {
           textColor="secondary"
           className={css(aphrodite.contentLeft, aphrodite.mobileGreyBackground)}
         >
-          <Tab label="tout"/>
-          <Tab label="images" disabled/>
-          <Tab label="adresses" disabled/>
+          <Tab label="tout" />
+          <Tab label="images" disabled />
+          <Tab label="adresses" disabled />
         </Tabs>
       );
     };
@@ -221,26 +219,24 @@ class SearchPage extends React.Component {
               className={css(aphrodite.contentBottom)}
             >
               <Grid item>
-                <Link href={"/"}>
-                  <img
-                    src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo.png`}
-                    srcSet={`
+                <img
+                  src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo.png`}
+                  srcSet={`
                     https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo.png,
                     https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_2.0/qwarx-logo.png 2x,
                     https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_3.0/qwarx-logo.png 3x
                     `}
-                    alt={`qwarx logo`}
-                    onClick={e => {
-                      e.preventDefault();
-                      this.goBackToHomePage ? this.goBackToHomePage() : null;
-                    }}
-                    style={{
-                      marginTop: "3px",
-                      marginBottom: "3px",
-                      cursor: this.goBackToHomePage ? "pointer" : "unset"
-                    }}
-                  />
-                </Link>
+                  alt={`qwarx logo`}
+                  onClick={e => {
+                    e.preventDefault();
+                    this.goBackToHomePage ? this.goBackToHomePage() : null;
+                  }}
+                  style={{
+                    marginTop: "3px",
+                    marginBottom: "3px",
+                    cursor: this.goBackToHomePage ? "pointer" : "unset"
+                  }}
+                />
               </Grid>
               <Grid item>
                 <MobileTextLogo />
@@ -294,7 +290,7 @@ class SearchPage extends React.Component {
       );
     };
     return (
-      <Wrapper>
+      <Fragment>
         {this.state.homePage ? (
           <LandingPage />
         ) : (
@@ -330,7 +326,7 @@ class SearchPage extends React.Component {
             </Fragment>
           </InstantSearch>
         )}
-      </Wrapper>
+      </Fragment>
     );
   }
 }

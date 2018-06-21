@@ -1,12 +1,12 @@
 import Grid from "@material-ui/core/Grid";
 import Display from "../utils/display";
 import SearchPage from "../components/searchPage";
-import Wrapper from "../components/wrapper";
 import Footer from "./footer";
 import Typography from "@material-ui/core/Typography";
 import { App, findResultsState } from "./index";
 import FontFaceObserver from "fontfaceobserver";
 import Link from "next/link";
+import {Fragment} from "react";
 
 const Roboto300 = new FontFaceObserver("Roboto", {
   weight: 300
@@ -151,7 +151,7 @@ class LandingPage extends React.Component {
                 >
                   <Typography
                     component="h1"
-                    variant="caption"
+                    variant="body2"
                     color="primary"
                     align="right"
                     style={{
@@ -199,14 +199,14 @@ class LandingPage extends React.Component {
                             color={"primary"}
                             gutterBottom
                           >
-                            {`Bienvenue sur Qwarx!`}
+                            {`Bienvenue sur Qwarx   !`}
                           </Typography>
                           <Typography
                             variant={"subheading"}
                             color={"primary"}
                             gutterBottom
                           >
-                            {`Qwax est un moteur de recherche exclusivement dédié à la Nouvelle Calédonie.`}
+                            {`Qwarx est un moteur de recherche exclusivement dédié à la Nouvelle-Calédonie.`}
                           </Typography>
                           <Link prefetch href="/infos">
                             <a>
@@ -330,8 +330,8 @@ class LandingPage extends React.Component {
                     <Grid item style={{ width: "550px" }}>
                       <Typography
                         component="h1"
-                        variant="body1"
-                        color="secondary"
+                        variant="body2"
+                        color="primary"
                         align="right"
                         style={{
                           marginTop: "5px",
@@ -359,7 +359,7 @@ class LandingPage extends React.Component {
                             container
                             justify="center"
                             style={{ height: "100%" }}
-                            spacing={16}
+                            spacing={40}
                           >
                             <Grid item>
                               <img
@@ -381,7 +381,7 @@ class LandingPage extends React.Component {
                                 {`Bienvenue sur Qwarx!`}
                               </Typography>
                               <Typography
-                                variant={"title"}
+                                variant={"subheading"}
                                 component={"p"}
                                 color={"primary"}
                                 gutterBottom
@@ -419,14 +419,14 @@ class LandingPage extends React.Component {
     };
 
     return (
-      <Wrapper>
+      <Fragment>
         <Display format="mobile" css>
           {mobile()}
         </Display>
         <Display format="tablet-desktop" css>
           {desktop()}
         </Display>
-      </Wrapper>
+      </Fragment>
     );
   }
 }

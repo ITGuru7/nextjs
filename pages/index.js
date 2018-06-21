@@ -6,6 +6,7 @@ import SearchPage from "../components/searchPage";
 import Head from "next/head";
 import criticalCssLandingPage from "../utils/criticalCssLandingPage";
 import criticalCssSearchPage from "../utils/criticalCssSearchPage";
+import Wrapper from '../components/wrapper';
 
 class Index extends React.Component {
   // Service worker actived from the very start
@@ -40,7 +41,7 @@ class Index extends React.Component {
   // subsequent css will be loaded at the end of the body in _document.js
   render() {
     return (
-      <Fragment>
+      <Wrapper>
         {this.props.searchState && this.props.resultsState ? (
           <Fragment>
             <Head>
@@ -59,7 +60,7 @@ class Index extends React.Component {
             <LandingPage />
           </Fragment>
         )}
-      </Fragment>
+      </Wrapper>
     );
   }
 }
