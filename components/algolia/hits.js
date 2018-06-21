@@ -77,7 +77,12 @@ class Hits extends React.Component {
                 <Grid item>
                   <Grid container direction={"row"} spacing={16}>
                     <Grid item>
-                      <Grid container alignItems="center" justify="center" style={{height: '100%'}}>
+                      <Grid
+                        container
+                        alignItems="center"
+                        justify="center"
+                        style={{ height: "100%" }}
+                      >
                         <Grid item>
                           <img
                             src={`
@@ -148,25 +153,19 @@ class Hits extends React.Component {
                           }}
                           key={idx}
                         >
-                          <Link
-                            href={{
-                              pathname: `/${image.objectID}`
-                            }}
-                          >
-                            <a rel="nofollow">
-                              <Fragment>
-                                <img
-                                  src={uri}
-                                  srcSet={`${uri_dpr1}, ${uri_dpr2}, ${uri_dpr3}`}
-                                  height={75}
-                                  width={75}
-                                />
-                                <Typography variant="caption" color="secondary">
-                                  {`${image.name.substring(0, 10)}..`}
-                                </Typography>
-                              </Fragment>
-                            </a>
-                          </Link>
+                          <a href={image.objectID} rel="nofollow">
+                            <Fragment>
+                              <img
+                                src={uri}
+                                srcSet={`${uri_dpr1}, ${uri_dpr2}, ${uri_dpr3}`}
+                                height={75}
+                                width={75}
+                              />
+                              <Typography variant="caption" color="secondary">
+                                {`${image.name.substring(0, 10)}..`}
+                              </Typography>
+                            </Fragment>
+                          </a>
                         </Grid>
                       );
                     })}

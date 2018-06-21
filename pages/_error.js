@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Link from "next/link";
+import Typography from "@material-ui/core/Typography";
 
 export default class Error extends React.Component {
   static getInitialProps({ res, err }) {
@@ -8,6 +9,7 @@ export default class Error extends React.Component {
   }
 
   render() {
+    const { statusCode } = this.props;
     return (
       <div
         style={{
@@ -34,14 +36,28 @@ export default class Error extends React.Component {
               >
                 <img
                   src={`
-                  https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_300,dpr_1.0/qwarx-404.png`}
+                  https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_128,dpr_1.0/qwarx-error.png`}
                   srcSet={`
-                  https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_300,dpr_1.0/qwarx-404.png,
-                  https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_300,dpr_2.0/qwarx-404.png 2x,
-                  https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_300,dpr_3.0/qwarx-404.png 3x
+                  https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_128,dpr_1.0/qwarx-error.png,
+                  https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_128,dpr_2.0/qwarx-error.png 2x,
+                  https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_128,dpr_3.0/qwarx-error.png 3x
                   `}
                   alt={`erreur 404`}
                 />
+              </td>
+              <td>
+                <Fragment>
+                  <Typography variant={"title"} color={"primary"} gutterBottom>
+                    {`Qwarx n'a pas pu trouver la page que vous cherchez`}
+                  </Typography>
+                  <Typography
+                    variant={"body1"}
+                    color={"primary"}
+                    gutterBottom
+                  >
+                    {`Erreur ${statusCode}`}
+                  </Typography>
+                </Fragment>
               </td>
             </tr>
           </tbody>
@@ -55,16 +71,13 @@ export default class Error extends React.Component {
               >
                 <Link prefetch href="/">
                   <a>
-                    <img
-                      src={`
-                      https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_1.0/qwarx-back.png`}
-                                  srcSet={`
-                      https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_1.0/qwarx-back.png,
-                      https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_2.0/qwarx-back.png 2x,
-                      https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_3.0/qwarx-back.png 3x
-                      `}
-                      alt={`erreur 404`}
-                    />
+                    <Typography
+                      variant={"body1"}
+                      color={"primary"}
+                      gutterBottom
+                    >
+                      {`retourner sur Qwarx`}
+                    </Typography>
                   </a>
                 </Link>
               </td>
