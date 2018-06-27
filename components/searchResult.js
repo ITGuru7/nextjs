@@ -62,7 +62,7 @@ function ResultDescription(props) {
       {props.hit.meta.description &&
       props.hit.meta.description.length >= 200 ? (
         <Fragment>
-          {props.hit.id.domain === "topmarket.nc" ? (
+          {props.hit.id.domain === "topmarket.nc" && props.hit.content.p[1] && props.hit.content.p[1].length ? (
             <Fragment>
               <Typography
                 variant="body2"
