@@ -199,7 +199,7 @@ class LandingPage extends React.Component {
                             color={"primary"}
                             gutterBottom
                           >
-                            {`Bienvenue sur Qwarx   !`}
+                            {`Bienvenue sur Qwarx !`}
                           </Typography>
                           <Typography
                             variant={"subheading"}
@@ -378,7 +378,7 @@ class LandingPage extends React.Component {
                                 color={"primary"}
                                 gutterBottom
                               >
-                                {`Bienvenue sur Qwarx!`}
+                                {`Bienvenue sur Qwarx !`}
                               </Typography>
                               <Typography
                                 variant={"subheading"}
@@ -386,7 +386,7 @@ class LandingPage extends React.Component {
                                 color={"primary"}
                                 gutterBottom
                               >
-                                {`Qwax est un moteur de recherche exclusivement dédié à la Nouvelle Calédonie.`}
+                                {`Qwarx est un moteur de recherche exclusivement dédié à la Nouvelle-Calédonie.`}
                               </Typography>
                               <Link prefetch href="/infos">
                                 <a>

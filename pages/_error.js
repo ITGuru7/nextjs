@@ -40,7 +40,7 @@ class Error extends React.Component {
               </Grid>
               <Grid item xs>
                 <Typography variant={"title"} color={"primary"} gutterBottom>
-                  {`Qwarx n'a pas pu trouver la page que vous cherchez`}
+                  {`Désolé, je n'ai trouvé la page que vous recherchez`}
                 </Typography>
                 <Typography variant={"body1"} color={"primary"} gutterBottom>
                   {`Erreur ${statusCode}`}

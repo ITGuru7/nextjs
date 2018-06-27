@@ -17,8 +17,8 @@ function ResultImg(props) {
               borderWidth: "1px",
               borderColor: "#EEEEEE",
               marginRight: "8px",
-              width: '70px',
-              height: '70px'
+              width: "70px",
+              height: "70px"
             }}
             src={`https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_1.0/d_qwarx-no-image.png/${
               props.hit.meta.image
@@ -61,15 +61,29 @@ function ResultDescription(props) {
     <Fragment>
       {props.hit.meta.description &&
       props.hit.meta.description.length >= 200 ? (
-        <TypographyHighlight
-          variant="body1"
-          color="primary"
-          attribute={"meta.description"}
-          hit={props.hit}
-          info
-        />
-      ) : (
         <Fragment>
+          {props.hit.id.domain === "topmarket.nc" ? (
+            <Fragment>
+              <Typography
+                variant="body2"
+                color="primary"
+                style={{
+                  display: "unset",
+                  color:  "inherit"
+                }}
+              >
+                {"Boutique : "}
+              </Typography>
+              <TypographyHighlight
+                variant="body1"
+                color="primary"
+                attribute={"content.p[1]"}
+                hit={props.hit}
+                info
+              />
+              <br/>
+            </Fragment>
+          ) : null}
           <TypographyHighlight
             variant="body1"
             color="primary"
@@ -77,57 +91,71 @@ function ResultDescription(props) {
             hit={props.hit}
             info
           />
-          {props.hit.meta.description &&
-          props.hit.content.p &&
-          props.hit.content.p[0]
-            ? " "
-            : ""}
-          <TypographyHighlight
-            variant="body1"
-            color="primary"
-            attribute={"content.p[0]"}
-            hit={props.hit}
-            info
-          />
-          {props.hit.content.p &&
-          props.hit.content.p[0] &&
-          props.hit.content.p[1] &&
-          props.hit.content.p[1]
-            ? " "
-            : ""}
-          <TypographyHighlight
-            variant="body1"
-            color="primary"
-            attribute={"content.p[1]"}
-            hit={props.hit}
-            info
-          />
-          {props.hit.content.p &&
-          props.hit.content.p[1] &&
-          props.hit.content.p[2] &&
-          props.hit.content.p[2]
-            ? " "
-            : ""}
-          <TypographyHighlight
-            variant="body1"
-            color="primary"
-            attribute={"content.p[2]"}
-            hit={props.hit}
-            info
-          />
-          {props.hit.content.p &&
-          props.hit.content.p[2] &&
-          props.hit.content.p[3] &&
-          props.hit.content.p[3]
-            ? " "
-            : ""}
-          <TypographyHighlight
-            variant="body1"
-            color="primary"
-            attribute={"content.p[3]"}
-            hit={props.hit}
-            info
-          />
+        </Fragment>
+      ) : (
+        <Fragment>
+          {props.hit.content ? (
+            <Fragment>
+              <TypographyHighlight
+                variant="body1"
+                color="primary"
+                attribute={"meta.description"}
+                hit={props.hit}
+                info
+              />
+              {props.hit.meta.description &&
+              props.hit.content.p &&
+              props.hit.content.p[0]
+                ? " "
+                : ""}
+              <TypographyHighlight
+                variant="body1"
+                color="primary"
+                attribute={"content.p[0]"}
+                hit={props.hit}
+                info
+              />
+              {props.hit.content.p &&
+              props.hit.content.p[0] &&
+              props.hit.content.p[1] &&
+              props.hit.content.p[1]
+                ? " "
+                : ""}
+              <TypographyHighlight
+                variant="body1"
+                color="primary"
+                attribute={"content.p[1]"}
+                hit={props.hit}
+                info
+              />
+              {props.hit.content.p &&
+              props.hit.content.p[1] &&
+              props.hit.content.p[2] &&
+              props.hit.content.p[2]
+                ? " "
+                : ""}
+              <TypographyHighlight
+                variant="body1"
+                color="primary"
+                attribute={"content.p[2]"}
+                hit={props.hit}
+                info
+              />
+              {props.hit.content.p &&
+              props.hit.content.p[2] &&
+              props.hit.content.p[3] &&
+              props.hit.content.p[3]
+                ? " "
+                : ""}
+              <TypographyHighlight
+                variant="body1"
+                color="primary"
+                attribute={"content.p[3]"}
+                hit={props.hit}
+                info
+              />
+            </Fragment>
+          ) : null}
         </Fragment>
       )}
     </Fragment>
@@ -154,10 +182,7 @@ const TypographyHighlight = connectHighlight(
     const highlightedHits = parsedHit.map((part, key) => {
       if (part.isHighlighted)
         return (
-          <mark
-            key={key}
-            style={{ color: "#BF2885", backgroundColor: "white" }}
-          >
+          <mark key={key} style={{ backgroundColor: "white", fontWeight: 500 }}>
             {part.value}
           </mark>
         );
@@ -170,8 +195,11 @@ const TypographyHighlight = connectHighlight(
         color={color}
         style={{
           display: info ? "unset" : "inherit",
-          fontWeight: variant === "subheading" ? "500" : "inherit",
-          color: url ? "darkslategrey" : "inherit"
+          fontWeight:
+            variant === "subheading"
+              ? "500"
+              : variant === "body2" ? "500" : "inherit",
+          color: url ? "#0D7B72" : "inherit"
         }}
       >
         {highlightedHits}
@@ -188,7 +216,7 @@ function ResultUrl(props) {
   return (
     <TypographyHighlight
       component={"span"}
-      variant="body1"
+      variant="body2"
       color="secondary"
       attribute={"id.url"}
       hit={props.hit}
