@@ -8,10 +8,11 @@ import { css } from "aphrodite";
 import Divider from "@material-ui/core/Divider";
 import Weather from "../weather";
 import RandomDidYouKnowText from '../randomDidYouKnowText';
+import RichRender from '../richRender';
 
 class Hits extends React.Component {
   render() {
-    const { hits, tablet_desktop } = this.props;
+    const { hits, tablet_desktop, rndDidYouKnowText } = this.props;
     const render_mobile = hits => {
       return (
         <div
@@ -97,11 +98,22 @@ class Hits extends React.Component {
                       </Grid>
                     </Grid>
                     <Grid item xs>
-                      <RandomDidYouKnowText/>
+                      <RandomDidYouKnowText rnd={rndDidYouKnowText}/>
                     </Grid>
                   </Grid>
                 </Grid>
-                <Grid item />
+                <Grid item style={{ marginBottom: "20px", marginTop: "20px" }}>
+                  <Typography
+                    variant={"subheading"}
+                    style={{ color: "#0E8AB0" }}
+                  >
+                    {`Aperçu riche`}
+                  </Typography>
+                  <Divider />
+                </Grid>
+                <Grid item>
+                  <RichRender hits={hits}/>
+                </Grid>
                 <Grid item style={{ marginBottom: "20px", marginTop: "20px" }}>
                   <Typography
                     variant={"subheading"}

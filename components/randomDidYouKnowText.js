@@ -2,8 +2,8 @@ import { Fragment } from "react";
 import Typography from "@material-ui/core/Typography";
 import Link from "next/link";
 
-export default () => {
-  const rnd = Math.floor(Math.random() * 6);
+export default props => {
+  const rnd = props.rnd;
   let text;
   switch (rnd) {
     case 0:
@@ -25,7 +25,7 @@ export default () => {
           <Typography variant={"body1"} color={"primary"} gutterBottom>
             {`Il existe presque 90 sites d'annonces (petites annonces et annonces immobilières) en Nouvelle-Calédonie.`}
           </Typography>
-          <Typography variant={"body1"} color={"primary"} >
+          <Typography variant={"body1"} color={"primary"}>
             {`Sur Qwarx, vous pouvez voir toutes ces petites annonces. Pratique!`}
           </Typography>
         </Fragment>
@@ -51,7 +51,7 @@ export default () => {
           <Typography variant={"body1"} color={"primary"} gutterBottom>
             {`En Nouvelle-Calédonie, environ 2700 sites web existent. Ils cumulent plus de 350.000 pages.`}
           </Typography>
-          <Typography variant={"body1"} color={"primary"} >
+          <Typography variant={"body1"} color={"primary"}>
             {`Qui a dit que le web calédonien était petit ?`}
           </Typography>
         </Fragment>

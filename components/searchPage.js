@@ -33,7 +33,8 @@ class SearchPage extends React.Component {
     this.state = {
       searchState: this.props.searchState,
       resultsState: this.props.resultsState,
-      homePage: false
+      homePage: false,
+      rndDidYouKnowText: Math.floor(Math.random() * 6)
     };
     this.goBackToHomePage = this.goBackToHomePage.bind(this);
     this.onSearchStateChange = this.onSearchStateChange.bind(this);
@@ -90,7 +91,7 @@ class SearchPage extends React.Component {
   render() {
     const Content = connectStateResults(
       ({ tablet_desktop, mobile, searchState, searchResults }) => {
-        let hits = <Hits tablet_desktop={tablet_desktop} mobile={mobile} />;
+        let hits = <Hits tablet_desktop={tablet_desktop} mobile={mobile} rndDidYouKnowText={this.state.rndDidYouKnowText} />;
         if (!searchState.query || !searchState.query.length) {
           hits = null;
         }
