@@ -9,10 +9,10 @@ export default props => {
     case 0:
       text = () => (
         <Fragment>
-          <Typography variant={"body1"} color={"primary"} gutterBottom>
+          <Typography variant={"body1"} color={"primary"} style={{ color: 'inherit'}} gutterBottom>
             {`Qwarx est un moteur de recherche dédié exclusivement à la Nouvelle-Calédonie.`}
           </Typography>
-          <Typography variant={"body1"} color={"primary"} gutterBottom>
+          <Typography variant={"body1"} color={"primary"} style={{ color: 'inherit'}} gutterBottom>
             {`Il vous permettra de trouver des informations qui seraient difficiles à trouver sur les autres moteurs de recherche.`}
           </Typography>
         </Fragment>
@@ -22,10 +22,10 @@ export default props => {
     case 1:
       text = () => (
         <Fragment>
-          <Typography variant={"body1"} color={"primary"} gutterBottom>
+          <Typography variant={"body1"} color={"primary"} style={{ color: 'inherit'}} gutterBottom>
             {`Il existe presque 90 sites d'annonces (petites annonces et annonces immobilières) en Nouvelle-Calédonie.`}
           </Typography>
-          <Typography variant={"body1"} color={"primary"}>
+          <Typography variant={"body1"} color={"primary"} style={{ color: 'inherit'}}>
             {`Sur Qwarx, vous pouvez voir toutes ces petites annonces. Pratique!`}
           </Typography>
         </Fragment>
@@ -35,10 +35,10 @@ export default props => {
     case 2:
       text = () => (
         <Fragment>
-          <Typography variant={"body1"} color={"primary"} gutterBottom>
+          <Typography variant={"body1"} color={"primary"} style={{ color: 'inherit'}} gutterBottom>
             {`Au 20 juin 2018, il existait 138 sites de e-commerce en Nouvelle-Calédonie. `}
           </Typography>
-          <Typography variant={"body1"} color={"primary"} gutterBottom>
+          <Typography variant={"body1"} color={"primary"} style={{ color: 'inherit'}} gutterBottom>
             {`De quoi facilement trouver son bonheur !`}
           </Typography>
         </Fragment>
@@ -48,10 +48,10 @@ export default props => {
     case 3:
       text = () => (
         <Fragment>
-          <Typography variant={"body1"} color={"primary"} gutterBottom>
+          <Typography variant={"body1"} color={"primary"} style={{ color: 'inherit'}} gutterBottom>
             {`En Nouvelle-Calédonie, environ 2700 sites web existent. Ils cumulent plus de 350.000 pages.`}
           </Typography>
-          <Typography variant={"body1"} color={"primary"}>
+          <Typography variant={"body1"} color={"primary"} style={{ color: 'inherit'}}>
             {`Qui a dit que le web calédonien était petit ?`}
           </Typography>
         </Fragment>
@@ -61,15 +61,15 @@ export default props => {
     case 4:
       text = () => (
         <Fragment>
-          <Typography variant={"body1"} color={"primary"}>
+          <Typography variant={"body1"} color={"primary"} style={{ color: 'inherit'}}>
             {`Votre site web n'apparaît pas dans Qwarx ?`}
           </Typography>
-          <Typography variant={"body1"} color={"primary"} gutterBottom>
+          <Typography variant={"body1"} color={"primary"} style={{ color: 'inherit'}} gutterBottom>
             {`Ce n'est pas normal.`}
           </Typography>
           <Link prefetch href="/contact">
             <a>
-              <Typography variant={"body1"} color={"secondary"}>
+              <Typography variant={"body1"} color={"secondary"} style={{ color: 'inherit'}}>
                 {`Contactez-nous.`}
               </Typography>
             </a>
@@ -81,15 +81,15 @@ export default props => {
     case 5:
       text = () => (
         <Fragment>
-          <Typography variant={"body1"} color={"primary"}>
+          <Typography variant={"body1"} color={"primary"} style={{ color: 'inherit'}}>
             {`Vous souhaitez voir apparaître votre site web plus haut dans le classement ?`}
           </Typography>
-          <Typography variant={"body1"} color={"primary"} gutterBottom>
+          <Typography variant={"body1"} color={"primary"} style={{ color: 'inherit'}} gutterBottom>
             {`Vous avez envie de voir votre site web présenté de façon plus visible dans les résultats de recherche ?`}
           </Typography>
           <Link prefetch href="/contact">
             <a>
-              <Typography variant={"body1"} color={"secondary"}>
+              <Typography variant={"body1"} color={"secondary"} style={{ color: 'inherit'}}>
                 {`Contactez-nous.`}
               </Typography>
             </a>
@@ -101,10 +101,10 @@ export default props => {
     default:
       text = () => (
         <Fragment>
-          <Typography variant={"body1"} color={"primary"} gutterBottom>
+          <Typography variant={"body1"} color={"primary"} style={{ color: 'inherit'}} gutterBottom>
             {`Qwarx est un moteur de recherche dédié exclusivement à la Nouvelle-Calédonie.`}
           </Typography>
-          <Typography variant={"body1"} color={"primary"} gutterBottom>
+          <Typography variant={"body1"} color={"primary"} style={{ color: 'inherit'}} gutterBottom>
             {`Il vous permettra de trouver des informations qui seraient difficiles à trouver sur les autres moteurs de recherche.`}
           </Typography>
         </Fragment>

@@ -771,7 +771,7 @@
     scroll "^2.0.3"
     warning "^4.0.1"
 
-"@material-ui/icons@^1.0.0":
+"@material-ui/icons@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-1.1.0.tgz#4d025df7b0ba6ace8d6710079ed76013a4d26595"
   dependencies:
@@ -799,6 +799,10 @@
     csstype "^2.0.0"
     indefinite-observable "^1.0.1"
 
+"@types/lodash@^4.14.105":
+  version "4.14.110"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.110.tgz#fb07498f84152947f30ea09d89207ca07123461e"
+
 "@types/react-transition-group@^2.0.8":
   version "2.0.11"
   resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-2.0.11.tgz#feb274676a39383fffaa0dff710958d2251abefb"
@@ -808,6 +812,12 @@
 "@types/react@*":
   version "16.4.1"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.1.tgz#c53bbfb4a78933db587da085ac60dbf5fcf73f8f"
+  dependencies:
+    csstype "^2.2.0"
+
+"@types/react@^16.0.40":
+  version "16.4.4"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.4.tgz#ffaa339e41346a7c65ddc914779ae43fa522a39a"
   dependencies:
     csstype "^2.2.0"
 
@@ -4697,6 +4707,12 @@ mapbox-gl@0.45:
     tinyqueue "^1.1.0"
     vt-pbf "^3.0.1"
 
+material-ui-rating@^2.0.0-beta.2:
+  version "2.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/material-ui-rating/-/material-ui-rating-2.0.0-beta.2.tgz#d7a107af0eb0c3a6af61971c967b782ff362e801"
+  dependencies:
+    prop-types "^15.5.8"
+
 math-expression-evaluator@^1.2.14:
   version "1.2.17"
   resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-1.2.17.tgz#de819fdbcd84dccd8fae59c6aeb79615b9d266ac"
@@ -6269,6 +6285,13 @@ react-popper@^1.0.0:
     prop-types "^15.6.1"
     typed-styles "^0.0.5"
     warning "^3.0.0"
+
+react-rating@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-rating/-/react-rating-1.2.1.tgz#5ed1df19e1b1bd7bcb39892f7300c1d249e1460a"
+  dependencies:
+    "@types/lodash" "^4.14.105"
+    "@types/react" "^16.0.40"
 
 react-recaptcha@^2.3.7:
   version "2.3.8"

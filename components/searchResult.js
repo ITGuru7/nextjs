@@ -66,7 +66,7 @@ function ResultDescription(props) {
       (props.hit.rich.location && props.hit.rich.location.street) ||
       props.hit.rich.location.city;
     const phone = !!props.hit.rich.phone;
-    const count = location ? 1 : 0 + phone ? 1 : 0;
+    const count = location || phone ? 1 : 0;
     let address;
     if (location) {
       if (props.hit.rich.location.street && props.hit.rich.location.city) {
@@ -84,60 +84,6 @@ function ResultDescription(props) {
     }
     return (
       <Fragment>
-        {location ? (
-          <Grid container direction={"row"} spacing={0} alignItems={"center"}>
-            <Grid item>
-              <Typography
-                variant="body2"
-                color="primary"
-                style={{
-                  color: "inherit",
-                  marginRight: "4px"
-                }}
-              >
-                {`Adresse: `}
-              </Typography>{" "}
-            </Grid>
-            <Grid item>
-              <Typography
-                variant="body1"
-                color="primary"
-                style={{
-                  color: "inherit"
-                }}
-              >
-                {`${address.replace(/\s+/g, " ").trim()}`}
-              </Typography>
-            </Grid>
-          </Grid>
-        ) : null}
-        {phone ? (
-          <Grid container direction={"row"} alignItems={"center"} spacing={0}>
-            <Grid item>
-              <Typography
-                variant="body2"
-                color="primary"
-                style={{
-                  color: "inherit",
-                  marginRight: "4px"
-                }}
-              >
-                {`Télephone: `}
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography
-                variant="body1"
-                color="primary"
-                style={{
-                  color: "inherit"
-                }}
-              >
-                {props.hit.rich.phone.replace(/\s+/g, " ").trim()}
-              </Typography>
-            </Grid>
-          </Grid>
-        ) : null}
         <Fragment>
           <TypographyHighlight
             variant="body1"
@@ -147,6 +93,76 @@ function ResultDescription(props) {
             info
             reduce={count}
           />
+          <Grid container direction={"row"} alignItems={"center"} spacing={16}>
+            {phone ? (
+              <Grid item>
+                <Grid
+                  container
+                  direction={"row"}
+                  alignItems={"center"}
+                  spacing={0}
+                >
+                  <Grid item>
+                    <Typography
+                      variant="body2"
+                      color="primary"
+                      style={{
+                        color: "inherit",
+                        marginRight: "4px"
+                      }}
+                    >
+                      {`Télephone: `}
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography
+                      variant="body1"
+                      color="primary"
+                      style={{
+                        color: "inherit"
+                      }}
+                    >
+                      {props.hit.rich.phone.replace(/\s+/g, " ").trim()}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Grid>
+            ) : null}
+            {location ? (
+              <Grid item>
+                <Grid
+                  container
+                  direction={"row"}
+                  spacing={0}
+                  alignItems={"center"}
+                >
+                  <Grid item>
+                    <Typography
+                      variant="body2"
+                      color="primary"
+                      style={{
+                        color: "inherit",
+                        marginRight: "4px"
+                      }}
+                    >
+                      {`Adresse: `}
+                    </Typography>{" "}
+                  </Grid>
+                  <Grid item>
+                    <Typography
+                      variant="body1"
+                      color="primary"
+                      style={{
+                        color: "inherit"
+                      }}
+                    >
+                      {`${address.replace(/\s+/g, " ").trim()}`}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Grid>
+            ) : null}
+          </Grid>
         </Fragment>
       </Fragment>
     );
@@ -311,9 +327,15 @@ const TypographyHighlight = connectHighlight(
           part.value.substring(0, part.value.length - reduce * 80) + "...";
       }
       if (part.isHighlighted) {
-
         return (
-          <mark key={key} style={{ backgroundColor: "unset", fontWeight: 500, color: 'inherit' }}>
+          <mark
+            key={key}
+            style={{
+              backgroundColor: "unset",
+              fontWeight: 500,
+              color: "inherit"
+            }}
+          >
             {part.value}
           </mark>
         );

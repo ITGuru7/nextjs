@@ -7,8 +7,8 @@ import aphrodite from "../../utils/aphrodite";
 import { css } from "aphrodite";
 import Divider from "@material-ui/core/Divider";
 import Weather from "../weather";
-import RandomDidYouKnowText from '../randomDidYouKnowText';
-import RichRender from '../richRender';
+import RandomDidYouKnowText from "../randomDidYouKnowText";
+import RichRender from "../richRender";
 
 class Hits extends React.Component {
   render() {
@@ -65,15 +65,6 @@ class Hits extends React.Component {
                 spacing={0}
                 style={{ width: `439px` }}
               >
-                <Grid item style={{ marginBottom: "20px" }}>
-                  <Typography
-                    variant={"subheading"}
-                    style={{ color: "#0E8AB0" }}
-                  >
-                    {`Le saviez vous ?`}
-                  </Typography>
-                  <Divider />
-                </Grid>
                 <Grid item>
                   <Grid container direction={"row"} spacing={16}>
                     <Grid item>
@@ -98,32 +89,19 @@ class Hits extends React.Component {
                       </Grid>
                     </Grid>
                     <Grid item xs>
-                      <RandomDidYouKnowText rnd={rndDidYouKnowText}/>
+                      <Typography variant={"subheading"} color={"primary"} gutterBottom style={{fontWeight: 500, color: 'inherit'}}>
+                        {`Le saviez vous ?`}
+                      </Typography>
+                      <RandomDidYouKnowText rnd={rndDidYouKnowText} />
                     </Grid>
                   </Grid>
                 </Grid>
-                <Grid item style={{ marginBottom: "20px", marginTop: "20px" }}>
-                  <Typography
-                    variant={"subheading"}
-                    style={{ color: "#0E8AB0" }}
-                  >
-                    {`Aperçu riche`}
-                  </Typography>
-                  <Divider />
+
+                <Grid item>
+                  <RichRender hits={hits} />
                 </Grid>
                 <Grid item>
-                  <RichRender hits={hits}/>
-                </Grid>
-                <Grid item style={{ marginBottom: "20px", marginTop: "20px" }}>
-                  <Typography
-                    variant={"subheading"}
-                    style={{ color: "#0E8AB0" }}
-                  >
-                    {`Images`}
-                  </Typography>
-                  <Divider />
-                </Grid>
-                <Grid item>
+                  {images.length ? <Divider style={{ marginBottom: "20px", marginTop: "20px" }}/> : null}
                   <Grid container direction="row" spacing={0}>
                     {images.map((image, idx) => {
                       const uri = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,b_rgb:EEEEEE,g_auto,c_fill,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${
@@ -169,12 +147,6 @@ class Hits extends React.Component {
                   </Grid>
                 </Grid>
                 <Grid item style={{ marginBottom: "20px", marginTop: "20px" }}>
-                  <Typography
-                    variant={"subheading"}
-                    style={{ color: "#0E8AB0" }}
-                  >
-                    {`Météo`}
-                  </Typography>
                   <Divider />
                 </Grid>
                 <Grid item>

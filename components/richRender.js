@@ -1,5 +1,10 @@
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import { Fragment } from "react";
+import Divider from "@material-ui/core/Divider";
+import Rating from "react-rating";
+import Star from "@material-ui/icons/Star";
+import StarBorder from "@material-ui/icons/StarBorder";
 
 export default props => {
   const hits = props.hits;
@@ -7,7 +12,7 @@ export default props => {
   let facebookHit;
   for (let i = 0; i < hits.length; i++) {
     const hit = hits[i];
-    if (hit.id.domain === "facebook.com") {
+    if (hit.id.domain === "facebook.com" && hit.rich.cover) {
       facebookHit = hit;
       break;
     }
@@ -44,117 +49,143 @@ export default props => {
   }
   const phone = !!facebookHit.rich.phone;
   const description = facebookHit.meta.description;
+  const overall_star_rating = facebookHit.rich.overall_star_rating;
 
   return (
-    <Grid container direction={"column"} style={{ width: "400px" }} spacing={0}>
-      <Grid item>
-        <Grid
-          container
-          alignItems="flex-end"
-          style={{
-            backgroundColor: `#616161`,
-            backgroundImage: `url(${cover})`,
-            backgroundRepeat: `no-repeat`,
-            backgroundSize: `400px 200px`,
-            backgroundPosition: `center center`,
-            position: "relative",
-            height: "200px"
-          }}
-          spacing={0}
-        >
-          {/*<Grid*/}
-          {/*item*/}
-          {/*style={{*/}
-          {/*width: "50px",*/}
-          {/*height: "50px"*/}
-          {/*}}*/}
-          {/*>*/}
-          {/*<img*/}
-          {/*src={picture}*/}
-          {/*style={{*/}
-          {/*width: "50px",*/}
-          {/*height: "50px",*/}
-          {/*padding: "2px"*/}
-          {/*}}*/}
-          {/*/>*/}
-          {/*</Grid>*/}
-        </Grid>
+    <Fragment>
+      <Grid item style={{ marginBottom: "20px", marginTop: "20px" }}>
+        <Divider />
       </Grid>
-      <Grid item>
-        <Typography variant="headline" color="secondary">
-          {facebookHit.id.title}
-        </Typography>
-      </Grid>
-      {address ? (
+      <Grid
+        container
+        direction={"column"}
+        style={{ width: "400px" }}
+        spacing={8}
+      >
         <Grid item>
-          <Grid container direction={"row"} spacing={0} alignItems={"center"}>
-            <Grid item>
-              <Typography
-                variant="body2"
-                color="primary"
-                style={{
-                  color: "inherit",
-                  marginRight: "4px"
-                }}
-              >
-                {`Adresse: `}
-              </Typography>{" "}
-            </Grid>
+          <Grid
+            container
+            alignItems="flex-end"
+            style={{
+              backgroundColor: `#616161`,
+              backgroundImage: `url(${cover})`,
+              backgroundRepeat: `no-repeat`,
+              backgroundSize: `400px 200px`,
+              backgroundPosition: `center center`,
+              position: "relative",
+              height: "200px"
+            }}
+            spacing={0}
+          >
+            {/*<Grid*/}
+            {/*item*/}
+            {/*style={{*/}
+            {/*width: "50px",*/}
+            {/*height: "50px"*/}
+            {/*}}*/}
+            {/*>*/}
+            {/*<img*/}
+            {/*src={picture}*/}
+            {/*style={{*/}
+            {/*width: "50px",*/}
+            {/*height: "50px",*/}
+            {/*padding: "2px"*/}
+            {/*}}*/}
+            {/*/>*/}
+            {/*</Grid>*/}
+          </Grid>
+        </Grid>
+        <Grid item>
+          <a href={facebookHit.objectID} rel="nofollow">
+            <Typography variant="subheading" color="secondary" style={{fontWeight: 500}}>
+              {facebookHit.id.title}
+            </Typography>
+          </a>
+        </Grid>
+        {overall_star_rating ? (
+          <Grid item>
+            <Rating
+              fractions={2}
+              readonly={true}
+              initialRating={overall_star_rating}
+              fullSymbol={<Star style={{ color: "rgb(14, 138, 176)" }} />}
+              emptySymbol={
+                <StarBorder style={{ color: "rgb(14, 138, 176)" }} />
+              }
+            />
+          </Grid>
+        ) : null}
+        <Grid item>
+          <Typography
+            variant="body1"
+            color="primary"
+            style={{
+              color: "inherit"
+            }}
+          >
+            {description}
+          </Typography>
+        </Grid>
+        {address ? (
+          <Grid item>
+            <Grid container direction={"row"} spacing={0} alignItems={"center"}>
+              <Grid item>
+                <Typography
+                  variant="body2"
+                  color="primary"
+                  style={{
+                    color: "inherit",
+                    marginRight: "4px"
+                  }}
+                >
+                  {`Adresse: `}
+                </Typography>{" "}
+              </Grid>
 
-            <Grid item>
-              <Typography
-                variant="body1"
-                color="primary"
-                style={{
-                  color: "inherit"
-                }}
-              >
-                {`${address.replace(/\s+/g, " ").trim()}`}
-              </Typography>
+              <Grid item>
+                <Typography
+                  variant="body1"
+                  color="primary"
+                  style={{
+                    color: "inherit"
+                  }}
+                >
+                  {`${address.replace(/\s+/g, " ").trim()}`}
+                </Typography>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      ) : null}
-      {phone ? (
-        <Grid item>
-          <Grid container direction={"row"} alignItems={"center"} spacing={0}>
-            <Grid item>
-              <Typography
-                variant="body2"
-                color="primary"
-                style={{
-                  color: "inherit",
-                  marginRight: "4px"
-                }}
-              >
-                {`Télephone: `}
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography
-                variant="body1"
-                color="primary"
-                style={{
-                  color: "inherit"
-                }}
-              >
-                {facebookHit.rich.phone.replace(/\s+/g, " ").trim()}
-              </Typography>
+        ) : null}
+        {phone ? (
+          <Grid item>
+            <Grid container direction={"row"} alignItems={"center"} spacing={0}>
+              <Grid item>
+                <Typography
+                  variant="body2"
+                  color="primary"
+                  style={{
+                    color: "inherit",
+                    marginRight: "4px"
+                  }}
+                >
+                  {`Télephone: `}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography
+                  variant="body1"
+                  color="primary"
+                  style={{
+                    color: "inherit"
+                  }}
+                >
+                  {facebookHit.rich.phone.replace(/\s+/g, " ").trim()}
+                </Typography>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      ) : null}
-      <Grid item>
-        <Typography
-          variant="body1"
-          color="primary"
-          style={{
-            color: "inherit"
-          }}
-        >
-          {description}
-        </Typography>
+        ) : null}
       </Grid>
-    </Grid>
+    </Fragment>
   );
 };
