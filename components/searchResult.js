@@ -85,15 +85,27 @@ function ResultDescription(props) {
     return (
       <Fragment>
         <Fragment>
-          <TypographyHighlight
+          {props.hit.meta.description ? (
+            <TypographyHighlight
+              variant="body1"
+              color="primary"
+              attribute={"meta.description"}
+              hit={props.hit}
+              info
+              reduce={count}
+            />
+          ) : <Typography
             variant="body1"
             color="primary"
-            attribute={"meta.description"}
-            hit={props.hit}
-            info
-            reduce={count}
-          />
-          <Grid container direction={"row"} alignItems={"center"} spacing={16}>
+            style={{
+              color: "inherit",
+            }}
+          >
+            {`Accéder directement à la page facebook.`}
+          </Typography>
+          }
+
+          <Grid container direction={"row"} alignItems={"center"} style={{marginTop: '4px'}}>
             {phone ? (
               <Grid item>
                 <Grid
@@ -119,7 +131,8 @@ function ResultDescription(props) {
                       variant="body1"
                       color="primary"
                       style={{
-                        color: "inherit"
+                        color: "inherit",
+                        marginRight: "8px"
                       }}
                     >
                       {props.hit.rich.phone.replace(/\s+/g, " ").trim()}

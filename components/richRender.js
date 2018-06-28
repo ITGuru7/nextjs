@@ -22,7 +22,7 @@ export default props => {
     return null;
   }
 
-  const cover = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,c_fill_pad,g_auto,b_auto,w_400,h_200,dpr_3.0/d_qwarx-facebook-background/${
+  const cover = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,c_fill_pad,g_auto,b_auto,w_439,h_200,dpr_3.0/d_qwarx-facebook-background/${
     facebookHit.rich.cover
   }`;
   const picture = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_50,h_50,dpr_1.0/d_qwarx-facebook/${
@@ -59,7 +59,7 @@ export default props => {
       <Grid
         container
         direction={"column"}
-        style={{ width: "400px" }}
+        style={{ width: "439px" }}
         spacing={8}
       >
         <Grid item>
@@ -70,7 +70,7 @@ export default props => {
               backgroundColor: `#616161`,
               backgroundImage: `url(${cover})`,
               backgroundRepeat: `no-repeat`,
-              backgroundSize: `400px 200px`,
+              backgroundSize: `439px 200px`,
               backgroundPosition: `center center`,
               position: "relative",
               height: "200px"
