@@ -5,6 +5,7 @@ import Divider from "@material-ui/core/Divider";
 import Rating from "react-rating";
 import Star from "@material-ui/icons/Star";
 import StarBorder from "@material-ui/icons/StarBorder";
+import querystring from "querystring";
 
 export default props => {
   const hits = props.hits;
@@ -22,11 +23,17 @@ export default props => {
     return null;
   }
 
-  const cover = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,c_fill_pad,g_auto,b_auto,w_439,h_200,dpr_3.0/d_qwarx-facebook-background/${
-    facebookHit.rich.cover
-  }`;
-  const picture = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_50,h_50,dpr_1.0/d_qwarx-facebook/${
-    facebookHit.rich.picture
+  const cover = encodeURIComponent(facebookHit.rich.cover)
+
+
+  const coverDpr1 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,c_fill_pad,g_auto,b_auto,w_439,h_200,dpr_1.0/d_qwarx-facebook-background/${
+    cover
+    }`;
+  const coverDpr2 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,c_fill_pad,g_auto,b_auto,w_439,h_200,dpr_2.0/d_qwarx-facebook-background/${
+    cover
+    }`;
+  const coverDpr3 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,c_fill_pad,g_auto,b_auto,w_439,h_200,dpr_3.0/d_qwarx-facebook-background/${
+    cover
   }`;
 
   const location =
@@ -63,41 +70,19 @@ export default props => {
         spacing={8}
       >
         <Grid item>
-          <Grid
-            container
-            alignItems="flex-end"
-            style={{
-              backgroundColor: `#616161`,
-              backgroundImage: `url(${cover})`,
-              backgroundRepeat: `no-repeat`,
-              backgroundSize: `439px 200px`,
-              backgroundPosition: `center center`,
-              position: "relative",
-              height: "200px"
-            }}
-            spacing={0}
-          >
-            {/*<Grid*/}
-            {/*item*/}
-            {/*style={{*/}
-            {/*width: "50px",*/}
-            {/*height: "50px"*/}
-            {/*}}*/}
-            {/*>*/}
-            {/*<img*/}
-            {/*src={picture}*/}
-            {/*style={{*/}
-            {/*width: "50px",*/}
-            {/*height: "50px",*/}
-            {/*padding: "2px"*/}
-            {/*}}*/}
-            {/*/>*/}
-            {/*</Grid>*/}
-          </Grid>
+          <img
+            src={coverDpr1}
+            srcSet={`${coverDpr1}, ${coverDpr2} 2x, ${coverDpr3} 3x`}
+            alt="facebook cover"
+          />
         </Grid>
         <Grid item>
           <a href={facebookHit.objectID} rel="nofollow">
-            <Typography variant="subheading" color="secondary" style={{fontWeight: 500}}>
+            <Typography
+              variant="subheading"
+              color="secondary"
+              style={{ fontWeight: 500 }}
+            >
               {facebookHit.id.title}
             </Typography>
           </a>
@@ -108,10 +93,8 @@ export default props => {
               fractions={2}
               readonly={true}
               initialRating={overall_star_rating}
-              fullSymbol={<Star style={{ color: "rgb(14, 138, 176)" }} />}
-              emptySymbol={
-                <StarBorder style={{ color: "rgb(14, 138, 176)" }} />
-              }
+              fullSymbol={<Star style={{ color: "#FFB300" }} />}
+              emptySymbol={<StarBorder style={{ color: "#FFB300" }} />}
             />
           </Grid>
         ) : null}

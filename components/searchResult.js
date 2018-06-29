@@ -11,6 +11,9 @@ function ResultImg(props) {
     props.hit.id.domain === "facebook.com"
       ? "d_qwarx-facebook.png"
       : "d_qwarx-no-image.png";
+
+  const image = encodeURIComponent(props.hit.meta.image);
+
   return (
     <Fragment>
       {props.hit.meta.image ? (
@@ -25,17 +28,17 @@ function ResultImg(props) {
               height: "70px"
             }}
             src={`https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_1.0/${placeholder}/${
-              props.hit.meta.image
+              image
             }`}
             srcSet={`
             https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_1.0/${placeholder}/${
-              props.hit.meta.image
+              image
             },
             https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_2.0/${placeholder}/${
-              props.hit.meta.image
+              image
             } 2x,
             https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_3.0/${placeholder}/${
-              props.hit.meta.image
+              image
             } 3x,
             `}
             alt={props.hit.id.title}
@@ -94,18 +97,18 @@ function ResultDescription(props) {
               info
               reduce={count}
             />
-          ) : <Typography
-            variant="body1"
-            color="primary"
-            style={{
-              
-            }}
-          >
-            {`Accéder directement à la page facebook.`}
-          </Typography>
-          }
+          ) : (
+            <Typography variant="body1" color="primary" style={{}}>
+              {`Accéder directement à la page facebook.`}
+            </Typography>
+          )}
 
-          <Grid container direction={"row"} alignItems={"center"} style={{marginTop: '4px'}}>
+          <Grid
+            container
+            direction={"row"}
+            alignItems={"center"}
+            style={{ marginTop: "4px" }}
+          >
             {phone ? (
               <Grid item>
                 <Grid
@@ -119,7 +122,6 @@ function ResultDescription(props) {
                       variant="body2"
                       color="primary"
                       style={{
-                        
                         marginRight: "4px"
                       }}
                     >
@@ -131,7 +133,6 @@ function ResultDescription(props) {
                       variant="body1"
                       color="primary"
                       style={{
-                        
                         marginRight: "8px"
                       }}
                     >
@@ -154,7 +155,6 @@ function ResultDescription(props) {
                       variant="body2"
                       color="primary"
                       style={{
-                        
                         marginRight: "4px"
                       }}
                     >
@@ -162,10 +162,7 @@ function ResultDescription(props) {
                     </Typography>{" "}
                   </Grid>
                   <Grid item>
-                    <Typography
-                      variant="body1"
-                      color="primary"
-                    >
+                    <Typography variant="body1" color="primary">
                       {`${address.replace(/\s+/g, " ").trim()}`}
                     </Typography>
                   </Grid>
@@ -189,7 +186,7 @@ function ResultDescription(props) {
               variant="body2"
               color="primary"
               style={{
-                display: "unset",
+                display: "unset"
               }}
             >
               {"Boutique : "}
@@ -342,7 +339,7 @@ const TypographyHighlight = connectHighlight(
             style={{
               backgroundColor: "unset",
               fontWeight: 500,
-              color: 'inherit'
+              color: "inherit"
             }}
           >
             {part.value}
@@ -364,7 +361,7 @@ const TypographyHighlight = connectHighlight(
             variant === "subheading"
               ? "500"
               : variant === "body2" ? "500" : "inherit",
-          color: url ? "#0D7B72" : 'default'
+          color: url ? "#0D7B72" : "default"
         }}
       >
         {highlightedHits}
@@ -415,9 +412,9 @@ class SearchResult extends React.Component {
             )}
             style={{ backgroundColor: "white" }}
           >
-            <ResultTitle hit={hit} style={{ marginBottom: "4px" }} />
+            <ResultTitle hit={hit} />
             <ResultUrl hit={hit} />
-            <Grid container spacing={0} style={{ marginTop: "4px" }}>
+            <Grid container spacing={0}>
               <Grid item>
                 <ResultImg hit={hit} />
               </Grid>
@@ -443,7 +440,7 @@ class SearchResult extends React.Component {
             )}
             style={{ backgroundColor: "white" }}
           >
-            <ResultTitle hit={hit} style={{ marginBottom: "4px" }} />
+            <ResultTitle hit={hit} />
             <ResultUrl hit={hit} />
             <Grid container spacing={0}>
               <Grid item>

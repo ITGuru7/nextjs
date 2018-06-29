@@ -8,7 +8,7 @@ const styles = {
     marginRight: "8px",
   },
   selected: {
-    color: "#0E8AB0"
+    color: "#1565C0"
   },
   disabled: {
     color: "#666"

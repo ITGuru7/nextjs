@@ -15,7 +15,7 @@ const styles = {
   },
   indicator: {
     bottom: "8px",
-    backgroundColor: "#0E8AB0"
+    backgroundColor: "#1565C0"
   }
 };
 
