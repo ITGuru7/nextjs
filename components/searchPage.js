@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Pagination, Configure, Stats } from "react-instantsearch/dom";
+import { Pagination, Configure, Stats} from "react-instantsearch/dom";
 import SearchBox from "./algolia/searchBox";
 import Hits from "./algolia/hits";
 import { InstantSearch } from "./instantsearch";

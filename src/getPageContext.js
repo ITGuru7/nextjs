@@ -7,12 +7,13 @@ import blue from "@material-ui/core/colors/blue";
 
 // A theme with custom primary and secondary color.
 // It's optional.
+// https://material-ui.com/style/color/
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: grey[300],
-      main: grey[800],
-      dark: grey[900]
+      light: '#212121',
+      main: '#212121',
+      dark: '#212121'
     },
     secondary: {
       light: '#0E8AB0',

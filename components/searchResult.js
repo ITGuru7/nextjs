@@ -98,7 +98,7 @@ function ResultDescription(props) {
             variant="body1"
             color="primary"
             style={{
-              color: "inherit",
+              
             }}
           >
             {`Accéder directement à la page facebook.`}
@@ -119,7 +119,7 @@ function ResultDescription(props) {
                       variant="body2"
                       color="primary"
                       style={{
-                        color: "inherit",
+                        
                         marginRight: "4px"
                       }}
                     >
@@ -131,7 +131,7 @@ function ResultDescription(props) {
                       variant="body1"
                       color="primary"
                       style={{
-                        color: "inherit",
+                        
                         marginRight: "8px"
                       }}
                     >
@@ -154,7 +154,7 @@ function ResultDescription(props) {
                       variant="body2"
                       color="primary"
                       style={{
-                        color: "inherit",
+                        
                         marginRight: "4px"
                       }}
                     >
@@ -165,9 +165,6 @@ function ResultDescription(props) {
                     <Typography
                       variant="body1"
                       color="primary"
-                      style={{
-                        color: "inherit"
-                      }}
                     >
                       {`${address.replace(/\s+/g, " ").trim()}`}
                     </Typography>
@@ -193,7 +190,6 @@ function ResultDescription(props) {
               color="primary"
               style={{
                 display: "unset",
-                color: "inherit"
               }}
             >
               {"Boutique : "}
@@ -346,7 +342,7 @@ const TypographyHighlight = connectHighlight(
             style={{
               backgroundColor: "unset",
               fontWeight: 500,
-              color: "inherit"
+              color: 'inherit'
             }}
           >
             {part.value}
@@ -368,7 +364,7 @@ const TypographyHighlight = connectHighlight(
             variant === "subheading"
               ? "500"
               : variant === "body2" ? "500" : "inherit",
-          color: url ? "#0D7B72" : "inherit"
+          color: url ? "#0D7B72" : 'default'
         }}
       >
         {highlightedHits}

@@ -89,7 +89,7 @@ class Hits extends React.Component {
                       </Grid>
                     </Grid>
                     <Grid item xs>
-                      <Typography variant={"subheading"} color={"primary"} gutterBottom style={{fontWeight: 500, color: 'inherit'}}>
+                      <Typography variant={"subheading"} color={"primary"} gutterBottom style={{fontWeight: 500}}>
                         {`Le saviez vous ?`}
                       </Typography>
                       <RandomDidYouKnowText rnd={rndDidYouKnowText} />

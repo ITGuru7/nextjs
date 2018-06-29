@@ -27,6 +27,7 @@ export default class Weather extends React.Component {
           data-days="3"
           data-icons="Climacons Animated"
           data-theme="pure"
+          data-textcolor="#212121"
         >
           NOUMEA METEO
         </a>

@@ -41,7 +41,7 @@ export default class Footer extends React.Component {
                       alignItems={"center"}
                     >
                       <Grid item xs>
-                        <Link href="/mentions-legales">
+                        <Link prefetch  href="/mentions-legales">
                           <Typography variant="caption" align="center">
                             <a
                               style={{ color: "black", opacity: 0.6 }}
@@ -50,7 +50,7 @@ export default class Footer extends React.Component {
                         </Link>
                       </Grid>
                       <Grid item xs>
-                        <Link href="/contact">
+                        <Link prefetch href="/contact">
                           <Typography variant="caption" align="center">
                             <a
                               style={{ color: "black", opacity: 0.6 }}
@@ -59,7 +59,7 @@ export default class Footer extends React.Component {
                         </Link>
                       </Grid>
                       <Grid item xs>
-                        <Link href="/conditions-generales">
+                        <Link prefetch href="/conditions-generales">
                           <Typography variant="caption" align="center">
                             <a
                               style={{ color: "black", opacity: 0.6 }}
@@ -68,7 +68,7 @@ export default class Footer extends React.Component {
                         </Link>
                       </Grid>
                       <Grid item xs>
-                        <Link href="/blog">
+                        <Link prefetch href="/blog">
                           <Typography variant="caption" align="center">
                             <a
                               style={{ color: "black", opacity: 0.6 }}
@@ -104,21 +104,21 @@ export default class Footer extends React.Component {
                 className={css(aphrodite.searchResultsPaddingLeft)}
                 style={{ marginTop: "20px" }}
               >
-                <Link href="/mentions-legales">
+                <Link prefetch href="/mentions-legales">
                   <a style={{ marginRight: "25px" }}>{`Mentions légales`}</a>
                 </Link>
 
-                <Link href="/conditions-generales">
+                <Link prefetch href="/conditions-generales">
                   <a
                     style={{ marginRight: "25px" }}
                   >{`Conditions générales`}</a>
                 </Link>
 
-                <Link href="/contact">
+                <Link prefetch href="/contact">
                   <a style={{ marginRight: "25px" }}>{`Contact`}</a>
                 </Link>
 
-                <Link href="/blog">
+                <Link prefetch href="/blog">
                   <a style={{ marginRight: "25px" }}>{`Blog`}</a>
                 </Link>
 
@@ -154,7 +154,7 @@ export default class Footer extends React.Component {
                   alignItems={"center"}
                 >
                   <Grid item xs>
-                    <Link href="/mentions-legales">
+                    <Link prefetch href="/mentions-legales">
                       <Typography variant="caption" align="center">
                         <a
                           style={{ color: "black", opacity: 0.6 }}
@@ -163,7 +163,7 @@ export default class Footer extends React.Component {
                     </Link>
                   </Grid>
                   <Grid item xs>
-                    <Link href="/contact">
+                    <Link prefetch href="/contact">
                       <Typography variant="caption" align="center">
                         <a
                           style={{ color: "black", opacity: 0.6 }}
@@ -172,7 +172,7 @@ export default class Footer extends React.Component {
                     </Link>
                   </Grid>
                   <Grid item xs>
-                    <Link href="/conditions-generales">
+                    <Link prefetch href="/conditions-generales">
                       <Typography variant="caption" align="center">
                         <a
                           style={{ color: "black", opacity: 0.6 }}
@@ -191,7 +191,7 @@ export default class Footer extends React.Component {
                   alignItems={"center"}
                 >
                   <Grid item xs>
-                    <Link href="/blog">
+                    <Link prefetch href="/blog">
                       <Typography variant="caption" align="center">
                         <a style={{ color: "black", opacity: 0.6 }}>{`Blog`}</a>
                       </Typography>
