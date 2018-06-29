@@ -27,19 +27,11 @@ function ResultImg(props) {
               width: "70px",
               height: "70px"
             }}
-            src={`https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_1.0/${placeholder}/${
-              image
-            }`}
+            src={`https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_1.0/${placeholder}/${image}`}
             srcSet={`
-            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_1.0/${placeholder}/${
-              image
-            },
-            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_2.0/${placeholder}/${
-              image
-            } 2x,
-            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_3.0/${placeholder}/${
-              image
-            } 3x,
+            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_1.0/${placeholder}/${image},
+            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_2.0/${placeholder}/${image} 2x,
+            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_3.0/${placeholder}/${image} 3x,
             `}
             alt={props.hit.id.title}
             id={props.hit.objectID}

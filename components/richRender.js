@@ -5,7 +5,6 @@ import Divider from "@material-ui/core/Divider";
 import Rating from "react-rating";
 import Star from "@material-ui/icons/Star";
 import StarBorder from "@material-ui/icons/StarBorder";
-import querystring from "querystring";
 
 export default props => {
   const hits = props.hits;
@@ -23,18 +22,11 @@ export default props => {
     return null;
   }
 
-  const cover = encodeURIComponent(facebookHit.rich.cover)
+  const cover = encodeURIComponent(facebookHit.rich.cover);
 
-
-  const coverDpr1 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,c_fill_pad,g_auto,b_auto,w_439,h_200,dpr_1.0/d_qwarx-facebook-background/${
-    cover
-    }`;
-  const coverDpr2 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,c_fill_pad,g_auto,b_auto,w_439,h_200,dpr_2.0/d_qwarx-facebook-background/${
-    cover
-    }`;
-  const coverDpr3 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,c_fill_pad,g_auto,b_auto,w_439,h_200,dpr_3.0/d_qwarx-facebook-background/${
-    cover
-  }`;
+  const coverDpr1 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,c_fill_pad,g_auto,b_auto,w_439,h_200,dpr_1.0/d_qwarx-facebook-background/${cover}`;
+  const coverDpr2 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,c_fill_pad,g_auto,b_auto,w_439,h_200,dpr_2.0/d_qwarx-facebook-background/${cover}`;
+  const coverDpr3 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,c_fill_pad,g_auto,b_auto,w_439,h_200,dpr_3.0/d_qwarx-facebook-background/${cover}`;
 
   const location =
     (facebookHit.rich.location && facebookHit.rich.location.street) ||
