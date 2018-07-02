@@ -7,6 +7,7 @@ import Divider from "@material-ui/core/Divider";
 import Link from "next/link";
 import aphrodite from "../utils/aphrodite";
 import { css } from "aphrodite";
+import { Fragment } from "react";
 
 export default class About extends React.Component {
   constructor(props) {
@@ -20,8 +21,76 @@ export default class About extends React.Component {
     this.setState({ value });
   };
 
+  legalMenu = () => {
+    return (
+      <Fragment>
+        <Typography
+          variant="subheading"
+          className={css(aphrodite.aboutMenuTitlePadding)}
+        >
+          {`Mentions légales`}
+        </Typography>
+        <Typography
+          variant="subheading"
+          className={css(aphrodite.aboutMenuTitlePadding)}
+        >
+          {`Données personnelles`}
+        </Typography>
+      </Fragment>
+    );
+  };
+
+  legalContent = () => {
+    return (
+      <Fragment>
+        <Typography variant="headline" gutterBottom>
+          {`Mentions légales`}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          {`Qwarx.nc est un site édité par l'agence de communication ClacTaCom SARL.`}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          {`Le contenu et la forme du site web ne sont pas contractuels. ClacTaCom ne peut être tenu responsable d'éventuelles informations erronées qui seraient présentées sur le site.`}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          {`La base de données présentée sur Qwarx.nc a été constituée par ClacTaCom et en est sa propriété. Toute reproduction en est interdite.`}
+        </Typography>
+        <Typography
+          variant="headline"
+          gutterBottom
+          style={{ paddingTop: "64px" }}
+        >
+          {`Données personnelles`}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          {`Conformément aux dispositions prévues par la loi "Informatique et Liberté" du 06/01/1978, vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données qui vous concernent (art. 34). Pour l'exercer, Veuillez nous contacter par mail contact@clactacom.nc.`}
+        </Typography>
+        <Typography
+          variant="headline"
+          gutterBottom
+          style={{ paddingTop: "64px" }}
+        >
+          {`Numéro CNIL`}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          {`2183090 v 0.`}
+        </Typography>
+      </Fragment>
+    );
+  };
+
   render() {
     const { value } = this.state;
+    let menu, content;
+    switch (value) {
+      case 0:
+        menu = this.legalMenu;
+        content = this.legalContent;
+        break;
+      default:
+        menu = () => null;
+        content = () => null;
+    }
     return (
       <Wrapper>
         <Grid
@@ -89,20 +158,12 @@ export default class About extends React.Component {
                 item
                 style={{
                   width: "300px",
-                  borderRight: "1px #e1e1e1 solid"
+                  borderRight: "1px #e1e1e1 solid",
+                  marginTop: "12px",
+                  marginBottom: "12px"
                 }}
               >
-                <Grid container direction="column" spacing={0} style={{marginTop: '12px', marginBottom: '12px'}}>
-                  <Grid item>
-                    <Typography variant="subheading" className={css(aphrodite.aboutMenuTitlePadding)}>
-                      {`Mentions légales`}
-                    </Typography>
-                    <Typography variant="subheading" className={css(aphrodite.aboutMenuTitlePadding)}>
-                      {`Données personnelles`}
-                    </Typography>
-                  </Grid>
-                  <Grid item />
-                </Grid>
+                {menu()}
               </Grid>
               <Grid
                 item
@@ -114,38 +175,7 @@ export default class About extends React.Component {
                   width: "720px"
                 }}
               >
-                <Typography variant="headline" gutterBottom>
-                  {`Mentions légales`}
-                </Typography>
-                <Typography variant="body1" gutterBottom>
-                  {`Qwarx.nc est un site édité par l'agence de communication ClacTaCom SARL.`}
-                </Typography>
-                <Typography variant="body1" gutterBottom>
-                  {`Le contenu et la forme du site web ne sont pas contractuels. ClacTaCom ne peut être tenu responsable d'éventuelles informations erronées qui seraient présentées sur le site.`}
-                </Typography>
-                <Typography variant="body1" gutterBottom>
-                  {`La base de données présentée sur Qwarx.nc a été constituée par ClacTaCom et en est sa propriété. Toute reproduction en est interdite.`}
-                </Typography>
-                <Typography
-                  variant="headline"
-                  gutterBottom
-                  style={{ paddingTop: "64px" }}
-                >
-                  {`Données personnelles`}
-                </Typography>
-                <Typography variant="body1" gutterBottom>
-                  {`Conformément aux dispositions prévues par la loi "Informatique et Liberté" du 06/01/1978, vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données qui vous concernent (art. 34). Pour l'exercer, Veuillez nous contacter par mail contact@clactacom.nc.`}
-                </Typography>
-                <Typography
-                  variant="headline"
-                  gutterBottom
-                  style={{ paddingTop: "64px" }}
-                >
-                  {`Numéro CNIL`}
-                </Typography>
-                <Typography variant="body1" gutterBottom>
-                  {`2183090 v 0.`}
-                </Typography>
+                {content()}
               </Grid>
             </Grid>
           </Grid>
