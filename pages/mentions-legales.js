@@ -1,14 +1,5 @@
-import Typography from "@material-ui/core/Typography";
+import About from "../components/about";
 
 export default () => {
-  return (
-    <div style={{height: '100vh'}}>
-      <Typography
-        variant="headline"
-        color="primary"
-      >
-        {`Mentions Légales`}
-      </Typography>
-    </div>
-  );
+  return <About value={0}/>;
 };

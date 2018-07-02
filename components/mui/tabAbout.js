@@ -5,7 +5,7 @@ import Tab from "@material-ui/core/Tab";
 const styles = {
   root: {
     minWidth: 0,
-    marginRight: "8px",
+    marginRight: "42px",
   },
   selected: {
     color: "#1565C0"
@@ -16,12 +16,12 @@ const styles = {
   labelContainer: {
     paddingTop: 3,
     paddingBottom: 3,
-    paddingLeft: 6,
-    paddingRight: 6
+    paddingLeft: 0,
+    paddingRight: 0
   },
   label: {
-    fontSize: '0.875rem',
-    'text-transform': 'capitalize'
+    fontSize: '1rem',
+    textTransform: 'capitalize'
   }
 };
 
@@ -30,6 +30,7 @@ class StyledTab extends React.Component {
     const props = this.props;
     return (
       <Tab
+        disableRipple
         {...props}
         classes={{
           selected: props.classes.selected,

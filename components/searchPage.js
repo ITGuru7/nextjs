@@ -6,8 +6,8 @@ import { InstantSearch } from "./instantsearch";
 import { css } from "aphrodite";
 import Divider from "@material-ui/core/Divider";
 import Footer from "./footer";
-import Tabs from "./mui/tabs";
-import Tab from "./mui/tab";
+import Tabs from "./mui/tabsSearchPage";
+import Tab from "./mui/tabSearchPage";
 import aphrodite from "../utils/aphrodite";
 import Grid from "@material-ui/core/Grid";
 import Router from "next/router";
@@ -124,7 +124,7 @@ class SearchPage extends React.Component {
             container
             direction="row"
             spacing={0}
-            style={{ marginTop: "10px" }}
+            style={{ marginTop: "5px" }}
             alignItems={"center"}
           >
             <Grid item>

@@ -9,6 +9,7 @@ import Wrapper from "../components/wrapper";
 function ResultImg(props) {
   const placeholder =
     props.hit.id.domain === "facebook.com"
+
       ? "d_qwarx-facebook.png"
       : "d_qwarx-no-image.png";
 

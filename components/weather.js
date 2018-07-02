@@ -28,8 +28,6 @@ export default class Weather extends React.Component {
           data-icons="Climacons Animated"
           data-theme="pure"
           data-textcolor="#212121"
-          data-cloudcolor="#212121"
-          data-mooncolor="#212121"
           data-lowcolor="#1565C0"
           data-raincolor="#1565C0"
         >

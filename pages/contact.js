@@ -1,3 +1,5 @@
+import About from "../components/about";
+
 export default () => {
-  return null;
-}
+  return <About value={4}/>;
+};
