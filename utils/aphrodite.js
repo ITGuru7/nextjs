@@ -210,6 +210,7 @@ export default StyleSheet.create({
     paddingRight: "24px",
     paddingTop: "13px",
     paddingBottom: "13px",
-    color: "rgb(0,0,0,0.54)"
+    color: "rgb(0,0,0,0.54)",
+    cursor: "pointer"
   }
 });
