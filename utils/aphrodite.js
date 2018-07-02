@@ -151,7 +151,7 @@ export default StyleSheet.create({
     },
     "@media (min-width: 601px)": {
       width: "250px"
-    },
+    }
   },
   topScreenPadding: {
     marginTop: "3px",
@@ -205,5 +205,11 @@ export default StyleSheet.create({
     "@media (min-width: 1280px)": {
       minHeight: "calc(100vh)"
     }
+  },
+  aboutMenuTitlePadding: {
+    paddingRight: "24px",
+    paddingTop: "13px",
+    paddingBottom: "13px",
+    color: "rgb(0,0,0,0.54)"
   }
 });
