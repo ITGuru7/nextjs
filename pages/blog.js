@@ -1,5 +1,5 @@
 import About from "../components/about";
 
 export default () => {
-  return <About value={3}/>;
+  return <About value={2}/>;
 };

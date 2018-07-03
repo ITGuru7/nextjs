@@ -8,6 +8,7 @@ import Link from "next/link";
 import aphrodite from "../utils/aphrodite";
 import { css } from "aphrodite";
 import { Fragment } from "react";
+import Router from "next/router";
 
 export default class About extends React.Component {
   constructor(props) {
@@ -18,6 +19,24 @@ export default class About extends React.Component {
   }
 
   handleChange = (event, value) => {
+    switch (value) {
+      case 0:
+        Router.push("/mentions-legales", "/mentions-legales", {
+          shallow: true
+        });
+        break;
+      case 1:
+        Router.push("/conditions-generales", "/conditions-generales", {
+          shallow: true
+        });
+        break;
+      case 2:
+        Router.push("/blog", "/blog", { shallow: true });
+        break;
+      case 3:
+        Router.push("/contact", "/contact", { shallow: true });
+        break;
+    }
     this.setState({ value });
   };
 
@@ -362,7 +381,6 @@ export default class About extends React.Component {
           </li>
         </ul>
 
-
         <Typography
           variant="headline"
           gutterBottom
@@ -393,7 +411,6 @@ export default class About extends React.Component {
           {`Les différents textes, images, photographies, interfaces visuelles, graphiques, marques, logos, sons, extraits musicaux, illustrations et vidéos, accessibles via les Services à partir de liens hypertextes, peuvent faire l’objet de droits de propriété intellectuelle spécifiques. Nous ne saurions être tenus responsables de toute atteinte, dommage, perte, préjudice, revendication, action en contrefaçon et concurrence déloyale au titre de l’utilisation de nos Services, ni de toute utilisation illicite de nos Services, exploitation frauduleuse ou tentative d’atteinte à des mesures techniques de protection.`}
         </Typography>
 
-
         <Typography
           variant="headline"
           gutterBottom
@@ -423,8 +440,6 @@ export default class About extends React.Component {
         <Typography variant="body1" gutterBottom>
           {`Vous pouvez supprimer votre compte à tout moment à partir de votre profil en cliquant sur la mention « Supprimer mon compte ». `}
         </Typography>
-
-
 
         <Typography
           variant="headline"
@@ -491,7 +506,6 @@ export default class About extends React.Component {
           {`Les données personnelles que vous communiquez sont conservées pour la durée strictement nécessaire à la réalisation des finalités visées ci-dessus. Elles ne font l’objet d’aucune divulgation et/ou cession à des tiers, dans le respect des obligations réglementaires et légales applicables aux moteurs de recherche. Nous nous engageons à mettre en place tous les moyens nécessaires pour garantir la sécurité et la confidentialité des données transmises.`}
         </Typography>
 
-
         <Typography
           variant="headline"
           gutterBottom
@@ -543,6 +557,14 @@ export default class About extends React.Component {
         menu = this.termsOfUseMenu;
         content = this.termsOfUseContent;
         break;
+      case 2:
+        menu = () => null;
+        content = () => null;
+        break;
+      case 3:
+        menu = () => null;
+        content = () => null;
+        break;
       default:
         menu = () => null;
         content = () => null;
@@ -555,55 +577,66 @@ export default class About extends React.Component {
           spacing={0}
           style={{ marginLeft: "16px" }}
         >
-          <Grid item>
-            <Grid
-              container
-              direction="row"
-              spacing={0}
-              style={{ marginTop: "5px" }}
-              alignItems={"center"}
-            >
-              <Grid item style={{ marginRight: "8px" }}>
-                <Link prefetch href="/">
-                  <a>
-                    <img
-                      src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo.png`}
-                      srcSet={`
+          <Grid
+            item
+            style={{
+              position: "fixed",
+              width: "100%",
+              top: 0,
+              backgroundColor: "white"
+            }}
+          >
+            <Grid container direction="column" spacing={0}>
+              <Grid item>
+                <Grid
+                  container
+                  direction="row"
+                  spacing={0}
+                  style={{ marginTop: "5px" }}
+                  alignItems={"center"}
+                >
+                  <Grid item style={{ marginRight: "8px" }}>
+                    <Link prefetch href="/">
+                      <a>
+                        <img
+                          src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo.png`}
+                          srcSet={`
                 https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo.png,
                 https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_2.0/qwarx-logo.png 2x,
                 https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_3.0/qwarx-logo.png 3x
                 `}
-                      alt={`qwarx logo`}
-                      style={{
-                        cursor: this.goBackToHomePage ? "pointer" : "unset"
-                      }}
-                    />
-                  </a>
-                </Link>
+                          alt={`qwarx logo`}
+                          style={{
+                            cursor: this.goBackToHomePage ? "pointer" : "unset"
+                          }}
+                        />
+                      </a>
+                    </Link>
+                  </Grid>
+                  <Grid item xs>
+                    <Typography variant={"title"} color={"primary"}>
+                      {`A propos`}
+                    </Typography>
+                  </Grid>
+                </Grid>
               </Grid>
-              <Grid item xs>
-                <Typography variant={"title"} color={"primary"}>
-                  {`A propos`}
-                </Typography>
+              <Grid item>
+                <Tabs
+                  indicatorColor="secondary"
+                  textColor="secondary"
+                  onChange={this.handleChange}
+                  value={value}
+                >
+                  <Tab label="Mentions légales" />
+                  <Tab label="Conditions Générales" />
+                  <Tab label="Blog" />
+                  <Tab label="Contact" />
+                </Tabs>
+                <Divider />
               </Grid>
             </Grid>
           </Grid>
-          <Grid item>
-            <Tabs
-              indicatorColor="secondary"
-              textColor="secondary"
-              onChange={this.handleChange}
-              value={value}
-            >
-              <Tab label="Mentions légales" />
-              <Tab label="Conditions Générales" />
-              <Tab label="Plus d'infos" />
-              <Tab label="Blog" />
-              <Tab label="Contact" />
-            </Tabs>
-            <Divider />
-          </Grid>
-          <Grid item>
+          <Grid item style={{ paddingTop: "85px" }}>
             <Grid
               container
               direction="row"
@@ -616,7 +649,8 @@ export default class About extends React.Component {
                   width: "300px",
                   borderRight: "1px #e1e1e1 solid",
                   marginTop: "12px",
-                  marginBottom: "12px"
+                  marginBottom: "12px",
+                  position: "fixed"
                 }}
               >
                 {menu()}
@@ -624,6 +658,7 @@ export default class About extends React.Component {
               <Grid
                 item
                 style={{
+                  marginLeft: "300px",
                   paddingLeft: "48px",
                   paddingRight: "48px",
                   paddingTop: "72px",
