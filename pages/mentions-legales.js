@@ -1,5 +1,10 @@
 import About from "../components/about";
+import Wrapper from "../components/wrapper";
 
 export default () => {
-  return <About value={0}/>;
+  return (
+    <Wrapper>
+      <About value={0} />
+    </Wrapper>
+  );
 };

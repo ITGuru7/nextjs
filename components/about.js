@@ -12,24 +12,28 @@ import Router from "next/router";
 import delay from "lodash/delay";
 import Butter from "buttercms";
 const butter = Butter("7a276594e635272c3672f732b018426c18cb9e7a");
+import Head from "next/head";
 
 export default class About extends React.Component {
   constructor(props) {
     super(props);
+    console.log('post id : ' + this.props.postId);
     this.state = {
-      value: this.props.value
+      value: this.props.value,
+      postId: this.props.postId
     };
   }
 
   fetchPosts() {
     butter.post.list({ page: 1, page_size: 20 }).then(resp => {
       this.setState({
-        resp
+        posts: resp.data.data,
+        post: resp.data.data[0]
       });
     });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.fetchPosts();
   }
 
@@ -60,7 +64,15 @@ export default class About extends React.Component {
         );
         break;
       case 3:
-        delay(() => Router.push("/blog", "/blog", { shallow: true }), 300);
+        delay(
+          () =>
+            Router.push(
+              `/blog/?id=${this.state.post.slug}`,
+              `/blog/?id=${this.state.post.slug}`,
+              { shallow: true }
+            ),
+          300
+        );
         break;
     }
     this.setState({ value });
@@ -651,20 +663,30 @@ export default class About extends React.Component {
   );
 
   blogMenu = () => {
-    const data =
-      this.state.resp && this.state.resp.data
-        ? this.state.resp.data.data
-        : null;
-    if (!data) {
+    const posts = this.state.posts;
+    if (!posts) {
       return null;
     } else {
       return (
         <Fragment>
-          {data.map(post => {
+          {posts.map(post => {
             return (
               <Typography
                 variant="body2"
                 className={css(aphrodite.aboutMenuTitlePadding)}
+                key={post.title}
+                onClick={() => {
+                  this.setState({ post: post });
+                  delay(
+                    () =>
+                      Router.push(
+                        `/blog/?id=${post.slug}`,
+                        `/blog/?id=${post.slug}`,
+                        { shallow: true }
+                      ),
+                    300
+                  );
+                }}
               >
                 {post.title}
               </Typography>
@@ -675,7 +697,41 @@ export default class About extends React.Component {
     }
   };
 
-  blogContent = () => null;
+  blogContent = () => {
+    if (!this.state.post) {
+      return null;
+    }
+    const {
+      seo_title,
+      meta_description,
+      featured_image,
+      body,
+      title
+    } = this.state.post;
+    return (
+      <Fragment>
+        <Head>
+          <title>{seo_title}</title>
+          <meta name="description" content={meta_description} />
+          <meta name="og:image" content={featured_image} />
+        </Head>
+        <div style={{ width: "720px" }}>
+          <Typography
+            variant="display1"
+            component={"h1"}
+            color={'primary'}
+            gutterBottom
+            style={{marginBottom: '64px'}}
+          >
+            {title}
+          </Typography>
+          <div
+            style={{color: '#212121'}}
+            dangerouslySetInnerHTML={{ __html: body }} />
+        </div>
+      </Fragment>
+    );
+  };
 
   render() {
     const { value } = this.state;
@@ -702,7 +758,6 @@ export default class About extends React.Component {
         content = () => null;
     }
     return (
-      <Wrapper>
         <Grid
           container
           direction="column"
@@ -812,7 +867,6 @@ export default class About extends React.Component {
             </Grid>
           </Grid>
         </Grid>
-      </Wrapper>
     );
   }
 }
