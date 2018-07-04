@@ -18,6 +18,14 @@ export default class About extends React.Component {
     };
   }
 
+  componentDidMount() {
+    // document.body.style.overflow = "hidden";
+  }
+
+  componentWillUnmount() {
+    // document.body.style.overflow = "visible";
+  }
+
   handleChange = (event, value) => {
     switch (value) {
       case 0:
@@ -637,12 +645,7 @@ export default class About extends React.Component {
             </Grid>
           </Grid>
           <Grid item style={{ paddingTop: "85px" }}>
-            <Grid
-              container
-              direction="row"
-              spacing={0}
-              style={{ minHeight: "calc(100vh - 120px)" }}
-            >
+            <Grid container direction="row" spacing={0}>
               <Grid
                 item
                 style={{
@@ -650,7 +653,10 @@ export default class About extends React.Component {
                   borderRight: "1px #e1e1e1 solid",
                   marginTop: "12px",
                   marginBottom: "12px",
-                  position: "fixed"
+                  position: "fixed",
+                  minHeight: "calc(100vh - 120px)",
+                  overflowY: "auto",
+                  height: '100%'
                 }}
               >
                 {menu()}
@@ -663,10 +669,16 @@ export default class About extends React.Component {
                   paddingRight: "48px",
                   paddingTop: "72px",
                   paddingBottom: "72px",
-                  width: "720px"
+                  width: "100%",
+                  height: '100%',
+                  minHeight: "calc(100vh - 120px)",
                 }}
               >
-                {content()}
+                <div
+                  style={{ width: "720px" }}
+                >
+                  {content()}
+                </div>
               </Grid>
             </Grid>
           </Grid>
