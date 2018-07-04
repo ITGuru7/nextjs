@@ -26,7 +26,8 @@ export default class About extends React.Component {
           () =>
             Router.push("/mentions-legales", "/mentions-legales", {
               shallow: true
-            }), 300
+            }),
+          300
         );
         break;
       case 1:
@@ -34,7 +35,8 @@ export default class About extends React.Component {
           () =>
             Router.push("/conditions-generales", "/conditions-generales", {
               shallow: true
-            }), 300
+            }),
+          300
         );
         break;
       case 2:
@@ -42,7 +44,8 @@ export default class About extends React.Component {
         break;
       case 3:
         delay(
-          () => Router.push("/contact", "/contact", { shallow: true }), 300
+          () => Router.push("/contact", "/contact", { shallow: true }),
+          300
         );
         break;
     }
@@ -554,6 +557,82 @@ export default class About extends React.Component {
     );
   };
 
+  contactMenu = () => (
+    <Fragment>
+      <Typography
+        variant="subheading"
+        className={css(aphrodite.aboutMenuTitlePadding)}
+        onClick={() =>
+          document
+            .getElementById("email")
+            .scrollIntoView({ behavior: "smooth" })
+        }
+      >
+        {`E-mail`}
+      </Typography>
+      <Typography
+        variant="subheading"
+        className={css(aphrodite.aboutMenuTitlePadding)}
+        onClick={() =>
+          document
+            .getElementById("telephone")
+            .scrollIntoView({ behavior: "smooth" })
+        }
+      >
+        {`Téléphone`}
+      </Typography>
+      <Typography
+        variant="subheading"
+        className={css(aphrodite.aboutMenuTitlePadding)}
+        onClick={() =>
+          document
+            .getElementById("adresse")
+            .scrollIntoView({ behavior: "smooth" })
+        }
+      >
+        {`Adresse`}
+      </Typography>
+    </Fragment>
+  );
+
+  contactContent = () => (
+    <Fragment>
+      <Grid container spacing={24} alignItems={"center"} style={{marginBottom: '32px'}}>
+        <Grid item>
+          <Typography variant="headline" gutterBottom id={"email"}>
+            {`E-mail`}
+          </Typography>
+          <a href="mailto:contact@clactacom.nc" target="_top">
+            <Typography variant="body2" color={"secondary"} gutterBottom>
+              {`contact@clactacom.nc`}
+            </Typography>
+          </a>
+        </Grid>
+        <Grid item>
+          <Typography variant="headline" gutterBottom id={"data"}>
+            {`Téléphone`}
+          </Typography>
+          <a href="tel:786255">
+            <Typography variant="body2" color={"secondary"} gutterBottom>
+              {`(+687) 78.62.55`}
+            </Typography>
+          </a>
+        </Grid>
+      </Grid>
+
+      <Typography variant="headline" gutterBottom id={"data"}>
+        {`Adresse`}
+      </Typography>
+      <Typography variant="body2" gutterBottom>
+        {`20 rue du Général Mangin, Nouméa`}
+      </Typography>
+    </Fragment>
+  );
+
+  blogMenu = () => null;
+
+  blogContent = () => null;
+
   render() {
     const { value } = this.state;
     let menu, content;
@@ -567,12 +646,12 @@ export default class About extends React.Component {
         content = this.termsOfUseContent;
         break;
       case 2:
-        menu = () => null;
-        content = () => null;
+        menu = this.blogMenu;
+        content = this.blogContent;
         break;
       case 3:
-        menu = () => null;
-        content = () => null;
+        menu = this.contactMenu;
+        content = this.contactContent;
         break;
       default:
         menu = () => null;
@@ -670,11 +749,21 @@ export default class About extends React.Component {
                   paddingRight: "48px",
                   paddingTop: "72px",
                   paddingBottom: "72px",
-                  width: "100%",
                   minHeight: "calc(100vh - 120px)"
                 }}
               >
-                <div style={{ width: "720px" }}>{content()}</div>
+                <div style={{ width: value === 3 ? "unset" : "720px" }}>
+                  {content()}
+                </div>
+                {value === 3 && (
+                  <img
+                    style={{ marginTop: "32px" }}
+                    width="600"
+                    height="300"
+                    src="https://api.mapbox.com/styles/v1/mapbox/streets-v9/static/pin-l-marker+285A98(166.4399207,-22.271693)/166.4399207,-22.271693,16,333,23/600x300@2x?access_token=pk.eyJ1Ijoicm9tYTk4IiwiYSI6ImNqM3YzdWE4aTAxZ3IzMnRkcjdyYmQ5ajgifQ.GxliePsVeHaJQIAGwD7cjA"
+                    alt="Mapbox Map of 166.4399207,-22.271693"
+                  />
+                )}
               </Grid>
             </Grid>
           </Grid>
