@@ -17,10 +17,8 @@ import Head from "next/head";
 export default class About extends React.Component {
   constructor(props) {
     super(props);
-    console.log('post id : ' + this.props.postId);
     this.state = {
-      value: this.props.value,
-      postId: this.props.postId
+      value: this.props.value
     };
   }
 
@@ -35,6 +33,14 @@ export default class About extends React.Component {
 
   componentDidMount() {
     this.fetchPosts();
+    let slug = this.props.slug;
+    if (slug) {
+      butter.post.retrieve(slug).then(resp => {
+        this.setState({
+          post: resp.data.data
+        });
+      });
+    }
   }
 
   handleChange = (event, value) => {
@@ -64,15 +70,7 @@ export default class About extends React.Component {
         );
         break;
       case 3:
-        delay(
-          () =>
-            Router.push(
-              `/blog/?id=${this.state.post.slug}`,
-              `/blog/?id=${this.state.post.slug}`,
-              { shallow: true }
-            ),
-          300
-        );
+        delay(() => Router.push(`/blog/`, `/blog/`, { shallow: true }), 300);
         break;
     }
     this.setState({ value });
@@ -676,14 +674,12 @@ export default class About extends React.Component {
                 className={css(aphrodite.aboutMenuTitlePadding)}
                 key={post.title}
                 onClick={() => {
-                  this.setState({ post: post });
+                  this.setState({ post });
                   delay(
                     () =>
-                      Router.push(
-                        `/blog/?id=${post.slug}`,
-                        `/blog/?id=${post.slug}`,
-                        { shallow: true }
-                      ),
+                      Router.push(`/blog`, `/blog/${post.slug}`, {
+                        shallow: true
+                      }),
                     300
                   );
                 }}
@@ -713,21 +709,22 @@ export default class About extends React.Component {
         <Head>
           <title>{seo_title}</title>
           <meta name="description" content={meta_description} />
-          <meta name="og:image" content={featured_image} />
+          <meta property="og:image" content={featured_image} />
         </Head>
         <div style={{ width: "720px" }}>
           <Typography
             variant="display1"
             component={"h1"}
-            color={'primary'}
+            color={"primary"}
             gutterBottom
-            style={{marginBottom: '64px'}}
+            style={{ marginBottom: "64px" }}
           >
             {title}
           </Typography>
           <div
-            style={{color: '#212121'}}
-            dangerouslySetInnerHTML={{ __html: body }} />
+            style={{ color: "#212121" }}
+            dangerouslySetInnerHTML={{ __html: body }}
+          />
         </div>
       </Fragment>
     );
@@ -758,115 +755,115 @@ export default class About extends React.Component {
         content = () => null;
     }
     return (
+      <Grid
+        container
+        direction="column"
+        spacing={0}
+        style={{ marginLeft: "16px" }}
+      >
         <Grid
-          container
-          direction="column"
-          spacing={0}
-          style={{ marginLeft: "16px" }}
+          item
+          style={{
+            position: "fixed",
+            width: "100%",
+            top: 0,
+            backgroundColor: "white"
+          }}
         >
-          <Grid
-            item
-            style={{
-              position: "fixed",
-              width: "100%",
-              top: 0,
-              backgroundColor: "white"
-            }}
-          >
-            <Grid container direction="column" spacing={0}>
-              <Grid item>
-                <Grid
-                  container
-                  direction="row"
-                  spacing={0}
-                  style={{ marginTop: "5px" }}
-                  alignItems={"center"}
-                >
-                  <Grid item style={{ marginRight: "8px" }}>
-                    <Link prefetch href="/">
-                      <a>
-                        <img
-                          src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo.png`}
-                          srcSet={`
+          <Grid container direction="column" spacing={0}>
+            <Grid item>
+              <Grid
+                container
+                direction="row"
+                spacing={0}
+                style={{ marginTop: "5px" }}
+                alignItems={"center"}
+              >
+                <Grid item style={{ marginRight: "8px" }}>
+                  <Link prefetch href="/">
+                    <a>
+                      <img
+                        src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo.png`}
+                        srcSet={`
                 https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo.png,
                 https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_2.0/qwarx-logo.png 2x,
                 https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_3.0/qwarx-logo.png 3x
                 `}
-                          alt={`qwarx logo`}
-                          style={{
-                            cursor: this.goBackToHomePage ? "pointer" : "unset"
-                          }}
-                        />
-                      </a>
-                    </Link>
-                  </Grid>
-                  <Grid item xs>
-                    <Typography variant={"title"} color={"primary"}>
-                      {`A propos`}
-                    </Typography>
-                  </Grid>
+                        alt={`qwarx logo`}
+                        style={{
+                          cursor: this.goBackToHomePage ? "pointer" : "unset"
+                        }}
+                      />
+                    </a>
+                  </Link>
+                </Grid>
+                <Grid item xs>
+                  <Typography variant={"title"} color={"primary"}>
+                    {`A propos`}
+                  </Typography>
                 </Grid>
               </Grid>
-              <Grid item>
-                <Tabs
-                  indicatorColor="secondary"
-                  textColor="secondary"
-                  onChange={this.handleChange}
-                  value={value}
-                >
-                  <Tab label="Mentions légales" />
-                  <Tab label="Conditions Générales" />
-                  <Tab label="Contact" />
-                  <Tab label="Blog" />
-                </Tabs>
-                <Divider />
-              </Grid>
             </Grid>
-          </Grid>
-          <Grid item style={{ paddingTop: "85px" }}>
-            <Grid container direction="row" spacing={0}>
-              <Grid
-                item
-                style={{
-                  width: "300px",
-                  borderRight: "1px #e1e1e1 solid",
-                  marginTop: "12px",
-                  marginBottom: "12px",
-                  position: "fixed",
-                  minHeight: "calc(100vh - 120px)",
-                  overflowY: "auto",
-                  height: "calc(100% - 120px)"
-                }}
+            <Grid item>
+              <Tabs
+                indicatorColor="secondary"
+                textColor="secondary"
+                onChange={this.handleChange}
+                value={value}
               >
-                {menu()}
-              </Grid>
-              <Grid
-                item
-                style={{
-                  marginLeft: "300px",
-                  paddingLeft: "48px",
-                  paddingRight: "48px",
-                  paddingTop: "72px",
-                  paddingBottom: "72px",
-                  minHeight: "calc(100vh - 120px)"
-                }}
-              >
-                <div style={{ width: value === 3 ? "unset" : "720px" }}>
-                  {content()}
-                </div>
-                {value === 2 && (
-                  <img
-                    style={{ marginTop: "32px" }}
-                    width="600"
-                    height="300"
-                    src="https://api.mapbox.com/styles/v1/mapbox/streets-v9/static/pin-l-marker+285A98(166.4399207,-22.271693)/166.4399207,-22.271693,16,333,23/600x300@2x?access_token=pk.eyJ1Ijoicm9tYTk4IiwiYSI6ImNqM3YzdWE4aTAxZ3IzMnRkcjdyYmQ5ajgifQ.GxliePsVeHaJQIAGwD7cjA"
-                    alt="Mapbox Map of 166.4399207,-22.271693"
-                  />
-                )}
-              </Grid>
+                <Tab label="Mentions légales" />
+                <Tab label="Conditions Générales" />
+                <Tab label="Contact" />
+                <Tab label="Blog" />
+              </Tabs>
+              <Divider />
             </Grid>
           </Grid>
         </Grid>
+        <Grid item style={{ paddingTop: "85px" }}>
+          <Grid container direction="row" spacing={0}>
+            <Grid
+              item
+              style={{
+                width: "300px",
+                borderRight: "1px #e1e1e1 solid",
+                marginTop: "12px",
+                marginBottom: "12px",
+                position: "fixed",
+                minHeight: "calc(100vh - 120px)",
+                overflowY: "auto",
+                height: "calc(100% - 120px)"
+              }}
+            >
+              {menu()}
+            </Grid>
+            <Grid
+              item
+              style={{
+                marginLeft: "300px",
+                paddingLeft: "48px",
+                paddingRight: "48px",
+                paddingTop: "72px",
+                paddingBottom: "72px",
+                minHeight: "calc(100vh - 120px)"
+              }}
+            >
+              <div style={{ width: value === 3 ? "unset" : "720px" }}>
+                {content()}
+              </div>
+              {value === 2 && (
+                <img
+                  style={{ marginTop: "32px" }}
+                  width="600"
+                  height="300"
+                  src="https://api.mapbox.com/styles/v1/mapbox/streets-v9/static/pin-l-marker+285A98(166.4399207,-22.271693)/166.4399207,-22.271693,16,333,23/600x300@2x?access_token=pk.eyJ1Ijoicm9tYTk4IiwiYSI6ImNqM3YzdWE4aTAxZ3IzMnRkcjdyYmQ5ajgifQ.GxliePsVeHaJQIAGwD7cjA"
+                  alt="Mapbox Map of 166.4399207,-22.271693"
+                />
+              )}
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
     );
   }
 }

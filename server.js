@@ -17,7 +17,13 @@ app.prepare().then(() => {
     "/service-worker.js",
     express.static(join(__dirname, ".next", "/service-worker.js"))
   );
+
+  server.get("/blog/:slug", (req, res) => {
+    return app.render(req, res, "/blog", { slug: req.params.slug });
+  });
+
   server.get("*", (req, res) => handle(req, res));
+
   server.listen(port, err => {
     if (err) throw err;
     console.log(`> Ready`);
