@@ -9,6 +9,7 @@ import aphrodite from "../utils/aphrodite";
 import { css } from "aphrodite";
 import { Fragment } from "react";
 import Router from "next/router";
+import delay from "lodash/delay";
 
 export default class About extends React.Component {
   constructor(props) {
@@ -18,31 +19,31 @@ export default class About extends React.Component {
     };
   }
 
-  componentDidMount() {
-    // document.body.style.overflow = "hidden";
-  }
-
-  componentWillUnmount() {
-    // document.body.style.overflow = "visible";
-  }
-
   handleChange = (event, value) => {
     switch (value) {
       case 0:
-        Router.push("/mentions-legales", "/mentions-legales", {
-          shallow: true
-        });
+        delay(
+          () =>
+            Router.push("/mentions-legales", "/mentions-legales", {
+              shallow: true
+            }), 300
+        );
         break;
       case 1:
-        Router.push("/conditions-generales", "/conditions-generales", {
-          shallow: true
-        });
+        delay(
+          () =>
+            Router.push("/conditions-generales", "/conditions-generales", {
+              shallow: true
+            }), 300
+        );
         break;
       case 2:
-        Router.push("/blog", "/blog", { shallow: true });
+        delay(() => Router.push("/blog", "/blog", { shallow: true }), 300);
         break;
       case 3:
-        Router.push("/contact", "/contact", { shallow: true });
+        delay(
+          () => Router.push("/contact", "/contact", { shallow: true }), 300
+        );
         break;
     }
     this.setState({ value });
@@ -656,7 +657,7 @@ export default class About extends React.Component {
                   position: "fixed",
                   minHeight: "calc(100vh - 120px)",
                   overflowY: "auto",
-                  height: '100%'
+                  height: "calc(100% - 120px)"
                 }}
               >
                 {menu()}
@@ -670,15 +671,10 @@ export default class About extends React.Component {
                   paddingTop: "72px",
                   paddingBottom: "72px",
                   width: "100%",
-                  height: '100%',
-                  minHeight: "calc(100vh - 120px)",
+                  minHeight: "calc(100vh - 120px)"
                 }}
               >
-                <div
-                  style={{ width: "720px" }}
-                >
-                  {content()}
-                </div>
+                <div style={{ width: "720px" }}>{content()}</div>
               </Grid>
             </Grid>
           </Grid>
