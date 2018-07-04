@@ -9,17 +9,6 @@ import criticalCssSearchPage from "../utils/criticalCssSearchPage";
 import Wrapper from '../components/wrapper';
 
 class Index extends React.Component {
-  // Service worker actived from the very start
-  componentDidMount() {
-    if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
-      navigator.serviceWorker
-        .register("/service-worker.js")
-        .then(registration => {})
-        .catch(err => {
-          console.warn("service worker registration failed", err.message);
-        });
-    }
-  }
 
   // Responsible for getting the first result when accessing the website with a search in the url
   static async getInitialProps(params) {

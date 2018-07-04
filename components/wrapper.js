@@ -10,7 +10,17 @@ if (typeof window !== "undefined") {
 }
 
 class Wrapper extends React.Component {
-
+  // Service worker actived from the very start
+  componentDidMount() {
+    if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
+      navigator.serviceWorker
+        .register("/service-worker.js")
+        .then(registration => {})
+        .catch(err => {
+          console.warn("service worker registration failed", err.message);
+        });
+    }
+  }
   render() {
     return (
       <Fragment>

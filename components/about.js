@@ -10,6 +10,8 @@ import { css } from "aphrodite";
 import { Fragment } from "react";
 import Router from "next/router";
 import delay from "lodash/delay";
+import Butter from "buttercms";
+const butter = Butter("7a276594e635272c3672f732b018426c18cb9e7a");
 
 export default class About extends React.Component {
   constructor(props) {
@@ -17,6 +19,18 @@ export default class About extends React.Component {
     this.state = {
       value: this.props.value
     };
+  }
+
+  fetchPosts() {
+    butter.post.list({ page: 1, page_size: 20 }).then(resp => {
+      this.setState({
+        resp
+      });
+    });
+  }
+
+  componentWillMount() {
+    this.fetchPosts();
   }
 
   handleChange = (event, value) => {
@@ -629,14 +643,37 @@ export default class About extends React.Component {
         {`Adresse`}
       </Typography>
       <a href="https://goo.gl/maps/FroN9sR5bE22">
-      <Typography variant="body2" color={'secondary'} gutterBottom>
+        <Typography variant="body2" color={"secondary"} gutterBottom>
           {`20 rue du Général Mangin, Nouméa`}
-      </Typography>
+        </Typography>
       </a>
     </Fragment>
   );
 
-  blogMenu = () => null;
+  blogMenu = () => {
+    const data =
+      this.state.resp && this.state.resp.data
+        ? this.state.resp.data.data
+        : null;
+    if (!data) {
+      return null;
+    } else {
+      return (
+        <Fragment>
+          {data.map(post => {
+            return (
+              <Typography
+                variant="body2"
+                className={css(aphrodite.aboutMenuTitlePadding)}
+              >
+                {post.title}
+              </Typography>
+            );
+          })}
+        </Fragment>
+      );
+    }
+  };
 
   blogContent = () => null;
 

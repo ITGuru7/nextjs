@@ -369,7 +369,7 @@ class LandingPage extends React.Component {
                               >
                                 {`Qwarx est un moteur de recherche exclusivement dédié à la Nouvelle-Calédonie.`}
                               </Typography>
-                              <Link prefetch href="/infos">
+                              <Link prefetch href="/blog">
                                 <a>
                                   <Typography
                                     variant={"body2"}
