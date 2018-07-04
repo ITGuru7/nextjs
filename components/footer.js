@@ -41,11 +41,21 @@ export default class Footer extends React.Component {
                       alignItems={"center"}
                     >
                       <Grid item xs>
-                        <Link prefetch  href="/mentions-legales">
+                        <Link prefetch href="/mentions-legales">
                           <Typography variant="caption" align="center">
                             <a
                               style={{ color: "black", opacity: 0.6 }}
                             >{`Mentions légales`}</a>
+                          </Typography>
+                        </Link>
+                      </Grid>
+
+                      <Grid item xs>
+                        <Link prefetch href="/conditions-generales">
+                          <Typography variant="caption" align="center">
+                            <a
+                              style={{ color: "black", opacity: 0.6 }}
+                            >{`Conditions générales`}</a>
                           </Typography>
                         </Link>
                       </Grid>
@@ -55,15 +65,6 @@ export default class Footer extends React.Component {
                             <a
                               style={{ color: "black", opacity: 0.6 }}
                             >{`Contact`}</a>
-                          </Typography>
-                        </Link>
-                      </Grid>
-                      <Grid item xs>
-                        <Link prefetch href="/conditions-generales">
-                          <Typography variant="caption" align="center">
-                            <a
-                              style={{ color: "black", opacity: 0.6 }}
-                            >{`Conditions générales`}</a>
                           </Typography>
                         </Link>
                       </Grid>
@@ -162,21 +163,22 @@ export default class Footer extends React.Component {
                       </Typography>
                     </Link>
                   </Grid>
-                  <Grid item xs>
-                    <Link prefetch href="/contact">
-                      <Typography variant="caption" align="center">
-                        <a
-                          style={{ color: "black", opacity: 0.6 }}
-                        >{`Contact`}</a>
-                      </Typography>
-                    </Link>
-                  </Grid>
+
                   <Grid item xs>
                     <Link prefetch href="/conditions-generales">
                       <Typography variant="caption" align="center">
                         <a
                           style={{ color: "black", opacity: 0.6 }}
                         >{`Conditions générales`}</a>
+                      </Typography>
+                    </Link>
+                  </Grid>
+                  <Grid item xs>
+                    <Link prefetch href="/contact">
+                      <Typography variant="caption" align="center">
+                        <a
+                          style={{ color: "black", opacity: 0.6 }}
+                        >{`Contact`}</a>
                       </Typography>
                     </Link>
                   </Grid>

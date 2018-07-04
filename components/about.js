@@ -40,13 +40,13 @@ export default class About extends React.Component {
         );
         break;
       case 2:
-        delay(() => Router.push("/blog", "/blog", { shallow: true }), 300);
-        break;
-      case 3:
         delay(
           () => Router.push("/contact", "/contact", { shallow: true }),
           300
         );
+        break;
+      case 3:
+        delay(() => Router.push("/blog", "/blog", { shallow: true }), 300);
         break;
     }
     this.setState({ value });
@@ -597,7 +597,12 @@ export default class About extends React.Component {
 
   contactContent = () => (
     <Fragment>
-      <Grid container spacing={24} alignItems={"center"} style={{marginBottom: '32px'}}>
+      <Grid
+        container
+        spacing={24}
+        alignItems={"center"}
+        style={{ marginBottom: "32px" }}
+      >
         <Grid item>
           <Typography variant="headline" gutterBottom id={"email"}>
             {`E-mail`}
@@ -623,9 +628,11 @@ export default class About extends React.Component {
       <Typography variant="headline" gutterBottom id={"data"}>
         {`Adresse`}
       </Typography>
-      <Typography variant="body2" gutterBottom>
-        {`20 rue du Général Mangin, Nouméa`}
+      <a href="https://goo.gl/maps/FroN9sR5bE22">
+      <Typography variant="body2" color={'secondary'} gutterBottom>
+          {`20 rue du Général Mangin, Nouméa`}
       </Typography>
+      </a>
     </Fragment>
   );
 
@@ -646,12 +653,12 @@ export default class About extends React.Component {
         content = this.termsOfUseContent;
         break;
       case 2:
-        menu = this.blogMenu;
-        content = this.blogContent;
-        break;
-      case 3:
         menu = this.contactMenu;
         content = this.contactContent;
+        break;
+      case 3:
+        menu = this.blogMenu;
+        content = this.blogContent;
         break;
       default:
         menu = () => null;
@@ -717,8 +724,8 @@ export default class About extends React.Component {
                 >
                   <Tab label="Mentions légales" />
                   <Tab label="Conditions Générales" />
-                  <Tab label="Blog" />
                   <Tab label="Contact" />
+                  <Tab label="Blog" />
                 </Tabs>
                 <Divider />
               </Grid>
@@ -755,7 +762,7 @@ export default class About extends React.Component {
                 <div style={{ width: value === 3 ? "unset" : "720px" }}>
                   {content()}
                 </div>
-                {value === 3 && (
+                {value === 2 && (
                   <img
                     style={{ marginTop: "32px" }}
                     width="600"
