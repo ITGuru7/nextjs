@@ -21,6 +21,9 @@ app.prepare().then(() => {
   server.get("/blog/:slug", (req, res) => {
     return app.render(req, res, "/blog", { slug: req.params.slug });
   });
+  server.get("/blog", (req, res) => {
+    return app.render(req, res, "/blog", { slug: null });
+  });
 
   server.get("*", (req, res) => handle(req, res));
 

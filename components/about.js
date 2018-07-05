@@ -1,6 +1,5 @@
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import Wrapper from "../components/wrapper";
 import Tabs from "./mui/tabsAbout";
 import Tab from "./mui/tabAbout";
 import Divider from "@material-ui/core/Divider";
@@ -18,27 +17,36 @@ export default class About extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: this.props.value
+      value: this.props.value,
+      posts: this.props.posts,
+      post: this.props.post
     };
   }
 
   fetchPosts() {
     butter.post.list({ page: 1, page_size: 20 }).then(resp => {
-      this.setState({
-        posts: resp.data.data,
-        post: resp.data.data[0]
-      });
+      if (this.state.post) {
+        this.setState({
+          posts: resp.data.data
+        });
+      } else {
+        this.setState({
+          posts: resp.data.data,
+          post: resp.data.data[0]
+        });
+      }
     });
   }
 
   componentDidMount() {
-    this.fetchPosts();
-    let slug = this.props.slug;
-    if (slug) {
-      butter.post.retrieve(slug).then(resp => {
-        this.setState({
-          post: resp.data.data
-        });
+    if (!this.state.posts) {
+      // not server-side rendered
+      this.fetchPosts();
+    }
+    if (this.props.shallow) {
+      const post = this.state.post;
+      Router.push(`/blog/${post.slug}`, `/blog/${post.slug}`, {
+        shallow: true
       });
     }
   }
@@ -798,7 +806,11 @@ export default class About extends React.Component {
                   </Link>
                 </Grid>
                 <Grid item xs>
-                  <Typography variant={"title"} color={"primary"}>
+                  <Typography
+                    variant={"title"}
+                    color={"primary"}
+                    component={"span"}
+                  >
                     {`A propos`}
                   </Typography>
                 </Grid>
