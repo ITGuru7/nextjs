@@ -111,7 +111,9 @@ class SearchPage extends React.Component {
           className={css(aphrodite.contentLeft, aphrodite.mobileGreyBackground)}
         >
           <Tab label="tout" />
-          <Tab label="images" disabled />
+          <Tab label="annonces" disabled />
+          <Tab label="shopping" disabled />
+          <Tab label="actualités" disabled />
           <Tab label="adresses" disabled />
         </Tabs>
       );

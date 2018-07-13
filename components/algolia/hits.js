@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import aphrodite from "../../utils/aphrodite";
 import { css } from "aphrodite";
 import Divider from "@material-ui/core/Divider";
-import Weather from "../weather";
+// import Weather from "../weather";
 import RandomDidYouKnowText from "../randomDidYouKnowText";
 import RichRender from "../richRender";
 
@@ -123,7 +123,7 @@ class Hits extends React.Component {
                           style={{
                             width: "75px",
                             height: "75px",
-                            marginBottom: "32px",
+                            marginBottom: "40px",
                             marginRight: cpt % 5 ? "16px" : null
                           }}
                           key={idx}
@@ -150,7 +150,7 @@ class Hits extends React.Component {
                   <Divider />
                 </Grid>
                 <Grid item>
-                  <Weather />
+                  {/*<Weather />*/}
                 </Grid>
               </Grid>
             </Grid>

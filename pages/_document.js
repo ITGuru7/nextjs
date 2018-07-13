@@ -43,15 +43,6 @@ class MyDocument extends Document {
     return (
       <html lang="en" dir="ltr">
         <Head>
-          {/*<link rel="stylesheet" href="../static/main.css" />*/}
-          {/*<link*/}
-          {/*rel="stylesheet"*/}
-          {/*href="../static/react-instantsearch-override.css"*/}
-          {/*/>*/}
-          {/*<link*/}
-          {/*rel="stylesheet"*/}
-          {/*href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.0.0/themes/algolia-min.css"*/}
-          {/*/>*/}
           <script
             src="https://cdn.polyfill.io/v2/polyfill.min.js"
             async

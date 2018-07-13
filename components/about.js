@@ -11,7 +11,13 @@ import Router from "next/router";
 import delay from "lodash/delay";
 import Butter from "buttercms";
 const butter = Butter("7a276594e635272c3672f732b018426c18cb9e7a");
-import Head from "next/head";
+import Display from "../utils/display";
+import MenuIcon from "@material-ui/icons/Menu";
+import Drawer from "@material-ui/core/Drawer";
+import List from "@material-ui/core/List";
+import IconButton from "@material-ui/core/IconButton";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItem from "@material-ui/core/ListItem";
 
 export default class About extends React.Component {
   constructor(props) {
@@ -19,7 +25,8 @@ export default class About extends React.Component {
     this.state = {
       value: this.props.value,
       posts: this.props.posts,
-      post: this.props.post
+      post: this.props.post,
+      leftMenu: false
     };
   }
 
@@ -705,20 +712,9 @@ export default class About extends React.Component {
     if (!this.state.post) {
       return null;
     }
-    const {
-      seo_title,
-      meta_description,
-      featured_image,
-      body,
-      title
-    } = this.state.post;
+    const { body, title } = this.state.post;
     return (
       <Fragment>
-        <Head>
-          <title>{seo_title}</title>
-          <meta name="description" content={meta_description} />
-          <meta property="og:image" content={featured_image} />
-        </Head>
         <div style={{ width: "720px" }}>
           <Typography
             variant="display1"
@@ -738,31 +734,131 @@ export default class About extends React.Component {
     );
   };
 
-  render() {
-    const { value } = this.state;
-    let menu, content;
-    switch (value) {
-      case 0:
-        menu = this.legalMenu;
-        content = this.legalContent;
-        break;
-      case 1:
-        menu = this.termsOfUseMenu;
-        content = this.termsOfUseContent;
-        break;
-      case 2:
-        menu = this.contactMenu;
-        content = this.contactContent;
-        break;
-      case 3:
-        menu = this.blogMenu;
-        content = this.blogContent;
-        break;
-      default:
-        menu = () => null;
-        content = () => null;
-    }
-    return (
+  toggleDrawer = open => () => {
+    this.setState({
+      leftMenu: open
+    });
+  };
+
+  mobileHeader = includeMenu => (
+    <Grid container spacing={0} direction={"row"} alignItems={"center"}>
+      {includeMenu && (
+        <Grid item>
+          <IconButton
+            style={{
+              marginLeft: "8px",
+              marginRight: "20px"
+            }}
+            disableRipple
+            onClick={this.toggleDrawer(true)}
+          >
+            <MenuIcon
+              style={{
+                color: "#666",
+                fontSize: "28"
+              }}
+            />
+          </IconButton>
+        </Grid>
+      )}
+      <Grid
+        item
+        style={{
+          marginRight: "10px",
+          marginTop: "4px",
+          marginLeft: includeMenu ? "unset" : "10px"
+        }}
+      >
+        <Link prefetch href="/">
+          <a>
+            <img
+              src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_100,dpr_1.0/qwarx-logo.png`}
+              srcSet={`
+                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_100,dpr_1.0/qwarx-logo.png,
+                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_100,dpr_2.0/qwarx-logo.png 2x,
+                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_100,dpr_3.0/qwarx-logo.png 3x
+                `}
+              alt={`qwarx logo`}
+              style={{
+                cursor: this.goBackToHomePage ? "pointer" : "unset"
+              }}
+            />
+          </a>
+        </Link>
+      </Grid>
+      <Grid item>
+        <Typography
+          variant={"title"}
+          color={"primary"}
+          component={"span"}
+          style={{ color: "#666", fontWeight: "300", marginRight: "20px" }}
+        >
+          {`A propos`}
+        </Typography>
+      </Grid>
+    </Grid>
+  );
+
+  mobile = (value, menu, content) => (
+    <Display format="mobile" css>
+      <Drawer open={this.state.leftMenu} onClose={this.toggleDrawer(false)}>
+        <div>
+          {this.mobileHeader(false)}
+          <Divider/>
+          <ListItemText
+            primary="Mentions Légales"
+            inset
+            primaryTypographyProps={{ variant: "body2" }}
+            style={{marginTop: '10px', marginBottom: '10px'}}
+          />
+          <Divider style={{marginLeft: '16px'}}/>
+          <ListItemText
+            primary="Conditions Générales"
+            inset
+            primaryTypographyProps={{ variant: "body2" }}
+            style={{marginTop: '10px', marginBottom: '10px'}}
+
+          />
+          <Divider style={{marginLeft: '16px'}}/>
+          <ListItemText
+            primary="Contact"
+            inset
+            primaryTypographyProps={{ variant: "body2" }}
+            style={{marginTop: '10px', marginBottom: '10px'}}
+
+          />
+          <Divider style={{marginLeft: '16px'}}/>
+          <ListItemText
+            primary="Blog"
+            inset
+            primaryTypographyProps={{ variant: "body2" }}
+            style={{marginTop: '10px', marginBottom: '10px'}}
+          />
+        </div>
+      </Drawer>
+      <Grid
+        container
+        direction="column"
+        spacing={0}
+        style={{ marginLeft: "16px" }}
+      />
+      <Grid item>{this.mobileHeader(true)}</Grid>
+      <Grid
+        item
+        style={{
+          marginBottom: "20px",
+          marginTop: "10px",
+          marginLeft: "-8px",
+          marginRight: "-8px"
+        }}
+      >
+        <Divider style={{ backgroundColor: "rgba(151,151,151,0.5)" }} />
+      </Grid>
+    </Display>
+  );
+
+  desktop = (value, menu, content) => (
+    <Display format="tablet-desktop" css>
       <Grid
         container
         direction="column"
@@ -810,6 +906,7 @@ export default class About extends React.Component {
                     variant={"title"}
                     color={"primary"}
                     component={"span"}
+                    style={{ color: "#666" }}
                   >
                     {`A propos`}
                   </Typography>
@@ -876,6 +973,39 @@ export default class About extends React.Component {
           </Grid>
         </Grid>
       </Grid>
+    </Display>
+  );
+
+  render() {
+    const { value } = this.state;
+    let menu, content;
+    switch (value) {
+      case 0:
+        menu = this.legalMenu;
+        content = this.legalContent;
+        break;
+      case 1:
+        menu = this.termsOfUseMenu;
+        content = this.termsOfUseContent;
+        break;
+      case 2:
+        menu = this.contactMenu;
+        content = this.contactContent;
+        break;
+      case 3:
+        menu = this.blogMenu;
+        content = this.blogContent;
+        break;
+      default:
+        menu = () => null;
+        content = () => null;
+    }
+
+    return (
+      <Fragment>
+        {this.mobile(value, menu, content)}
+        {this.desktop(value, menu, content)}
+      </Fragment>
     );
   }
 }

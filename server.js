@@ -11,7 +11,6 @@ const { join } = require("path");
 
 app.prepare().then(() => {
   const server = express();
-
   server.use("/", express.static("static"));
   server.use(
     "/service-worker.js",
@@ -19,13 +18,18 @@ app.prepare().then(() => {
   );
 
   server.get("/blog/:slug", (req, res) => {
+    res.setHeader("Cache-Control", "max-age=0, s-maxage=86400");
     return app.render(req, res, "/blog", { slug: req.params.slug });
   });
   server.get("/blog", (req, res) => {
+    res.setHeader("Cache-Control", "max-age=0, s-maxage=86400");
     return app.render(req, res, "/blog", { slug: null });
   });
 
-  server.get("*", (req, res) => handle(req, res));
+  server.get("*", (req, res) => {
+    res.setHeader("Cache-Control", "max-age=0, s-maxage=86400");
+    return handle(req, res);
+  });
 
   server.listen(port, err => {
     if (err) throw err;

@@ -118,7 +118,7 @@ function ResultDescription(props) {
                         marginRight: "4px"
                       }}
                     >
-                      {`Télephone: `}
+                      {`Téléphone : `}
                     </Typography>
                   </Grid>
                   <Grid item>
@@ -151,7 +151,7 @@ function ResultDescription(props) {
                         marginRight: "4px"
                       }}
                     >
-                      {`Adresse: `}
+                      {`Adresse : `}
                     </Typography>{" "}
                   </Grid>
                   <Grid item>

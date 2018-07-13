@@ -2,17 +2,23 @@ import About from "../components/about";
 import Wrapper from "../components/wrapper";
 import Butter from "buttercms";
 const butter = Butter("7a276594e635272c3672f732b018426c18cb9e7a");
+import Head from "next/head";
 
 const Blog = ({ post, posts, shallow }) => (
   <Wrapper>
-    <About value={3} post={post} posts={posts} shallow={shallow}/>
+    <Head>
+      <title>{post.seo_title}</title>
+      <meta name="description" content={post.meta_description} />
+      <meta property="og:image" content={post.featured_image} />
+    </Head>
+    <About value={3} post={post} posts={posts} shallow={shallow} />
   </Wrapper>
 );
 
 Blog.getInitialProps = async ({ query: { slug } }) => {
   let post = null;
   let resp = null;
-  let shallow = null
+  let shallow = null;
   resp = await butter.post.list({ page: 1, page_size: 20 });
   const posts = resp.data.data;
   if (slug) {
