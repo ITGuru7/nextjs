@@ -14,10 +14,9 @@ const butter = Butter("7a276594e635272c3672f732b018426c18cb9e7a");
 import Display from "../utils/display";
 import MenuIcon from "@material-ui/icons/Menu";
 import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
 import IconButton from "@material-ui/core/IconButton";
 import ListItemText from "@material-ui/core/ListItemText";
-import ListItem from "@material-ui/core/ListItem";
+import debounce from "lodash/debounce";
 
 export default class About extends React.Component {
   constructor(props) {
@@ -28,6 +27,7 @@ export default class About extends React.Component {
       post: this.props.post,
       leftMenu: false
     };
+    this.updateWidth = this.updateWidth.bind(this);
   }
 
   fetchPosts() {
@@ -45,7 +45,13 @@ export default class About extends React.Component {
     });
   }
 
+  updateWidth() {
+    this.setState({ width: window.innerWidth });
+  }
+
   componentDidMount() {
+    this.setState({ width: window.innerWidth });
+    window.addEventListener("resize", debounce(this.updateWidth, 150));
     if (!this.state.posts) {
       // not server-side rendered
       this.fetchPosts();
@@ -713,9 +719,10 @@ export default class About extends React.Component {
       return null;
     }
     const { body, title } = this.state.post;
+    const width = this.state.width;
     return (
       <Fragment>
-        <div style={{ width: "720px" }}>
+        <div style={{ width: width > 960 ? "720px" : `${width - 40}px` }}>
           <Typography
             variant="display1"
             component={"h1"}
@@ -799,63 +806,131 @@ export default class About extends React.Component {
     </Grid>
   );
 
-  mobile = (value, menu, content) => (
-    <Display format="mobile" css>
-      <Drawer open={this.state.leftMenu} onClose={this.toggleDrawer(false)}>
-        <div>
-          {this.mobileHeader(false)}
-          <Divider/>
-          <ListItemText
-            primary="Mentions Légales"
-            inset
-            primaryTypographyProps={{ variant: "body2" }}
-            style={{marginTop: '10px', marginBottom: '10px'}}
+  mobile = (value, menu, content) => {
+    const mapWidth = this.state.width - 48;
+    const posts = this.state.posts;
+    return (
+      <Display format="mobile" css>
+        <Drawer open={this.state.leftMenu} onClose={this.toggleDrawer(false)}>
+          <div>
+            {this.mobileHeader(false)}
+            <Divider />
+            <ListItemText
+              primary="Mentions Légales"
+              inset
+              primaryTypographyProps={{ variant: "body2" }}
+              style={{ marginTop: "10px", marginBottom: "10px" }}
+              onClick={() => {
+                this.setState({ value: 0, leftMenu: false });
+              }}
+            />
+            <Divider style={{ marginLeft: "16px" }} />
+            <ListItemText
+              primary="Conditions Générales"
+              inset
+              primaryTypographyProps={{ variant: "body2" }}
+              style={{ marginTop: "10px", marginBottom: "10px" }}
+              onClick={() => {
+                this.setState({ value: 1, leftMenu: false });
+              }}
+            />
+            <Divider style={{ marginLeft: "16px" }} />
+            <ListItemText
+              primary="Contact"
+              inset
+              primaryTypographyProps={{ variant: "body2" }}
+              style={{ marginTop: "10px", marginBottom: "10px" }}
+              onClick={() => {
+                this.setState({ value: 2, leftMenu: false });
+              }}
+            />
+            <Divider style={{ marginLeft: "16px" }} />
+            <ListItemText
+              primary="Blog"
+              inset
+              primaryTypographyProps={{ variant: "body2" }}
+              style={{ marginTop: "10px", marginBottom: "10px" }}
+              onClick={() => {
+                this.setState({ value: 3, leftMenu: false });
+              }}
+            />
+            {value === 3 ? (
+              <Fragment>
+                {posts.map(post => {
+                  return (
+                    <Fragment>
+                      <ListItemText
+                        primary={post.title}
+                        primaryTypographyProps={{ variant: "caption" }}
+                        style={{
+                          marginTop: "10px",
+                          marginLeft: "8px",
+                          marginBottom: "10px",
+                          width: "120px"
+                        }}
+                        inset
+                        key={post.title}
+                        onClick={() => {
+                          this.setState({ post, leftMenu: false });
+                          delay(
+                            () =>
+                              Router.push(`/blog`, `/blog/${post.slug}`, {
+                                shallow: true
+                              }),
+                            300
+                          );
+                        }}
+                      />
+                      <Divider style={{ marginLeft: "16px" }} />
+                    </Fragment>
+                  );
+                })}
+              </Fragment>
+            ) : null}
+          </div>
+        </Drawer>
+        <Grid
+          container
+          direction="column"
+          spacing={0}
+          style={{ marginLeft: "16px" }}
+        />
+        <Grid item style={{ position: "fixed", width: "100%" }}>
+          {this.mobileHeader(true)}
+          <Divider
+            style={{
+              backgroundColor: "rgba(151,151,151,0.5)",
+              marginBottom: "20px",
+              marginTop: "10px",
+              marginLeft: "-8px",
+              marginRight: "-8px"
+            }}
           />
-          <Divider style={{marginLeft: '16px'}}/>
-          <ListItemText
-            primary="Conditions Générales"
-            inset
-            primaryTypographyProps={{ variant: "body2" }}
-            style={{marginTop: '10px', marginBottom: '10px'}}
-
-          />
-          <Divider style={{marginLeft: '16px'}}/>
-          <ListItemText
-            primary="Contact"
-            inset
-            primaryTypographyProps={{ variant: "body2" }}
-            style={{marginTop: '10px', marginBottom: '10px'}}
-
-          />
-          <Divider style={{marginLeft: '16px'}}/>
-          <ListItemText
-            primary="Blog"
-            inset
-            primaryTypographyProps={{ variant: "body2" }}
-            style={{marginTop: '10px', marginBottom: '10px'}}
-          />
-        </div>
-      </Drawer>
-      <Grid
-        container
-        direction="column"
-        spacing={0}
-        style={{ marginLeft: "16px" }}
-      />
-      <Grid item>{this.mobileHeader(true)}</Grid>
-      <Grid
-        item
-        style={{
-          marginBottom: "20px",
-          marginTop: "10px",
-          marginLeft: "-8px",
-          marginRight: "-8px"
-        }}
-      >
-        <Divider style={{ backgroundColor: "rgba(151,151,151,0.5)" }} />
-      </Grid>
-    </Display>
-  );
+        </Grid>
+        <Grid
+          item
+          style={{
+            padding: "18px",
+            position: "fixed",
+            marginTop: "60px",
+            overflowY: "auto",
+            height: "90%"
+          }}
+        >
+          {content()}
+          {value === 2 ? (
+            <img
+              style={{ marginTop: "32px" }}
+              width={`${mapWidth}`}
+              height="300"
+              src={`https://api.mapbox.com/styles/v1/mapbox/streets-v9/static/pin-l-marker+285A98(166.4399207,-22.271693)/166.4399207,-22.271693,15,333,23/${mapWidth}x300@2x?access_token=pk.eyJ1Ijoicm9tYTk4IiwiYSI6ImNqM3YzdWE4aTAxZ3IzMnRkcjdyYmQ5ajgifQ.GxliePsVeHaJQIAGwD7cjA`}
+              alt="ClacTaCom"
+            />
+          ) : null}
+        </Grid>
+      </Display>
+    );
+  };
 
   desktop = (value, menu, content) => (
     <Display format="tablet-desktop" css>
@@ -966,7 +1041,7 @@ export default class About extends React.Component {
                   width="600"
                   height="300"
                   src="https://api.mapbox.com/styles/v1/mapbox/streets-v9/static/pin-l-marker+285A98(166.4399207,-22.271693)/166.4399207,-22.271693,16,333,23/600x300@2x?access_token=pk.eyJ1Ijoicm9tYTk4IiwiYSI6ImNqM3YzdWE4aTAxZ3IzMnRkcjdyYmQ5ajgifQ.GxliePsVeHaJQIAGwD7cjA"
-                  alt="Mapbox Map of 166.4399207,-22.271693"
+                  alt="ClacTaCom"
                 />
               )}
             </Grid>
