@@ -26,7 +26,7 @@ export default props => {
             {`Il existe presque 90 sites d'annonces (petites annonces et annonces immobilières) en Nouvelle-Calédonie.`}
           </Typography>
           <Typography variant={"body1"} color={"primary"}>
-            {`Sur Qwarx, vous pouvez voir toutes ces petites annonces. Pratique!`}
+            {`Sur Qwarx, vous pouvez voir toutes ces petites annonces. Pratique !`}
           </Typography>
         </Fragment>
       );

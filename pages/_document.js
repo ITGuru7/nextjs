@@ -97,7 +97,7 @@ class MyDocument extends Document {
           <link rel="manifest" href="/static/manifest.json" />
           <meta property="og:title" content="Qwarx.nc" />
           <meta
-            property="Qwarx est un moteur de recherche exclusivement dedié à la Nouvelle Calédonie"
+            property="Qwarx est un moteur de recherche exclusivement dedié à la Nouvelle-Calédonie"
             content="Tout le web calédonien, rien que le web calédonien."
           />
           <meta property="og:url" content="https://qwarx.io" />
