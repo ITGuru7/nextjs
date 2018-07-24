@@ -9,7 +9,6 @@ import Wrapper from "../components/wrapper";
 function ResultImg(props) {
   const placeholder =
     props.hit.id.domain === "facebook.com"
-
       ? "d_qwarx-facebook.png"
       : "d_qwarx-no-image.png";
 
@@ -215,7 +214,7 @@ function ResultDescription(props) {
           </Fragment>
         ) : (
           <Fragment>
-            {props.hit.content ? (
+            {props.hit.content && props.hit.content.p.length ? (
               <Fragment>
                 <TypographyHighlight
                   variant="body1"
@@ -276,7 +275,25 @@ function ResultDescription(props) {
                   info
                 />
               </Fragment>
-            ) : null}
+            ) : (
+              <Fragment>
+                {props.hit.content &&
+                props.hit.content.h1 &&
+                props.hit.content.h1.length ? (
+                  <TypographyHighlight
+                    variant="body1"
+                    color="primary"
+                    attribute={"content.h1[0]"}
+                    hit={props.hit}
+                    info
+                  />
+                ) : (
+                  <Typography variant="body1" color="primary">
+                    {`Cette page ne dispose pas de description, veuillez nous en excuser.`}
+                  </Typography>
+                )}
+              </Fragment>
+            )}
           </Fragment>
         )}
       </Fragment>
