@@ -3,7 +3,8 @@ import Display from "../utils/display";
 import SearchPage from "../components/searchPage";
 import Footer from "./footer";
 import Typography from "@material-ui/core/Typography";
-import { App, findResultsState } from "./index";
+import { findResultsState } from "./instantsearch";
+import ssrLandingPageSearch from "./ssrLandingPageSearch";
 import FontFaceObserver from "fontfaceobserver";
 import Link from "next/link";
 import { Fragment } from "react";
@@ -29,7 +30,8 @@ class LandingPage extends React.Component {
     super(props);
     this.state = {
       width: "0",
-      input: null
+      input: null,
+      nbHits: this.props.nbHits
     };
     this.updateWidth = this.updateWidth.bind(this);
   }
@@ -42,9 +44,13 @@ class LandingPage extends React.Component {
     this.updateWidth();
     window.addEventListener("resize", this.updateWidth);
     const searchState = { "/": "" };
-    findResultsState(App, { searchState }).then(resultsState => {
-      this.setState({ nbHits: resultsState.content.nbHits });
-    });
+    if (!this.props.nbHits) {
+      findResultsState(ssrLandingPageSearch, { searchState }).then(
+        resultsState => {
+          this.setState({ nbHits: resultsState.content.nbHits });
+        }
+      );
+    }
   }
 
   componentWillUnmount() {
@@ -297,8 +303,9 @@ class LandingPage extends React.Component {
                             width: "50px"
                           }}
                         >
-                          <img src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_34,h_34,dpr_1.0/qwarx-search-2.png`}
-                               srcSet={`
+                          <img
+                            src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_34,h_34,dpr_1.0/qwarx-search-2.png`}
+                            srcSet={`
                                   https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_34,h_34,dpr_1.0/qwarx-search-2.png,
                                   https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_34,h_34,dpr_2.0/qwarx-search-2.png 2x,
                                   https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_34,h_34,dpr_3.0/qwarx-search-2.png 3x,

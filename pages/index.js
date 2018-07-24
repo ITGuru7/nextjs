@@ -1,4 +1,6 @@
-import { App, findResultsState } from "../components";
+import { findResultsState } from "../components";
+import SSRSearch from "../components/ssrSearch";
+import SSRLandingPageSearch from "../components/ssrLandingPageSearch";
 import LandingPage from "../components/landingPage";
 import { Fragment } from "react";
 import qs from "qs";
@@ -6,10 +8,9 @@ import SearchPage from "../components/searchPage";
 import Head from "next/head";
 import criticalCssLandingPage from "../utils/criticalCssLandingPage";
 import criticalCssSearchPage from "../utils/criticalCssSearchPage";
-import Wrapper from '../components/wrapper';
+import Wrapper from "../components/wrapper";
 
 class Index extends React.Component {
-
   // Responsible for getting the first result when accessing the website with a search in the url
   static async getInitialProps(params) {
     let searchState = qs.parse(
@@ -17,9 +18,10 @@ class Index extends React.Component {
     );
     let resultsState = null;
     if (searchState["/"] === "") {
+      resultsState = await findResultsState(SSRSearch, { searchState });
       searchState = null;
     } else {
-      resultsState = await findResultsState(App, { searchState });
+      resultsState = await findResultsState(SSRLandingPageSearch, { searchState });
     }
     return { resultsState, searchState };
   }
@@ -31,7 +33,7 @@ class Index extends React.Component {
   render() {
     return (
       <Wrapper>
-        {this.props.searchState && this.props.resultsState ? (
+        {this.props.searchState ? (
           <Fragment>
             <Head>
               <style>${process.browser ? null : criticalCssSearchPage}</style>
@@ -46,7 +48,7 @@ class Index extends React.Component {
             <Head>
               <style>${process.browser ? null : criticalCssLandingPage}</style>
             </Head>
-            <LandingPage />
+            <LandingPage nbHits={this.props.resultsState.content.nbHits}/>
           </Fragment>
         )}
       </Wrapper>

@@ -7,7 +7,7 @@ import {
 import { InstantSearch } from "./instantsearch";
 
 // Minimal search app used for SSR only
-class App extends React.Component {
+class SSRLandingPageSearch extends React.Component {
   render() {
     return (
       <InstantSearch
@@ -18,7 +18,7 @@ class App extends React.Component {
         onSearchStateChange={this.props.onSearchStateChange}
         searchState={this.props.searchState}
       >
-        <Configure hitsPerPage={10} />
+        <Configure hitsPerPage={0} analytics={false} attributesToRetrieve={null} attributesToHighlight={null} />
         <SearchBox />
         <Hits />
       </InstantSearch>
@@ -26,4 +26,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default SSRLandingPageSearch;

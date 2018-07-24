@@ -822,6 +822,13 @@ export default class About extends React.Component {
               style={{ marginTop: "10px", marginBottom: "10px" }}
               onClick={() => {
                 this.setState({ value: 0, leftMenu: false });
+                delay(
+                  () =>
+                    Router.push("/mentions-legales", "/mentions-legales", {
+                      shallow: true
+                    }),
+                  300
+                );
               }}
             />
             <Divider style={{ marginLeft: "16px" }} />
@@ -832,6 +839,17 @@ export default class About extends React.Component {
               style={{ marginTop: "10px", marginBottom: "10px" }}
               onClick={() => {
                 this.setState({ value: 1, leftMenu: false });
+                delay(
+                  () =>
+                    Router.push(
+                      "/conditions-generales",
+                      "/conditions-generales",
+                      {
+                        shallow: true
+                      }
+                    ),
+                  300
+                );
               }}
             />
             <Divider style={{ marginLeft: "16px" }} />
@@ -842,6 +860,10 @@ export default class About extends React.Component {
               style={{ marginTop: "10px", marginBottom: "10px" }}
               onClick={() => {
                 this.setState({ value: 2, leftMenu: false });
+                delay(
+                  () => Router.push("/contact", "/contact", { shallow: true }),
+                  300
+                );
               }}
             />
             <Divider style={{ marginLeft: "16px" }} />
@@ -852,11 +874,15 @@ export default class About extends React.Component {
               style={{ marginTop: "10px", marginBottom: "10px" }}
               onClick={() => {
                 this.setState({ value: 3, leftMenu: false });
+                delay(
+                  () => Router.push(`/blog/`, `/blog/`, { shallow: true }),
+                  300
+                );
               }}
             />
-            {value === 3 ? (
-              <Fragment>
-                {posts.map(post => {
+            <Fragment>
+              {posts &&
+                posts.map(post => {
                   return (
                     <Fragment>
                       <ListItemText
@@ -885,8 +911,7 @@ export default class About extends React.Component {
                     </Fragment>
                   );
                 })}
-              </Fragment>
-            ) : null}
+            </Fragment>
           </div>
         </Drawer>
         <Grid
