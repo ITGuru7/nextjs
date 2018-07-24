@@ -80,7 +80,7 @@ export default class Footer extends React.Component {
                       <Grid item xs>
                         <Typography variant="caption" align="center">
                           <a
-                            href={"https://www.facebook.com/gougle.nc"}
+                            href={"https://www.facebook.com/qwarx"}
                             target="_blank"
                             rel="external noopener noreferrer"
                             style={{ color: "black", opacity: 0.6 }}
@@ -124,7 +124,7 @@ export default class Footer extends React.Component {
                 </Link>
 
                 <a
-                  href={"https://www.facebook.com/gougle.nc"}
+                  href={"https://www.facebook.com/qwarx"}
                   target="_blank"
                   rel="external noopener noreferrer"
                 >
@@ -202,7 +202,7 @@ export default class Footer extends React.Component {
                   <Grid item xs>
                     <Typography variant="caption" align="center">
                       <a
-                        href={"https://www.facebook.com/gougle.nc"}
+                        href={"https://www.facebook.com/qwarx"}
                         target="_blank"
                         rel="external noopener noreferrer"
                         style={{ color: "black", opacity: 0.6, opacity: 0.5 }}
