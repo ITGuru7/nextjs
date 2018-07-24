@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Pagination, Configure, Stats} from "react-instantsearch/dom";
+import { Pagination, Configure, Stats } from "react-instantsearch/dom";
 import SearchBox from "./algolia/searchBox";
 import Hits from "./algolia/hits";
 import { InstantSearch } from "./instantsearch";
@@ -12,7 +12,11 @@ import aphrodite from "../utils/aphrodite";
 import Grid from "@material-ui/core/Grid";
 import Router from "next/router";
 import Display from "../utils/display";
-import { connectStateResults } from "react-instantsearch/connectors";
+import {
+  connectStateResults,
+  connectToggleRefinement,
+  connectRefinementList
+} from "react-instantsearch/connectors";
 import qs from "qs";
 const searchStateToUrl = searchState =>
   searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : "";
@@ -34,7 +38,8 @@ class SearchPage extends React.Component {
       searchState: this.props.searchState,
       resultsState: this.props.resultsState,
       homePage: false,
-      rndDidYouKnowText: Math.floor(Math.random() * 6)
+      rndDidYouKnowText: Math.floor(Math.random() * 6),
+      tab: 0
     };
     this.goBackToHomePage = this.goBackToHomePage.bind(this);
     this.onSearchStateChange = this.onSearchStateChange.bind(this);
@@ -88,10 +93,22 @@ class SearchPage extends React.Component {
     }
   }
 
+  handleTabChange = (event, tab) => {
+    switch (tab) {
+    }
+    this.setState({ tab });
+  };
+
   render() {
     const Content = connectStateResults(
       ({ tablet_desktop, mobile, searchState, searchResults }) => {
-        let hits = <Hits tablet_desktop={tablet_desktop} mobile={mobile} rndDidYouKnowText={this.state.rndDidYouKnowText} />;
+        let hits = (
+          <Hits
+            tablet_desktop={tablet_desktop}
+            mobile={mobile}
+            rndDidYouKnowText={this.state.rndDidYouKnowText}
+          />
+        );
         if (!searchState.query || !searchState.query.length) {
           hits = null;
         }
@@ -102,18 +119,27 @@ class SearchPage extends React.Component {
       }
     );
 
+    const ToggleRefinement = connectToggleRefinement(props => {
+      return null;
+    });
+
+    const RefinementList = connectRefinementList(props => {
+      return null;
+    });
+
     const tabs = () => {
       return (
         <Tabs
-          value={0}
+          value={this.state.tab}
           indicatorColor="secondary"
           textColor="secondary"
           className={css(aphrodite.contentLeft, aphrodite.mobileGreyBackground)}
+          onChange={this.handleTabChange}
         >
           <Tab label="tout" />
-          <Tab label="annonces" disabled />
-          <Tab label="shopping" disabled />
-          <Tab label="actualités" disabled />
+          <Tab label="annonces" />
+          <Tab label="shopping" />
+          <Tab label="actualités" />
           <Tab label="adresses" disabled />
         </Tabs>
       );
@@ -292,6 +318,17 @@ class SearchPage extends React.Component {
         </Fragment>
       );
     };
+    const tab = this.state.tab;
+    let refinement = [];
+    if (tab === 1) {
+      refinement = ["annonces", "annonces immo"];
+    }
+    if (tab === 2) {
+      refinement = ["ecommerce"];
+    }
+    if (tab === 3) {
+      refinement = ["infos"];
+    }
     return (
       <Fragment>
         {this.state.homePage ? (
@@ -314,7 +351,10 @@ class SearchPage extends React.Component {
             onSearchStateChange={this.onSearchStateChange}
           >
             <Configure hitsPerPage={10} />
-
+            <RefinementList
+              attribute="category"
+              defaultRefinement={refinement}
+            />
             <Fragment>
               <Display format="mobile" css>
                 {process.browser

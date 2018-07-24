@@ -27,7 +27,7 @@
   }
 
   .ais-Pagination-link {
-    color: #1565C0 !important;
+    color: #1565c0 !important;
     border-radius: 0 !important;
   }
 
@@ -46,8 +46,8 @@
   }
 
   .ais-Pagination-link--selected {
-    background-color: #1565C0 !important;
-    border-color: #1565C0 !important;
+    background-color: #1565c0 !important;
+    border-color: #1565c0 !important;
     color: white !important;
     border-radius: 0 !important;
   }
@@ -75,7 +75,7 @@
   }
 
   .ais-Pagination-link {
-    color: #1565C0 !important;
+    color: #1565c0 !important;
     border-radius: 0 !important;
   }
 
@@ -94,8 +94,8 @@
   }
 
   .ais-Pagination-link--selected {
-    background-color: #1565C0 !important;
-    border-color: #1565C0 !important;
+    background-color: #1565c0 !important;
+    border-color: #1565c0 !important;
     color: white !important;
     border-radius: 0 !important;
   }
@@ -109,7 +109,7 @@
 }
 
 .ais-SearchBox-input:focus {
-  border: 1px solid #0E8AB0 !important;
+  border: 1px solid #0e8ab0 !important;
 }
 
 @media (min-width: 960px) {
@@ -123,7 +123,7 @@
     padding-left: 0.3rem !important;
     padding-right: 0.3rem !important;
     width: 500px !important;
-    border-right: #0E8AB0;
+    border-right: #0e8ab0;
   }
   .ais-Pagination ul {
     margin-left: 140px;
@@ -131,13 +131,13 @@
   }
 
   .ais-Pagination-link {
-    color: #1565C0 !important;
+    color: #1565c0 !important;
     border-radius: 0 !important;
   }
 
   .ais-Pagination-link--selected {
-    background-color: #1565C0 !important;
-    border-color: #1565C0 !important;
+    background-color: #1565c0 !important;
+    border-color: #1565c0 !important;
     color: white !important;
     border-radius: 0 !important;
   }
@@ -160,6 +160,6 @@
 
 .ais-Highlight-highlighted {
   background-color: inherit !important;
-  color: #BF2885;
+  color: #bf2885;
   font-style: inherit;
 }

@@ -21,7 +21,9 @@ class Index extends React.Component {
       resultsState = await findResultsState(SSRSearch, { searchState });
       searchState = null;
     } else {
-      resultsState = await findResultsState(SSRLandingPageSearch, { searchState });
+      resultsState = await findResultsState(SSRLandingPageSearch, {
+        searchState
+      });
     }
     return { resultsState, searchState };
   }
@@ -48,7 +50,7 @@ class Index extends React.Component {
             <Head>
               <style>${process.browser ? null : criticalCssLandingPage}</style>
             </Head>
-            <LandingPage nbHits={this.props.resultsState.content.nbHits}/>
+            <LandingPage nbHits={this.props.resultsState.content.nbHits} />
           </Fragment>
         )}
       </Wrapper>
