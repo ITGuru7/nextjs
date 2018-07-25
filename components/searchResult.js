@@ -214,7 +214,7 @@ function ResultDescription(props) {
           </Fragment>
         ) : (
           <Fragment>
-            {props.hit.content && props.hit.content.p.length ? (
+            {props.hit.content && props.hit.content.p && props.hit.content.p.length ? (
               <Fragment>
                 <TypographyHighlight
                   variant="body1"
