@@ -9,17 +9,46 @@ import Divider from "@material-ui/core/Divider";
 // import Weather from "../weather";
 import RandomDidYouKnowText from "../randomDidYouKnowText";
 import RichRender from "../richRender";
+import dynamic from "next/dynamic";
+const Map = dynamic(import("../map"));
 
 class Hits extends React.Component {
   render() {
-    const { hits, tablet_desktop, rndDidYouKnowText } = this.props;
+    const { hits, tablet_desktop, rndDidYouKnowText, map, width } = this.props;
+
+    const results = (hits, tablet_desktop) => {
+      if (!map) {
+        if (tablet_desktop) {
+          return hits.map((hit, idx) => (
+            <SearchResult
+              tablet_desktop
+              key={hit.id.url}
+              hit={hit}
+              indexName={this.props.indexName}
+            />
+          ));
+        } else {
+          return hits.map((hit, idx) => (
+            <SearchResult
+              mobile
+              key={hit.id.url}
+              hit={hit}
+              indexName={this.props.indexName}
+            />
+          ));
+        }
+      } else {
+        return <Map width={tablet_desktop ? 0 : width}/>;
+      }
+    };
+
     const render_mobile = hits => {
       return (
         <div
           className={"search_results"}
           style={{ backgroundColor: "#f1f1f1", height: "110%" }}
         >
-          {hits.map(hit => <SearchResult mobile key={hit.id.url} hit={hit} />)}
+          {results(hits, false)}
         </div>
       );
     };
@@ -53,9 +82,7 @@ class Hits extends React.Component {
               aphrodite.rightBorder
             )}
           >
-            {hits.map((hit, idx) => (
-              <SearchResult tablet_desktop key={hit.id.url} hit={hit} />
-            ))}
+            {results(hits, true)}
           </Grid>
           {Object.keys(hits).length ? (
             <Grid item style={{ marginLeft: `12px` }}>
@@ -89,7 +116,12 @@ class Hits extends React.Component {
                       </Grid>
                     </Grid>
                     <Grid item xs>
-                      <Typography variant={"subheading"} color={"primary"} gutterBottom style={{fontWeight: 500}}>
+                      <Typography
+                        variant={"subheading"}
+                        color={"primary"}
+                        gutterBottom
+                        style={{ fontWeight: 500 }}
+                      >
                         {`Le saviez vous ?`}
                       </Typography>
                       <RandomDidYouKnowText rnd={rndDidYouKnowText} />
@@ -101,7 +133,11 @@ class Hits extends React.Component {
                   <RichRender hits={hits} />
                 </Grid>
                 <Grid item>
-                  {images.length ? <Divider style={{ marginBottom: "20px", marginTop: "20px" }}/> : null}
+                  {images.length ? (
+                    <Divider
+                      style={{ marginBottom: "20px", marginTop: "20px" }}
+                    />
+                  ) : null}
                   <Grid container direction="row" spacing={0}>
                     {images.map((image, idx) => {
                       const uri = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,b_rgb:EEEEEE,g_auto,c_fill,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${
@@ -149,9 +185,7 @@ class Hits extends React.Component {
                 <Grid item style={{ marginBottom: "20px", marginTop: "20px" }}>
                   <Divider />
                 </Grid>
-                <Grid item>
-                  {/*<Weather />*/}
-                </Grid>
+                <Grid item>{/*<Weather />*/}</Grid>
               </Grid>
             </Grid>
           ) : null}

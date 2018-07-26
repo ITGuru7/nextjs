@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Pagination, Configure, Stats } from "react-instantsearch/dom";
+import { Pagination, Configure, Stats, Index } from "react-instantsearch/dom";
 import SearchBox from "./algolia/searchBox";
 import Hits from "./algolia/hits";
 import { InstantSearch } from "./instantsearch";
@@ -14,7 +14,6 @@ import Router from "next/router";
 import Display from "../utils/display";
 import {
   connectStateResults,
-  connectToggleRefinement,
   connectRefinementList
 } from "react-instantsearch/connectors";
 import qs from "qs";
@@ -106,6 +105,8 @@ class SearchPage extends React.Component {
           <Hits
             tablet_desktop={tablet_desktop}
             mobile={mobile}
+            map={this.state.tab === 4}
+            width={this.state.width}
             rndDidYouKnowText={this.state.rndDidYouKnowText}
           />
         );
@@ -119,10 +120,6 @@ class SearchPage extends React.Component {
       }
     );
 
-    const ToggleRefinement = connectToggleRefinement(props => {
-      return null;
-    });
-
     const RefinementList = connectRefinementList(props => {
       return null;
     });
@@ -135,12 +132,14 @@ class SearchPage extends React.Component {
           textColor="secondary"
           className={css(aphrodite.contentLeft, aphrodite.mobileGreyBackground)}
           onChange={this.handleTabChange}
+          scrollable
+          scrollButtons="off"
         >
           <Tab label="tout" />
           <Tab label="annonces" />
           <Tab label="shopping" />
           <Tab label="actualités" />
-          <Tab label="adresses" disabled />
+          <Tab label="carte" />
         </Tabs>
       );
     };
@@ -328,6 +327,9 @@ class SearchPage extends React.Component {
     }
     if (tab === 3) {
       refinement = ["infos"];
+    }
+    if (tab === 3) {
+      refinement = ["annuaire", "address"];
     }
     return (
       <Fragment>
