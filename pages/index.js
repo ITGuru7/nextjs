@@ -25,7 +25,11 @@ class Index extends React.Component {
         searchState
       });
     }
-    return { resultsState, searchState };
+    return {
+      resultsState,
+      searchState,
+      tab: searchState ? parseInt(searchState.tab) : 0
+    };
   }
 
   // Let's skip the LandingPage when loading a search
@@ -43,6 +47,7 @@ class Index extends React.Component {
             <SearchPage
               resultsState={this.props.resultsState}
               searchState={this.props.searchState}
+              tab={this.props.tab}
             />
           </Fragment>
         ) : (

@@ -23,6 +23,7 @@ import LandingPage from "./landingPage";
 import debounce from "lodash/debounce";
 import MobileTextLogo from "./mobileTextLogo";
 import Typography from "@material-ui/core/Typography";
+import { withRouter } from "next/router";
 
 if (process.browser) {
   require("../static/react-instantsearch-override.css");
@@ -38,11 +39,12 @@ class SearchPage extends React.Component {
       resultsState: this.props.resultsState,
       homePage: false,
       rndDidYouKnowText: Math.floor(Math.random() * 6),
-      tab: 0
+      tab: this.props.tab ? this.props.tab : 0
     };
     this.goBackToHomePage = this.goBackToHomePage.bind(this);
     this.onSearchStateChange = this.onSearchStateChange.bind(this);
     this.updateWidth = this.updateWidth.bind(this);
+    this.handleTabChange = this.handleTabChange.bind(this);
   }
 
   componentWillUnmount() {
@@ -93,8 +95,12 @@ class SearchPage extends React.Component {
   }
 
   handleTabChange = (event, tab) => {
-    switch (tab) {
-    }
+    const asPath = this.props.router.asPath;
+    const endStr =
+      asPath.indexOf("&tab") !== -1 ? asPath.indexOf("&tab") : asPath.length;
+    const path = asPath.substring(0, endStr);
+    const str = `${path}&tab=${tab}`;
+    Router.push(str, str, { shallow: true });
     this.setState({ tab });
   };
 
@@ -318,7 +324,10 @@ class SearchPage extends React.Component {
       );
     };
     const tab = this.state.tab;
-    let refinement = [];
+    let refinement;
+    if (tab === 0) {
+      refinement = [];
+    }
     if (tab === 1) {
       refinement = ["annonces", "annonces immo"];
     }
@@ -328,7 +337,7 @@ class SearchPage extends React.Component {
     if (tab === 3) {
       refinement = ["infos"];
     }
-    if (tab === 3) {
+    if (tab === 4) {
       refinement = ["annuaire", "address"];
     }
     return (
@@ -376,4 +385,4 @@ class SearchPage extends React.Component {
   }
 }
 
-export default SearchPage;
+export default withRouter(SearchPage);
