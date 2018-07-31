@@ -38,7 +38,7 @@ class Hits extends React.Component {
           ));
         }
       } else {
-        return <Map width={tablet_desktop ? 0 : width}/>;
+        return <Map width={tablet_desktop ? 0 : width} />;
       }
     };
 
@@ -56,7 +56,7 @@ class Hits extends React.Component {
       let imagesObj = {};
       let images = [];
       hits.map(hit => {
-        const image = hit.meta.image;
+        const image = hit.meta ? hit.meta.image : null;
         if (image) {
           imagesObj = {
             name: hit.id.title,
@@ -140,18 +140,6 @@ class Hits extends React.Component {
                   ) : null}
                   <Grid container direction="row" spacing={0}>
                     {images.map((image, idx) => {
-                      const uri = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,b_rgb:EEEEEE,g_auto,c_fill,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${
-                        image.url
-                      }`;
-                      const uri_dpr1 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,b_rgb:EEEEEE,g_auto,c_fill,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${
-                        image.url
-                      }`;
-                      const uri_dpr2 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,b_rgb:EEEEEE,g_auto,c_fill,w_75,h_75,dpr_2.0/d_qwarx-no-image.png/${
-                        image.url
-                      } 2x`;
-                      const uri_dpr3 = `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,b_rgb:EEEEEE,g_auto,c_fill,w_75,h_75,dpr_3.0/d_qwarx-no-image.png/${
-                        image.url
-                      } 3x`;
                       const cpt = idx + 1;
                       return (
                         <Grid
@@ -167,10 +155,24 @@ class Hits extends React.Component {
                           <a href={image.objectID} rel="nofollow">
                             <Fragment>
                               <img
-                                src={uri}
-                                srcSet={`${uri_dpr1}, ${uri_dpr2}, ${uri_dpr3}`}
+                                src={`https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${
+                                  image.url
+                                }`}
+                                srcSet={`
+                                https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${
+                                  image.url
+                                },
+                                https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${
+                                  image.url
+                                } 2x,
+                                https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${
+                                  image.url
+                                } 3x
+                                `}
                                 height={75}
                                 width={75}
+                                alt={image.name}
+                                id={image.objectID}
                               />
                               <Typography variant="caption" color="secondary">
                                 {`${image.name.substring(0, 10)}..`}

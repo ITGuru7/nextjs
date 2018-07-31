@@ -29,7 +29,7 @@ class Map extends React.Component {
         onViewportChange={this._onViewportChange.bind(this)}
         attributionControl={false}
         width={width ? width : 700}
-        height={width ? width * 1.5 : 800}
+        height={width ? width * 1.5 : 700}
         mapStyle="mapbox://styles/roma98/cj4z2tcau0cgx2rrsoisbe2pz"
         mapboxApiAccessToken="pk.eyJ1Ijoicm9tYTk4IiwiYSI6ImNqM3YzdWE4aTAxZ3IzMnRkcjdyYmQ5ajgifQ.GxliePsVeHaJQIAGwD7cjA"
       />

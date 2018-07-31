@@ -111,7 +111,7 @@ class SearchPage extends React.Component {
           <Hits
             tablet_desktop={tablet_desktop}
             mobile={mobile}
-            map={this.state.tab === 4}
+            map={this.state.tab === 5}
             width={this.state.width}
             rndDidYouKnowText={this.state.rndDidYouKnowText}
           />
@@ -143,6 +143,7 @@ class SearchPage extends React.Component {
         >
           <Tab label="tout" />
           <Tab label="annonces" />
+          <Tab label="immobilier" />
           <Tab label="shopping" />
           <Tab label="actualités" />
           <Tab label="carte" />
@@ -329,16 +330,19 @@ class SearchPage extends React.Component {
       refinement = [];
     }
     if (tab === 1) {
-      refinement = ["annonces", "annonces immo"];
+      refinement = ["classifieds"];
     }
     if (tab === 2) {
-      refinement = ["ecommerce"];
+      refinement = ["realestate"];
     }
     if (tab === 3) {
-      refinement = ["infos"];
+      refinement = ["ecommerce"];
     }
     if (tab === 4) {
-      refinement = ["annuaire", "address"];
+      refinement = ["infos"];
+    }
+    if (tab === 5) {
+      refinement = ["directory", "address", "facebook"];
     }
     return (
       <Fragment>
