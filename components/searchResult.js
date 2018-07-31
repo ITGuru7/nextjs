@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import aphrodite from "../utils/aphrodite";
 import { connectHighlight } from "react-instantsearch/connectors";
 import Wrapper from "../components/wrapper";
+import { withRouter } from "next/router";
 
 function ResultImg(props) {
   const placeholder =
@@ -12,7 +13,28 @@ function ResultImg(props) {
       ? "d_qwarx-facebook.png"
       : "d_qwarx-no-image.png";
 
-  const image = encodeURIComponent(props.hit.meta.image);
+  const image =
+    props.hit.category === "address"
+      ? props.hit.meta.image
+      : encodeURIComponent(props.hit.meta.image);
+
+  const srcSet =
+    props.hit.category === "address"
+      ? `
+            ${image},
+            ${image} 2x,
+            3x,
+    `
+      : `
+            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_1.0/${placeholder}/${image},
+            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_2.0/${placeholder}/${image} 2x,
+            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_3.0/${placeholder}/${image} 3x,
+    `;
+
+  const src =
+    props.hit.category === "address"
+      ? image
+      : `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_1.0/${placeholder}/${image}`;
 
   return (
     <Fragment>
@@ -27,12 +49,8 @@ function ResultImg(props) {
               width: "70px",
               height: "70px"
             }}
-            src={`https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_1.0/${placeholder}/${image}`}
-            srcSet={`
-            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_1.0/${placeholder}/${image},
-            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_2.0/${placeholder}/${image} 2x,
-            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_3.0/${placeholder}/${image} 3x,
-            `}
+            src={src}
+            srcSet={srcSet}
             alt={props.hit.id.title}
             id={props.hit.objectID}
           />
@@ -43,6 +61,9 @@ function ResultImg(props) {
 }
 
 function ResultTitle(props) {
+  const objectID = props.hit.objectID;
+  const title =
+    props.hit.category === "address" ? objectID.toLowerCase() : objectID;
   return (
     <a href={props.hit.objectID} rel="nofollow">
       <TypographyHighlight
@@ -50,6 +71,7 @@ function ResultTitle(props) {
         color="secondary"
         attribute={"id.title"}
         hit={props.hit}
+        style={{ textTransform: "lowercase" }}
       />
     </a>
   );
@@ -214,7 +236,9 @@ function ResultDescription(props) {
           </Fragment>
         ) : (
           <Fragment>
-            {props.hit.content && props.hit.content.p && props.hit.content.p.length ? (
+            {props.hit.content &&
+            props.hit.content.p &&
+            props.hit.content.p.length ? (
               <Fragment>
                 <TypographyHighlight
                   variant="body1"
@@ -289,7 +313,9 @@ function ResultDescription(props) {
                   />
                 ) : (
                   <Typography variant="body1" color="primary">
-                    {`Cette page ne dispose pas de description, veuillez nous en excuser.`}
+                    {props.hit.category !== "address"
+                      ? `Cette page ne dispose pas de description, veuillez nous en excuser.`
+                      : `Cliquez sur l'adresse pour accéder à la carte interactive.`}
                   </Typography>
                 )}
               </Fragment>
@@ -381,6 +407,15 @@ const TypographyHighlight = connectHighlight(
 );
 
 function ResultUrl(props) {
+  if (props.hit.category === "address") {
+    let url = `qwarx.nc${props.router.asPath}`;
+    url = url.length > 80 ? `${url.substring(0, 80)}...` : url;
+    return (
+      <Typography variant="body2" color="primary" style={{ color: "#0D7B72" }}>
+        {url}
+      </Typography>
+    );
+  }
   let url = props.hit.id.url;
   if (url.length > 80) {
     url = `${url.substring(0, 80)}...`;
@@ -409,7 +444,7 @@ function ResultInfo(props) {
 
 class SearchResult extends React.Component {
   render() {
-    const { hit, tablet_desktop } = this.props;
+    const { hit, tablet_desktop, router } = this.props;
     return (
       <Wrapper>
         {tablet_desktop ? (
@@ -423,7 +458,7 @@ class SearchResult extends React.Component {
             style={{ backgroundColor: "white" }}
           >
             <ResultTitle hit={hit} />
-            <ResultUrl hit={hit} />
+            <ResultUrl hit={hit} router={router} />
             <Grid container spacing={0}>
               <Grid item>
                 <ResultImg hit={hit} />
@@ -466,4 +501,4 @@ class SearchResult extends React.Component {
     );
   }
 }
-export default SearchResult;
+export default withRouter(SearchResult);

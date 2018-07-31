@@ -22,7 +22,7 @@ class Hits extends React.Component {
           return hits.map((hit, idx) => (
             <SearchResult
               tablet_desktop
-              key={hit.id.url}
+              key={hit.objectID}
               hit={hit}
               indexName={this.props.indexName}
             />
@@ -31,7 +31,7 @@ class Hits extends React.Component {
           return hits.map((hit, idx) => (
             <SearchResult
               mobile
-              key={hit.id.url}
+              key={hit.objectID}
               hit={hit}
               indexName={this.props.indexName}
             />
@@ -56,6 +56,9 @@ class Hits extends React.Component {
       let imagesObj = {};
       let images = [];
       hits.map(hit => {
+        if (hit.category === "address") {
+          return;
+        }
         const image = hit.meta ? hit.meta.image : null;
         if (image) {
           imagesObj = {
