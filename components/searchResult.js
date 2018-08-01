@@ -21,9 +21,9 @@ function ResultImg(props) {
   const srcSet =
     props.hit.category === "address"
       ? `
-            ${image},
-            ${image} 2x,
-            3x,
+            ${[image.slice(0, 100), '/dpr_1.0', image.slice(100)].join('')},
+            ${[image.slice(0, 100), '/dpr_2.0', image.slice(100)].join('')} 2x,
+            ${[image.slice(0, 100), '/dpr_3.0', image.slice(100)].join('')} 3x,
     `
       : `
             https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_1.0/${placeholder}/${image},
