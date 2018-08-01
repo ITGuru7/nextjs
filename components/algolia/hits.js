@@ -144,6 +144,7 @@ class Hits extends React.Component {
                   <Grid container direction="row" spacing={0}>
                     {images.map((image, idx) => {
                       const cpt = idx + 1;
+                      const url = encodeURIComponent(image.url);
                       return (
                         <Grid
                           item
@@ -159,17 +160,17 @@ class Hits extends React.Component {
                             <Fragment>
                               <img
                                 src={`https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${
-                                  image.url
+                                  url
                                 }`}
                                 srcSet={`
                                 https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${
-                                  image.url
+                                  url
                                 },
-                                https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${
-                                  image.url
+                                https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_2.0/d_qwarx-no-image.png/${
+                                  url
                                 } 2x,
-                                https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${
-                                  image.url
+                                https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_3.0/d_qwarx-no-image.png/${
+                                  url
                                 } 3x
                                 `}
                                 height={75}
