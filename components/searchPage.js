@@ -45,6 +45,7 @@ class SearchPage extends React.Component {
     this.onSearchStateChange = this.onSearchStateChange.bind(this);
     this.updateWidth = this.updateWidth.bind(this);
     this.handleTabChange = this.handleTabChange.bind(this);
+    this.onSearchStateChange = this.onSearchStateChange.bind(this);
   }
 
   componentWillUnmount() {
@@ -60,7 +61,7 @@ class SearchPage extends React.Component {
     this.setState({ homePage: true });
   }
 
-  onSearchStateChange = searchState => {
+  onSearchStateChange = (searchState, tab) => {
     if (!searchState.page || !searchState.query) {
       return;
     }
@@ -73,17 +74,36 @@ class SearchPage extends React.Component {
       searchState.query === this.state.searchState.query &&
       searchState.page === statePage
     ) {
+      if (tab && this.state.tab !== tab) {
+        let href = searchStateToUrl(searchState);
+        if (href !== "/?") {
+          const endStr =
+            href.indexOf("&tab") !== -1 ? href.indexOf("&tab") : href.length;
+          href = href.substring(0, endStr);
+          href = `${href}&tab=${tab}`;
+          Router.push(href, href, { shallow: true });
+        }
+        this.setState({ tab });
+      }
       return;
     }
 
     // if SSR, no need to sync the state to the URL
     if (process.browser) {
-      const href = searchStateToUrl(searchState);
+      let href = searchStateToUrl(searchState);
       if (href !== "/?") {
+        const endStr =
+          href.indexOf("&tab") !== -1 ? href.indexOf("&tab") : href.length;
+        href = href.substring(0, endStr);
+        href = `${href}&tab=${tab}`;
         Router.push(href, href, { shallow: true });
       }
     }
-    this.setState({ searchState });
+    if (tab) {
+      this.setState({ searchState, tab });
+    } else {
+      this.setState({ searchState });
+    }
   };
 
   componentDidMount() {
@@ -114,6 +134,7 @@ class SearchPage extends React.Component {
             map={this.state.tab === 5}
             width={this.state.width}
             rndDidYouKnowText={this.state.rndDidYouKnowText}
+            onSearchStateChange={this.onSearchStateChange}
           />
         );
         if (!searchState.query || !searchState.query.length) {

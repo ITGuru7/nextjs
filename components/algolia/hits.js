@@ -14,26 +14,28 @@ const Map = dynamic(import("../map"));
 
 class Hits extends React.Component {
   render() {
-    const { hits, tablet_desktop, rndDidYouKnowText, map, width } = this.props;
+    const { hits, tablet_desktop, rndDidYouKnowText, map, width, onSearchStateChange } = this.props;
 
     const results = (hits, tablet_desktop) => {
       if (!map) {
         if (tablet_desktop) {
-          return hits.map((hit, idx) => (
+          return hits.map((hit) => (
             <SearchResult
               tablet_desktop
               key={hit.objectID}
               hit={hit}
               indexName={this.props.indexName}
+              onSearchStateChange={onSearchStateChange }
             />
           ));
         } else {
-          return hits.map((hit, idx) => (
+          return hits.map((hit) => (
             <SearchResult
               mobile
               key={hit.objectID}
               hit={hit}
               indexName={this.props.indexName}
+              onSearchStateChange={onSearchStateChange}
             />
           ));
         }

@@ -21,9 +21,9 @@ function ResultImg(props) {
   const srcSet =
     props.hit.category === "address"
       ? `
-            ${[image.slice(0, 100), '/dpr_1.0', image.slice(100)].join('')},
-            ${[image.slice(0, 100), '/dpr_2.0', image.slice(100)].join('')} 2x,
-            ${[image.slice(0, 100), '/dpr_3.0', image.slice(100)].join('')} 3x,
+            ${[image.slice(0, 100), "/dpr_1.0", image.slice(100)].join("")},
+            ${[image.slice(0, 100), "/dpr_2.0", image.slice(100)].join("")} 2x,
+            ${[image.slice(0, 100), "/dpr_3.0", image.slice(100)].join("")} 3x,
     `
       : `
             https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_1.0/${placeholder}/${image},
@@ -61,20 +61,34 @@ function ResultImg(props) {
 }
 
 function ResultTitle(props) {
-  const objectID = props.hit.objectID;
-  const title =
-    props.hit.category === "address" ? objectID.toLowerCase() : objectID;
-  return (
-    <a href={props.hit.objectID} rel="nofollow">
+  const { liftingStateUp, onSearchStateChange } = props;
+
+  if (props.hit.category === "address") {
+    return (
       <TypographyHighlight
         variant="subheading"
         color="secondary"
         attribute={"id.title"}
         hit={props.hit}
         style={{ textTransform: "lowercase" }}
+        address
+        liftingStateUp={liftingStateUp}
+        onSearchStateChange={onSearchStateChange}
       />
-    </a>
-  );
+    );
+  } else {
+    return (
+      <a href={props.hit.objectID} rel="nofollow">
+        <TypographyHighlight
+          variant="subheading"
+          color="secondary"
+          attribute={"id.title"}
+          hit={props.hit}
+          style={{ textTransform: "lowercase" }}
+        />
+      </a>
+    );
+  }
 }
 
 function ResultDescription(props) {
@@ -353,7 +367,10 @@ const TypographyHighlight = connectHighlight(
     color,
     info,
     url,
-    reduce
+    reduce,
+    address,
+    liftingStateUp,
+    onSearchStateChange
   }) => {
     const parsedHit = highlight({
       attribute,
@@ -399,6 +416,16 @@ const TypographyHighlight = connectHighlight(
               : variant === "body2" ? "500" : "inherit",
           color: url ? "#0D7B72" : "default"
         }}
+        onClick={
+          address
+            ? () =>
+                onSearchStateChange({
+                  query: hit.id.title,
+                  page: 1,
+                  hitsPerPage: 10
+                }, 5)
+            : () => null
+        }
       >
         {highlightedHits}
       </Typography>
@@ -408,7 +435,12 @@ const TypographyHighlight = connectHighlight(
 
 function ResultUrl(props) {
   if (props.hit.category === "address") {
-    let url = `qwarx.nc${props.router.asPath}`;
+    const asPath = props.router.asPath;
+    const endStr =
+      asPath.indexOf("&tab") !== -1 ? asPath.indexOf("&tab") : asPath.length;
+    const path = asPath.substring(0, endStr);
+
+    let url = `https://qwarx.nc${path}&tab=5`;
     url = url.length > 80 ? `${url.substring(0, 80)}...` : url;
     return (
       <Typography variant="body2" color="primary" style={{ color: "#0D7B72" }}>
@@ -444,7 +476,13 @@ function ResultInfo(props) {
 
 class SearchResult extends React.Component {
   render() {
-    const { hit, tablet_desktop, router } = this.props;
+    const {
+      hit,
+      tablet_desktop,
+      router,
+      liftingStateUp,
+      onSearchStateChange
+    } = this.props;
     return (
       <Wrapper>
         {tablet_desktop ? (
@@ -457,7 +495,10 @@ class SearchResult extends React.Component {
             )}
             style={{ backgroundColor: "white" }}
           >
-            <ResultTitle hit={hit} />
+            <ResultTitle
+              hit={hit}
+              onSearchStateChange={onSearchStateChange}
+            />
             <ResultUrl hit={hit} router={router} />
             <Grid container spacing={0}>
               <Grid item>
@@ -485,8 +526,11 @@ class SearchResult extends React.Component {
             )}
             style={{ backgroundColor: "white" }}
           >
-            <ResultTitle hit={hit} />
-            <ResultUrl hit={hit} />
+            <ResultTitle
+              hit={hit}
+              onSearchStateChange={onSearchStateChange}
+            />
+            <ResultUrl hit={hit} router={router} />
             <Grid container spacing={0}>
               <Grid item>
                 <ResultImg hit={hit} />
