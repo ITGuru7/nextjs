@@ -61,20 +61,21 @@ function ResultImg(props) {
 }
 
 function ResultTitle(props) {
-  const { liftingStateUp, onSearchStateChange } = props;
+  const { onSearchStateChange } = props;
 
   if (props.hit.category === "address") {
     return (
-      <TypographyHighlight
-        variant="subheading"
-        color="secondary"
-        attribute={"id.title"}
-        hit={props.hit}
-        style={{ textTransform: "lowercase" }}
-        address
-        liftingStateUp={liftingStateUp}
-        onSearchStateChange={onSearchStateChange}
-      />
+      <a rel="nofollow">
+        <TypographyHighlight
+          variant="subheading"
+          color="secondary"
+          attribute={"id.title"}
+          hit={props.hit}
+          style={{ textTransform: "lowercase" }}
+          address
+          onSearchStateChange={onSearchStateChange}
+        />
+      </a>
     );
   } else {
     return (
@@ -369,7 +370,6 @@ const TypographyHighlight = connectHighlight(
     url,
     reduce,
     address,
-    liftingStateUp,
     onSearchStateChange
   }) => {
     const parsedHit = highlight({
@@ -418,12 +418,20 @@ const TypographyHighlight = connectHighlight(
         }}
         onClick={
           address
-            ? () =>
-                onSearchStateChange({
-                  query: hit.id.title,
-                  page: 1,
-                  hitsPerPage: 10
-                }, 5)
+            ? () => {
+                onSearchStateChange(
+                  {
+                    query: hit.rich.address,
+                    page: 1,
+                    hitsPerPage: 10
+                  },
+                  5
+                );
+                document.getElementsByClassName(
+                  "ais-SearchBox-input"
+                )[1].value =
+                  hit.rich.address;
+              }
             : () => null
         }
       >
@@ -476,13 +484,7 @@ function ResultInfo(props) {
 
 class SearchResult extends React.Component {
   render() {
-    const {
-      hit,
-      tablet_desktop,
-      router,
-      liftingStateUp,
-      onSearchStateChange
-    } = this.props;
+    const { hit, tablet_desktop, router, onSearchStateChange } = this.props;
     return (
       <Wrapper>
         {tablet_desktop ? (
@@ -495,10 +497,7 @@ class SearchResult extends React.Component {
             )}
             style={{ backgroundColor: "white" }}
           >
-            <ResultTitle
-              hit={hit}
-              onSearchStateChange={onSearchStateChange}
-            />
+            <ResultTitle hit={hit} onSearchStateChange={onSearchStateChange} />
             <ResultUrl hit={hit} router={router} />
             <Grid container spacing={0}>
               <Grid item>
@@ -526,10 +525,7 @@ class SearchResult extends React.Component {
             )}
             style={{ backgroundColor: "white" }}
           >
-            <ResultTitle
-              hit={hit}
-              onSearchStateChange={onSearchStateChange}
-            />
+            <ResultTitle hit={hit} onSearchStateChange={onSearchStateChange} />
             <ResultUrl hit={hit} router={router} />
             <Grid container spacing={0}>
               <Grid item>

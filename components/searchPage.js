@@ -42,11 +42,11 @@ class SearchPage extends React.Component {
       tab: this.props.tab ? this.props.tab : 0
     };
     this.goBackToHomePage = this.goBackToHomePage.bind(this);
-    this.onSearchStateChange = this.onSearchStateChange.bind(this);
     this.updateWidth = this.updateWidth.bind(this);
     this.handleTabChange = this.handleTabChange.bind(this);
     this.onSearchStateChange = this.onSearchStateChange.bind(this);
   }
+
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateWidth);
@@ -205,7 +205,7 @@ class SearchPage extends React.Component {
               />
             </Grid>
             <Grid item xs>
-              <SearchBox tablet_desktop />
+              <SearchBox tablet_desktop/>
             </Grid>
           </Grid>
           <Divider style={{ marginTop: "5px" }} />
@@ -299,7 +299,7 @@ class SearchPage extends React.Component {
               </Grid>
             </Grid>
           </div>
-          <SearchBox mobile />
+          <SearchBox mobile/>
           {tabs()}
           <Divider style={{ marginTop: "8px" }} />
           <div>

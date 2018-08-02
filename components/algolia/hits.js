@@ -14,28 +14,38 @@ const Map = dynamic(import("../map"));
 
 class Hits extends React.Component {
   render() {
-    const { hits, tablet_desktop, rndDidYouKnowText, map, width, onSearchStateChange } = this.props;
+    const {
+      hits,
+      tablet_desktop,
+      rndDidYouKnowText,
+      map,
+      width,
+      onSearchStateChange,
+      updateSearchBoxTextOverride
+    } = this.props;
 
     const results = (hits, tablet_desktop) => {
       if (!map) {
         if (tablet_desktop) {
-          return hits.map((hit) => (
+          return hits.map(hit => (
             <SearchResult
               tablet_desktop
               key={hit.objectID}
               hit={hit}
               indexName={this.props.indexName}
-              onSearchStateChange={onSearchStateChange }
+              onSearchStateChange={onSearchStateChange}
+              updateSearchBoxTextOverride={updateSearchBoxTextOverride}
             />
           ));
         } else {
-          return hits.map((hit) => (
+          return hits.map(hit => (
             <SearchResult
               mobile
               key={hit.objectID}
               hit={hit}
               indexName={this.props.indexName}
               onSearchStateChange={onSearchStateChange}
+              updateSearchBoxTextOverride={updateSearchBoxTextOverride}
             />
           ));
         }
@@ -161,19 +171,11 @@ class Hits extends React.Component {
                           <a href={image.objectID} rel="nofollow">
                             <Fragment>
                               <img
-                                src={`https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${
-                                  url
-                                }`}
+                                src={`https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${url}`}
                                 srcSet={`
-                                https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${
-                                  url
-                                },
-                                https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_2.0/d_qwarx-no-image.png/${
-                                  url
-                                } 2x,
-                                https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_3.0/d_qwarx-no-image.png/${
-                                  url
-                                } 3x
+                                https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${url},
+                                https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_2.0/d_qwarx-no-image.png/${url} 2x,
+                                https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_3.0/d_qwarx-no-image.png/${url} 3x
                                 `}
                                 height={75}
                                 width={75}
