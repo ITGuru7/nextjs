@@ -10,7 +10,6 @@ import Divider from "@material-ui/core/Divider";
 import RandomDidYouKnowText from "../randomDidYouKnowText";
 import RichRender from "../richRender";
 import dynamic from "next/dynamic";
-const Map = dynamic(import("../map"));
 
 class Hits extends React.Component {
   render() {
@@ -24,6 +23,16 @@ class Hits extends React.Component {
       updateSearchBoxTextOverride
     } = this.props;
 
+    const Map = dynamic(import("../map"), {
+      loading: () => (
+        <div
+          style={{
+            width: width ? width : 700,
+            height: width ? width * 1.5 : 700
+          }}
+        />
+      )
+    });
     const results = (hits, tablet_desktop) => {
       if (!map) {
         if (tablet_desktop) {

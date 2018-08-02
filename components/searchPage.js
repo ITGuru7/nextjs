@@ -19,7 +19,6 @@ import {
 import qs from "qs";
 const searchStateToUrl = searchState =>
   searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : "";
-import LandingPage from "./landingPage";
 import debounce from "lodash/debounce";
 import MobileTextLogo from "./mobileTextLogo";
 import Typography from "@material-ui/core/Typography";
@@ -37,11 +36,9 @@ class SearchPage extends React.Component {
     this.state = {
       searchState: this.props.searchState,
       resultsState: this.props.resultsState,
-      homePage: false,
       rndDidYouKnowText: Math.floor(Math.random() * 6),
       tab: this.props.tab ? this.props.tab : 0
     };
-    this.goBackToHomePage = this.goBackToHomePage.bind(this);
     this.updateWidth = this.updateWidth.bind(this);
     this.handleTabChange = this.handleTabChange.bind(this);
     this.onSearchStateChange = this.onSearchStateChange.bind(this);
@@ -53,11 +50,6 @@ class SearchPage extends React.Component {
 
   updateWidth() {
     this.setState({ width: window.innerWidth });
-  }
-
-  goBackToHomePage() {
-    Router.push("/", "/", { shallow: true });
-    this.setState({ homePage: true });
   }
 
   onSearchStateChange = (searchState, tab) => {
@@ -196,12 +188,12 @@ class SearchPage extends React.Component {
                 alt={`qwarx logo`}
                 onClick={e => {
                   e.preventDefault();
-                  this.goBackToHomePage ? this.goBackToHomePage() : null;
+                  window.location = "/";
                 }}
                 style={{
                   marginTop: "3px",
                   marginBottom: "3px",
-                  cursor: this.goBackToHomePage ? "pointer" : "unset",
+                  cursor: "pointer",
                   marginLeft: "5px",
                   marginRight: "5px"
                 }}
@@ -288,12 +280,12 @@ class SearchPage extends React.Component {
                   alt={`qwarx logo`}
                   onClick={e => {
                     e.preventDefault();
-                    this.goBackToHomePage ? this.goBackToHomePage() : null;
+                    window.location = "/";
                   }}
                   style={{
                     marginTop: "3px",
                     marginBottom: "3px",
-                    cursor: this.goBackToHomePage ? "pointer" : "unset"
+                    cursor: "pointer"
                   }}
                 />
               </Grid>
@@ -369,46 +361,37 @@ class SearchPage extends React.Component {
       refinement = ["directory", "address", "facebook"];
     }
     return (
-      <Fragment>
-        {this.state.homePage ? (
-          <LandingPage />
-        ) : (
-          <InstantSearch
-            appId="5NXUF7YDRN"
-            apiKey="458ab22e25a2ddf3a174bf03678c9281"
-            indexName="qwarx.nc"
-            // resultsState is generated from index.js, will be used only once on SSR, not needed
-            // afterwards, so no need to sync it on the state
-            resultsState={this.props.resultsState}
-            // search state need to be maintained localy, since we are in a controlled mode
-            // the searchState can come from index.js, or locally
-            searchState={
-              this.state && this.state.searchState
-                ? this.state.searchState
-                : this.props.searchState
-            }
-            onSearchStateChange={this.onSearchStateChange}
-          >
-            <Configure hitsPerPage={10} />
-            <RefinementList
-              attribute="category"
-              defaultRefinement={refinement}
-            />
-            <Fragment>
-              <Display format="mobile" css>
-                {process.browser
-                  ? this.state.width < 960 ? mobile() : null
-                  : mobile()}
-              </Display>
-              <Display format="tablet-desktop" css>
-                {process.browser
-                  ? this.state.width >= 960 ? tablet_desktop() : null
-                  : tablet_desktop()}
-              </Display>
-            </Fragment>
-          </InstantSearch>
-        )}
-      </Fragment>
+      <InstantSearch
+        appId="5NXUF7YDRN"
+        apiKey="458ab22e25a2ddf3a174bf03678c9281"
+        indexName="qwarx.nc"
+        // resultsState is generated from index.js, will be used only once on SSR, not needed
+        // afterwards, so no need to sync it on the state
+        resultsState={this.props.resultsState}
+        // search state need to be maintained localy, since we are in a controlled mode
+        // the searchState can come from index.js, or locally
+        searchState={
+          this.state && this.state.searchState
+            ? this.state.searchState
+            : this.props.searchState
+        }
+        onSearchStateChange={this.onSearchStateChange}
+      >
+        <Configure hitsPerPage={10} />
+        <RefinementList attribute="category" defaultRefinement={refinement} />
+        <Fragment>
+          <Display format="mobile" css>
+            {process.browser
+              ? this.state.width < 960 ? mobile() : null
+              : mobile()}
+          </Display>
+          <Display format="tablet-desktop" css>
+            {process.browser
+              ? this.state.width >= 960 ? tablet_desktop() : null
+              : tablet_desktop()}
+          </Display>
+        </Fragment>
+      </InstantSearch>
     );
   }
 }
