@@ -47,7 +47,6 @@ class SearchPage extends React.Component {
     this.onSearchStateChange = this.onSearchStateChange.bind(this);
   }
 
-
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateWidth);
   }
@@ -111,6 +110,10 @@ class SearchPage extends React.Component {
     window.addEventListener("resize", debounce(this.updateWidth, 150));
     if (!this.state.searchState) {
       this.setState({ searchState: qs.parse(window.location.search.slice(1)) });
+    }
+    let href = searchStateToUrl(this.state.searchState);
+    if (href !== "/?") {
+      Router.push(href, href, { shallow: true });
     }
   }
 
@@ -205,7 +208,7 @@ class SearchPage extends React.Component {
               />
             </Grid>
             <Grid item xs>
-              <SearchBox tablet_desktop/>
+              <SearchBox tablet_desktop />
             </Grid>
           </Grid>
           <Divider style={{ marginTop: "5px" }} />
@@ -299,7 +302,7 @@ class SearchPage extends React.Component {
               </Grid>
             </Grid>
           </div>
-          <SearchBox mobile/>
+          <SearchBox mobile />
           {tabs()}
           <Divider style={{ marginTop: "8px" }} />
           <div>

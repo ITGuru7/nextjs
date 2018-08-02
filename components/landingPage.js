@@ -227,6 +227,7 @@ class LandingPage extends React.Component {
               page: 1,
               hitsPerPage: 10
             }}
+
           />
         );
       } else {
