@@ -1,13 +1,22 @@
 import React from "react";
 import { StaticMap } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import DeckGL, { IconLayer, MapView } from "deck.gl";
+import DeckGL, { IconLayer } from "deck.gl";
 import IconClusterLayer from "./icon-cluster-layer";
 // Source data CSV
 const DATA_URL =
   "https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/icon/meteorites.json"; // eslint-disable-line
 
 const stopPropagation = evt => evt.stopPropagation();
+
+export const INITIAL_VIEW_STATE = {
+  longitude: 165.808,
+  latitude: -21.171,
+  zoom: 6.3,
+  maxZoom: 20,
+  pitch: 0,
+  bearing: 0
+};
 
 class Map extends React.Component {
   constructor(props) {
@@ -79,13 +88,10 @@ class Map extends React.Component {
           style={{ left: x, top: y }}
           onMouseLeave={this._closePopup}
         >
-          {hoveredItems.map(({ name, year, mass, class: meteorClass }) => {
+          {hoveredItems.map(({ name }) => {
             return (
               <div key={name}>
                 <h5>{name}</h5>
-                <div>Year: {year || "unknown"}</div>
-                <div>Class: {meteorClass}</div>
-                <div>Mass: {mass}g</div>
               </div>
             );
           })}
@@ -95,11 +101,9 @@ class Map extends React.Component {
 
     return (
       <div className="tooltip" style={{ left: x, top: y }}>
-        {hoveredItems.slice(0, 20).map(({ name, year }) => (
+        {hoveredItems.slice(0, 20).map(({ name }) => (
           <div key={name}>
-            <h5>
-              {name} {year ? `(${year})` : ""}
-            </h5>
+            <h5>{name}</h5>
           </div>
         ))}
       </div>
@@ -107,6 +111,24 @@ class Map extends React.Component {
   }
 
   _renderLayers() {
+    const hits = this.props.hits;
+    let DATA_URL = [];
+    for (let idx in hits) {
+      const hit = hits[idx];
+      if (
+        hit.rich &&
+        hit.rich.location &&
+        hit.rich.location.latitude &&
+        hit.rich.location.longitude
+      ) {
+        let elt = {
+          coordinates: [hit.rich.location.longitude, hit.rich.location.latitude],
+          name: hit.id.title
+        };
+        DATA_URL.push(elt);
+      }
+    }
+
     const {
       data = DATA_URL,
       iconMapping = "/static/data/location-icon-mapping.json",
@@ -145,15 +167,6 @@ class Map extends React.Component {
   render() {
     const width = this.props.width;
     const { viewState, controller = true, baseMap = true } = this.props;
-    const INITIAL_VIEW_STATE = {
-      longitude: 165.808,
-      latitude: -21.171,
-      zoom: 6.3,
-      maxZoom: 6.3,
-      pitch: 0,
-      bearing: 0
-    };
-
     return (
       <div
         style={{

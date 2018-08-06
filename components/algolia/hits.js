@@ -59,7 +59,7 @@ class Hits extends React.Component {
           ));
         }
       } else {
-        return <Map width={tablet_desktop ? 0 : width} />;
+        return <Map width={tablet_desktop ? 0 : width} hits={hits} />;
       }
     };
 
