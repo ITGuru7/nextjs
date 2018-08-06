@@ -115,17 +115,26 @@ class Map extends React.Component {
     let DATA_URL = [];
     for (let idx in hits) {
       const hit = hits[idx];
-      if (
-        hit.rich &&
-        hit.rich.location &&
-        hit.rich.location.latitude &&
-        hit.rich.location.longitude
-      ) {
-        let elt = {
-          coordinates: [hit.rich.location.longitude, hit.rich.location.latitude],
-          name: hit.id.title
-        };
-        DATA_URL.push(elt);
+      if (hit.rich) {
+        if (
+          hit.rich.location &&
+          hit.rich.location.latitude &&
+          hit.rich.location.longitude
+        ) {
+          DATA_URL.push({
+            coordinates: [
+              hit.rich.location.longitude,
+              hit.rich.location.latitude
+            ],
+            name: hit.id.title
+          });
+        }
+        if (hit.rich.address) {
+          DATA_URL.push({
+            coordinates: [hit.rich.longitude, hit.rich.latitude],
+            name: hit.rich.address
+          });
+        }
       }
     }
 
