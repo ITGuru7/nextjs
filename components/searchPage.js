@@ -377,7 +377,7 @@ class SearchPage extends React.Component {
         }
         onSearchStateChange={this.onSearchStateChange}
       >
-        <Configure hitsPerPage={10} />
+        <Configure hitsPerPage={tab != 5 ? 10 : 1000} />
         <RefinementList attribute="category" defaultRefinement={refinement} />
         <Fragment>
           <Display format="mobile" css>
