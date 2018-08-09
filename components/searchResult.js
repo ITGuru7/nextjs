@@ -385,8 +385,15 @@ const TypographyHighlight = connectHighlight(
         part.value =
           part.value.substring(0, part.value.length - reduce * 80) + "...";
       }
-      if (hit.category === 'classifieds') {
-        part.value = part.value.replace(/\d{2}[. -]*\d{2}[. -]*\d{2}/g, '******')
+      if (hit.category === "classifieds" && !url) {
+        part.value = part.value.replace(
+          /\d{2}[. -]*\d{2}[. -]*\d{2}/g,
+          "******"
+        );
+        part.value = part.value.replace(
+          /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])+/ig,
+          "****"
+        );
       }
       if (part.isHighlighted) {
         return (
