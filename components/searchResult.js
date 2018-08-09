@@ -385,6 +385,9 @@ const TypographyHighlight = connectHighlight(
         part.value =
           part.value.substring(0, part.value.length - reduce * 80) + "...";
       }
+      if (hit.category === 'classifieds') {
+        part.value = part.value.replace(/\d{2}[. -]*\d{2}[. -]*\d{2}/g, '******')
+      }
       if (part.isHighlighted) {
         return (
           <mark
