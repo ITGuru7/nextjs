@@ -41,6 +41,7 @@
     "style-loader": "^0.20.3",
     "sw-precache-webpack-plugin": "^0.11.5",
     "url-loader": "^1.0.1",
+    "viewport-mercator-project": "^5.2.0",
     "webpack-bundle-analyzer": "^2.11.1"
   },
   "browser": {

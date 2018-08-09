@@ -3,6 +3,8 @@ import { StaticMap } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import DeckGL, { IconLayer } from "deck.gl";
 import IconClusterLayer from "./icon-cluster-layer";
+import WebMercatorViewport from "viewport-mercator-project";
+
 // Source data CSV
 const DATA_URL =
   "https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/icon/meteorites.json"; // eslint-disable-line
@@ -174,13 +176,26 @@ class Map extends React.Component {
   }
 
   render() {
-    const width = this.props.width;
+    const width = this.props.width ? this.props.width : 700;
+    const height = this.props.width ? this.props.width * 1.5 : 700;
+
     const { viewState, controller = true, baseMap = true } = this.props;
+
+
+
+    const viewport = new WebMercatorViewport({ width, height }).fitBounds(
+      [[-122.4, 37.7], [-122.5, 37.8]],
+      {
+        padding: 20,
+        offset: [0, -100]
+      }
+    );
+
     return (
       <div
         style={{
-          width: width ? width : 700,
-          height: width ? width * 1.5 : 700,
+          width,
+          height,
           position: "relative"
         }}
       >
@@ -189,6 +204,8 @@ class Map extends React.Component {
           initialViewState={INITIAL_VIEW_STATE}
           viewState={viewState}
           controller={controller}
+          width={width}
+          height={height}
         >
           {baseMap && (
             <StaticMap

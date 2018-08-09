@@ -239,7 +239,7 @@ function ResultDescription(props) {
     return (
       <Fragment>
         {props.hit.meta.description &&
-        props.hit.meta.description.length >= 200 ? (
+        (props.hit.meta.description.length >= 200 || !props.hit.content) ? (
           <Fragment>
             <TypographyHighlight
               variant="body1"
