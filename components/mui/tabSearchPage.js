@@ -7,12 +7,7 @@ let styles = {
   root: {
     marginRight: "4px",
     borderRadius: "5px 5px 0px 0px",
-    minWidth: "120px"
-    // opacity: 1,
-    // minHeight: "32px"
-  },
-  selected: {
-    // color: "white"
+    opacity: 1
   },
   disabled: {
     color: "#666"
@@ -32,6 +27,7 @@ let styles = {
 class StyledTab extends React.Component {
   render() {
     const props = this.props;
+    const mobile = this.props.mobile;
     return (
       <Fragment>
         <Grid
@@ -45,7 +41,8 @@ class StyledTab extends React.Component {
               style={{
                 backgroundColor: props.tab_color,
                 color: props.tab_text_color,
-                minHeight: props.selected ? "38px" : "33px"
+                minHeight: props.selected ? "33px" : "33px",
+                minWidth: mobile ? "100px" : "120px"
               }}
               disableRipple
               {...props}
@@ -58,15 +55,17 @@ class StyledTab extends React.Component {
               }}
             />
           </Grid>
-          <Grid
-            item
-            style={{
-              height: "10px",
-              width: "120px",
-              backgroundColor: props.tab_color,
-              opacity: props.selected ? 1 : 0.7
-            }}
-          />
+          {props.selected && (
+            <Grid
+              item
+              style={{
+                height: "8px",
+                width: mobile ? "100px" : "120px",
+                backgroundColor: props.tab_color,
+                borderTop: "2px solid white"
+              }}
+            />
+          )}
         </Grid>
       </Fragment>
     );

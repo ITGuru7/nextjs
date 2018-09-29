@@ -44,13 +44,11 @@ class LandingPage extends React.Component {
     this.updateWidth();
     window.addEventListener("resize", this.updateWidth);
     const searchState = { "/": "" };
-    if (!this.props.nbHits) {
-      findResultsState(ssrLandingPageSearch, { searchState }).then(
-        resultsState => {
-          this.setState({ nbHits: resultsState.content.nbHits });
-        }
-      );
-    }
+    findResultsState(ssrLandingPageSearch, { searchState }).then(
+      resultsState => {
+        this.setState({ nbHits: resultsState.content.nbHits });
+      }
+    );
   }
 
   componentWillUnmount() {
@@ -227,7 +225,6 @@ class LandingPage extends React.Component {
               page: 1,
               hitsPerPage: 10
             }}
-
           />
         );
       } else {

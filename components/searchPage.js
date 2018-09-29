@@ -146,21 +146,51 @@ class SearchPage extends React.Component {
       return null;
     });
 
-    const tabs = () => {
+    const tabs = mobile => {
       return (
         <Tabs
           value={this.state.tab}
-          className={css(aphrodite.contentLeft, aphrodite.mobileGreyBackground)}
+          className={css(aphrodite.contentLeft)}
           onChange={this.handleTabChange}
-          scrollable
+          scrollable={mobile}
           scrollButtons="off"
         >
-          <Tab label="tout" tab_color={'#BF2885'} tab_text_color={"white"}/>
-          <Tab label="annonces" tab_color={'#0E8AB0'} tab_text_color={"white"}/>
-          <Tab label="immobilier" tab_color={'#13CCBE'} tab_text_color={"black"}/>
-          <Tab label="shopping" tab_color={'#FFF212'} tab_text_color={"black"}/>
-          <Tab label="infos" tab_color={'#FF8800'} tab_text_color={"black"}/>
-          <Tab label="adresses" tab_color={'#FF1F34'} tab_text_color={"white"}/>
+          <Tab
+            label="tout"
+            tab_color={"#BF2885"}
+            tab_text_color={"white"}
+            mobile={mobile}
+          />
+          <Tab
+            label="annonces"
+            tab_color={"#0E8AB0"}
+            tab_text_color={"white"}
+            mobile={mobile}
+          />
+          <Tab
+            label="immobilier"
+            tab_color={"#13CCBE"}
+            tab_text_color={"black"}
+            mobile={mobile}
+          />
+          <Tab
+            label="shopping"
+            tab_color={"#FFF212"}
+            tab_text_color={"black"}
+            mobile={mobile}
+          />
+          <Tab
+            label="infos"
+            tab_color={"#FF8800"}
+            tab_text_color={"black"}
+            mobile={mobile}
+          />
+          <Tab
+            label="adresses"
+            tab_color={"#FF1F34"}
+            tab_text_color={"white"}
+            mobile={mobile}
+          />
         </Tabs>
       );
     };
@@ -293,8 +323,7 @@ class SearchPage extends React.Component {
             </Grid>
           </div>
           <SearchBox mobile />
-          {tabs()}
-          <Divider style={{ marginTop: "8px" }} />
+          {tabs(true)}
           <div>
             <Typography component={"span"} variant={"caption"}>
               <Stats
