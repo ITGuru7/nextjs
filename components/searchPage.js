@@ -150,19 +150,17 @@ class SearchPage extends React.Component {
       return (
         <Tabs
           value={this.state.tab}
-          indicatorColor="secondary"
-          textColor="secondary"
           className={css(aphrodite.contentLeft, aphrodite.mobileGreyBackground)}
           onChange={this.handleTabChange}
           scrollable
           scrollButtons="off"
         >
-          <Tab label="tout" />
-          <Tab label="annonces" />
-          <Tab label="immobilier" />
-          <Tab label="shopping" />
-          <Tab label="actualités" />
-          <Tab label="carte" />
+          <Tab label="tout" tab_color={'#BF2885'} tab_text_color={"white"}/>
+          <Tab label="annonces" tab_color={'#0E8AB0'} tab_text_color={"white"}/>
+          <Tab label="immobilier" tab_color={'#13CCBE'} tab_text_color={"black"}/>
+          <Tab label="shopping" tab_color={'#FFF212'} tab_text_color={"black"}/>
+          <Tab label="infos" tab_color={'#FF8800'} tab_text_color={"black"}/>
+          <Tab label="adresses" tab_color={'#FF1F34'} tab_text_color={"white"}/>
         </Tabs>
       );
     };

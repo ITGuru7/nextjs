@@ -5,7 +5,7 @@ import Tabs from "@material-ui/core/Tabs";
 const styles = {
   root: {
     backgroundColor: "#f8f8f8",
-    minHeight: 0,
+    // minHeight: 0,
     "@media (max-width: 600px)": {
       height: "40px"
     },
@@ -14,8 +14,8 @@ const styles = {
     }
   },
   indicator: {
-    bottom: "8px",
-    backgroundColor: "#1565C0"
+    bottom: "6px",
+    backgroundColor: "white",
   }
 };
 

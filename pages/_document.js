@@ -110,6 +110,7 @@ class MyDocument extends Document {
             name="description"
             content="Le moteur de recherche du web de Nouvelle-Calédonie s'appelle Qwarx et il est plus performant que Google"
           />
+          <meta httpEquiv="Expires" content="30"/>
         </Head>
         <body>
           <Main />

@@ -5,10 +5,6 @@ import DeckGL, { IconLayer } from "deck.gl";
 import IconClusterLayer from "./icon-cluster-layer";
 import WebMercatorViewport from "viewport-mercator-project";
 
-// Source data CSV
-const DATA_URL =
-  "https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/icon/meteorites.json"; // eslint-disable-line
-
 const stopPropagation = evt => evt.stopPropagation();
 
 export const INITIAL_VIEW_STATE = {
