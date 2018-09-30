@@ -130,36 +130,34 @@ class SearchPage extends React.Component {
         );
         if (!searchState.query || !searchState.query.length) {
           let tabName = "";
-          let msg = "";
+          let noSearchmsg = "";
           let width = mobile ? 80 : 115;
           switch (tab) {
             case 0:
               tabName = "Tout";
-              msg = ` Dans cet onglet vous accédez à toutes les catégories : sites généralistes, petites annonces, annonces immobilières, ecommerce, sites d’infos, etc. en Nouvelle-Calédonie.`;
+              noSearchmsg = `Dans cet onglet vous accédez à toutes les catégories : sites généralistes, petites annonces, annonces immobilières, ecommerce, sites d’infos, etc. en Nouvelle-Calédonie.`;
               break;
             case 1:
               tabName = "Annonces";
-              msg = `Dans cet onglet vous accédez à toutes les petites-annonces trouvées sur tous les sites de petites-annonces en Nouvelle-Calédonie.`;
+              noSearchmsg = `Dans cet onglet vous accédez à toutes les petites-annonces trouvées sur tous les sites de petites-annonces en Nouvelle-Calédonie.`;
               break;
             case 2:
               tabName = "Immobilier";
-              msg = `Dans cet onglet vous accédez à toutes les petites-annonces immobilières trouvées sur tous les sites d’immobilier en Nouvelle-Calédonie.`;
+              noSearchmsg = `Dans cet onglet vous accédez à toutes les petites-annonces immobilières trouvées sur tous les sites d’immobilier en Nouvelle-Calédonie.`;
               break;
             case 3:
               tabName = "Shopping";
-              msg = ` Dans cet onglet vous accédez à tous les articles vendus par les sites de e-commerce en Nouvelle-Calédonie.`;
+              noSearchmsg = `Dans cet onglet vous accédez à tous les articles vendus par les sites de e-commerce en Nouvelle-Calédonie.`;
               break;
             case 4:
               tabName = "Infos";
-              msg = `Dans cet onglet vous accédez à tous les articles publiés par les sites d’informations en Nouvelle-Calédonie`;
+              noSearchmsg = `Dans cet onglet vous accédez à tous les articles publiés par les sites d’informations en Nouvelle-Calédonie`;
               break;
             case 5:
               tabName = "Adresses";
-              msg = `Dans cet onglet vous accédez à tous les pages d'entreprises, particuliers, lieux... possédant une adresse en Nouvelle-Calédonie`;
+              noSearchmsg = `Dans cet onglet vous accédez à tous les pages d'entreprises, particuliers, lieux... possédant une adresse en Nouvelle-Calédonie`;
               break;
             default:
-              tabName = "Tout";
-              msg = "";
           }
           hits = (
             <Grid
@@ -184,23 +182,103 @@ class SearchPage extends React.Component {
                   color={"primary"}
                   gutterBottom
                 >
-                  {`Vous êtes dans l'onglet ${tabName}`}
+                  {`Pas de résultats dans l'onglet ${tabName}`}
                 </Typography>
                 <Typography
                   variant={"subheading"}
                   component={"p"}
                   color={"primary"}
-                  style={{maxWidth: '580px', marginRight: mobile ? "12px" : "0px"}}
+                  style={{
+                    maxWidth: "580px",
+                    marginRight: mobile ? "12px" : "0px"
+                  }}
                   gutterBottom
                 >
-                  {msg}
+                  {noSearchmsg}
                 </Typography>
               </Grid>
             </Grid>
           );
         }
         if (searchResults && !searchResults.nbHits) {
-          hits = `pas de resultats`;
+          let tabName = "";
+          let noSearchmsg = "";
+          let noResultsmsg = "";
+          let width = mobile ? 80 : 115;
+          let qwarx_man = "";
+          switch (tab) {
+            case 0:
+              tabName = "Tout";
+              noResultsmsg = `Votre recherche n'a donné aucun résultats. Il se peut que vous cherchiez une information qui n'a pas encore été découverte par Qwarx. Si ce n'est pas le cas, nous vous suggérons de formuler votre recherche différement`;
+              qwarx_man = `qwarx-error`;
+              break;
+            case 1:
+              tabName = "Annonces";
+              noResultsmsg = `Votre recherche n'a donné aucun résultats. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
+              qwarx_man = `qwarx_look`;
+              break;
+            case 2:
+              tabName = "Immobilier";
+              noResultsmsg = `Votre recherche n'a donné aucun résultats. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
+              qwarx_man = `qwarx_look`;
+              break;
+            case 3:
+              tabName = "Shopping";
+              noResultsmsg = `Votre recherche n'a donné aucun résultats. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
+              qwarx_man = `qwarx_look`;
+              break;
+            case 4:
+              tabName = "Infos";
+              noResultsmsg = `Votre recherche n'a donné aucun résultats. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
+              qwarx_man = `qwarx_look`;
+              break;
+            case 5:
+              tabName = "Adresses";
+              noResultsmsg = `Votre recherche n'a donné aucun résultats. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
+              qwarx_man = `qwarx_look`;
+              break;
+            default:
+          }
+          hits = (
+            <Grid
+              container
+              style={{ height: "100%", marginLeft: mobile ? "0px" : "120px" }}
+              spacing={40}
+            >
+              <Grid item>
+                <img
+                  src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_${width},dpr_1.0/${qwarx_man}.png`}
+                  srcSet={`
+                            https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_${width},dpr_1.0/${qwarx_man}.png,
+                            https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_${width},dpr_2.0/${qwarx_man}.png 2x,
+                            https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_${width},dpr_3.0/${qwarx_man}.png 3x
+                            `}
+                />
+              </Grid>
+              <Grid item xs={8}>
+                <Typography
+                  variant={"headline"}
+                  component={"h1"}
+                  color={"primary"}
+                  gutterBottom
+                >
+                  {`Votre recherche n'a donné aucun résultats.`}
+                </Typography>
+                <Typography
+                  variant={"subheading"}
+                  component={"p"}
+                  color={"primary"}
+                  style={{
+                    maxWidth: "580px",
+                    marginRight: mobile ? "12px" : "0px"
+                  }}
+                  gutterBottom
+                >
+                  {noResultsmsg}
+                </Typography>
+              </Grid>
+            </Grid>
+          );
         }
         return hits;
       }
@@ -223,37 +301,37 @@ class SearchPage extends React.Component {
             label="tout"
             tab_color={"#BF2885"}
             tab_text_color={"white"}
-            mobile={mobile ? 1: 0}
+            mobile={mobile ? 1 : 0}
           />
           <Tab
             label="annonces"
             tab_color={"#0E8AB0"}
             tab_text_color={"white"}
-            mobile={mobile ? 1: 0}
+            mobile={mobile ? 1 : 0}
           />
           <Tab
             label="immobilier"
             tab_color={"#13CCBE"}
             tab_text_color={"black"}
-            mobile={mobile ? 1: 0}
+            mobile={mobile ? 1 : 0}
           />
           <Tab
             label="shopping"
             tab_color={"#FFF212"}
             tab_text_color={"black"}
-            mobile={mobile ? 1: 0}
+            mobile={mobile ? 1 : 0}
           />
           <Tab
             label="infos"
             tab_color={"#FF8800"}
             tab_text_color={"black"}
-            mobile={mobile ? 1: 0}
+            mobile={mobile ? 1 : 0}
           />
           <Tab
             label="adresses"
             tab_color={"#FF1F34"}
             tab_text_color={"white"}
-            mobile={mobile ? 1: 0}
+            mobile={mobile ? 1 : 0}
           />
         </Tabs>
       );

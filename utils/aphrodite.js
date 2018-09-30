@@ -197,7 +197,7 @@ export default StyleSheet.create({
   },
   wrapperMinHeight: {
     "@media (max-width: 959px)": {
-      minHeight: "calc(100vh - 340px)"
+      minHeight: "calc(100vh - 310px)"
     },
     "@media (min-width: 960px) and (max-width: 1279px)": {
       minHeight: "calc(100vh - 250px)"
