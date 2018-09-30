@@ -53,10 +53,6 @@ class SearchPage extends React.Component {
   }
 
   onSearchStateChange = (searchState, tab) => {
-    if (!searchState.page || !searchState.query) {
-      return;
-    }
-
     const statePage = this.state.searchState.page
       ? this.state.searchState.page
       : 1;
@@ -133,10 +129,78 @@ class SearchPage extends React.Component {
           />
         );
         if (!searchState.query || !searchState.query.length) {
-          hits = null;
+          let tabName = "";
+          let msg = "";
+          let width = mobile ? 80 : 115;
+          switch (tab) {
+            case 0:
+              tabName = "Tout";
+              msg = ` Dans cet onglet vous accédez à toutes les catégories : sites généralistes, petites annonces, annonces immobilières, ecommerce, sites d’infos, etc. en Nouvelle-Calédonie.`;
+              break;
+            case 1:
+              tabName = "Annonces";
+              msg = `Dans cet onglet vous accédez à toutes les petites-annonces trouvées sur tous les sites de petites-annonces en Nouvelle-Calédonie.`;
+              break;
+            case 2:
+              tabName = "Immobilier";
+              msg = `Dans cet onglet vous accédez à toutes les petites-annonces immobilières trouvées sur tous les sites d’immobilier en Nouvelle-Calédonie.`;
+              break;
+            case 3:
+              tabName = "Shopping";
+              msg = ` Dans cet onglet vous accédez à tous les articles vendus par les sites de e-commerce en Nouvelle-Calédonie.`;
+              break;
+            case 4:
+              tabName = "Infos";
+              msg = `Dans cet onglet vous accédez à tous les articles publiés par les sites d’informations en Nouvelle-Calédonie`;
+              break;
+            case 5:
+              tabName = "Adresses";
+              msg = `Dans cet onglet vous accédez à tous les pages d'entreprises, particuliers, lieux... possédant une adresse en Nouvelle-Calédonie`;
+              break;
+            default:
+              tabName = "Tout";
+              msg = "";
+          }
+          hits = (
+            <Grid
+              container
+              style={{ height: "100%", marginLeft: mobile ? "0px" : "120px" }}
+              spacing={40}
+            >
+              <Grid item>
+                <img
+                  src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_${width},dpr_1.0/qwarx_landing_page.png`}
+                  srcSet={`
+                            https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_${width},dpr_1.0/qwarx_landing_page.png,
+                            https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_${width},dpr_2.0/qwarx_landing_page.png 2x,
+                            https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_${width},dpr_3.0/qwarx_landing_page.png 3x
+                            `}
+                />
+              </Grid>
+              <Grid item xs={8}>
+                <Typography
+                  variant={"headline"}
+                  component={"h1"}
+                  color={"primary"}
+                  gutterBottom
+                >
+                  {`Vous êtes dans l'onglet ${tabName}`}
+                </Typography>
+                <Typography
+                  variant={"subheading"}
+                  component={"p"}
+                  color={"primary"}
+                  style={{maxWidth: '580px', marginRight: mobile ? "12px" : "0px"}}
+                  gutterBottom
+                >
+                  {msg}
+                </Typography>
+              </Grid>
+            </Grid>
+          );
         }
         if (searchResults && !searchResults.nbHits) {
-          hits = null;
+          hits = `pas de resultats`;
         }
         return hits;
       }
@@ -159,37 +223,37 @@ class SearchPage extends React.Component {
             label="tout"
             tab_color={"#BF2885"}
             tab_text_color={"white"}
-            mobile={mobile}
+            mobile={mobile ? 1: 0}
           />
           <Tab
             label="annonces"
             tab_color={"#0E8AB0"}
             tab_text_color={"white"}
-            mobile={mobile}
+            mobile={mobile ? 1: 0}
           />
           <Tab
             label="immobilier"
             tab_color={"#13CCBE"}
             tab_text_color={"black"}
-            mobile={mobile}
+            mobile={mobile ? 1: 0}
           />
           <Tab
             label="shopping"
             tab_color={"#FFF212"}
             tab_text_color={"black"}
-            mobile={mobile}
+            mobile={mobile ? 1: 0}
           />
           <Tab
             label="infos"
             tab_color={"#FF8800"}
             tab_text_color={"black"}
-            mobile={mobile}
+            mobile={mobile ? 1: 0}
           />
           <Tab
             label="adresses"
             tab_color={"#FF1F34"}
             tab_text_color={"white"}
-            mobile={mobile}
+            mobile={mobile ? 1: 0}
           />
         </Tabs>
       );
@@ -232,7 +296,7 @@ class SearchPage extends React.Component {
             </Grid>
           </Grid>
           <Divider style={{ marginTop: "5px" }} />
-          {tabs()}
+          {tabs(false)}
           <div>
             <Typography component={"span"} variant={"caption"}>
               <Stats
@@ -241,7 +305,7 @@ class SearchPage extends React.Component {
                   let res;
                   let mili;
                   if (!n) {
-                    res = `aucun résultat`;
+                    // res = `aucun résultat`;
                   } else if (n === 1) {
                     res = `1 résultat`;
                   } else {
@@ -257,7 +321,7 @@ class SearchPage extends React.Component {
                     mili = ` (0.${ms.toLocaleString()} secondes)`;
                   }
 
-                  return `${res}${mili}`;
+                  return n ? `${res}${mili}` : null;
                 }}
               />
             </Typography>
@@ -332,7 +396,7 @@ class SearchPage extends React.Component {
                   let res;
                   let mili;
                   if (!n) {
-                    res = `aucun résultats`;
+                    // res = `aucun résultats`;
                   } else if (n === 1) {
                     res = `1 résultat`;
                   } else {
@@ -348,7 +412,7 @@ class SearchPage extends React.Component {
                     mili = ` (0.${ms.toLocaleString()} secondes)`;
                   }
 
-                  return `${res}${mili}`;
+                  return n ? `${res}${mili}` : null;
                 }}
               />
             </Typography>

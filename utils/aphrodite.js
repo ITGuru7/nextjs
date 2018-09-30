@@ -200,10 +200,10 @@ export default StyleSheet.create({
       minHeight: "calc(100vh - 340px)"
     },
     "@media (min-width: 960px) and (max-width: 1279px)": {
-      minHeight: "calc(100vh - 332px)"
+      minHeight: "calc(100vh - 250px)"
     },
     "@media (min-width: 1280px)": {
-      minHeight: "calc(100vh)"
+      minHeight: "calc(100vh - 250px)"
     }
   },
   aboutMenuTitlePadding: {

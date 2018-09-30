@@ -7,7 +7,6 @@ let styles = {
   root: {
     marginRight: "4px",
     borderRadius: "5px 5px 0px 0px",
-    opacity: 1
   },
   disabled: {
     color: "#666"
