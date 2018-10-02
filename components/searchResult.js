@@ -39,7 +39,7 @@ function ResultImg(props) {
   return (
     <Fragment>
       {props.hit.meta.image ? (
-        <a rel="nofollow" href={props.hit.objectID}>
+        <a rel="nofollow" href={props.hit.objectID} target="_blank">
           <img
             style={{
               borderStyle: "solid",
@@ -79,7 +79,7 @@ function ResultTitle(props) {
     );
   } else {
     return (
-      <a href={props.hit.objectID} rel="nofollow">
+      <a href={props.hit.objectID} target="_blank" rel="nofollow">
         <TypographyHighlight
           variant="subheading"
           color="secondary"
@@ -93,10 +93,13 @@ function ResultTitle(props) {
 }
 
 function ResultDescription(props) {
+  const domain = props.hit.id.domain;
+  const category = props.hit.category;
+  const date = props.hit.rich ? props.hit.rich.date : null;
   const facebookRender = () => {
     const location =
       (props.hit.rich.location && props.hit.rich.location.street) ||
-      props.hit.rich.location.city;
+      (props.hit.rich.location && props.hit.rich.location.city);
     const phone = !!props.hit.rich.phone;
     const count = location || phone ? 1 : 0;
     let address;
@@ -116,29 +119,124 @@ function ResultDescription(props) {
     }
     return (
       <Fragment>
-        <Fragment>
-          {props.hit.meta.description ? (
-            <TypographyHighlight
-              variant="body1"
-              color="primary"
-              attribute={"meta.description"}
-              hit={props.hit}
-              info
-              reduce={count}
-            />
-          ) : (
-            <Typography variant="body1" color="primary" style={{}}>
-              {`Accéder directement à la page facebook.`}
-            </Typography>
-          )}
+        {props.hit.meta.description ? (
+          <TypographyHighlight
+            variant="body1"
+            color="primary"
+            attribute={"meta.description"}
+            hit={props.hit}
+            info
+            reduce={count}
+          />
+        ) : (
+          <Typography variant="body1" color="primary" style={{}}>
+            {`Accéder directement à la page facebook.`}
+          </Typography>
+        )}
 
-          <Grid
-            container
-            direction={"row"}
-            alignItems={"center"}
-            style={{ marginTop: "4px" }}
-          >
-            {phone ? (
+        <Grid
+          container
+          direction={"row"}
+          alignItems={"center"}
+          style={{ marginTop: "4px" }}
+        >
+          {phone ? (
+            <Grid item>
+              <Grid
+                container
+                direction={"row"}
+                alignItems={"center"}
+                spacing={0}
+              >
+                <Grid item>
+                  <Typography
+                    variant="body2"
+                    color="primary"
+                    style={{
+                      marginRight: "4px"
+                    }}
+                  >
+                    {`Téléphone : `}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography
+                    variant="body1"
+                    color="primary"
+                    style={{
+                      marginRight: "8px"
+                    }}
+                  >
+                    {props.hit.rich.phone.replace(/\s+/g, " ").trim()}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Grid>
+          ) : null}
+          {location ? (
+            <Grid item>
+              <Grid
+                container
+                direction={"row"}
+                spacing={0}
+                alignItems={"center"}
+              >
+                <Grid item>
+                  <Typography
+                    variant="body2"
+                    color="primary"
+                    style={{
+                      marginRight: "4px"
+                    }}
+                  >
+                    {`Adresse : `}
+                  </Typography>{" "}
+                </Grid>
+                <Grid item>
+                  <Typography variant="body1" color="primary">
+                    {`${address.replace(/\s+/g, " ").trim()}`}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Grid>
+          ) : null}
+        </Grid>
+      </Fragment>
+    );
+  };
+
+  const RichContent = () => {
+    let content;
+    let source;
+    switch (domain) {
+      case "lnc.nc":
+        source = "Les Nouvelles Calédoniennes";
+        break;
+      case "actu.nc":
+        source = "Actu.nc";
+        break;
+      case "caledosphere.com":
+        source = "Caledosphere";
+        break;
+      case "lecrisducagou.org":
+        source = "Le Cris du Cagou";
+        break;
+      case "ladepeche.nc":
+        source = "La Depeche";
+        break;
+      case "congres.nc":
+        source = "Le Congrès de la NC";
+        break;
+      default:
+        content = null;
+        source = null;
+        break;
+    }
+    switch (category) {
+      case "infos":
+        content = (
+          <Fragment>
+            {source && (
               <Grid item>
                 <Grid
                   container
@@ -154,30 +252,30 @@ function ResultDescription(props) {
                         marginRight: "4px"
                       }}
                     >
-                      {`Téléphone : `}
+                      {`Source : `}
                     </Typography>
                   </Grid>
                   <Grid item>
                     <Typography
-                      variant="body1"
+                      variant="body2"
                       color="primary"
                       style={{
                         marginRight: "8px"
                       }}
                     >
-                      {props.hit.rich.phone.replace(/\s+/g, " ").trim()}
+                      {source}
                     </Typography>
                   </Grid>
                 </Grid>
               </Grid>
-            ) : null}
-            {location ? (
+            )}
+            {date && (
               <Grid item>
                 <Grid
                   container
                   direction={"row"}
-                  spacing={0}
                   alignItems={"center"}
+                  spacing={0}
                 >
                   <Grid item>
                     <Typography
@@ -187,156 +285,57 @@ function ResultDescription(props) {
                         marginRight: "4px"
                       }}
                     >
-                      {`Adresse : `}
-                    </Typography>{" "}
+                      {`Date : `}
+                    </Typography>
                   </Grid>
                   <Grid item>
-                    <Typography variant="body1" color="primary">
-                      {`${address.replace(/\s+/g, " ").trim()}`}
+                    <Typography
+                      variant="body2"
+                      color="primary"
+                      style={{
+                        marginRight: "8px"
+                      }}
+                    >
+                      {date}
                     </Typography>
                   </Grid>
                 </Grid>
               </Grid>
-            ) : null}
-          </Grid>
-        </Fragment>
-      </Fragment>
-    );
-  };
-
-  const topMarketRender = () => {
-    return (
-      <Fragment>
-        {props.hit.id.domain === "topmarket.nc" &&
-        props.hit.content.p[1] &&
-        props.hit.content.p[1].length ? (
-          <Fragment>
-            <Typography
-              variant="body2"
-              color="primary"
-              style={{
-                display: "unset"
-              }}
-            >
-              {"Boutique : "}
-            </Typography>
-            <TypographyHighlight
-              variant="body1"
-              color="primary"
-              attribute={"content.p[1]"}
-              hit={props.hit}
-              info
-            />
-            <br />
+            )}
           </Fragment>
-        ) : null}
-        {defaultRender()}
-      </Fragment>
-    );
+        );
+        break;
+      default:
+    }
+    return content;
   };
 
   const defaultRender = () => {
     return (
       <Fragment>
-        {props.hit.meta.description &&
-        (props.hit.meta.description.length >= 200 || !props.hit.content) ? (
-          <Fragment>
-            <TypographyHighlight
-              variant="body1"
-              color="primary"
-              attribute={"meta.description"}
-              hit={props.hit}
-              info
-            />
-          </Fragment>
+        {props.hit.meta.description ? (
+          <TypographyHighlight
+            variant="body1"
+            color="primary"
+            attribute={"meta.description"}
+            hit={props.hit}
+            info
+          />
         ) : (
-          <Fragment>
-            {props.hit.content &&
-            props.hit.content.p &&
-            props.hit.content.p.length ? (
-              <Fragment>
-                <TypographyHighlight
-                  variant="body1"
-                  color="primary"
-                  attribute={"meta.description"}
-                  hit={props.hit}
-                  info
-                />
-                {props.hit.meta.description &&
-                props.hit.content.p &&
-                props.hit.content.p[0]
-                  ? " "
-                  : ""}
-                <TypographyHighlight
-                  variant="body1"
-                  color="primary"
-                  attribute={"content.p[0]"}
-                  hit={props.hit}
-                  info
-                />
-                {props.hit.content.p &&
-                props.hit.content.p[0] &&
-                props.hit.content.p[1] &&
-                props.hit.content.p[1]
-                  ? " "
-                  : ""}
-                <TypographyHighlight
-                  variant="body1"
-                  color="primary"
-                  attribute={"content.p[1]"}
-                  hit={props.hit}
-                  info
-                />
-                {props.hit.content.p &&
-                props.hit.content.p[1] &&
-                props.hit.content.p[2] &&
-                props.hit.content.p[2]
-                  ? " "
-                  : ""}
-                <TypographyHighlight
-                  variant="body1"
-                  color="primary"
-                  attribute={"content.p[2]"}
-                  hit={props.hit}
-                  info
-                />
-                {props.hit.content.p &&
-                props.hit.content.p[2] &&
-                props.hit.content.p[3] &&
-                props.hit.content.p[3]
-                  ? " "
-                  : ""}
-                <TypographyHighlight
-                  variant="body1"
-                  color="primary"
-                  attribute={"content.p[3]"}
-                  hit={props.hit}
-                  info
-                />
-              </Fragment>
-            ) : (
-              <Fragment>
-                {props.hit.content &&
-                props.hit.content.h1 &&
-                props.hit.content.h1.length ? (
-                  <TypographyHighlight
-                    variant="body1"
-                    color="primary"
-                    attribute={"content.h1[0]"}
-                    hit={props.hit}
-                    info
-                  />
-                ) : (
-                  <Typography variant="body1" color="primary">
-                    {props.hit.category !== "address"
-                      ? `Cette page ne dispose pas de description, veuillez nous en excuser.`
-                      : `Cliquez sur l'adresse pour accéder à la carte interactive.`}
-                  </Typography>
-                )}
-              </Fragment>
-            )}
-          </Fragment>
+          <Typography variant="body1" color="primary">
+            {props.hit.category !== "address"
+              ? `Cette page ne dispose pas de description, veuillez nous en excuser.`
+              : `Cliquez sur l'adresse pour accéder à la carte interactive.`}
+          </Typography>
         )}
+        <Grid
+          container
+          direction={"row"}
+          alignItems={"center"}
+          style={{ marginTop: "4px" }}
+        >
+          <RichContent />
+        </Grid>
       </Fragment>
     );
   };
@@ -344,9 +343,6 @@ function ResultDescription(props) {
   let Render;
 
   switch (props.hit.id.domain) {
-    case "topmarket.nc":
-      Render = topMarketRender;
-      break;
     case "facebook.com":
       Render = facebookRender;
       break;
@@ -391,7 +387,7 @@ const TypographyHighlight = connectHighlight(
           "******"
         );
         part.value = part.value.replace(
-          /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])+/ig,
+          /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])+/gi,
           "****"
         );
       }
