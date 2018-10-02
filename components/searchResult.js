@@ -95,7 +95,18 @@ function ResultTitle(props) {
 function ResultDescription(props) {
   const domain = props.hit.id.domain;
   const category = props.hit.category;
-  const date = props.hit.rich ? props.hit.rich.date : null;
+  let date = null;
+  if (props.hit.meta.date) {
+    const jsDate = new Date(props.hit.meta.date * 1000);
+    const day =
+      jsDate.getDate() < 10 ? `0${jsDate.getDate()}` : jsDate.getDate();
+    const month =
+      jsDate.getMonth() < 10 ? `0${jsDate.getMonth()}` : jsDate.getMonth();
+    date = `${day}/${month}/${jsDate.getFullYear()}`;
+  }
+
+  let price = props.hit.rich ? props.hit.rich.price : null;
+  if (price) price = price.replace(".0000", "");
   const facebookRender = () => {
     const location =
       (props.hit.rich.location && props.hit.rich.location.street) ||
@@ -218,8 +229,8 @@ function ResultDescription(props) {
       case "caledosphere.com":
         source = "Caledosphere";
         break;
-      case "lecrisducagou.org":
-        source = "Le Cris du Cagou";
+      case "lecriducagou.org":
+        source = "Le Cri du Cagou";
         break;
       case "ladepeche.nc":
         source = "La Depeche";
@@ -232,76 +243,98 @@ function ResultDescription(props) {
         source = null;
         break;
     }
+
+    const richComponent = (label, value) => {
+      return (
+        <Fragment>
+          {value && (
+            <Grid item>
+              <Grid
+                container
+                direction={"row"}
+                alignItems={"center"}
+                spacing={0}
+              >
+                <Grid item>
+                  <Typography
+                    variant="body2"
+                    color="primary"
+                    style={{
+                      marginRight: "4px"
+                    }}
+                  >
+                    {label}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography
+                    variant="body2"
+                    color="primary"
+                    style={{
+                      marginRight: "4px"
+                    }}
+                  >
+                    {value}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Grid>
+          )}
+        </Fragment>
+      );
+    };
+
     switch (category) {
       case "infos":
         content = (
           <Fragment>
-            {source && (
-              <Grid item>
-                <Grid
-                  container
-                  direction={"row"}
-                  alignItems={"center"}
-                  spacing={0}
-                >
-                  <Grid item>
-                    <Typography
-                      variant="body2"
-                      color="primary"
-                      style={{
-                        marginRight: "4px"
-                      }}
-                    >
-                      {`Source : `}
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography
-                      variant="body2"
-                      color="primary"
-                      style={{
-                        marginRight: "8px"
-                      }}
-                    >
-                      {source}
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </Grid>
-            )}
-            {date && (
-              <Grid item>
-                <Grid
-                  container
-                  direction={"row"}
-                  alignItems={"center"}
-                  spacing={0}
-                >
-                  <Grid item>
-                    <Typography
-                      variant="body2"
-                      color="primary"
-                      style={{
-                        marginRight: "4px"
-                      }}
-                    >
-                      {`Date : `}
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography
-                      variant="body2"
-                      color="primary"
-                      style={{
-                        marginRight: "8px"
-                      }}
-                    >
-                      {date}
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </Grid>
-            )}
+            {richComponent(`Source : `, source)}
+            {richComponent(`| Date : `, date)}
+          </Fragment>
+        );
+        break;
+      case "classifieds":
+        content = (
+          <Fragment>
+            {richComponent(`Prix : `, price)}
+            {richComponent(`| Date : `, date)}
+          </Fragment>
+        );
+        break;
+      case "ecommerce":
+        content = (
+          <Fragment>
+            {richComponent(`Prix : `, price)}
+            <Typography
+              variant="body2"
+              color="primary"
+              style={{
+                marginLeft: "4px",
+                marginRight: "4px"
+              }}
+            >
+              {"|"}
+            </Typography>
+            <a rel="nofollow" href={props.hit.objectID} target="_blank">
+              <Typography
+                variant="body2"
+                color="primary"
+                style={{
+                  marginLeft: "4px",
+                  color: "#1565C0"
+                }}
+              >
+                {">>>> Achetez ici"}
+              </Typography>
+            </a>
+          </Fragment>
+        );
+        break;
+      case "realestate":
+        content = (
+          <Fragment>
+            {richComponent(`Prix : `, price)}
+            {richComponent(`| Date : `, date)}
           </Fragment>
         );
         break;
