@@ -52,9 +52,6 @@ export default props => {
 
   return (
     <Fragment>
-      <Grid item style={{ marginBottom: "20px", marginTop: "20px" }}>
-        <Divider />
-      </Grid>
       <Grid
         container
         direction={"column"}
@@ -161,6 +158,7 @@ export default props => {
           </Grid>
         ) : null}
       </Grid>
+      <Divider style={{ marginBottom: "20px", marginTop: "20px" }} />
     </Fragment>
   );
 };

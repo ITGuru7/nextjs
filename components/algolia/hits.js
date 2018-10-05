@@ -17,7 +17,7 @@ class Hits extends React.Component {
       hits,
       tablet_desktop,
       rndDidYouKnowText,
-      map,
+      tab,
       width,
       onSearchStateChange,
       updateSearchBoxTextOverride
@@ -34,32 +34,28 @@ class Hits extends React.Component {
       )
     });
     const results = (hits, tablet_desktop) => {
-      if (!map) {
-        if (tablet_desktop) {
-          return hits.map(hit => (
-            <SearchResult
-              tablet_desktop
-              key={hit.objectID}
-              hit={hit}
-              indexName={this.props.indexName}
-              onSearchStateChange={onSearchStateChange}
-              updateSearchBoxTextOverride={updateSearchBoxTextOverride}
-            />
-          ));
-        } else {
-          return hits.map(hit => (
-            <SearchResult
-              mobile
-              key={hit.objectID}
-              hit={hit}
-              indexName={this.props.indexName}
-              onSearchStateChange={onSearchStateChange}
-              updateSearchBoxTextOverride={updateSearchBoxTextOverride}
-            />
-          ));
-        }
+      if (tablet_desktop) {
+        return hits.map(hit => (
+          <SearchResult
+            tablet_desktop
+            key={hit.objectID}
+            hit={hit}
+            indexName={this.props.indexName}
+            onSearchStateChange={onSearchStateChange}
+            updateSearchBoxTextOverride={updateSearchBoxTextOverride}
+          />
+        ));
       } else {
-        return <Map width={tablet_desktop ? 0 : width} hits={hits} />;
+        return hits.map(hit => (
+          <SearchResult
+            mobile
+            key={hit.objectID}
+            hit={hit}
+            indexName={this.props.indexName}
+            onSearchStateChange={onSearchStateChange}
+            updateSearchBoxTextOverride={updateSearchBoxTextOverride}
+          />
+        ));
       }
     };
 
@@ -116,52 +112,54 @@ class Hits extends React.Component {
                 spacing={0}
                 style={{ width: `439px` }}
               >
-                <Grid item>
-                  <Grid container direction={"row"} spacing={16}>
+                {tab === 0 && (
+                  <Fragment>
                     <Grid item>
-                      <Grid
-                        container
-                        alignItems="center"
-                        justify="center"
-                        style={{ height: "100%" }}
-                      >
+                      <Grid container direction={"row"} spacing={16}>
                         <Grid item>
-                          <img
-                            src={`
+                          <Grid
+                            container
+                            alignItems="center"
+                            justify="center"
+                            style={{ height: "100%" }}
+                          >
+                            <Grid item>
+                              <img
+                                src={`
                     https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_105,dpr_1.0/qwarx-did-you-know.png`}
-                            srcSet={`
+                                srcSet={`
                     https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_105,dpr_1.0/qwarx-did-you-know.png,
                     https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_105,dpr_2.0/qwarx-did-you-know.png 2x,
                     https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_105,dpr_3.0/qwarx-did-you-know.png 3x
                     `}
-                            alt={`Qwarx est un moteur de recherche dédié exclusivement à la Nouvelle Calédonie`}
-                          />
+                                alt={`Qwarx est un moteur de recherche dédié exclusivement à la Nouvelle Calédonie`}
+                              />
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                        <Grid item xs>
+                          <Typography
+                            variant={"subheading"}
+                            color={"primary"}
+                            gutterBottom
+                            style={{ fontWeight: 500 }}
+                          >
+                            {`Le saviez vous ?`}
+                          </Typography>
+                          <RandomDidYouKnowText rnd={rndDidYouKnowText} />
                         </Grid>
                       </Grid>
                     </Grid>
-                    <Grid item xs>
-                      <Typography
-                        variant={"subheading"}
-                        color={"primary"}
-                        gutterBottom
-                        style={{ fontWeight: 500 }}
-                      >
-                        {`Le saviez vous ?`}
-                      </Typography>
-                      <RandomDidYouKnowText rnd={rndDidYouKnowText} />
-                    </Grid>
-                  </Grid>
-                </Grid>
+                    <Divider
+                      style={{ marginBottom: "20px", marginTop: "20px" }}
+                    />
+                  </Fragment>
+                )}
 
                 <Grid item>
                   <RichRender hits={hits} />
                 </Grid>
                 <Grid item>
-                  {images.length ? (
-                    <Divider
-                      style={{ marginBottom: "20px", marginTop: "20px" }}
-                    />
-                  ) : null}
                   <Grid container direction="row" spacing={0}>
                     {images.map((image, idx) => {
                       const cpt = idx + 1;

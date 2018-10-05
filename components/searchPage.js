@@ -122,7 +122,7 @@ class SearchPage extends React.Component {
           <Hits
             tablet_desktop={tablet_desktop}
             mobile={mobile}
-            map={this.state.tab === 5}
+            tab={this.state.tab}
             width={this.state.width}
             rndDidYouKnowText={this.state.rndDidYouKnowText}
             onSearchStateChange={this.onSearchStateChange}
@@ -182,7 +182,7 @@ class SearchPage extends React.Component {
                   color={"primary"}
                   gutterBottom
                 >
-                  {`Pas de résultats dans l'onglet ${tabName}`}
+                  {`Pas de résultat dans l'onglet ${tabName}`}
                 </Typography>
                 <Typography
                   variant={"subheading"}
@@ -209,32 +209,32 @@ class SearchPage extends React.Component {
           switch (tab) {
             case 0:
               tabName = "Tout";
-              noResultsmsg = `Votre recherche n'a donné aucun résultats. Il se peut que vous cherchiez une information qui n'a pas encore été découverte par Qwarx. Si ce n'est pas le cas, nous vous suggérons de formuler votre recherche différement`;
+              noResultsmsg = `Votre recherche n'a donné aucun résultat. Il se peut que vous cherchiez une information qui n'a pas encore été découverte par Qwarx. Si ce n'est pas le cas, nous vous suggérons de formuler votre recherche différement`;
               qwarx_man = `qwarx-error`;
               break;
             case 1:
               tabName = "Annonces";
-              noResultsmsg = `Votre recherche n'a donné aucun résultats. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
+              noResultsmsg = `Votre recherche n'a donné aucun résultat. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
               qwarx_man = `qwarx_look`;
               break;
             case 2:
               tabName = "Immobilier";
-              noResultsmsg = `Votre recherche n'a donné aucun résultats. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
+              noResultsmsg = `Votre recherche n'a donné aucun résultat. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
               qwarx_man = `qwarx_look`;
               break;
             case 3:
               tabName = "Shopping";
-              noResultsmsg = `Votre recherche n'a donné aucun résultats. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
+              noResultsmsg = `Votre recherche n'a donné aucun résultat. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
               qwarx_man = `qwarx_look`;
               break;
             case 4:
               tabName = "Infos";
-              noResultsmsg = `Votre recherche n'a donné aucun résultats. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
+              noResultsmsg = `Votre recherche n'a donné aucun résultat. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
               qwarx_man = `qwarx_look`;
               break;
             case 5:
               tabName = "Adresses";
-              noResultsmsg = `Votre recherche n'a donné aucun résultats. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
+              noResultsmsg = `Votre recherche n'a donné aucun résultat. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
               qwarx_man = `qwarx_look`;
               break;
             default:
@@ -262,7 +262,7 @@ class SearchPage extends React.Component {
                   color={"primary"}
                   gutterBottom
                 >
-                  {`Votre recherche n'a donné aucun résultats.`}
+                  {`Votre recherche n'a donné aucun résultat.`}
                 </Typography>
                 <Typography
                   variant={"subheading"}
@@ -474,7 +474,7 @@ class SearchPage extends React.Component {
                   let res;
                   let mili;
                   if (!n) {
-                    // res = `aucun résultats`;
+                    // res = `aucun résultat`;
                   } else if (n === 1) {
                     res = `1 résultat`;
                   } else {
@@ -546,7 +546,7 @@ class SearchPage extends React.Component {
         }
         onSearchStateChange={this.onSearchStateChange}
       >
-        <Configure hitsPerPage={tab != 5 ? 10 : 1000} />
+        <Configure hitsPerPage={10} />
         <RefinementList attribute="category" defaultRefinement={refinement} />
         <Fragment>
           <Display format="mobile" css>
