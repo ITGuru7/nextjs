@@ -40,6 +40,7 @@ class Hits extends React.Component {
             tablet_desktop
             key={hit.objectID}
             hit={hit}
+            tab={tab}
             indexName={this.props.indexName}
             onSearchStateChange={onSearchStateChange}
             updateSearchBoxTextOverride={updateSearchBoxTextOverride}
@@ -51,6 +52,7 @@ class Hits extends React.Component {
             mobile
             key={hit.objectID}
             hit={hit}
+            tab={tab}
             indexName={this.props.indexName}
             onSearchStateChange={onSearchStateChange}
             updateSearchBoxTextOverride={updateSearchBoxTextOverride}

@@ -8,6 +8,7 @@ import Wrapper from "../components/wrapper";
 import { withRouter } from "next/router";
 
 function ResultImg(props) {
+  const tab = props.tab;
   const placeholder =
     props.hit.id.domain === "facebook.com"
       ? "d_qwarx-facebook.png"
@@ -496,8 +497,8 @@ function ResultUrl(props) {
     );
   }
   let url = props.hit.id.url;
-  if (url.length > 80) {
-    url = `${url.substring(0, 80)}...`;
+  if (url.length > 70) {
+    url = `${url.substring(0, 70)}...`;
   }
   return (
     <TypographyHighlight
@@ -506,6 +507,7 @@ function ResultUrl(props) {
       color="secondary"
       attribute={"id.url"}
       hit={props.hit}
+      reduce={1}
       url
     />
   );
@@ -521,9 +523,44 @@ function ResultInfo(props) {
   );
 }
 
+const DesktopRender = () => {
+  return (
+    <div
+      className={css(
+        aphrodite.contentTop,
+        aphrodite.contentBottom,
+        aphrodite.mobileMarginBottom,
+        aphrodite.searchResultsWidth
+      )}
+      style={{ backgroundColor: "white" }}
+    >
+      <ResultTitle hit={hit} onSearchStateChange={onSearchStateChange} />
+      <ResultUrl hit={hit} router={router} />
+      <Grid container spacing={0}>
+        <Grid item>
+          <ResultImg hit={hit} />
+        </Grid>
+        <Grid item xs>
+          <Grid container spacing={0} direction={"column"}>
+            <Grid item>
+              <ResultInfo hit={hit} />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </div>
+  );
+};
+
 class SearchResult extends React.Component {
   render() {
-    const { hit, tablet_desktop, router, onSearchStateChange } = this.props;
+    const {
+      hit,
+      tablet_desktop,
+      router,
+      onSearchStateChange,
+      tab
+    } = this.props;
     return (
       <Wrapper>
         {tablet_desktop ? (
@@ -536,20 +573,51 @@ class SearchResult extends React.Component {
             )}
             style={{ backgroundColor: "white" }}
           >
-            <ResultTitle hit={hit} onSearchStateChange={onSearchStateChange} />
-            <ResultUrl hit={hit} router={router} />
-            <Grid container spacing={0}>
-              <Grid item>
-                <ResultImg hit={hit} />
-              </Grid>
-              <Grid item xs>
-                <Grid container spacing={0} direction={"column"}>
+            {tab === 0 ? (
+              <Fragment>
+                <ResultTitle
+                  hit={hit}
+                  onSearchStateChange={onSearchStateChange}
+                />
+                <ResultUrl hit={hit} router={router} />
+                <Grid container spacing={0}>
                   <Grid item>
-                    <ResultInfo hit={hit} />
+                    <ResultImg hit={hit} tab={tab} />
+                  </Grid>
+                  <Grid item xs>
+                    <Grid container spacing={0} direction={"column"}>
+                      <Grid item>
+                        <ResultInfo hit={hit} />
+                      </Grid>
+                    </Grid>
                   </Grid>
                 </Grid>
-              </Grid>
-            </Grid>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <Grid container direction={"row"} spacing={0}>
+                  <Grid item>
+                    <ResultImg hit={hit} tab={tab} />
+                  </Grid>
+                  <Grid item xs style={{maxWidth: '80%'}}>
+                    <Grid container direction={"column"} spacing={0}>
+                      <Grid item>
+                        <ResultTitle
+                          hit={hit}
+                          onSearchStateChange={onSearchStateChange}
+                        />
+                      </Grid>
+                      <Grid item>
+                        <ResultUrl hit={hit} router={router} />
+                      </Grid>
+                      <Grid item>
+                        <ResultInfo hit={hit} />
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Fragment>
+            )}
           </div>
         ) : (
           <div
