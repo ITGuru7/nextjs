@@ -75,7 +75,7 @@ export default StyleSheet.create({
       paddingRight: "12px"
     },
     "@media (min-width: 1280px)": {
-      paddingRight: "60px"
+      paddingRight: "20px"
     }
   },
   searchResultsPaddingLeft: {

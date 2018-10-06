@@ -599,7 +599,7 @@ class SearchResult extends React.Component {
                   <Grid item>
                     <ResultImg hit={hit} tab={tab} />
                   </Grid>
-                  <Grid item xs style={{maxWidth: '80%'}}>
+                  <Grid item xs style={{maxWidth: '83%'}}>
                     <Grid container direction={"column"} spacing={0}>
                       <Grid item>
                         <ResultTitle
