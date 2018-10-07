@@ -106,7 +106,7 @@ class LandingPage extends React.Component {
                           });
                         }}
                         className="ais-SearchBox-input"
-                        placeholder="Formulez votre requête comme dans Google"
+                        placeholder="Formulez votre requête"
                         autoFocus
                       />
                     </Grid>
