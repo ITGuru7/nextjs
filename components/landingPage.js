@@ -106,6 +106,7 @@ class LandingPage extends React.Component {
                           });
                         }}
                         className="ais-SearchBox-input"
+                        placeholder="Formulez votre requête comme dans Google"
                         autoFocus
                       />
                     </Grid>
@@ -269,6 +270,7 @@ class LandingPage extends React.Component {
                               });
                             }}
                             className="ais-SearchBox-input"
+                            placeholder="Formulez votre requête comme dans Google"
                             autoFocus
                           />
                         </Grid>
