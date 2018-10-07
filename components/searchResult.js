@@ -417,7 +417,7 @@ const TypographyHighlight = connectHighlight(
       }
       if (hit.category === "classifieds" && !url) {
         part.value = part.value.replace(
-          /\d{2}[. -]*\d{2}[. -]*\d{2}/g,
+          /\d{2}[. -/]*\d{2}[. -/]*\d{2}/g,
           "******"
         );
         part.value = part.value.replace(
