@@ -19,6 +19,35 @@ function ResultImg(props) {
       ? props.hit.meta.image
       : encodeURIComponent(props.hit.meta.image);
 
+  let w, h;
+  switch (tab) {
+    case 0:
+      w = 80;
+      h = 80;
+      break;
+    case 1:
+      w = 90;
+      h = 100;
+      break;
+    case 2:
+      w = 90;
+      h = 90;
+      break;
+    case 3:
+      w = 90;
+      h = 100;
+      break;
+    case 4:
+      w = 80;
+      h = 120;
+      break;
+    case 5:
+      w = 80;
+      h = 80;
+      break;
+    default:
+  }
+
   const srcSet =
     props.hit.category === "address"
       ? `
@@ -27,19 +56,19 @@ function ResultImg(props) {
             ${[image.slice(0, 100), "/dpr_3.0", image.slice(100)].join("")} 3x,
     `
       : `
-            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_1.0/${placeholder}/${image},
-            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_2.0/${placeholder}/${image} 2x,
-            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_3.0/${placeholder}/${image} 3x,
+            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_${w},h_${h},dpr_1.0/${placeholder}/${image},
+            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_${w},h_${h},dpr_2.0/${placeholder}/${image} 2x,
+            https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_${w},h_${h},dpr_3.0/${placeholder}/${image} 3x,
     `;
 
   const src =
     props.hit.category === "address"
       ? image
-      : `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_70,h_70,dpr_1.0/${placeholder}/${image}`;
+      : `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_${w},h_${h},dpr_1.0/${placeholder}/${image}`;
 
   return (
     <Fragment>
-      {props.hit.meta.image ? (
+      {props.hit.meta.image && (
         <a rel="nofollow" href={props.hit.objectID} target="_blank">
           <img
             style={{
@@ -47,8 +76,8 @@ function ResultImg(props) {
               borderWidth: "1px",
               borderColor: "#EEEEEE",
               marginRight: "8px",
-              width: "70px",
-              height: "70px"
+              width: `${w}px`,
+              height: `${h}px`
             }}
             src={src}
             srcSet={srcSet}
@@ -56,7 +85,7 @@ function ResultImg(props) {
             id={props.hit.objectID}
           />
         </a>
-      ) : null}
+      )}
     </Fragment>
   );
 }
@@ -639,7 +668,7 @@ class SearchResult extends React.Component {
             <ResultUrl hit={hit} router={router} />
             <Grid container spacing={0}>
               <Grid item>
-                <ResultImg hit={hit} />
+                <ResultImg hit={hit} tab={tab} />
               </Grid>
               <Grid item xs>
                 <ResultInfo hit={hit} />
