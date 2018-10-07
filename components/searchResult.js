@@ -415,7 +415,10 @@ const TypographyHighlight = connectHighlight(
         part.value =
           part.value.substring(0, part.value.length - reduce * 80) + "...";
       }
-      if (hit.category === "classifieds" && !url) {
+      if (
+        (hit.category === "classifieds" || hit.category === "realestate") &&
+        !url
+      ) {
         part.value = part.value.replace(
           /\d{2}[. -/]*\d{2}[. -/]*\d{2}/g,
           "******"
@@ -599,7 +602,7 @@ class SearchResult extends React.Component {
                   <Grid item>
                     <ResultImg hit={hit} tab={tab} />
                   </Grid>
-                  <Grid item xs style={{maxWidth: '83%'}}>
+                  <Grid item xs style={{ maxWidth: "83%" }}>
                     <Grid container direction={"column"} spacing={0}>
                       <Grid item>
                         <ResultTitle
