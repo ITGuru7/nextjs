@@ -34,30 +34,34 @@ class Hits extends React.Component {
       )
     });
     const results = (hits, tablet_desktop) => {
-      if (tablet_desktop) {
-        return hits.map(hit => (
-          <SearchResult
-            tablet_desktop
-            key={hit.objectID}
-            hit={hit}
-            tab={tab}
-            indexName={this.props.indexName}
-            onSearchStateChange={onSearchStateChange}
-            updateSearchBoxTextOverride={updateSearchBoxTextOverride}
-          />
-        ));
+      if (tab !== 6) {
+        if (tablet_desktop) {
+          return hits.map(hit => (
+            <SearchResult
+              tablet_desktop
+              key={hit.objectID}
+              hit={hit}
+              tab={tab}
+              indexName={this.props.indexName}
+              onSearchStateChange={onSearchStateChange}
+              updateSearchBoxTextOverride={updateSearchBoxTextOverride}
+            />
+          ));
+        } else {
+          return hits.map(hit => (
+            <SearchResult
+              mobile
+              key={hit.objectID}
+              hit={hit}
+              tab={tab}
+              indexName={this.props.indexName}
+              onSearchStateChange={onSearchStateChange}
+              updateSearchBoxTextOverride={updateSearchBoxTextOverride}
+            />
+          ));
+        }
       } else {
-        return hits.map(hit => (
-          <SearchResult
-            mobile
-            key={hit.objectID}
-            hit={hit}
-            tab={tab}
-            indexName={this.props.indexName}
-            onSearchStateChange={onSearchStateChange}
-            updateSearchBoxTextOverride={updateSearchBoxTextOverride}
-          />
-        ));
+        return <Map width={tablet_desktop ? 0 : width} hits={hits} />;
       }
     };
 

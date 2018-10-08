@@ -154,8 +154,12 @@ class SearchPage extends React.Component {
               noSearchmsg = `Dans cet onglet vous accédez à tous les articles publiés par les sites d’informations en Nouvelle-Calédonie`;
               break;
             case 5:
-              tabName = "Adresses";
+              tabName = "Annuaires";
               noSearchmsg = `Dans cet onglet vous accédez à tous les pages d'entreprises, particuliers, lieux... possédant une adresse en Nouvelle-Calédonie`;
+              break;
+            case 6:
+              tabName = "Adresses";
+              noSearchmsg = `Dans cet onglet vous accédez à toutes les adresses geolocalisées sur Nouméa`;
               break;
             default:
           }
@@ -209,32 +213,37 @@ class SearchPage extends React.Component {
           switch (tab) {
             case 0:
               tabName = "Tout";
-              noResultsmsg = `Votre recherche n'a donné aucun résultat. Il se peut que vous cherchiez une information qui n'a pas encore été découverte par Qwarx. Si ce n'est pas le cas, nous vous suggérons de formuler votre recherche différement`;
+              noResultsmsg = `Il se peut que vous cherchiez une information qui n'a pas encore été découverte par Qwarx. Si ce n'est pas le cas, nous vous suggérons de formuler votre recherche différement`;
               qwarx_man = `qwarx-error`;
               break;
             case 1:
               tabName = "Annonces";
-              noResultsmsg = `Votre recherche n'a donné aucun résultat. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
+              noResultsmsg = `Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
               qwarx_man = `qwarx_look`;
               break;
             case 2:
               tabName = "Immobilier";
-              noResultsmsg = `Votre recherche n'a donné aucun résultat. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
+              noResultsmsg = `Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
               qwarx_man = `qwarx_look`;
               break;
             case 3:
               tabName = "Shopping";
-              noResultsmsg = `Votre recherche n'a donné aucun résultat. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
+              noResultsmsg = `Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
               qwarx_man = `qwarx_look`;
               break;
             case 4:
               tabName = "Infos";
-              noResultsmsg = `Votre recherche n'a donné aucun résultat. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
+              noResultsmsg = `Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
               qwarx_man = `qwarx_look`;
               break;
             case 5:
+              tabName = "Annuaires";
+              noResultsmsg = `Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
+              qwarx_man = `qwarx_look`;
+              break;
+            case 6  :
               tabName = "Adresses";
-              noResultsmsg = `Votre recherche n'a donné aucun résultat. Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
+              noResultsmsg = `Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
               qwarx_man = `qwarx_look`;
               break;
             default:
@@ -328,8 +337,14 @@ class SearchPage extends React.Component {
             mobile={mobile ? 1 : 0}
           />
           <Tab
-            label="adresses"
+            label="annuaires"
             tab_color={"#FF1F34"}
+            tab_text_color={"white"}
+            mobile={mobile ? 1 : 0}
+          />
+          <Tab
+            label="adresses"
+            tab_color={"#045A87"}
             tab_text_color={"white"}
             mobile={mobile ? 1 : 0}
           />
@@ -527,7 +542,10 @@ class SearchPage extends React.Component {
       refinement = ["infos"];
     }
     if (tab === 5) {
-      refinement = ["directory", "address", "facebook"];
+      refinement = ["directory", "facebook"];
+    }
+    if (tab === 6) {
+      refinement = ["address"];
     }
     return (
       <InstantSearch
@@ -546,7 +564,7 @@ class SearchPage extends React.Component {
         }
         onSearchStateChange={this.onSearchStateChange}
       >
-        <Configure hitsPerPage={10} />
+        <Configure hitsPerPage={tab !== 6 ? 10 : 10} />
         <RefinementList attribute="category" defaultRefinement={refinement} />
         <Fragment>
           <Display format="mobile" css>

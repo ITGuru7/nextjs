@@ -23,27 +23,27 @@ function ResultImg(props) {
   switch (tab) {
     case 0:
       w = 80;
-      h = 80;
+      h = 90;
       break;
     case 1:
       w = 90;
-      h = 100;
+      h = 120;
       break;
     case 2:
       w = 90;
-      h = 90;
+      h = 120;
       break;
     case 3:
       w = 90;
-      h = 100;
+      h = 120;
       break;
     case 4:
-      w = 80;
+      w = 90;
       h = 120;
       break;
     case 5:
-      w = 80;
-      h = 80;
+      w = 90;
+      h = 120;
       break;
     default:
   }
