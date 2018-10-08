@@ -202,12 +202,15 @@ class Map extends React.Component {
           controller={controller}
           width={width}
           height={height}
+          onViewportChange={v => null}
+
         >
           {baseMap && (
             <StaticMap
-              reuseMaps
+              // gl={true}
+              // reuseMaps={true}
               attributionControl={false}
-              useDevicePixels={true}
+              useDevicePixels={false}
               mapStyle="mapbox://styles/roma98/cj4z2tcau0cgx2rrsoisbe2pz"
               preventStyleDiffing={true}
               mapboxApiAccessToken="pk.eyJ1Ijoicm9tYTk4IiwiYSI6ImNqM3YzdWE4aTAxZ3IzMnRkcjdyYmQ5ajgifQ.GxliePsVeHaJQIAGwD7cjA"

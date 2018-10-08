@@ -241,7 +241,7 @@ class SearchPage extends React.Component {
               noResultsmsg = `Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
               qwarx_man = `qwarx_look`;
               break;
-            case 6  :
+            case 6:
               tabName = "Adresses";
               noResultsmsg = `Vous êtes dans l'onglet ${tabName}. Avez-vous vérifié dans les autres onglets s’il y a des résultats ?`;
               qwarx_man = `qwarx_look`;
@@ -564,7 +564,7 @@ class SearchPage extends React.Component {
         }
         onSearchStateChange={this.onSearchStateChange}
       >
-        <Configure hitsPerPage={tab !== 6 ? 10 : 10} />
+        <Configure hitsPerPage={10} />
         <RefinementList attribute="category" defaultRefinement={refinement} />
         <Fragment>
           <Display format="mobile" css>

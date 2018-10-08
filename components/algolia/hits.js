@@ -104,114 +104,118 @@ class Hits extends React.Component {
             item
             className={css(
               aphrodite.searchResultsPaddingLeft,
-              aphrodite.searchResultsPaddingRight,
-              aphrodite.rightBorder
+              tab !== 6 ? aphrodite.searchResultsPaddingRight : null,
+              tab !== 6 ? aphrodite.rightBorder : null
             )}
           >
             {results(hits, true)}
           </Grid>
-          {Object.keys(hits).length ? (
-            <Grid item style={{ marginLeft: `12px` }}>
-              <Grid
-                container
-                direction="column"
-                spacing={0}
-                style={{ width: `439px` }}
-              >
-                {tab === 0 && (
-                  <Fragment>
-                    <Grid item>
-                      <Grid container direction={"row"} spacing={16}>
-                        <Grid item>
-                          <Grid
-                            container
-                            alignItems="center"
-                            justify="center"
-                            style={{ height: "100%" }}
-                          >
-                            <Grid item>
-                              <img
-                                src={`
+          {Object.keys(hits).length &&
+            tab !== 6 && (
+              <Grid item style={{ marginLeft: `12px` }}>
+                <Grid
+                  container
+                  direction="column"
+                  spacing={0}
+                  style={{ width: `439px` }}
+                >
+                  {tab === 0 && (
+                    <Fragment>
+                      <Grid item>
+                        <Grid container direction={"row"} spacing={16}>
+                          <Grid item>
+                            <Grid
+                              container
+                              alignItems="center"
+                              justify="center"
+                              style={{ height: "100%" }}
+                            >
+                              <Grid item>
+                                <img
+                                  src={`
                     https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_105,dpr_1.0/qwarx-did-you-know.png`}
-                                srcSet={`
+                                  srcSet={`
                     https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_105,dpr_1.0/qwarx-did-you-know.png,
                     https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_105,dpr_2.0/qwarx-did-you-know.png 2x,
                     https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_105,dpr_3.0/qwarx-did-you-know.png 3x
                     `}
-                                alt={`Qwarx est un moteur de recherche dédié exclusivement à la Nouvelle Calédonie`}
-                              />
+                                  alt={`Qwarx est un moteur de recherche dédié exclusivement à la Nouvelle Calédonie`}
+                                />
+                              </Grid>
                             </Grid>
                           </Grid>
-                        </Grid>
-                        <Grid item xs>
-                          <Typography
-                            variant={"subheading"}
-                            color={"primary"}
-                            gutterBottom
-                            style={{ fontWeight: 500 }}
-                          >
-                            {`Le saviez vous ?`}
-                          </Typography>
-                          <RandomDidYouKnowText rnd={rndDidYouKnowText} />
+                          <Grid item xs>
+                            <Typography
+                              variant={"subheading"}
+                              color={"primary"}
+                              gutterBottom
+                              style={{ fontWeight: 500 }}
+                            >
+                              {`Le saviez vous ?`}
+                            </Typography>
+                            <RandomDidYouKnowText rnd={rndDidYouKnowText} />
+                          </Grid>
                         </Grid>
                       </Grid>
-                    </Grid>
-                    <Divider
-                      style={{ marginBottom: "20px", marginTop: "20px" }}
-                    />
-                  </Fragment>
-                )}
+                      <Divider
+                        style={{ marginBottom: "20px", marginTop: "20px" }}
+                      />
+                    </Fragment>
+                  )}
 
-                <Grid item>
-                  <RichRender hits={hits} />
-                </Grid>
-                <Grid item>
-                  <Grid container direction="row" spacing={0}>
-                    {images.map((image, idx) => {
-                      const cpt = idx + 1;
-                      const url = encodeURIComponent(image.url);
-                      return (
-                        <Grid
-                          item
-                          style={{
-                            width: "75px",
-                            height: "75px",
-                            marginBottom: "40px",
-                            marginRight: cpt % 5 ? "16px" : null
-                          }}
-                          key={idx}
-                        >
-                          <a href={image.objectID} rel="nofollow">
-                            <Fragment>
-                              <img
-                                src={`https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${url}`}
-                                srcSet={`
+                  <Grid item>
+                    <RichRender hits={hits} />
+                  </Grid>
+                  <Grid item>
+                    <Grid container direction="row" spacing={0}>
+                      {images.map((image, idx) => {
+                        const cpt = idx + 1;
+                        const url = encodeURIComponent(image.url);
+                        return (
+                          <Grid
+                            item
+                            style={{
+                              width: "75px",
+                              height: "75px",
+                              marginBottom: "40px",
+                              marginRight: cpt % 5 ? "16px" : null
+                            }}
+                            key={idx}
+                          >
+                            <a href={image.objectID} rel="nofollow">
+                              <Fragment>
+                                <img
+                                  src={`https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${url}`}
+                                  srcSet={`
                                 https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_1.0/d_qwarx-no-image.png/${url},
                                 https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_2.0/d_qwarx-no-image.png/${url} 2x,
                                 https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_75,h_75,dpr_3.0/d_qwarx-no-image.png/${url} 3x
                                 `}
-                                height={75}
-                                width={75}
-                                alt={image.name}
-                                id={image.objectID}
-                              />
-                              <Typography variant="caption" color="secondary">
-                                {`${image.name.substring(0, 10)}..`}
-                              </Typography>
-                            </Fragment>
-                          </a>
-                        </Grid>
-                      );
-                    })}
+                                  height={75}
+                                  width={75}
+                                  alt={image.name}
+                                  id={image.objectID}
+                                />
+                                <Typography variant="caption" color="secondary">
+                                  {`${image.name.substring(0, 10)}..`}
+                                </Typography>
+                              </Fragment>
+                            </a>
+                          </Grid>
+                        );
+                      })}
+                    </Grid>
                   </Grid>
+                  <Grid
+                    item
+                    style={{ marginBottom: "20px", marginTop: "20px" }}
+                  >
+                    <Divider />
+                  </Grid>
+                  <Grid item>{/*<Weather />*/}</Grid>
                 </Grid>
-                <Grid item style={{ marginBottom: "20px", marginTop: "20px" }}>
-                  <Divider />
-                </Grid>
-                <Grid item>{/*<Weather />*/}</Grid>
               </Grid>
-            </Grid>
-          ) : null}
+            )}
         </Grid>
       );
     };
