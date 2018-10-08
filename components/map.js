@@ -202,7 +202,6 @@ class Map extends React.Component {
           controller={controller}
           width={width}
           height={height}
-          onViewportChange={v => null}
 
         >
           {baseMap && (

@@ -14,6 +14,8 @@ function ResultImg(props) {
       ? "d_qwarx-facebook.png"
       : "d_qwarx-no-image.png";
 
+  const address = props.hit.category === "address";
+
   const image =
     props.hit.category === "address"
       ? props.hit.meta.image
@@ -49,7 +51,7 @@ function ResultImg(props) {
   }
 
   const srcSet =
-    props.hit.category === "address"
+    address
       ? `
             ${[image.slice(0, 100), "/dpr_1.0", image.slice(100)].join("")},
             ${[image.slice(0, 100), "/dpr_2.0", image.slice(100)].join("")} 2x,
@@ -62,14 +64,14 @@ function ResultImg(props) {
     `;
 
   const src =
-    props.hit.category === "address"
+    address
       ? image
       : `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_${w},h_${h},dpr_1.0/${placeholder}/${image}`;
 
   return (
     <Fragment>
       {props.hit.meta.image && (
-        <a rel="nofollow" href={props.hit.objectID} target="_blank">
+        <a rel="nofollow" href={address ? null : props.hit.objectID} target="_blank">
           <img
             style={{
               borderStyle: "solid",
@@ -497,11 +499,11 @@ const TypographyHighlight = connectHighlight(
                     page: 1,
                     hitsPerPage: 10
                   },
-                  5
+                  6
                 );
                 document.getElementsByClassName(
                   "ais-SearchBox-input"
-                )[1].value =
+                )[0].value =
                   hit.rich.address;
               }
             : () => null
@@ -520,7 +522,7 @@ function ResultUrl(props) {
       asPath.indexOf("&tab") !== -1 ? asPath.indexOf("&tab") : asPath.length;
     const path = asPath.substring(0, endStr);
 
-    let url = `https://qwarx.nc${path}&tab=5`;
+    let url = `https://qwarx.nc${path}&tab=6`;
     url = url.length > 80 ? `${url.substring(0, 80)}...` : url;
     return (
       <Typography variant="body2" color="primary" style={{ color: "#0D7B72" }}>
