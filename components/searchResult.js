@@ -50,28 +50,30 @@ function ResultImg(props) {
     default:
   }
 
-  const srcSet =
-    address
-      ? `
+  const srcSet = address
+    ? `
             ${[image.slice(0, 100), "/dpr_1.0", image.slice(100)].join("")},
             ${[image.slice(0, 100), "/dpr_2.0", image.slice(100)].join("")} 2x,
             ${[image.slice(0, 100), "/dpr_3.0", image.slice(100)].join("")} 3x,
     `
-      : `
+    : `
             https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_${w},h_${h},dpr_1.0/${placeholder}/${image},
             https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_${w},h_${h},dpr_2.0/${placeholder}/${image} 2x,
             https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_${w},h_${h},dpr_3.0/${placeholder}/${image} 3x,
     `;
 
-  const src =
-    address
-      ? image
-      : `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_${w},h_${h},dpr_1.0/${placeholder}/${image}`;
+  const src = address
+    ? image
+    : `https://res.cloudinary.com/clactacom/image/fetch/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_${w},h_${h},dpr_1.0/${placeholder}/${image}`;
 
   return (
     <Fragment>
       {props.hit.meta.image && (
-        <a rel="nofollow" href={address ? null : props.hit.objectID} target="_blank">
+        <a
+          rel="nofollow"
+          href={address ? null : props.hit.objectID}
+          target="_blank"
+        >
           <img
             style={{
               borderStyle: "solid",
@@ -535,15 +537,24 @@ function ResultUrl(props) {
     url = `${url.substring(0, 70)}...`;
   }
   return (
-    <TypographyHighlight
-      component={"span"}
-      variant="body2"
-      color="secondary"
-      attribute={"id.url"}
-      hit={props.hit}
-      reduce={1}
-      url
-    />
+    <Grid container direction={'rows'} spacing={0} alignItems={'center'}>
+      <Grid item style={{marginRight: '4px'}}>
+        <img
+          src={`https://www.google.com/s2/favicons?domain=${props.hit.id.domain}`}
+        />
+      </Grid>
+      <Grid item style={{width: '95%'}}>
+        <TypographyHighlight
+          component={"span"}
+          variant="body2"
+          color="secondary"
+          attribute={"id.url"}
+          hit={props.hit}
+          reduce={1}
+          url
+        />
+      </Grid>
+    </Grid>
   );
 }
 

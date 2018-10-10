@@ -49,7 +49,7 @@ export default props => {
       text = () => (
         <Fragment>
           <Typography variant={"body1"} color={"primary"} gutterBottom>
-            {`En Nouvelle-Calédonie, environ 2700 sites web existent. Ils cumulent plus de 350.000 pages.`}
+            {`En Nouvelle-Calédonie, environ 2700 sites web existent. Ils cumulent plus de 700.000 pages.`}
           </Typography>
           <Typography variant={"body1"} color={"primary"}>
             {`Qui a dit que le web calédonien était petit ?`}
