@@ -141,10 +141,14 @@ function ResultDescription(props) {
 
   let price = props.hit.rich ? props.hit.rich.price : null;
   if (price) {
+    price = price.trim();
     price = price.replace(".0000", "");
-    if (!(price.endsWith('F') || price.endsWith('P'))) {
-      price += ' XPF'
+    if (price.match(/cfp|CFP|xpf|XPF|f|F/g)) {
+      price = price.replace(/cfp|CFP|xpf|XPF|f|F/g, "XPF");
+      price  = price.replace(/XPF/gi, "");
     }
+    price += " XPF";
+
   }
   const facebookRender = () => {
     const location =
@@ -542,13 +546,15 @@ function ResultUrl(props) {
     url = `${url.substring(0, 70)}...`;
   }
   return (
-    <Grid container direction={'row'} spacing={0} alignItems={'center'}>
-      <Grid item style={{marginRight: '4px'}}>
+    <Grid container direction={"row"} spacing={0} alignItems={"center"}>
+      <Grid item style={{ marginRight: "4px" }}>
         <img
-          src={`https://www.google.com/s2/favicons?domain=${props.hit.id.domain}`}
+          src={`https://www.google.com/s2/favicons?domain=${
+            props.hit.id.domain
+          }`}
         />
       </Grid>
-      <Grid item style={{width: '90%'}}>
+      <Grid item style={{ width: "90%" }}>
         <TypographyHighlight
           component={"span"}
           variant="body2"
@@ -698,4 +704,4 @@ class SearchResult extends React.Component {
     );
   }
 }
-export default  withRouter(SearchResult);
+export default withRouter(SearchResult);
