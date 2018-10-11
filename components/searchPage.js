@@ -342,12 +342,13 @@ class SearchPage extends React.Component {
             tab_text_color={"white"}
             mobile={mobile ? 1 : 0}
           />
-          <Tab
-            label="adresses"
-            tab_color={"#045A87"}
-            tab_text_color={"white"}
-            mobile={mobile ? 1 : 0}
-          />
+          {/*<Tab*/}
+            {/*label="adresses"*/}
+            {/*tab_color={"#045A87"}*/}
+            {/*tab_text_color={"white"}*/}
+            {/*mobile={mobile ? 1 : 0}*/}
+            {/*deactivated*/}
+          {/*/>*/}
         </Tabs>
       );
     };

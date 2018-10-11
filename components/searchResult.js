@@ -140,7 +140,12 @@ function ResultDescription(props) {
   }
 
   let price = props.hit.rich ? props.hit.rich.price : null;
-  if (price) price = price.replace(".0000", "");
+  if (price) {
+    price = price.replace(".0000", "");
+    if (!(price.endsWith('F') || price.endsWith('P'))) {
+      price += ' XPF'
+    }
+  }
   const facebookRender = () => {
     const location =
       (props.hit.rich.location && props.hit.rich.location.street) ||
@@ -537,13 +542,13 @@ function ResultUrl(props) {
     url = `${url.substring(0, 70)}...`;
   }
   return (
-    <Grid container direction={'rows'} spacing={0} alignItems={'center'}>
+    <Grid container direction={'row'} spacing={0} alignItems={'center'}>
       <Grid item style={{marginRight: '4px'}}>
         <img
           src={`https://www.google.com/s2/favicons?domain=${props.hit.id.domain}`}
         />
       </Grid>
-      <Grid item style={{width: '95%'}}>
+      <Grid item style={{width: '90%'}}>
         <TypographyHighlight
           component={"span"}
           variant="body2"
@@ -693,4 +698,4 @@ class SearchResult extends React.Component {
     );
   }
 }
-export default withRouter(SearchResult);
+export default  withRouter(SearchResult);
