@@ -63,6 +63,7 @@ export default props => {
             src={coverDpr1}
             srcSet={`${coverDpr1}, ${coverDpr2} 2x, ${coverDpr3} 3x`}
             alt="facebook cover"
+            id={facebookHit.objectID}
           />
         </Grid>
         <Grid item>

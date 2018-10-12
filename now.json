@@ -1,19 +1,11 @@
 {
-  "alias": [
-    "qwarx.nc",
-    "www.qwarx.nc",
-    "kwarx.nc",
-    "www.kwarx",
-    "quarx.nc",
-    "www.quarx.nc",
-    "qwarks.nc",
-    "www.qwarks.nc"
-  ],
+  "features": { "cloud": "v1" },
+  "alias": "qwarx.nc",
   "name": "qwarx.nc",
   "scale": {
     "sfo1": {
-      "min": 2,
-      "max": 25
+      "min": 1,
+      "max": "auto"
     }
   }
 }

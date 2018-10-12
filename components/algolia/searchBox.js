@@ -39,6 +39,7 @@ export default class SearchBox extends React.PureComponent {
         <input
           defaultValue={currentRefinement}
           onChange={onChange}
+          aria-label="recherche"
           className="ais-SearchBox-input"
           autoFocus
           onFocus={e => {
@@ -69,6 +70,7 @@ export default class SearchBox extends React.PureComponent {
                     https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_34,h_34,dpr_2.0/qwarx-search-2.png 2x,
                     https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,g_auto,c_fill,b_rgb:EEEEEE,w_34,h_34,dpr_3.0/qwarx-search-2.png 3x,
                     `}
+                  alt="qwarx-search"
                 />
               </Grid>
             </Grid>

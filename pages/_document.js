@@ -48,7 +48,6 @@ class MyDocument extends Document {
             async
             defer
           />
-          <script src="https://weatherwidget.io/js/widget.min.js" async defer />
           <style
             data-aphrodite
             dangerouslySetInnerHTML={{ __html: this.props.css.content }}
@@ -100,7 +99,7 @@ class MyDocument extends Document {
             property="Qwarx est un moteur de recherche exclusivement dedié à la Nouvelle-Calédonie"
             content="Tout le web calédonien, rien que le web calédonien."
           />
-          <meta property="og:url" content="https://qwarx.io" />
+          <meta property="og:url" content="https://qwarx.nc" />
           <meta
             property="og:image"
             content="https://res.cloudinary.com/clactacom/image/upload/v1528092749/og-image-qwarx.png"
@@ -110,7 +109,6 @@ class MyDocument extends Document {
             name="description"
             content="Le moteur de recherche du web de Nouvelle-Calédonie s'appelle Qwarx et il est plus performant que Google"
           />
-          <meta httpEquiv="Expires" content="30"/>
         </Head>
         <body>
           <Main />

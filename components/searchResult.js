@@ -70,7 +70,7 @@ function ResultImg(props) {
     <Fragment>
       {props.hit.meta.image && (
         <a
-          rel="nofollow"
+          rel="noopener"
           href={address ? null : props.hit.objectID}
           target="_blank"
         >
@@ -99,7 +99,7 @@ function ResultTitle(props) {
 
   if (props.hit.category === "address") {
     return (
-      <a rel="nofollow">
+      <a rel="noopener">
         <TypographyHighlight
           variant="subheading"
           color="secondary"
@@ -113,7 +113,7 @@ function ResultTitle(props) {
     );
   } else {
     return (
-      <a href={props.hit.objectID} target="_blank" rel="nofollow">
+      <a href={props.hit.objectID} target="_blank" rel="noopener">
         <TypographyHighlight
           variant="subheading"
           color="secondary"
@@ -358,7 +358,7 @@ function ResultDescription(props) {
             >
               {"|"}
             </Typography>
-            <a rel="nofollow" href={props.hit.objectID} target="_blank">
+            <a rel="noopener" href={props.hit.objectID} target="_blank">
               <Typography
                 variant="body2"
                 color="primary"
@@ -552,6 +552,8 @@ function ResultUrl(props) {
           src={`https://www.google.com/s2/favicons?domain=${
             props.hit.id.domain
           }`}
+          alt={'favicon'}
+          id={props.hit.objectID}
         />
       </Grid>
       <Grid item style={{ width: "90%" }}>
