@@ -8,6 +8,7 @@ import ssrLandingPageSearch from "./ssrLandingPageSearch";
 import FontFaceObserver from "fontfaceobserver";
 import Link from "next/link";
 import { Fragment } from "react";
+import Head from "next/head";
 
 const Roboto300 = new FontFaceObserver("Roboto", {
   weight: 300
@@ -380,6 +381,19 @@ class LandingPage extends React.Component {
 
     return (
       <Fragment>
+        <Head>
+          <meta
+            name="description"
+            content="Qwarx : le moteur de recherche de tous les calédoniens"
+            key="description"
+
+          />
+          <meta
+            name="og:description"
+            content="Qwarx : le moteur de recherche de tous les calédoniens"
+            key="og:description"
+          />
+        </Head>
         <Display format="mobile" css>
           {mobile()}
         </Display>

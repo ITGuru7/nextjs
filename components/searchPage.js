@@ -23,6 +23,7 @@ import debounce from "lodash/debounce";
 import MobileTextLogo from "./mobileTextLogo";
 import Typography from "@material-ui/core/Typography";
 import { withRouter } from "next/router";
+import Head from "next/head";
 
 if (process.browser) {
   require("../static/react-instantsearch-override.css");
@@ -343,11 +344,11 @@ class SearchPage extends React.Component {
             mobile={mobile ? 1 : 0}
           />
           {/*<Tab*/}
-            {/*label="adresses"*/}
-            {/*tab_color={"#045A87"}*/}
-            {/*tab_text_color={"white"}*/}
-            {/*mobile={mobile ? 1 : 0}*/}
-            {/*deactivated*/}
+          {/*label="adresses"*/}
+          {/*tab_color={"#045A87"}*/}
+          {/*tab_text_color={"white"}*/}
+          {/*mobile={mobile ? 1 : 0}*/}
+          {/*deactivated*/}
           {/*/>*/}
         </Tabs>
       );
@@ -549,37 +550,43 @@ class SearchPage extends React.Component {
       refinement = ["address"];
     }
     return (
-      <InstantSearch
-        appId="5NXUF7YDRN"
-        apiKey="458ab22e25a2ddf3a174bf03678c9281"
-        indexName="qwarx.nc"
-        // resultsState is generated from index.js, will be used only once on SSR, not needed
-        // afterwards, so no need to sync it on the state
-        resultsState={this.props.resultsState}
-        // search state need to be maintained localy, since we are in a controlled mode
-        // the searchState can come from index.js, or locally
-        searchState={
-          this.state && this.state.searchState
-            ? this.state.searchState
-            : this.props.searchState
-        }
-        onSearchStateChange={this.onSearchStateChange}
-      >
-        <Configure hitsPerPage={10} />
-        <RefinementList attribute="category" defaultRefinement={refinement} />
-        <Fragment>
-          <Display format="mobile" css>
-            {process.browser
-              ? this.state.width < 960 ? mobile() : null
-              : mobile()}
-          </Display>
-          <Display format="tablet-desktop" css>
-            {process.browser
-              ? this.state.width >= 960 ? tablet_desktop() : null
-              : tablet_desktop()}
-          </Display>
-        </Fragment>
-      </InstantSearch>
+      <Fragment>
+        <Head>
+          <meta name="description" key="description" content={`${this.state.searchState.query} >> Qwarx : le moteur de recherche de tous les calédoniens`} />
+          <meta name="og:description" key="og:description" content={`${this.state.searchState.query} >> Qwarx : le moteur de recherche de tous les calédoniens`} />
+        </Head>
+        <InstantSearch
+          appId="5NXUF7YDRN"
+          apiKey="458ab22e25a2ddf3a174bf03678c9281"
+          indexName="qwarx.nc"
+          // resultsState is generated from index.js, will be used only once on SSR, not needed
+          // afterwards, so no need to sync it on the state
+          resultsState={this.props.resultsState}
+          // search state need to be maintained localy, since we are in a controlled mode
+          // the searchState can come from index.js, or locally
+          searchState={
+            this.state && this.state.searchState
+              ? this.state.searchState
+              : this.props.searchState
+          }
+          onSearchStateChange={this.onSearchStateChange}
+        >
+          <Configure hitsPerPage={10} />
+          <RefinementList attribute="category" defaultRefinement={refinement} />
+          <Fragment>
+            <Display format="mobile" css>
+              {process.browser
+                ? this.state.width < 960 ? mobile() : null
+                : mobile()}
+            </Display>
+            <Display format="tablet-desktop" css>
+              {process.browser
+                ? this.state.width >= 960 ? tablet_desktop() : null
+                : tablet_desktop()}
+            </Display>
+          </Fragment>
+        </InstantSearch>
+      </Fragment>
     );
   }
 }
