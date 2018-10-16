@@ -54,6 +54,9 @@ class SearchPage extends React.Component {
   }
 
   onSearchStateChange = (searchState, tab) => {
+    if (!tab) {
+      tab = 0
+    }
     const statePage = this.state.searchState.page
       ? this.state.searchState.page
       : 1;
@@ -552,8 +555,25 @@ class SearchPage extends React.Component {
     return (
       <Fragment>
         <Head>
-          <meta name="description" key="description" content={`${this.state.searchState.query} >> Qwarx : le moteur de recherche de tous les calédoniens`} />
-          <meta name="og:description" key="og:description" content={`${this.state.searchState.query} >> Qwarx : le moteur de recherche de tous les calédoniens`} />
+          <meta
+            name="description"
+            key="description"
+            content={`${
+              this.state.searchState.query
+            } >> Qwarx : le moteur de recherche de tous les calédoniens`}
+          />
+          <meta
+            name="og:description"
+            key="og:description"
+            content={`${
+              this.state.searchState.query
+            } >> Qwarx : le moteur de recherche de tous les calédoniens`}
+          />
+          <meta
+            property="og:url"
+            content={`https://qwarx.nc${this.props.router.asPath}`}
+          />
+          <link rel="canonical" href={`https://qwarx.nc${this.props.router.asPath}`} />
         </Head>
         <InstantSearch
           appId="5NXUF7YDRN"

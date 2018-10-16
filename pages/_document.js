@@ -95,7 +95,6 @@ class MyDocument extends Document {
           <meta charSet="utf-8" />
           <link rel="manifest" href="/static/manifest.json" />
           <meta property="og:title" content="Qwarx.nc" />
-          <meta property="og:url" content="https://qwarx.nc" />
           <meta
             property="og:image"
             content="https://res.cloudinary.com/clactacom/image/upload/v1528092749/og-image-qwarx.png"

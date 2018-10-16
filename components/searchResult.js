@@ -260,7 +260,7 @@ function ResultDescription(props) {
   };
 
   const RichContent = () => {
-    let content;
+    let content = null;
     let source;
     switch (domain) {
       case "lnc.nc":

@@ -10,6 +10,8 @@ const Blog = ({ post, posts, shallow }) => (
       <title>{post.seo_title}</title>
       <meta name="description" content={post.meta_description} />
       <meta property="og:image" content={post.featured_image} />
+      <meta property="og:url" content={`https://qwarx.nc/${post.slug}`} />
+      <link rel="canonical" href={`https://qwarx.nc/${post.slug}`} />
     </Head>
     <About value={3} post={post} posts={posts} shallow={shallow} />
   </Wrapper>

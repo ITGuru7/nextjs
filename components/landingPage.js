@@ -388,6 +388,9 @@ class LandingPage extends React.Component {
             key="description"
 
           />
+          <meta property="og:url" content="https://qwarx.nc" />
+          <link rel="canonical" href="https://qwarx.nc" />
+
           <meta
             name="og:description"
             content="Qwarx : le moteur de recherche de tous les calédoniens"

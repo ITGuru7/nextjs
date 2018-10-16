@@ -41,7 +41,8 @@ class StyledTab extends React.Component {
                 backgroundColor: props.tab_color,
                 color: props.tab_text_color,
                 minHeight: props.selected ? "33px" : "33px",
-                minWidth: mobile ? "100px" : "120px"
+                minWidth: mobile ? "100px" : "120px",
+                opacity: props.selected ? 1: 0.55
               }}
               disableRipple
               {...props}
