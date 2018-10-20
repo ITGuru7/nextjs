@@ -470,6 +470,15 @@ const TypographyHighlight = connectHighlight(
           "****"
         );
       }
+      if  (
+        (hit.category === "directory") &&
+        !url
+      ) {
+        part.value = part.value.replace(
+          /\d+.{1}\s[A-z]+\s[A-z]+/gi,
+          "****"
+        );
+      }
       if (part.isHighlighted) {
         return (
           <mark

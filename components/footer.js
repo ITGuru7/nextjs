@@ -80,7 +80,7 @@ export default class Footer extends React.Component {
                       <Grid item xs>
                         <Typography variant="caption" align="center">
                           <a
-                            href={"https://www.facebook.com/qwarx"}
+                            href={"https://www.facebook.com/qwarx.nc"}
                             target="_blank"
                             rel="external noopener noreferrer"
                             style={{ color: "black", opacity: 0.6 }}
@@ -127,8 +127,16 @@ export default class Footer extends React.Component {
                   href={"https://www.facebook.com/qwarx"}
                   target="_blank"
                   rel="external noopener noreferrer"
+                  style={{ marginRight: "25px" }}
                 >
                   {` Facebook`}
+                </a>
+                <a
+                  href={"https://goo.gl/forms/U1H2fxHpMhiEchAq2"}
+                  target="_blank"
+                  rel="external noopener noreferrer"
+                >
+                  {` Votre site n'est pas dans Qwarx.nc?`}
                 </a>
               </Typography>
             </div>
@@ -211,6 +219,20 @@ export default class Footer extends React.Component {
                       </a>
                     </Typography>
                   </Grid>
+                  {!landingPage && (
+                    <Grid item xs>
+                      <Typography variant="caption" align="center">
+                        <a
+                          href={"https://goo.gl/forms/U1H2fxHpMhiEchAq2"}
+                          target="_blank"
+                          rel="external noopener noreferrer"
+                          style={{ color: "black", opacity: 0.6 }}
+                        >
+                          {` Votre site n'est pas dans Qwarx.nc?`}
+                        </a>
+                      </Typography>
+                    </Grid>
+                  )}
                 </Grid>
               </Grid>
             </Grid>

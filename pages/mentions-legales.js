@@ -16,6 +16,10 @@ export default () => {
           key="og:description"
           content={`Mentions Légales`}
         />
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/clactacom/image/upload/v1528092749/og-image-qwarx.png"
+        />
         <meta property="og:url" content={`https://qwarx.nc/mentions-legales`} />
         <link rel="canonical" href={`https://qwarx.nc/mentions-legales`} />
       </Head>

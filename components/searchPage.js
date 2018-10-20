@@ -54,8 +54,14 @@ class SearchPage extends React.Component {
   }
 
   onSearchStateChange = (searchState, tab) => {
+    if (searchState.configure) {
+      delete searchState["configure"];
+    }
+    if (searchState.hitsPerPage) {
+      delete searchState["hitsPerPage"];
+    }
     if (!tab) {
-      tab = 0
+      tab = 0;
     }
     const statePage = this.state.searchState.page
       ? this.state.searchState.page
@@ -101,7 +107,8 @@ class SearchPage extends React.Component {
     this.updateWidth();
     window.addEventListener("resize", debounce(this.updateWidth, 150));
     if (!this.state.searchState) {
-      this.setState({ searchState: qs.parse(window.location.search.slice(1)) });
+      searchState = qs.parse(window.location.search.slice(1));
+      this.setState({ searchState });
     }
     let href = searchStateToUrl(this.state.searchState);
     if (href !== "/?") {
@@ -288,6 +295,16 @@ class SearchPage extends React.Component {
                   gutterBottom
                 >
                   {noResultsmsg}
+                </Typography>
+                <Typography variant="subheading" align="center" gutterBottom>
+                  <a
+                    href={"https://goo.gl/forms/U1H2fxHpMhiEchAq2"}
+                    target="_blank"
+                    rel="external noopener noreferrer"
+                    style={{color: '#1565c0'}}
+                  >
+                    {` Votre site n'est pas dans Qwarx.nc?`}
+                  </a>
                 </Typography>
               </Grid>
             </Grid>
@@ -563,6 +580,10 @@ class SearchPage extends React.Component {
             } >> Qwarx : le moteur de recherche de tous les calédoniens`}
           />
           <meta
+            property="og:image"
+            content="https://res.cloudinary.com/clactacom/image/upload/v1528092749/og-image-qwarx.png"
+          />
+          <meta
             name="og:description"
             key="og:description"
             content={`${
@@ -573,7 +594,10 @@ class SearchPage extends React.Component {
             property="og:url"
             content={`https://qwarx.nc${this.props.router.asPath}`}
           />
-          <link rel="canonical" href={`https://qwarx.nc${this.props.router.asPath}`} />
+          <link
+            rel="canonical"
+            href={`https://qwarx.nc${this.props.router.asPath}`}
+          />
         </Head>
         <InstantSearch
           appId="5NXUF7YDRN"

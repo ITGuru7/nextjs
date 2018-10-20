@@ -67,13 +67,16 @@ export default props => {
           <Typography variant={"body1"} color={"primary"} gutterBottom>
             {`Ce n'est pas normal.`}
           </Typography>
-          <Link prefetch href="/contact">
-            <a>
-              <Typography variant={"body1"} color={"secondary"}>
-                {`Contactez-nous.`}
-              </Typography>
-            </a>
-          </Link>
+          <a
+            href={"https://goo.gl/forms/U1H2fxHpMhiEchAq2"}
+            target="_blank"
+            rel="external noopener noreferrer"
+            style={{ color: "black", opacity: 0.6 }}
+          >
+            <Typography variant={"body1"} color={"secondary"}>
+              {`Contactez-nous.`}
+            </Typography>
+          </a>
         </Fragment>
       );
       break;
@@ -87,13 +90,16 @@ export default props => {
           <Typography variant={"body1"} color={"primary"} gutterBottom>
             {`Vous avez envie de voir votre site web présenté de façon plus visible dans les résultats de recherche ?`}
           </Typography>
-          <Link prefetch href="/contact">
-            <a>
-              <Typography variant={"body1"} color={"secondary"}>
-                {`Contactez-nous.`}
-              </Typography>
-            </a>
-          </Link>
+          <a
+            href={"https://goo.gl/forms/U1H2fxHpMhiEchAq2"}
+            target="_blank"
+            rel="external noopener noreferrer"
+            style={{ color: "black", opacity: 0.6 }}
+          >
+            <Typography variant={"body1"} color={"secondary"}>
+              {`Contactez-nous.`}
+            </Typography>
+          </a>
         </Fragment>
       );
       break;

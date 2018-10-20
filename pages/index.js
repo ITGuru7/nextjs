@@ -9,6 +9,7 @@ import Head from "next/head";
 import criticalCssLandingPage from "../utils/criticalCssLandingPage";
 import criticalCssSearchPage from "../utils/criticalCssSearchPage";
 import Wrapper from "../components/wrapper";
+import Router from "next/router";
 
 class Index extends React.Component {
   // Responsible for getting the first result when accessing the website with a search in the url
@@ -17,10 +18,21 @@ class Index extends React.Component {
       params.asPath.substring(params.asPath.indexOf("?") + 1)
     );
     let resultsState = null;
+    if (!searchState["/"] && !searchState["query"]) {
+      searchState = {
+        "/": ""
+      };
+    }
     if (searchState["/"] === "") {
       resultsState = await findResultsState(SSRSearch, { searchState });
       searchState = null;
     } else {
+      searchState = {
+        query: searchState.query,
+        page: searchState.page ? searchState.page : 1,
+        tab: searchState.tab ? searchState.tab : 0
+      };
+
       resultsState = await findResultsState(SSRLandingPageSearch, {
         searchState
       });

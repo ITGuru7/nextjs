@@ -884,7 +884,7 @@ export default class About extends React.Component {
               {posts &&
                 posts.map(post => {
                   return (
-                    <Fragment>
+                    <div key={post.title}>
                       <ListItemText
                         primary={post.title}
                         primaryTypographyProps={{ variant: "caption" }}
@@ -908,7 +908,7 @@ export default class About extends React.Component {
                         }}
                       />
                       <Divider style={{ marginLeft: "16px" }} />
-                    </Fragment>
+                    </div>
                   );
                 })}
             </Fragment>

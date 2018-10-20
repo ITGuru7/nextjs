@@ -18,6 +18,12 @@ const Blog = ({ post, posts, shallow }) => (
 );
 
 Blog.getInitialProps = async ({ query: { slug } }) => {
+  // butter.feed.retrieve('rss')
+  //   .then(function(resp) {
+  //     console.log(resp.data)
+  //   }).catch(function(resp) {
+  //   console.log(resp)
+  // });
   let post = null;
   let resp = null;
   let shallow = null;

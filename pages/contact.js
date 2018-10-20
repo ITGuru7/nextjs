@@ -12,6 +12,10 @@ const Contact = () => {
           property="og:url"
           content={`https://qwarx.nc/contact`}
         />
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/clactacom/image/upload/v1528092749/og-image-qwarx.png"
+        />
         <link rel="canonical" href={`https://qwarx.nc/contact`} />
 
       </Head>

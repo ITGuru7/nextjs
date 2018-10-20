@@ -9,6 +9,7 @@ import FontFaceObserver from "fontfaceobserver";
 import Link from "next/link";
 import { Fragment } from "react";
 import Head from "next/head";
+import Router from "next/router";
 
 const Roboto300 = new FontFaceObserver("Roboto", {
   weight: 300
@@ -45,6 +46,7 @@ class LandingPage extends React.Component {
     this.updateWidth();
     window.addEventListener("resize", this.updateWidth);
     const searchState = { "/": "" };
+    Router.push("/", "/", { shallow: true });
     findResultsState(ssrLandingPageSearch, { searchState }).then(
       resultsState => {
         this.setState({ nbHits: resultsState.content.nbHits });
@@ -66,7 +68,7 @@ class LandingPage extends React.Component {
             searchState={{
               query: input,
               page: 1,
-              hitsPerPage: 10
+              tab: 0
             }}
           />
         );
@@ -202,6 +204,20 @@ class LandingPage extends React.Component {
                               </Typography>
                             </a>
                           </Link>
+                          <a
+                            href={"https://goo.gl/forms/U1H2fxHpMhiEchAq2"}
+                            target="_blank"
+                            rel="external noopener noreferrer"
+                          >
+                            <Typography
+                              variant={"body2"}
+                              align={'left'}
+                              component={"p"}
+                              color={"secondary"}
+                            >
+                              {`Votre site n'est pas dans Qwarx.nc?`}
+                            </Typography>
+                          </a>
                         </Grid>
                       </Grid>
                     </Grid>
@@ -225,7 +241,7 @@ class LandingPage extends React.Component {
             searchState={{
               query: input,
               page: 1,
-              hitsPerPage: 10
+              tab: 0
             }}
           />
         );
@@ -354,13 +370,27 @@ class LandingPage extends React.Component {
                                   <Typography
                                     variant={"body2"}
                                     component={"p"}
-                                    align={"right"}
+                                    align={"left"}
                                     color={"secondary"}
                                   >
                                     {`Plus d'infos`}
                                   </Typography>
                                 </a>
                               </Link>
+                              <a
+                                href={"https://goo.gl/forms/U1H2fxHpMhiEchAq2"}
+                                target="_blank"
+                                rel="external noopener noreferrer"
+                              >
+                                <Typography
+                                  variant={"body2"}
+                                  component={"p"}
+                                  align={"left"}
+                                  color={"secondary"}
+                                >
+                                  {`Votre site n'est pas dans Qwarx.nc?`}
+                                </Typography>
+                              </a>
                             </Grid>
                           </Grid>
                         </Grid>
@@ -386,7 +416,6 @@ class LandingPage extends React.Component {
             name="description"
             content="Qwarx : le moteur de recherche de tous les calédoniens"
             key="description"
-
           />
           <meta property="og:url" content="https://qwarx.nc" />
           <link rel="canonical" href="https://qwarx.nc" />
@@ -395,6 +424,10 @@ class LandingPage extends React.Component {
             name="og:description"
             content="Qwarx : le moteur de recherche de tous les calédoniens"
             key="og:description"
+          />
+          <meta
+            property="og:image"
+            content="https://res.cloudinary.com/clactacom/image/upload/v1528092749/og-image-qwarx.png"
           />
         </Head>
         <Display format="mobile" css>
