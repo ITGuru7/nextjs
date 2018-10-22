@@ -24,7 +24,7 @@ class Index extends React.Component {
       };
     }
     if (searchState["/"] === "") {
-      resultsState = await findResultsState(SSRSearch, { searchState });
+      resultsState = await findResultsState(SSRLandingPageSearch, { searchState });
       searchState = null;
     } else {
       searchState = {
@@ -33,7 +33,7 @@ class Index extends React.Component {
         tab: searchState.tab ? searchState.tab : 0
       };
 
-      resultsState = await findResultsState(SSRLandingPageSearch, {
+      resultsState = await findResultsState(SSRSearch, {
         searchState
       });
     }

@@ -99,17 +99,15 @@ function ResultTitle(props) {
 
   if (props.hit.category === "address") {
     return (
-      <a rel="noopener">
-        <TypographyHighlight
-          variant="subheading"
-          color="secondary"
-          attribute={"id.title"}
-          hit={props.hit}
-          style={{ textTransform: "lowercase" }}
-          address
-          onSearchStateChange={onSearchStateChange}
-        />
-      </a>
+      <TypographyHighlight
+        variant="subheading"
+        color="secondary"
+        attribute={"id.title"}
+        hit={props.hit}
+        style={{ textTransform: "lowercase" }}
+        address
+        onSearchStateChange={onSearchStateChange}
+      />
     );
   } else {
     return (
@@ -145,10 +143,9 @@ function ResultDescription(props) {
     price = price.replace(".0000", "");
     if (price.match(/cfp|CFP|xpf|XPF|f|F/g)) {
       price = price.replace(/cfp|CFP|xpf|XPF|f|F/g, "XPF");
-      price  = price.replace(/XPF/gi, "");
+      price = price.replace(/XPF/gi, "");
     }
     price += " XPF";
-
   }
   const facebookRender = () => {
     const location =
@@ -401,7 +398,7 @@ function ResultDescription(props) {
           <Typography variant="body1" color="primary">
             {props.hit.category !== "address"
               ? `Cette page ne dispose pas de description, veuillez nous en excuser.`
-              : `Cliquez sur l'adresse pour accéder à la carte interactive.`}
+              : `Qwarx.nc proposera bientôt une carte interactive.`}
           </Typography>
         )}
         <Grid
@@ -470,14 +467,8 @@ const TypographyHighlight = connectHighlight(
           "****"
         );
       }
-      if  (
-        (hit.category === "directory") &&
-        !url
-      ) {
-        part.value = part.value.replace(
-          /\d+.{1}\s[A-z]+\s[A-z]+/gi,
-          "****"
-        );
+      if (hit.category === "directory" && !url) {
+        part.value = part.value.replace(/\d+.{1}\s[A-z]+\s[A-z]+/gi, "****");
       }
       if (part.isHighlighted) {
         return (
@@ -510,24 +501,24 @@ const TypographyHighlight = connectHighlight(
               : variant === "body2" ? "500" : "inherit",
           color: url ? "#0D7B72" : "default"
         }}
-        onClick={
-          address
-            ? () => {
-                onSearchStateChange(
-                  {
-                    query: hit.rich.address,
-                    page: 1,
-                    hitsPerPage: 10
-                  },
-                  6
-                );
-                document.getElementsByClassName(
-                  "ais-SearchBox-input"
-                )[0].value =
-                  hit.rich.address;
-              }
-            : () => null
-        }
+        // onClick={
+        //   address
+        //     ? () => {
+        //         onSearchStateChange(
+        //           {
+        //             query: hit.rich.address,
+        //             page: 1,
+        //             hitsPerPage: 10
+        //           },
+        //           6
+        //         );
+        //         document.getElementsByClassName(
+        //           "ais-SearchBox-input"
+        //         )[0].value =
+        //           hit.rich.address;
+        //       }
+        //     : () => null
+        // }
       >
         {highlightedHits}
       </Typography>
@@ -561,7 +552,7 @@ function ResultUrl(props) {
           src={`https://www.google.com/s2/favicons?domain=${
             props.hit.id.domain
           }`}
-          alt={'favicon'}
+          alt={"favicon"}
           id={props.hit.objectID}
         />
       </Grid>
