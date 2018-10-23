@@ -24,8 +24,8 @@ function ResultImg(props) {
   let w, h;
   switch (tab) {
     case 0:
-      w = 80;
-      h = 90;
+      w = 90;
+      h = 120;
       break;
     case 1:
       w = 90;
