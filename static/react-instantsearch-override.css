@@ -163,3 +163,7 @@
   color: #bf2885;
   font-style: inherit;
 }
+
+.ais-Pagination-item--disabled {
+    opacity: 0;
+}

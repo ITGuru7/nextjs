@@ -139,7 +139,8 @@ class SearchPage extends React.Component {
             onSearchStateChange={this.onSearchStateChange}
           />
         );
-        if (!searchState.query || !searchState.query.length) {
+        const noResults = !searchState.query || !searchState.query.length;
+        if (noResults) {
           let tabName = "";
           let noSearchmsg = "";
           let width = mobile ? 80 : 115;
@@ -224,7 +225,7 @@ class SearchPage extends React.Component {
           switch (tab) {
             case 0:
               tabName = "Tout";
-              noResultsmsg = `Il se peut que vous cherchiez une information qui n'a pas encore été découverte par Qwarx. Si ce n'est pas le cas, nous vous suggérons de formuler votre recherche différement`;
+              noResultsmsg = `Il se peut que vous cherchiez une information qui n'a pas encore été découverte par Qwarx.nc. Si ce n'est pas le cas, nous vous suggérons de formuler votre recherche différement`;
               qwarx_man = `qwarx-error`;
               break;
             case 1:
@@ -301,7 +302,7 @@ class SearchPage extends React.Component {
                     href={"https://goo.gl/forms/U1H2fxHpMhiEchAq2"}
                     target="_blank"
                     rel="external noopener noreferrer"
-                    style={{color: '#1565c0'}}
+                    style={{ color: "#1565c0" }}
                   >
                     {` Votre site n'est pas dans Qwarx.nc?`}
                   </a>
@@ -386,11 +387,11 @@ class SearchPage extends React.Component {
           >
             <Grid item>
               <img
-                src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo.png`}
+                src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo-2.png`}
                 srcSet={`
-                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo.png,
-                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_2.0/qwarx-logo.png 2x,
-                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_3.0/qwarx-logo.png 3x
+                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo-2.png,
+                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_2.0/qwarx-logo-2.png 2x,
+                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_3.0/qwarx-logo-2.png 3x
                 `}
                 alt={`qwarx logo`}
                 onClick={e => {
@@ -478,11 +479,11 @@ class SearchPage extends React.Component {
             >
               <Grid item>
                 <img
-                  src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo.png`}
+                  src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo-2.png`}
                   srcSet={`
-                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo.png,
-                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_2.0/qwarx-logo.png 2x,
-                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_3.0/qwarx-logo.png 3x
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo-2.png,
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_2.0/qwarx-logo-2.png 2x,
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_3.0/qwarx-logo-2.png 3x
                     `}
                   alt={`qwarx logo`}
                   onClick={e => {
@@ -577,7 +578,7 @@ class SearchPage extends React.Component {
             key="description"
             content={`${
               this.state.searchState.query
-            } >> Qwarx : le moteur de recherche de tous les calédoniens`}
+            } >> Qwarx.nc : le moteur de recherche de tous les calédoniens`}
           />
           <meta
             property="og:image"
@@ -588,7 +589,7 @@ class SearchPage extends React.Component {
             key="og:description"
             content={`${
               this.state.searchState.query
-            } >> Qwarx : le moteur de recherche de tous les calédoniens`}
+            } >> Qwarx.nc : le moteur de recherche de tous les calédoniens`}
           />
           <meta
             property="og:url"

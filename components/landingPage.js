@@ -87,11 +87,11 @@ class LandingPage extends React.Component {
                     <Grid item>
                       <img
                         src={`
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_1.0/qwarx-logo.png`}
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_1.0/qwarx-logo-2.png`}
                         srcSet={`
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_1.0/qwarx-logo.png,
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_2.0/qwarx-logo.png 2x,
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_3.0/qwarx-logo.png 3x
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_1.0/qwarx-logo-2.png,
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_2.0/qwarx-logo-2.png 2x,
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_3.0/qwarx-logo-2.png 3x
                         `}
                         alt={`qwarx logo`}
                       />
@@ -184,14 +184,14 @@ class LandingPage extends React.Component {
                             color={"primary"}
                             gutterBottom
                           >
-                            {`Bienvenue sur Qwarx !`}
+                            {`Bienvenue sur Qwarx.nc !`}
                           </Typography>
                           <Typography
                             variant={"subheading"}
                             color={"primary"}
                             gutterBottom
                           >
-                            {`Qwarx est un moteur de recherche exclusivement dédié à la Nouvelle-Calédonie.`}
+                            {`Qwarx.nc est un moteur de recherche exclusivement dédié à la Nouvelle-Calédonie.`}
                           </Typography>
                           <Link prefetch href="/blog" as="/blog">
                             <a>
@@ -267,11 +267,11 @@ class LandingPage extends React.Component {
                     <Grid item style={{ marginBottom: "20px" }}>
                       <img
                         src={`
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_1.0/qwarx-logo.png`}
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_1.0/qwarx-logo-2.png`}
                         srcSet={`
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_1.0/qwarx-logo.png,
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_2.0/qwarx-logo.png 2x,
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_3.0/qwarx-logo.png 3x
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_1.0/qwarx-logo-2.png,
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_2.0/qwarx-logo-2.png 2x,
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_3.0/qwarx-logo-2.png 3x
                         `}
                         alt={`qwarx logo`}
                       />
@@ -355,7 +355,7 @@ class LandingPage extends React.Component {
                                 color={"primary"}
                                 gutterBottom
                               >
-                                {`Bienvenue sur Qwarx !`}
+                                {`Bienvenue sur Qwarx.nc !`}
                               </Typography>
                               <Typography
                                 variant={"subheading"}
@@ -363,7 +363,7 @@ class LandingPage extends React.Component {
                                 color={"primary"}
                                 gutterBottom
                               >
-                                {`Qwarx est un moteur de recherche exclusivement dédié à la Nouvelle-Calédonie.`}
+                                {`Qwarx.nc est un moteur de recherche exclusivement dédié à la Nouvelle-Calédonie.`}
                               </Typography>
                               <Link prefetch href="/blog" as="/blog">
                                 <a>
@@ -414,7 +414,7 @@ class LandingPage extends React.Component {
         <Head>
           <meta
             name="description"
-            content="Qwarx : le moteur de recherche de tous les calédoniens"
+            content="Qwarx.nc : le moteur de recherche de tous les calédoniens"
             key="description"
           />
           <meta property="og:url" content="https://qwarx.nc" />
@@ -422,7 +422,7 @@ class LandingPage extends React.Component {
 
           <meta
             name="og:description"
-            content="Qwarx : le moteur de recherche de tous les calédoniens"
+            content="Qwarx.nc : le moteur de recherche de tous les calédoniens"
             key="og:description"
           />
           <meta

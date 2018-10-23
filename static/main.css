@@ -78,3 +78,7 @@ select {
 .loading {
   opacity: 0.4;
 }
+
+.hidden {
+    display: none !important;
+}

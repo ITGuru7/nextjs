@@ -13,6 +13,33 @@ export default class SearchBox extends React.PureComponent {
       const debouncedSearch = debounce(e => {
         refine(e.target.value);
         defer(() => {
+          if (!e.target.value.length) {
+            document.getElementsByClassName('ais-Pagination-list') ? Array.from(
+              document.getElementsByClassName("ais-Pagination-list")
+              ).forEach(function(element) {
+                element.classList.add("hidden");
+              })
+              : null;
+            document.getElementsByClassName('ais-Stats-text') ? Array.from(
+              document.getElementsByClassName("ais-Stats-text")
+              ).forEach(function(element) {
+                element.classList.add("hidden");
+              })
+              : null;
+          } else {
+            document.getElementsByClassName('ais-Pagination-list') ? Array.from(
+              document.getElementsByClassName("ais-Pagination-list")
+              ).forEach(function(element) {
+                element.classList.remove("hidden");
+              })
+              : null;
+            document.getElementsByClassName('ais-Stats-text') ? Array.from(
+              document.getElementsByClassName("ais-Stats-text")
+              ).forEach(function(element) {
+                element.classList.add("hidden");
+              })
+              : null;
+          }
           document.getElementsByClassName("search_results")
             ? Array.from(
                 document.getElementsByClassName("search_results")
