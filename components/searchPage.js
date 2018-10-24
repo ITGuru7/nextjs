@@ -54,6 +54,7 @@ class SearchPage extends React.Component {
   }
 
   onSearchStateChange = (searchState, tab) => {
+    window.scrollTo(0, 0);
     if (searchState.configure) {
       delete searchState["configure"];
     }

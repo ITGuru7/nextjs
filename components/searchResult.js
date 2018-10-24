@@ -133,7 +133,7 @@ function ResultDescription(props) {
     const day =
       jsDate.getDate() < 10 ? `0${jsDate.getDate()}` : jsDate.getDate();
     const month =
-      jsDate.getMonth() < 10 ? `0${jsDate.getMonth()}` : jsDate.getMonth();
+      jsDate.getMonth() < 9 ? `0${jsDate.getMonth() + 1}` : jsDate.getMonth() + 1;
     date = `${day}/${month}/${jsDate.getFullYear()}`;
   }
 

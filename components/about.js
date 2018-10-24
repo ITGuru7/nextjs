@@ -285,33 +285,11 @@ export default class About extends React.Component {
           className={css(aphrodite.aboutMenuTitlePadding)}
           onClick={() =>
             document
-              .getElementById("account")
-              .scrollIntoView({ behavior: "smooth" })
-          }
-        >
-          {`Votre Compte Qwarx.nc`}
-        </Typography>
-        <Typography
-          variant="subheading"
-          className={css(aphrodite.aboutMenuTitlePadding)}
-          onClick={() =>
-            document
               .getElementById("freedom")
               .scrollIntoView({ behavior: "smooth" })
           }
         >
           {`Informatique et Libertés`}
-        </Typography>
-        <Typography
-          variant="subheading"
-          className={css(aphrodite.aboutMenuTitlePadding)}
-          onClick={() =>
-            document
-              .getElementById("cookies")
-              .scrollIntoView({ behavior: "smooth" })
-          }
-        >
-          {`Cookies et autres traceurs`}
         </Typography>
         <Typography
           variant="subheading"
@@ -487,21 +465,6 @@ export default class About extends React.Component {
           variant="headline"
           gutterBottom
           style={{ paddingTop: "64px" }}
-          id={"report"}
-        >
-          {`Votre Compte Qwarx.nc`}
-        </Typography>
-        <Typography variant="body1" gutterBottom>
-          {`Si vous avez créé un compte utilisateur, vous assumez l’entière responsabilité des informations que vous renseignez lors de votre inscription ou lors de toute modification de votre compte. Nous n’accédons pas à votre profil et déclinons toute responsabilité quant à son contenu. Vous vous engagez à prendre toutes les mesures nécessaires afin de préserver la confidentialité de votre mot de passe.`}
-        </Typography>
-        <Typography variant="body1" gutterBottom>
-          {`Vous pouvez supprimer votre compte à tout moment à partir de votre profil en cliquant sur la mention « Supprimer mon compte ». `}
-        </Typography>
-
-        <Typography
-          variant="headline"
-          gutterBottom
-          style={{ paddingTop: "64px" }}
           id={"freedom"}
         >
           {`Informatique et Libertés`}
@@ -563,23 +526,6 @@ export default class About extends React.Component {
           {`Les données personnelles que vous communiquez sont conservées pour la durée strictement nécessaire à la réalisation des finalités visées ci-dessus. Elles ne font l’objet d’aucune divulgation et/ou cession à des tiers, dans le respect des obligations réglementaires et légales applicables aux moteurs de recherche. Nous nous engageons à mettre en place tous les moyens nécessaires pour garantir la sécurité et la confidentialité des données transmises.`}
         </Typography>
 
-        <Typography
-          variant="headline"
-          gutterBottom
-          style={{ paddingTop: "64px" }}
-          id={"cookies"}
-        >
-          {`Cookies et autres traceurs`}
-        </Typography>
-        <Typography variant="body1" gutterBottom>
-          {`Nous n’utilisons aucun cookie ou autre traceur publicitaire lors de votre navigation sur les Services.`}
-        </Typography>
-        <Typography variant="body1" gutterBottom>
-          {`La seule technologie susceptible d’être installée sur votre ordinateur, dénommée « local storage », sert à sauvegarder vos paramètres de navigation.`}
-        </Typography>
-        <Typography variant="body1" gutterBottom>
-          {`Vous avez la possibilité de supprimer les données du « local storage » en désactivant les cookies à l’aide de la barre d’outils de votre navigateur. Toutefois, cette désactivation peut vous empêcher d’accéder à certaines fonctionnalités des Services, par exemple la sauvegarde de vos paramètres de navigation.`}
-        </Typography>
 
         <Typography
           variant="headline"

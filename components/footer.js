@@ -124,7 +124,7 @@ export default class Footer extends React.Component {
                 </Link>
 
                 <a
-                  href={"https://www.facebook.com/qwarx"}
+                  href={"https://www.facebook.com/qwarx.nc"}
                   target="_blank"
                   rel="external noopener noreferrer"
                   style={{ marginRight: "25px" }}

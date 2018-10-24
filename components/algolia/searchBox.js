@@ -48,7 +48,7 @@ export default class SearchBox extends React.PureComponent {
               })
             : null;
         });
-      }, 500);
+      }, 750);
 
       const onChange = e => {
         e.persist();
