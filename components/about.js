@@ -324,13 +324,13 @@ export default class About extends React.Component {
           {`Bienvenue sur Qwarx.nc`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Les présentes Conditions Générales d’Utilisation (ci-après désignées CGU) définissent les conditions et modalités d’utilisation de nos produits et services`}
+          {`Les présentes Conditions Générales d’Utilisation (CGU) définissent les conditions et modalités d’utilisation de notre site web.`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Qwarx.nc fournit à titre gratuit un service de moteur de recherche exclusivement destiné à la Nouvelle-Calédonie, accessible via son site https://www.qwarx.nc.`}
+          {`Qwarx.nc fournit à titre gratuit un service de moteur de recherche exclusivement destiné à la Nouvelle-Calédonie, accessible via son site https://qwarx.nc`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`L’utilisation de nos Services implique votre acceptation des présentes CGU. Nous nous réservons le droit de modifier les termes des CGU à tout moment afin de les adapter aux évolutions des Services de Qwarx.nc. Vous serez informé.e par courriel et/ou par tout autre moyen d’affichage approprié sur les Services concernés de ces éventuelles modifications.`}
+          {`L’utilisation de notre site implique votre acceptation des présentes CGU. Nous nous réservons le droit de modifier lesdites CGU à tout moment afin de les adapter aux évolutions des services de Qwarx.nc. Vous serez informé.e.s par affichage approprié sur les services du site concernés de ces éventuelles modifications.`}
         </Typography>
 
         <Typography
@@ -339,16 +339,16 @@ export default class About extends React.Component {
           style={{ paddingTop: "64px" }}
           id={"accessibility"}
         >
-          {`Accessibilité des Services`}
+          {`Accessibilité des services du site`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Vous êtes informé.e que les Services sont accessibles 24h / 24 et 7 jours / 7 et reconnaissez que cette accessibilité pourra être interrompue en cas de force majeure ou de difficultés techniques.`}
+          {`Vous êtes informé.e.s que le site est accessible 24h/24, 7 jours/7, et reconnaissez que cette accessibilité peut être interrompue en cas de force majeure ou de difficultés techniques.`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Nous ne saurions être tenus responsables des dysfonctionnements du réseau ou des serveurs ou de tout autre événement échappant à notre contrôle, qui ferait obstacle ou dégraderait l’accès aux Services. Nous nous réservons la faculté d’interrompre, de suspendre momentanément ou de modifier sans préavis l’accès à tout ou partie des Services, afin d’en assurer la maintenance et/ou le contrôle, ou à des fins de test, sans que l’interruption, la suspension ou la modification n’ouvrent droit à aucune obligation ni indemnisation.`}
+          {`Nous ne saurions être tenus responsables des dysfonctionnements du réseau ou des serveurs ou de tout autre événement échappant à notre contrôle, qui empêcherait ou dégraderait l’accès au site et à ses services. Nous nous réservons la possibilité d’interrompre, de suspendre momentanément ou de modifier sans préavis l’accès aux services, en tout ou partie, afin d’en assurer la maintenance ou le contrôle, ou à des fins de test, sans que l’interruption, la suspension ou la modification n’ouvrent droit à aucune obligation ni indemnisation.`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Nous nous efforcerons de vous en avertir préalablement. Vous vous engagez par ailleurs à ne pas utiliser les Services de façon inappropriée (par exemple, en accédant de manière non autorisée aux Services, aux serveurs, ordinateurs ou bases de données en lien avec les Services, en lançant des attaques par saturation ou en introduisant du matériel malveillant ou nuisible…) sous peine de poursuites judiciaires. Nous nous réservons la faculté de refuser l’accès aux Services à tout utilisateur ne respectant pas les présentes CGU.`}
+          {`Vous vous engagez par ailleurs à ne pas utiliser les services du site de façon inappropriée (par exemple, en accédant de manière non autorisée aux services, aux serveurs, ordinateurs ou bases de données en lien avec les services, en lançant des attaques par saturation ou en introduisant du matériel malveillant ou nuisible) sous peine de poursuites judiciaires.`}
         </Typography>
 
         <Typography
@@ -360,13 +360,10 @@ export default class About extends React.Component {
           {`À propos de l’utilisation de logiciels`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Certains de nos Services peuvent nécessiter l’utilisation d’un logiciel téléchargeable (tels que notre “application mobile” PWA). Qwarx.nc vous concède, à titre gratuit, une licence personnelle, non-cessible, non-exclusive et pour le monde entier, d’utilisation du logiciel fourni dans le cadre de nos Services.`}
+          {`Notre site peut nécessiter l’utilisation d’un logiciel téléchargeable (notre “application mobile” en Progressive Web App). Qwarx.nc vous concède, à titre gratuit, une licence personnelle, non-cessible, non-exclusive et pour le monde entier, d’utilisation du logiciel fourni dans le cadre de nos services.`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Cette licence est exclusivement destinée à vous permettre d’utiliser et de bénéficier de nos Services dans le respect des présentes CGU, à l’exclusion de tout droit de copie, modification, distribution, vente, location de tout ou partie du logiciel.`}
-        </Typography>
-        <Typography variant="body1" gutterBottom>
-          {`Il en va de même pour les droits de décompilation ou d’extraction du code source de ces logiciels, hormis dans les cas où le droit de décompilation est autorisé par la loi et dans les limites édictées par cette loi.`}
+          {`Cette licence est exclusivement destinée à vous permettre d’utiliser nos services dans le respect des présentes CGU, à l’exclusion de tout droit de copie, modification, distribution, vente, location de tout ou partie du logiciel.`}
         </Typography>
 
         <Typography
@@ -375,18 +372,18 @@ export default class About extends React.Component {
           style={{ paddingTop: "64px" }}
           id={"informations"}
         >
-          {`Informations mises à disposition par les Services`}
+          {`Informations mises à disposition par le site`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Les informations fournies sur les Services sont à vocation purement informative. Nous nous efforçons d’assurer l’exactitude des informations actualisées, diffusées sur les Services. Nous ne pouvons toutefois ni garantir que les résultats et les informations obtenus soient exempts de toute erreur ou de tout défaut, ni garantir la complétude, l’actualisation, la précision, l’exhaustivité ou l’absence de modification par un tiers.`}
+          {`Les informations fournies sur le site sont à vocation purement informative. Nous nous efforçons d’assurer l’exactitude des informations actualisées, diffusées sur le site. Nous ne pouvons toutefois ni garantir que les résultats et les informations obtenus soient exempts de tout défaut ou erreur, ni garantir la complétude, l’actualisation, la précision, l’exhaustivité ou l’absence de modification par un tiers.`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Par conséquent, nous déclinons toute responsabilité, de quelle que nature que ce soit :`}
+          {`Par conséquent, nous déclinons toute responsabilité, de quelque nature que ce soit :`}
         </Typography>
         <ul>
           <li>
             <Typography variant="body1">
-              {`en cas d’imprécision, inexactitude, absence d’actualisation, erreur ou omission portant sur des informations disponibles sur les Services ;`}
+              {`en cas d’imprécision, inexactitude, absence d’actualisation, erreur ou omission portant sur des informations disponibles sur les services du site ;`}
             </Typography>
           </li>
           <li>
@@ -396,22 +393,22 @@ export default class About extends React.Component {
           </li>
           <li>
             <Typography variant="body1">
-              {`pour tous dommages, directs et/ou indirects, quelles qu’en soient les causes, origines, nature ou conséquences, provoqués à raison de l’accès de quiconque aux Services ou de l’impossibilité d’y accéder ;`}
+              {`pour tous dommages, directs et/ou indirects, quelles qu’en soient les causes, origines, nature ou conséquences, provoqués à raison de l’accès de quiconque aux services du site ou de l’impossibilité d’y accéder ;`}
             </Typography>
           </li>
           <li>
             <Typography variant="body1">
-              {`de l’utilisation des Services et/ou du crédit accordé à une quelconque information provenant directement ou indirectement des Services ;`}
+              {`de l’utilisation du site et/ou du crédit accordé à une quelconque information provenant directement ou indirectement du site ;`}
             </Typography>
           </li>
           <li>
             <Typography variant="body1">
-              {`de décisions prises sur la base d’une information contenue sur les Services, et de l’utilisation qui pourrait en être faite par des tiers ;`}
+              {`de décisions prises sur la base d’une information contenue sur le site, et de l’utilisation qui pourrait en être faite par des tiers ;`}
             </Typography>
           </li>
           <li>
             <Typography variant="body1">
-              {`en cas d’inadéquation entre les informations fournies, les Services proposés et vos besoins.`}
+              {`en cas d’inadéquation entre les informations fournies et vos besoins.`}
             </Typography>
           </li>
         </ul>
@@ -425,7 +422,7 @@ export default class About extends React.Component {
           {`Liens publicitaires`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Nous proposons des liens hypertextes vers d’autres sites internet ou d’autres sources d’informations édités et/ou gérés par des tiers. Dans la mesure où nous ne pouvons exercer aucun contrôle sur les contenus de ces sources externes, vous reconnaissez que nous n’assumons aucune responsabilité relative à la mise à disposition de ces ressources, à leur contenu, aux éventuelles collectes et transmissions de données personnelles, installations de cookies ou tout autre procédé tendant aux mêmes fins, effectués par ces sites.`}
+          {`Nous proposons des liens hypertextes vers d’autres sites web ou d’autres sources d’informations édités et/ou gérés par des tiers. Vous reconnaissez que nous n’assumons aucune responsabilité relative à la mise à disposition de ces ressources, à leur contenu, aux éventuelles collectes et transmissions de données personnelles, installations de cookies ou tout autre procédé tendant aux mêmes fins, effectués par ces sites.`}
         </Typography>
 
         <Typography
@@ -440,10 +437,10 @@ export default class About extends React.Component {
           {`Tous droits réservés, Qwarx.nc® est une marque déposée de la société ClacTaCom auprès de l’INPI (logo et texte). Toute reproduction totale ou partielle de cette marque et de son logo à quelque titre que ce soit, et notamment à des fins commerciales, sans l’accord préalable et écrit de ClacTaCom est interdite sous peine de poursuites judiciaires.`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Les Services ainsi que les éléments qui les composent ou accessibles à partir de ces Services (autres que votre contenu, les images, vidéos, textes accessibles via les liens hypertextes, le contenu des autres utilisateurs), tels que les textes, images, logiciels, bases de données, onglets, fonctionnalités sont la propriété exclusive de Qwarx.nc et sont protégés par le droit de la propriété intellectuelle.`}
+          {`Les services du site ainsi que les éléments qui les composent (autres que votre contenu, les images, vidéos, textes accessibles via les liens hypertextes, le contenu des autres utilisateurs), tels que les textes, images, logiciels, bases de données, onglets, fonctionnalités sont la propriété exclusive de Qwarx.nc et sont protégés par le droit de la propriété intellectuelle.`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Les différents textes, images, photographies, interfaces visuelles, graphiques, marques, logos, sons, extraits musicaux, illustrations et vidéos, accessibles via les Services à partir de liens hypertextes, peuvent faire l’objet de droits de propriété intellectuelle spécifiques. Nous ne saurions être tenus responsables de toute atteinte, dommage, perte, préjudice, revendication, action en contrefaçon et concurrence déloyale au titre de l’utilisation de nos Services, ni de toute utilisation illicite de nos Services, exploitation frauduleuse ou tentative d’atteinte à des mesures techniques de protection.`}
+          {`Les différents textes, images, photographies, interfaces visuelles, graphiques, marques, logos, sons, extraits musicaux, illustrations et vidéos, accessibles via les services du site à partir de liens hypertextes, peuvent faire l’objet de droits de propriété intellectuelle spécifiques. Nous ne saurions être tenus responsables de toute atteinte, dommage, perte, préjudice, revendication, action en contrefaçon et concurrence déloyale au titre de l’utilisation de nos services, ni de toute utilisation illicite de notre site, exploitation frauduleuse ou tentative d’atteinte à des mesures techniques de protection.`}
         </Typography>
 
         <Typography
@@ -455,10 +452,10 @@ export default class About extends React.Component {
           {`Signalement de contenus`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Qwarx.nc est un simple intermédiaire technique qui vous permet d’accéder à des contenus présents sur Internet. Dans le cadre d’une demande de déréférencement d’un contenu sur Qwarx.nc, si vous obtenez une réponse positive de notre part, nous vous rappelons que ce contenu peut rester disponible et accessible via d’autres moteurs de recherche ou en tapant l’adresse URL du site dans la barre de recherches de votre navigateur. Il vous appartient de contacter le responsable de la publication et/ou le prestataire d’hébergement des sites concernés afin de demander la suppression définitive du ou des contenu(s) en cause. Pour les contenus les plus graves, vous avez la possibilité de les signaler sur le portail officiel de signalement des contenus illicites du Ministère français de l’Intérieur.`}
+          {`Qwarx.nc est un simple intermédiaire technique qui vous permet d’accéder à des contenus présents sur le web. Dans le cadre d’une demande de déréférencement d’un contenu sur Qwarx.nc, si vous obtenez une réponse positive de notre part, nous vous rappelons que ce contenu peut rester disponible et accessible par l’intermédiaire ou sur d’autres moteurs de recherche ou en tapant l’adresse URL du site dans la barre de recherches de votre navigateur. Il vous appartient de contacter le responsable de la publication et/ou le prestataire d’hébergement des sites concernés afin de demander la suppression définitive des contenus en cause. Pour les contenus les plus graves, vous avez la possibilité de les signaler sur le portail officiel de signalement des contenus illicites du Ministère français de l’Intérieur.`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Conformément aux dispositions légales en vigueur, dans l’hypothèse où vous constateriez la présence d’un contenu du type : apologie de crimes contre l’humanité, provocation à la commission d’actes de terrorisme ou leur apologie, incitation à la haine raciale, à l’égard des personnes en raison de leur sexe, de leur orientation ou identité sexuelle ou de leur handicap, pornographie enfantine, incitation à la violence, atteintes à la dignité humaine, lors de votre navigation sur les Services, vous avez la possibilité de nous le signaler en nous contactant à l’adresse contact@clactacom.nc.`}
+          {`Conformément aux dispositions légales en vigueur, dans l’hypothèse où vous constaterez la présence d’un contenu du type : apologie de crimes contre l’humanité, encouragement à la commission d’actes de terrorisme ou leur apologie, incitation à la haine raciale, provocation à l’égard des personnes en raison de leur sexe, de leur orientation ou identité sexuelle ou de leur handicap, pornographie enfantine, incitation à la violence, atteintes à la dignité humaine, lors de votre navigation sur les services du site, vous avez la possibilité de nous le signaler en nous contactant à l’adresse contact@clactacom.nc.`}
         </Typography>
 
         <Typography
@@ -470,15 +467,27 @@ export default class About extends React.Component {
           {`Informatique et Libertés`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`La politique de Qwarx.nc en matière de respect de la vie privée de ses utilisateurs répond à un niveau d’exigence très élevé. De manière générale, Qwarx.nc ne collecte pas de données lors de l’utilisation habituelle de ses Services. Les contenus publicitaires qui peuvent vous être présentés ne le sont qu’en fonction des mots contenus dans votre recherche en cours, mais en aucun cas en fonction de vos recherches précédentes, qui ne sont d’ailleurs pas archivées, ni de votre navigation sur d’autres sites internet.`}
+          {`La politique de Qwarx.nc en matière de respect de la vie privée de ses utilisateurs répond à un niveau d’exigence très élevé.`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Le traitement des demandes d’informations ainsi que l’inscription à certains Services peuvent toutefois requérir des utilisateurs de communiquer des données à caractère personnel telles que leur nom, prénom, coordonnées, adresse électronique, numéros de carte bancaire. Ces données sont collectées et traitées par Qwarx.nc conformément à la loi n° 78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers et aux libertés modifiée, à des fins de :`}
+          {`Qwarx.nc ne constitue pas de profil utilisateur à des fins commerciales.`}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          {`Les données collectées sont exclusivement destinées à l’identification de bugs et l’amélioration de la navigation. Le système utilisé pour se faire s’appelle Fullstory. L’utilisateur est informé qu’il peut empêcher Fullstory de collecter ses données de débogage en cliquant sur le bouton OPT Out of Fullstory sur le lien suivant : https://www.fullstory.com/optout/#`}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          {`Les contenus publicitaires qui peuvent vous être présentés pendant vos recherches ne le sont qu’en fonction des mots contenus dans votre recherche en cours, mais en aucun cas en fonction de votre identité ou de vos recherches passées.`}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          {`Votre identité est et reste inconnue de Qwarx.nc.`}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          {`Le traitement des demandes d’informations ainsi que l’inscription à certains services du site peuvent toutefois requérir des utilisateurs de communiquer des données à caractère personnel telles que leur nom, prénom, coordonnées, adresse électronique, numéros de carte bancaire. Ces données sont collectées et traitées par Qwarx.nc conformément à la loi n° 78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers et aux libertés modifiée, à des fins de :`}
         </Typography>
         <ul>
           <li>
             <Typography variant="body1">
-              {`gestion technique du ou des compte(s) de l’utilisateur et des Services disponibles ;`}
+              {`gestion technique du ou des compte(s) de l’utilisateur et des services du site disponibles ;`}
             </Typography>
           </li>
           <li>
@@ -488,7 +497,7 @@ export default class About extends React.Component {
           </li>
           <li>
             <Typography variant="body1">
-              {`gestion des demandes de référencement ; `}
+              {`gestion des demandes de référencement ;`}
             </Typography>
           </li>
           <li>
@@ -508,12 +517,15 @@ export default class About extends React.Component {
           </li>
         </ul>
         <Typography variant="body1" gutterBottom>
-          {`Vous disposez d’un droit d’opposition au traitement de vos données, d’un droit d’accès, de rectification et de suppression sur les données vous concernant. Vous disposez également du droit de définir des directives permettant l’accès à vos données en cas de décès (les modalités d’exercice de ce droit sont actuellement en attente de précisions par décret). Les demandes portant sur ces droits ainsi que sur le droit au déréférencement peuvent être exercées : `}
+          {`Ces données ne sont pas associées à vos recherches sur Qwarx.nc.`}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          {`Vous disposez d’un droit d’opposition au traitement de vos données, d’un droit d’accès, de rectification et de suppression sur les données vous concernant. Vous disposez également du droit de définir des directives permettant l’accès à vos données en cas de décès. Les demandes portant sur ces droits ainsi que sur le droit au déréférencement peuvent être exercées :`}
         </Typography>
         <ul>
           <li>
             <Typography variant="body1">
-              {`soit en écrivant par courrier à ClacTaCom – BP 8741, 98807 Nouméa, Nouvelle-Calédonie. `}
+              {`soit en écrivant par courrier à ClacTaCom – BP 8741, 98807 Nouméa, Nouvelle-Calédonie.`}
             </Typography>
           </li>
           <li>
@@ -536,10 +548,10 @@ export default class About extends React.Component {
           {`Clause attributive de juridiction et loi applicable`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Les Services et leurs CGU sont régis par la loi française, quel que soit le lieu d’utilisation. En cas d’échec des solutions amiables ou dans l’absence de leur recherche, les tribunaux français du ressort de la Cour d’appel de Paris sont seuls compétents pour connaître de tout différend né des présentes dispositions. `}
+          {`Les services du site et leurs CGU sont régis par la loi française, quel que soit le lieu d’utilisation. En cas d’échec des solutions amiables ou dans l’absence de leur recherche, les tribunaux français du ressort de la Cour d’appel de Nouméa sont seuls compétents pour connaître de tout différend né des présentes dispositions.`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Qwarx est une marque déposée.`}
+          {`Qwarx.nc est une marque déposée.`}
         </Typography>
         <Typography variant="body1" gutterBottom>
           {`Tous droits réservés, Qwarx.nc® 2018`}
