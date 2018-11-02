@@ -87,11 +87,11 @@ class LandingPage extends React.Component {
                     <Grid item>
                       <img
                         src={`
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_1.0/qwarx-logo-2.png`}
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_1.0/qwarx-logo-3.png`}
                         srcSet={`
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_1.0/qwarx-logo-2.png,
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_2.0/qwarx-logo-2.png 2x,
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_3.0/qwarx-logo-2.png 3x
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_1.0/qwarx-logo-3.png,
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_2.0/qwarx-logo-3.png 2x,
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_200,dpr_3.0/qwarx-logo-3.png 3x
                         `}
                         alt={`qwarx logo`}
                       />
@@ -193,14 +193,14 @@ class LandingPage extends React.Component {
                           >
                             {`Qwarx.nc est un moteur de recherche exclusivement dédié à la Nouvelle-Calédonie.`}
                           </Typography>
-                          <Link prefetch href="/blog" as="/blog">
+                          <Link href="/blog/ajouter-qwarx-sur-son-smartphone">
                             <a>
                               <Typography
                                 variant={"body2"}
                                 component={"p"}
                                 color={"secondary"}
                               >
-                                {`Plus d'infos`}
+                                {`Installer l'application mobile`}
                               </Typography>
                             </a>
                           </Link>
@@ -211,11 +211,11 @@ class LandingPage extends React.Component {
                           >
                             <Typography
                               variant={"body2"}
-                              align={'left'}
+                              align={"left"}
                               component={"p"}
                               color={"secondary"}
                             >
-                              {`Votre site n'est pas dans Qwarx.nc?`}
+                              {`Un besoin en référencement ?`}
                             </Typography>
                           </a>
                         </Grid>
@@ -267,11 +267,11 @@ class LandingPage extends React.Component {
                     <Grid item style={{ marginBottom: "20px" }}>
                       <img
                         src={`
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_1.0/qwarx-logo-2.png`}
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_1.0/qwarx-logo-3.png`}
                         srcSet={`
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_1.0/qwarx-logo-2.png,
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_2.0/qwarx-logo-2.png 2x,
-                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_3.0/qwarx-logo-2.png 3x
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_1.0/qwarx-logo-3.png,
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_2.0/qwarx-logo-3.png 2x,
+                        https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_250,dpr_3.0/qwarx-logo-3.png 3x
                         `}
                         alt={`qwarx logo`}
                       />
@@ -365,7 +365,7 @@ class LandingPage extends React.Component {
                               >
                                 {`Qwarx.nc est un moteur de recherche exclusivement dédié à la Nouvelle-Calédonie.`}
                               </Typography>
-                              <Link prefetch href="/blog" as="/blog">
+                              <Link href="/blog/ajouter-qwarx-sur-son-smartphone">
                                 <a>
                                   <Typography
                                     variant={"body2"}
@@ -373,7 +373,7 @@ class LandingPage extends React.Component {
                                     align={"left"}
                                     color={"secondary"}
                                   >
-                                    {`Plus d'infos`}
+                                    {`Installer l'application mobile`}
                                   </Typography>
                                 </a>
                               </Link>
@@ -388,7 +388,7 @@ class LandingPage extends React.Component {
                                   align={"left"}
                                   color={"secondary"}
                                 >
-                                  {`Votre site n'est pas dans Qwarx.nc?`}
+                                  {`Un besoin en référencement ?`}
                                 </Typography>
                               </a>
                             </Grid>
@@ -427,7 +427,7 @@ class LandingPage extends React.Component {
           />
           <meta
             property="og:image"
-            content="https://res.cloudinary.com/clactacom/image/upload/v1528092749/og-image-qwarx.png"
+            content="https://res.cloudinary.com/clactacom/image/upload/c_scale,f_auto,q_auto,w_1200/v1540854581/og-image-qwarx-3.png"
           />
         </Head>
         <Display format="mobile" css>

@@ -49,6 +49,18 @@ class SearchPage extends React.Component {
     window.removeEventListener("resize", this.updateWidth);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.searchState.query === nextState.searchState.query &&
+      this.state.tab === nextState.tab &&
+      this.state.searchState.page === nextState.searchState.page) {
+      console.log("no update!");
+      return true;
+    } else {
+      console.log("update!");
+      return true;
+    }
+  }
+
   updateWidth() {
     this.setState({ width: window.innerWidth });
   }
@@ -298,14 +310,14 @@ class SearchPage extends React.Component {
                 >
                   {noResultsmsg}
                 </Typography>
-                <Typography variant="subheading" align="center" gutterBottom>
+                <Typography variant="subheading" align="left" gutterBottom>
                   <a
                     href={"https://goo.gl/forms/U1H2fxHpMhiEchAq2"}
                     target="_blank"
                     rel="external noopener noreferrer"
                     style={{ color: "#1565c0" }}
                   >
-                    {` Votre site n'est pas dans Qwarx.nc?`}
+                    {` Un besoin en référencement?`}
                   </a>
                 </Typography>
               </Grid>
@@ -388,11 +400,11 @@ class SearchPage extends React.Component {
           >
             <Grid item>
               <img
-                src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo-2.png`}
+                src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo-3.png`}
                 srcSet={`
-                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo-2.png,
-                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_2.0/qwarx-logo-2.png 2x,
-                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_3.0/qwarx-logo-2.png 3x
+                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo-3.png,
+                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_2.0/qwarx-logo-3.png 2x,
+                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_3.0/qwarx-logo-3.png 3x
                 `}
                 alt={`qwarx logo`}
                 onClick={e => {
@@ -480,11 +492,11 @@ class SearchPage extends React.Component {
             >
               <Grid item>
                 <img
-                  src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo-2.png`}
+                  src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo-3.png`}
                   srcSet={`
-                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo-2.png,
-                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_2.0/qwarx-logo-2.png 2x,
-                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_3.0/qwarx-logo-2.png 3x
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_1.0/qwarx-logo-3.png,
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_2.0/qwarx-logo-3.png 2x,
+                    https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,w_130,dpr_3.0/qwarx-logo-3.png 3x
                     `}
                   alt={`qwarx logo`}
                   onClick={e => {
@@ -583,7 +595,7 @@ class SearchPage extends React.Component {
           />
           <meta
             property="og:image"
-            content="https://res.cloudinary.com/clactacom/image/upload/v1528092749/og-image-qwarx.png"
+            content="https://res.cloudinary.com/clactacom/image/upload/c_scale,f_auto,q_auto,w_1200/v1540854581/og-image-qwarx-3.png"
           />
           <meta
             name="og:description"

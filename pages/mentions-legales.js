@@ -18,7 +18,7 @@ export default () => {
         />
         <meta
           property="og:image"
-          content="https://res.cloudinary.com/clactacom/image/upload/v1528092749/og-image-qwarx.png"
+          content="https://res.cloudinary.com/clactacom/image/upload/c_scale,f_auto,q_auto,w_1200/v1540854581/og-image-qwarx-3.png"
         />
         <meta property="og:url" content={`https://qwarx.nc/mentions-legales`} />
         <link rel="canonical" href={`https://qwarx.nc/mentions-legales`} />

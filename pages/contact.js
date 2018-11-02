@@ -14,7 +14,7 @@ const Contact = () => {
         />
         <meta
           property="og:image"
-          content="https://res.cloudinary.com/clactacom/image/upload/v1528092749/og-image-qwarx.png"
+          content="https://res.cloudinary.com/clactacom/image/upload/c_scale,f_auto,q_auto,w_1200/v1540854581/og-image-qwarx-3.png"
         />
         <link rel="canonical" href={`https://qwarx.nc/contact`} />
 

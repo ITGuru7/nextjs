@@ -36,7 +36,7 @@ export default class SearchBox extends React.PureComponent {
             document.getElementsByClassName('ais-Stats-text') ? Array.from(
               document.getElementsByClassName("ais-Stats-text")
               ).forEach(function(element) {
-                element.classList.add("hidden");
+                element.classList.remove("hidden");
               })
               : null;
           }
@@ -48,7 +48,7 @@ export default class SearchBox extends React.PureComponent {
               })
             : null;
         });
-      }, 750);
+      }, 500);
 
       const onChange = e => {
         e.persist();

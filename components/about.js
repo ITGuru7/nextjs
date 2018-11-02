@@ -737,11 +737,11 @@ export default class About extends React.Component {
         <Link prefetch href="/">
           <a>
             <img
-              src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,h_50,dpr_1.0/qwarx-logo-2.png`}
+              src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,h_50,dpr_1.0/qwarx-logo-3.png`}
               srcSet={`
-                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,h_50,dpr_1.0/qwarx-logo-2.png,
-                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,h_50,dpr_2.0/qwarx-logo-2.png 2x,
-                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,h_50,dpr_3.0/qwarx-logo-2.png 3x
+                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,h_50,dpr_1.0/qwarx-logo-3.png,
+                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,h_50,dpr_2.0/qwarx-logo-3.png 2x,
+                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,h_50,dpr_3.0/qwarx-logo-3.png 3x
                 `}
               alt={`qwarx logo`}
               style={{
@@ -945,11 +945,11 @@ export default class About extends React.Component {
                   <Link prefetch href="/">
                     <a>
                       <img
-                        src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,h_50,dpr_1.0/qwarx-logo-2.png`}
+                        src={`https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,h_50,dpr_1.0/qwarx-logo-3.png`}
                         srcSet={`
-                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,h_50,dpr_1.0/qwarx-logo-2.png,
-                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,h_50,dpr_2.0/qwarx-logo-2.png 2x,
-                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,h_50,dpr_3.0/qwarx-logo-2.png 3x
+                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,h_50,dpr_1.0/qwarx-logo-3.png,
+                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,h_50,dpr_2.0/qwarx-logo-3.png 2x,
+                https://res.cloudinary.com/clactacom/image/upload/f_auto,q_auto,c_scale,h_50,dpr_3.0/qwarx-logo-3.png 3x
                 `}
                         alt={`qwarx logo`}
                         style={{

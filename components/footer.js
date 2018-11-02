@@ -136,7 +136,7 @@ export default class Footer extends React.Component {
                   target="_blank"
                   rel="external noopener noreferrer"
                 >
-                  {` Votre site n'est pas dans Qwarx.nc?`}
+                  {` Un besoin en référencement?`}
                 </a>
               </Typography>
             </div>
@@ -228,7 +228,7 @@ export default class Footer extends React.Component {
                           rel="external noopener noreferrer"
                           style={{ color: "black", opacity: 0.6 }}
                         >
-                          {` Votre site n'est pas dans Qwarx.nc?`}
+                          {` Un besoin en référencement?`}
                         </a>
                       </Typography>
                     </Grid>

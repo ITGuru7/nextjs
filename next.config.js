@@ -12,6 +12,10 @@ module.exports = {
           staticFileGlobsIgnorePatterns: [/\.next\//],
           runtimeCaching: [
             {
+              handler: "networkOnly",
+              urlPattern: /^https:\/\/cdn.buttercms.com\/?.*/
+            },
+            {
               handler: "networkFirst",
               urlPattern: /^https?.*/
             }
