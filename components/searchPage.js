@@ -49,18 +49,6 @@ class SearchPage extends React.Component {
     window.removeEventListener("resize", this.updateWidth);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.searchState.query === nextState.searchState.query &&
-      this.state.tab === nextState.tab &&
-      this.state.searchState.page === nextState.searchState.page) {
-      console.log("no update!");
-      return true;
-    } else {
-      console.log("update!");
-      return true;
-    }
-  }
-
   updateWidth() {
     this.setState({ width: window.innerWidth });
   }
