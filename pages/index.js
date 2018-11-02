@@ -14,6 +14,7 @@ import Router from "next/router";
 class Index extends React.Component {
   // Responsible for getting the first result when accessing the website with a search in the url
   static async getInitialProps(params) {
+    console.log('initial props')
     let searchState = qs.parse(
       params.asPath.substring(params.asPath.indexOf("?") + 1)
     );
@@ -49,6 +50,7 @@ class Index extends React.Component {
   // this is also where we load our critical css, to speed up SSR
   // subsequent css will be loaded at the end of the body in _document.js
   render() {
+    console.log('root')
     return (
       <Wrapper>
         {this.props.searchState ? (

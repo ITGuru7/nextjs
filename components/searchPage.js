@@ -43,6 +43,8 @@ class SearchPage extends React.Component {
     this.updateWidth = this.updateWidth.bind(this);
     this.handleTabChange = this.handleTabChange.bind(this);
     this.onSearchStateChange = this.onSearchStateChange.bind(this);
+
+    console.log('search constructor')
   }
 
   componentWillUnmount() {
@@ -54,6 +56,8 @@ class SearchPage extends React.Component {
   }
 
   onSearchStateChange = (searchState, tab) => {
+    console.log('state change')
+    console.log(searchState)
     window.scrollTo(0, 0);
     if (searchState.configure) {
       delete searchState["configure"];
@@ -94,7 +98,8 @@ class SearchPage extends React.Component {
           href.indexOf("&tab") !== -1 ? href.indexOf("&tab") : href.length;
         href = href.substring(0, endStr);
         href = `${href}&tab=${tab}`;
-        Router.push(href, href, { shallow: true });
+        // Router.push(href, href, { shallow: true });
+        window.history.pushState({},"", href);
       }
     }
     if (tab) {
@@ -124,10 +129,14 @@ class SearchPage extends React.Component {
     const path = asPath.substring(0, endStr);
     const str = `${path}&tab=${tab}`;
     Router.push(str, str, { shallow: true });
+    // window.history.pushState({},"", str);
     this.setState({ tab });
   };
 
   render() {
+    console.log('search render')
+    console.log(this.state.searchState)
+    console.log(this.state.tab)
     const Content = connectStateResults(
       ({ tablet_desktop, mobile, searchState, searchResults }) => {
         let hits = (

@@ -39,17 +39,17 @@ class LandingPage extends React.Component {
   }
 
   updateWidth() {
-    this.setState({ width: window.innerWidth });
+    // this.setState({ width: window.innerWidth });
   }
 
   componentDidMount() {
     this.updateWidth();
     window.addEventListener("resize", this.updateWidth);
     const searchState = { "/": "" };
-    Router.push("/", "/", { shallow: true });
+    // Router.push("/", "/", { shallow: true });
     findResultsState(ssrLandingPageSearch, { searchState }).then(
       resultsState => {
-        this.setState({ nbHits: resultsState.content.nbHits });
+        // this.setState({ nbHits: resultsState.content.nbHits });
       }
     );
   }
@@ -59,6 +59,7 @@ class LandingPage extends React.Component {
   }
 
   render() {
+    console.log('landing render')
     const { nbHits, input } = this.state;
 
     const mobile = () => {
@@ -285,6 +286,8 @@ class LandingPage extends React.Component {
                               this.setState({
                                 input: e.target["value"]
                               });
+                              // let str = '/?query='+e.target['value']+'&page=1&tab=0';
+                              // Router.push(str, str, { shallow: false });
                             }}
                             className="ais-SearchBox-input"
                             placeholder="Formulez votre requête comme dans Google"
