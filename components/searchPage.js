@@ -136,7 +136,6 @@ class SearchPage extends React.Component {
   render() {
     console.log('search render')
     console.log(this.state.searchState)
-    console.log(this.state.tab)
     const Content = connectStateResults(
       ({ tablet_desktop, mobile, searchState, searchResults }) => {
         let hits = (

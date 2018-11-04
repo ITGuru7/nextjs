@@ -38,10 +38,11 @@ class Index extends React.Component {
         searchState
       });
     }
+    console.log(resultsState)
     return {
       resultsState,
       searchState,
-      tab: searchState ? parseInt(searchState.tab) : 0
+      // tab: searchState ? parseInt(searchState.tab) : 0
     };
   }
 
@@ -53,7 +54,7 @@ class Index extends React.Component {
     console.log('root')
     return (
       <Wrapper>
-        {this.props.searchState ? (
+        {/* {this.props.searchState ? (
           <Fragment>
             <Head>
               <style>${process.browser ? null : criticalCssSearchPage}</style>
@@ -64,14 +65,17 @@ class Index extends React.Component {
               tab={this.props.tab}
             />
           </Fragment>
-        ) : (
+        ) : ( */}
           <Fragment>
             <Head>
               <style>${process.browser ? null : criticalCssLandingPage}</style>
             </Head>
-            <LandingPage nbHits={this.props.resultsState.content.nbHits} />
+            <LandingPage 
+              nbHits={this.props.resultsState.content.nbHits} 
+              searchState={this.props.searchState}
+            />
           </Fragment>
-        )}
+        {/* )} */}
       </Wrapper>
     );
   }
